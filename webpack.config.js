@@ -5,6 +5,13 @@ const PORT = 4001;
 
 const { VueLoaderPlugin } = require('vue-loader');
 
+const vuePlugin = new VueLoaderPlugin();
+const vueConstants = new webpack.DefinePlugin({
+  __VUE_OPTIONS_API__: false,
+  __VUE_PROD_DEVTOOLS__: false,
+  __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
+});
+
 module.exports = {
   entry: {
     app: ['./js/main.ts'],
@@ -57,5 +64,5 @@ module.exports = {
     ],
   },
   devtool: 'source-map',
-  plugins: [new VueLoaderPlugin()],
+  plugins: [vuePlugin, vueConstants],
 };
