@@ -1,0 +1,19 @@
+{
+  "name": "lang-trainer",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
+  "dependencies": {
+    "vue": "^3.5.12"
+  },
+  "devDependencies": {
+    "@vue/tsconfig": "^0.5.1",
+    "typescript": "~5.6.0",
+    "vue-tsc": "^2.1.6"
+  }
+}
