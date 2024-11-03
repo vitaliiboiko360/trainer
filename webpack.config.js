@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const PORT = 4001;
+const PORT = 4002;
 
 const { VueLoaderPlugin } = require('vue-loader');
 
@@ -37,7 +37,7 @@ module.exports = {
     },
   },
   resolve: {
-    extensions: ['.js', '.vue', '.scss'],
+    extensions: ['.js', '.ts', '.vue', '.scss'],
   },
   mode: 'development',
   module: {
@@ -54,6 +54,21 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
+        options: {
+          modules: true,
+          loaders: {
+            scss: [
+              { loader: 'style-loader' },
+              {
+                loader: 'css-loader',
+                options: {
+                  esModule: false,
+                },
+              },
+              { loader: 'sass-loader' },
+            ],
+          },
+        },
         exclude: /(node_modules)/,
       },
       {
