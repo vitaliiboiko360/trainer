@@ -1,7 +1,7 @@
 <script setup>
-import AppTitle from './AppTitle.vue';
+import Home from './Home.vue';
 </script>
 
 <template>
-  <AppTitle />
+  <Home />
 </template>
