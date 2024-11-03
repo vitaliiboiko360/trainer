@@ -1,6 +1,9 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
+import vitePluginSass from 'vite-plugin-sass';
+import { patchCssModules } from 'vite-css-modules';
+
 export default defineConfig({
   define: {
     __VUE_OPTIONS_API__: false,
@@ -23,7 +26,7 @@ export default defineConfig({
       },
     ],
   },
-  plugins: [vue()],
+  plugins: [patchCssModules(), vitePluginSass(), vue()],
   css: {
     preprocessorOptions: {
       scss: {
