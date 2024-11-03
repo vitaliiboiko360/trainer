@@ -1,8 +1,8 @@
 :root {
   --blue: #33adff;
-  --darkBlue: #5B93D7;
+  --darkBlue: #5b93d7;
   --greyLight: #f5f5f5;
-  --grey: #ccc
+  --grey: #ccc;
 }
 
 * {
@@ -23,6 +23,7 @@ html {
 
 body {
   font-family: 'Merriweather';
+  background: rgb(var(--color-snow));
   margin: 0;
   padding: 0;
   font-size: 1.1rem;
@@ -84,7 +85,7 @@ input::-webkit-inner-spin-button {
   /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-input[type=number] {
+input[type='number'] {
   -moz-appearance: textfield;
   /* Firefox */
   width: 5ch;
