@@ -20,6 +20,7 @@ export default defineConfig({
   },
   resolve: {
     alias: [
+      { find: 'css', replacement: path.resolve(__dirname, 'css') },
       {
         find: '@',
         replacement: path.resolve(__dirname, 'src'),
@@ -30,8 +31,8 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        api: 'modern',
-        additionalData: `@use '@/css/shared.scss' as *;`,
+        api: 'modern-compiler',
+        additionalData: `@use './css/shared.scss' as sharedCss;`,
       },
     },
   },
