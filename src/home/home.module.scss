@@ -1,3 +1,10 @@
 .homeDivOuter {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeDivInner {
+  align-self: center;
 }
