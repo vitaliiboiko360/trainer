@@ -19,7 +19,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'js'),
     publicPath: '/js/',
-    filename: 'bundle.js',
+    filename: 'index.js',
   },
   watchOptions: {
     aggregateTimeout: 600,
@@ -45,6 +45,7 @@ module.exports = {
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
+        exclude: /(node_modules)/,
       },
       {
         test: /\.js$/,
@@ -62,7 +63,7 @@ module.exports = {
               {
                 loader: 'css-loader',
                 options: {
-                  esModule: false,
+                  modules: true,
                 },
               },
               { loader: 'sass-loader' },
