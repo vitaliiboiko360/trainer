@@ -1,7 +1,7 @@
 <script setup>
 import HomeTitle from './home/HomeTitle.vue';
-import * as css from './home/home.scss';
-console.log(JSON.stringify(css));
+import * as css from './home/home.module.scss';
+console.log(css);
 </script>
 
 <template>
