@@ -29,6 +29,9 @@ export default defineConfig({
   },
   plugins: [patchCssModules(), vitePluginSass(), vue()],
   css: {
+    modules: {
+      generateScopedName: '[hash]',
+    },
     preprocessorOptions: {
       scss: {
         api: 'modern-compiler',
