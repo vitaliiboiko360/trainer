@@ -14,6 +14,10 @@ export default defineConfig({
   mode: 'development',
   server: {
     port: 3000,
+    fs: {
+      allow: ['./data/', './'],
+      deny: ['./node_modules'],
+    },
   },
   esbuild: {
     legalComments: 'none',
@@ -21,6 +25,7 @@ export default defineConfig({
   resolve: {
     alias: [
       { find: 'css', replacement: path.resolve(__dirname, 'css') },
+      { find: 'data', replacement: path.resolve(__dirname, 'data') },
       {
         find: '@',
         replacement: path.resolve(__dirname, 'src'),
@@ -44,5 +49,8 @@ export default defineConfig({
       dir: 'js',
       name: 'index.js',
     },
+  },
+  optimizeDeps: {
+    exclude: ['@tanstack/vue-query'],
   },
 });

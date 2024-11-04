@@ -15,6 +15,7 @@
     "os": false
   },
   "dependencies": {
+    "@tanstack/vue-query": "^5.59.17",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5"
   },
