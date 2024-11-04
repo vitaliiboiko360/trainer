@@ -4,6 +4,6 @@ import * as css from './home.module.scss';
 
 <template>
   <div :class="css.homeDivInner">
-    <h1>Lang Learner</h1>
+    <h1>Spanish Learner</h1>
   </div>
 </template>
