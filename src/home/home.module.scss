@@ -8,3 +8,39 @@
 .homeDivInner {
   align-self: center;
 }
+
+.lessonListItem {
+  --__internal__border-color: var(
+    --web-ui_card-border-color,
+    rgb(var(--color-swan))
+  );
+  border: solid transparent;
+  border-radius: var(--web-ui_card-border-radius, 12px);
+  border-width: 2px 2px 4px;
+  cursor: pointer;
+  display: flex;
+  outline: 0;
+  position: relative;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+
+  &::before {
+    background-color: var(
+      --web-ui_card-background-color,
+      rgb(var(--color-snow))
+    );
+    border: 2px solid var(--__internal__border-color);
+    border-radius: var(--web-ui_card-border-radius, 12px);
+    bottom: -2px;
+    box-shadow: 0 2px 0 var(--__internal__border-color);
+    content: '';
+    left: -2px;
+    position: absolute;
+    right: -2px;
+    top: -2px;
+    z-index: -1;
+  }
+}
