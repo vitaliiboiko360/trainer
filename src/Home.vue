@@ -5,5 +5,7 @@ import * as css from './home/home.module.scss';
 </script>
 
 <template>
-  <div :class="css.homeDivOuter"><HomeTitle /> <ListLessons /></div>
+  <div>
+    <div :class="css.homeDivOuter"><HomeTitle /> <ListLessons /></div>
+  </div>
 </template>

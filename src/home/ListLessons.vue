@@ -25,10 +25,13 @@ const getKey = () => {
 <template>
   <span v-if="isPending">Loading...</span>
   <span v-else-if="isError">Error: {{ error.message }}</span>
-  <!-- We can assume by this point that `isSuccess === true` -->
   <div v-else>
-    <div v-for="item in data.texts" :key="getKey" :class="css.lessonListItem">
-      <p>{{ item.title }}</p>
+    <div
+      v-for="item in data.texts"
+      :key="getKey"
+      :class="[css.lessonListItem, css.fredokaFont]"
+    >
+      <LessonListItem :title="item.title" />
     </div>
   </div>
 </template>
