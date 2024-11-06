@@ -11,13 +11,20 @@
   align-self: center;
 }
 
+.homeDivTitle {
+  margin-bottom: 2rem;
+  margin-top: 4rem;
+}
+
 .lessonListItem {
-  --__internal__border-color: var(
-    --web-ui_card-border-color,
-    rgb(var(--color-swan))
-  );
+  padding-left: 1rem;
+  padding-top: 1rem;
+  margin-bottom: 1.5rem;
+  min-height: 15rem;
+  min-width: 16rem;
+  --parent-border-color: #e5e5e5;
   border: solid transparent;
-  border-radius: var(--web-ui_card-border-radius, 12px);
+  border-radius: 12px;
   border-width: 2px 2px 4px;
   cursor: pointer;
   display: flex;
@@ -34,10 +41,10 @@
       --web-ui_card-background-color,
       rgb(var(--color-snow))
     );
-    border: 2px solid var(--__internal__border-color);
-    border-radius: var(--web-ui_card-border-radius, 12px);
+    border: 2px solid var(--parent-border-color);
+    border-radius: 12px;
     bottom: -2px;
-    box-shadow: 0 2px 0 var(--__internal__border-color);
+    box-shadow: 0 2px 0 var(--parent-border-color);
     content: '';
     left: -2px;
     position: absolute;
