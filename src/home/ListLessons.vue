@@ -3,17 +3,12 @@ import * as css from './home.module.scss';
 import { useQuery } from '@tanstack/vue-query';
 
 import LessonListItem from './LessonListItem.vue';
+import { queryJson } from '../query/default';
 
+const url = '/data/list_of_texts.json';
 const { isPending, isError, data, error } = useQuery({
   queryKey: ['list'],
-  queryFn: async () => {
-    // TODO: make it default query function takes url as parameter
-    const response = await fetch('/data/list_of_texts.json');
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  },
+  queryFn: (_) => queryJson(url),
 });
 
 let counter = 0;
