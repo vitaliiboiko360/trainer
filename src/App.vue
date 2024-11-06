@@ -4,5 +4,5 @@ import Home from './Home.vue';
 </script>
 
 <template>
-  <Home />
+  <router-view v-slot="{ Home }"></router-view>
 </template>
