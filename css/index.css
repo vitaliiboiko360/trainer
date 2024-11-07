@@ -26,8 +26,8 @@ body {
   background: rgb(var(--color-snow));
   margin: 0;
   padding: 0;
-  font-size: 1.1rem;
-  line-height: 2.2em;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
   min-height: 100vw;
 }
 
