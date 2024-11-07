@@ -10,7 +10,7 @@ import Home from '../Home.vue';
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/lesson-:id', component: Page },
+  { path: '/lesson-:id', component: Page, props: true },
 ];
 const router = createRouter({
   history: createWebHistory(),
