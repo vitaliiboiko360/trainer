@@ -9,5 +9,9 @@ const textLines = lines.slice(1);
 
 <template>
   <Title :titleLine />
-  <LineSentence v-for="textLine in textLines" :textLine="textLine.text" />
+  <LineSentence
+    v-for="textLine in textLines"
+    :textLine="textLine.text"
+    :endParagraph="textLine.endParagraph"
+  />
 </template>

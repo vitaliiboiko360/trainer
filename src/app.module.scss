@@ -1,5 +1,11 @@
 @use '../css/shared.scss' as *;
 
+html {
+  overflow: hidden;
+}
+
 body {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
   @include fredokaFont;
 }

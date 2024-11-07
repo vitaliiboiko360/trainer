@@ -7,3 +7,36 @@
   max-width: 40rem;
   align-self: center;
 }
+
+.titleLine {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.divTopBarOuter {
+  align-items: center;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 100%;
+  justify-content: space-between;
+  grid-gap: 8px 16px;
+  align-items: center;
+  display: grid;
+  grid-auto-rows: 1fr;
+  justify-items: stretch;
+}
+
+.divTopBarButtonWrap {
+  grid-column: auto / 2;
+  justify-self: start;
+}
+
+.topBarButton {
+  background: none;
+  border: solid transparent;
+  border-radius: var(--__internal__border-radius);
+  border-width: 2px 2px 4px;
+  color: var(--__internal__color);
+  height: var(--__internal__height);
+  padding: var(--__internal__padding);
+  transition: filter 0.2s, transform var(--web-ui_button-transition-lip);
+}

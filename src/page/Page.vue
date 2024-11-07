@@ -7,18 +7,12 @@ import { queryJson } from '../query/default';
 
 const { id } = defineProps(['id']);
 
-console.log(`id = ${id}`);
-
 const url = '/data/mike_tiene_un_perro.json';
+
 const { isPending, isError, data, error } = useQuery({
-  queryKey: ['lesson'],
+  queryKey: [`lesson-${id}`],
   queryFn: () => queryJson(url),
 });
-
-let counter = 0;
-const getKey = () => {
-  return `lesson-item-key-${counter++}`;
-};
 </script>
 
 <template>
