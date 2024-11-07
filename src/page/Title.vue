@@ -1,3 +1,9 @@
-<script setup></script>
+<script setup>
+const { titleLine } = defineProps(['titleLine']);
+</script>
 
-<template></template>
+<template>
+  <div>
+    <b>{{ titleLine }}</b>
+  </div>
+</template>

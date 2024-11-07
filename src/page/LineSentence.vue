@@ -1,3 +1,9 @@
-<script setup></script>
+<script setup>
+const { textLine } = defineProps(['textLine']);
+</script>
 
-<template></template>
+<template>
+  <span>
+    {{ textLine }}
+  </span>
+</template>
