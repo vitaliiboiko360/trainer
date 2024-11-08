@@ -2,6 +2,7 @@
 import { useQuery } from '@tanstack/vue-query';
 import * as css from './page.module.scss';
 import TextBlock from './TextBlock.vue';
+import Audio from './audio/Audio.vue';
 
 import { queryJson } from '../query/default';
 
@@ -9,7 +10,7 @@ const { id } = defineProps(['id']);
 
 const url = '/data/mike_tiene_un_perro.json';
 
-const { isPending, isError, data, error } = useQuery({
+const { isPending, isError, data, error, isFetched } = useQuery({
   queryKey: [`lesson-${id}`],
   queryFn: () => queryJson(url),
 });
@@ -21,4 +22,5 @@ const { isPending, isError, data, error } = useQuery({
   <div v-else :class="css.divPage">
     <TextBlock :data />
   </div>
+  <Audio v-if="isFetched" :audioSource="data.audio" />
 </template>
