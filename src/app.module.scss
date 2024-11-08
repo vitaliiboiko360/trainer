@@ -1,10 +1,7 @@
 @use '../css/shared.scss' as *;
 
-html {
-  overflow: hidden;
-}
-
 body {
+  min-height: 100vh;
   overflow-y: auto;
   scrollbar-gutter: stable;
   @include fredokaFont;
