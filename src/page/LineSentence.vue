@@ -1,11 +1,11 @@
 <script setup>
-const { textLine, endParagraph = false } = defineProps([
-  'textLine',
-  'endParagraph',
-]);
+import * as css from './page.module.scss';
+const { textLine: textLineInfo } = defineProps(['textLine']);
+const { text: textLine, endParagraph = false } = textLineInfo;
 </script>
 
 <template>
-  <span> {{ textLine }}{{ ' ' }} </span>
+  <span :class="endParagraph ? css.lineUnderlined : ''"> {{ textLine }} </span
+  >&nbsp;
   <br v-if="endParagraph" />
 </template>
