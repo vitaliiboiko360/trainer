@@ -1,4 +1,4 @@
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 
 export const activePlayTime = reactive({
   startTime: -1,
@@ -6,6 +6,7 @@ export const activePlayTime = reactive({
   updateTime(startTime: number, endTime: number) {
     this.startTime = startTime;
     this.endTime = endTime;
-    console.log(`updateTime= `, this.startTime, this.endTime);
   },
 });
+
+export const activeAnimationSentenceNumber = ref(-1);

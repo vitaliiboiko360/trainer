@@ -8,6 +8,10 @@ const textLines = lines.slice(1);
 </script>
 
 <template>
-  <Title :titleLine />
-  <LineSentence v-for="textLine in textLines" :textLine="textLine" />
+  <Title :titleLine :index="0" />
+  <LineSentence
+    v-for="(textLine, index) in textLines"
+    :textLine="textLine"
+    :index="index + 1"
+  />
 </template>
