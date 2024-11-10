@@ -1,45 +1,33 @@
-<script setup>
-import { useTemplateRef, ref, watch, watchEffect, onMounted } from 'vue';
-const audio = useTemplateRef('audioTrack');
-const { audioSource } = defineProps(['audioSource']);
+<script setup lang="ts">
+import { ref, watch } from 'vue';
+import { activePlayTime } from '../activePlayTime';
 
+const { audioSource } = defineProps(['audioSource']);
+const audio = ref();
 const previousOnTimeUpdateHandler = ref();
 
-watchEffect(() => {
-  if (!audio.value) return;
-  const onClickTextSentenceEvent = audio.value
-    ? (eventData) => {
-        console.log(`eventData=`, eventData);
-        const { startTime, endTime } = eventData;
-        audio.value.currentTime = startTime;
-        audio.value.play();
-        if (previousOnTimeUpdateHandler.value)
-          audio.value.removeEventListner(
-            'timeupdate',
-            previousOnTimeUpdateHandler.value
-          );
-        previousOnTimeUpdateHandler.value = audio.value.addEventListener(
-          'timeupdate',
-          (event) => {
-            if (audio.value.currentTime >= endTime) audio.value.pause();
-          }
-        );
-      }
-    : () => {
-        console.log(`empty audio`);
-      };
+watch(activePlayTime, () => {
+  if (!audio.value) return console.log(`!!!!audio.value= `, audio.value);
 
-  audio.value.addEventListener(
-    'clickTextSentenceEvent',
-    onClickTextSentenceEvent
+  const { startTime, endTime } = activePlayTime;
+
+  audio.value!.removeEventListener(
+    'timeupdate',
+    previousOnTimeUpdateHandler.value
   );
+
+  const onTimeUpdate = (event) => {
+    if (audio.value!.currentTime >= endTime) audio.value!.pause();
+  };
+  previousOnTimeUpdateHandler.value = onTimeUpdate;
+
+  audio.value!.addEventListener('timeupdate', onTimeUpdate);
+
+  audio.value!.currentTime = startTime;
+  audio.value!.play();
 });
 </script>
 
 <template>
-  <audio
-    @clickTextSentenceEvent="onClickTextSentenceEvent"
-    ref="audioTrack"
-    :src="`data/${audioSource}`"
-  ></audio>
+  <audio ref="audio" :src="`data/${audioSource}`"></audio>
 </template>

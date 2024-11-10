@@ -1,5 +1,5 @@
-<script setup>
-const emit = defineEmits(['clickTextSentenceEvent']);
+<script setup lang="ts">
+import { activePlayTime } from './activePlayTime';
 import * as css from './page.module.scss';
 const { textLine: textLineInfo } = defineProps(['textLine']);
 const {
@@ -8,9 +8,9 @@ const {
   start: startTime,
   end: endTime,
 } = textLineInfo;
+
 const onClick = (event) => {
-  console.log(`you've clicked on`, event.currentTarget);
-  emit('clickTextSentenceEvent', { startTime: startTime, endTime: endTime });
+  activePlayTime.updateTime(startTime, endTime);
 };
 </script>
 
