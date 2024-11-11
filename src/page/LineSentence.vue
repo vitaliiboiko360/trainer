@@ -31,8 +31,9 @@ const onClick = (event) => {
   };
 
   gsap.to(event.currentTarget, {
+    duration: endTime - startTime,
     backgroundSize: '100% 100%',
-    duration: 2,
+    ease: 'none',
     onComplete: onComplete,
   });
 };
@@ -57,7 +58,8 @@ watch(activeAnimationSentenceNumber, () => {
 
 <template>
   <span ref="refToSpan" @click="onClick" :class="css.lineUnderlined">
-    {{ textLine }} </span
-  >&nbsp;
+    {{ textLine }}
+  </span>
+  &nbsp;
   <br v-if="endParagraph" />
 </template>
