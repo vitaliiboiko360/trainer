@@ -21,9 +21,19 @@ const refToSpan = ref();
 const onClick = (event) => {
   activePlayTime.updateTime(startTime, endTime);
   activeAnimationSentenceNumber.value = index;
+
+  console.log(`event.currentTarget== ${event.currentTarget}`);
+
+  let scopedEventTarget = event.currentTarget;
+
+  const onComplete = () => {
+    gsap.set(scopedEventTarget, { backgroundSize: '0 100%' });
+  };
+
   gsap.to(event.currentTarget, {
     backgroundSize: '100% 100%',
     duration: 2,
+    onComplete: onComplete,
   });
 };
 
@@ -35,10 +45,12 @@ watch(activeAnimationSentenceNumber, () => {
     console.log(
       `WATCH== ${activeAnimationSentenceNumber.value}\n${refToSpan.value}`
     );
-    refToSpan.value &&
+    if (refToSpan.value) {
       gsap.set(refToSpan.value, {
         backgroundSize: '0% 100%',
       });
+      refToSpan.value.setAttribute('background-size', '0% 100%');
+    }
   }
 });
 </script>
