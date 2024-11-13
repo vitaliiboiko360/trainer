@@ -3,11 +3,12 @@ import { reactive, ref } from 'vue';
 export const activePlayTime = reactive({
   startTime: -1,
   endTime: -1,
-  booleanToTriggerRepeatedClicks: true,
+  booleanToTriggerUpdatesByRepeatedClicks: true,
   updateTime(startTime: number, endTime: number) {
     this.startTime = startTime;
     this.endTime = endTime;
-    this.booleanToTriggerRepeatedClicks = !this.booleanToTriggerRepeatedClicks;
+    this.booleanToTriggerUpdatesByRepeatedClicks =
+      !this.booleanToTriggerUpdatesByRepeatedClicks;
   },
 });
 
