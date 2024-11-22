@@ -50,7 +50,7 @@
   border-width: 2px 2px 4px;
   color: #afafaf;
   height: 3.2rem;
-  padding: 0 1rem;
+  padding: 2rem;
   transition: filter 0.2s, transform ease;
   position: relative;
 
@@ -69,10 +69,11 @@
     transition: box-shadow ease;
     z-index: -1;
     background-image: url(/data/house-down.svg);
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    background-repeat: space;
   }
 }
 
