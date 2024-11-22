@@ -43,7 +43,7 @@
   @include justifySelfStart;
 }
 
-.topBarButton {
+@mixin topBarButtonBase {
   background: none;
   border: solid transparent;
   border-radius: 16px;
@@ -68,7 +68,23 @@
     top: -2px;
     transition: box-shadow ease;
     z-index: -1;
+    background-image: url(/data/house-down.svg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
+}
+
+.topBarButtonHome {
+  @include topBarButtonBase;
+  &:before {
+    background-image: url(/data/house-down.svg);
+  }
+}
+
+.topBarButton {
+  @include topBarButtonBase;
 }
 
 .lineUnderlined {
