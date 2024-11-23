@@ -19,7 +19,7 @@
 
 .divTopBarOuter {
   align-items: center;
-  grid-template-columns: 1fr 1fr 3fr 1fr;
+  grid-template-columns: 1fr 1fr 3fr 0.5fr;
   grid-template-rows: 100%;
   justify-content: space-between;
   grid-gap: 8px 16px;
@@ -43,7 +43,12 @@
   @include justifySelfStart;
 }
 
-@mixin topBarButtonBase {
+.divTopBarButtonWrap5th {
+  grid-column: 5;
+  @include justifySelfStart;
+}
+
+.topBarButtonBase {
   background: none;
   border: solid transparent;
   border-radius: 16px;
@@ -77,14 +82,14 @@
 }
 
 .topBarButtonBackHome {
-  @include topBarButtonBase;
+  @extend .topBarButtonBase;
   &:before {
     background-image: url(/data/back-home.svg);
   }
 }
 
 .topBarButton {
-  @include topBarButtonBase;
+  @extend .topBarButtonBase;
 }
 
 @mixin cutAwayBorderRadiusRight {
@@ -97,29 +102,96 @@
   border-bottom-left-radius: 0;
 }
 
-.topBarButtonGroupLeft {
-  @include topBarButtonBase;
+@mixin thinBorderWidthLeft {
+  border-left-width: 1px;
+}
+
+@mixin thinBorderWidthRight {
+  border-right-width: 1px;
+}
+
+.topBarGroupedButtonLeft {
+  @extend .topBarButtonBase;
   @include cutAwayBorderRadiusRight;
+  @include thinBorderWidthRight;
   &:before {
     @include cutAwayBorderRadiusRight;
+    @include thinBorderWidthRight;
   }
 }
 
-.topBarButtonGroupRight {
-  @include topBarButtonBase;
+.topBarGroupedButtonRight {
+  @extend .topBarButtonBase;
   @include cutAwayBorderRadiusLeft;
+  @include thinBorderWidthLeft;
   &:before {
     @include cutAwayBorderRadiusLeft;
+    @include thinBorderWidthLeft;
   }
 }
 
-.topBarButtonGroupMiddle {
-  @include topBarButtonBase;
+.topBarGroupedButtonMiddle {
+  @extend .topBarButtonBase;
   @include cutAwayBorderRadiusRight;
   @include cutAwayBorderRadiusLeft;
+  @include thinBorderWidthLeft;
+  @include thinBorderWidthRight;
   &:before {
     @include cutAwayBorderRadiusRight;
     @include cutAwayBorderRadiusLeft;
+    @include thinBorderWidthLeft;
+    @include thinBorderWidthRight;
+  }
+}
+
+.topBarButtonTextPlay {
+  @extend .topBarButtonBase;
+  &:before {
+    background-image: url(/data/text_block_view.svg);
+  }
+}
+
+.topBarButtonMenu {
+  @extend .topBarButtonBase;
+  &:before {
+    background-image: url(/data/menu-big-mac.svg);
+  }
+}
+
+.topBarButtonTextBlock {
+  @extend .topBarButtonBase;
+  &:before {
+    background-image: url(/data/view-list.svg);
+  }
+}
+
+.topBarButtonTextBullet {
+  @extend .topBarButtonBase;
+  &:before {
+    background-image: url(/data/list_view.svg);
+  }
+}
+
+.topBarButtonTextImmediate {
+  @extend .topBarButtonBase;
+  &:before {
+    background-image: url(/data/body-text.svg);
+  }
+}
+
+.topBarButtonTextOrdinary {
+  @extend .topBarButtonBase;
+  &:before {
+    background-image: url(/data/text_ordinary.svg);
+  }
+}
+
+.topBarButtonTranslations {
+  @extend .topBarButtonBase;
+  &:before {
+    background-image: url(/data/chat-left-quote.svg);
+    background-position: 0.55rem 0.6rem;
+    background-size: 3rem;
   }
 }
 
