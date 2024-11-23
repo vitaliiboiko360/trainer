@@ -8,7 +8,9 @@ import * as css from './page.module.scss';
       <button :class="css.topBarButtonBackHome"></button>
     </div>
     <div :class="css.divTopBarButtonWrap3rd">
-      <button :class="css.topBarButton">Button</button>
+      <button :class="css.topBarButtonGroupLeft"></button>
+      <button :class="css.topBarButtonGroupMiddle"></button>
+      <button :class="css.topBarButtonGroupRight"></button>
     </div>
   </div>
 </template>

@@ -19,7 +19,7 @@
 
 .divTopBarOuter {
   align-items: center;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: 1fr 1fr 3fr 1fr;
   grid-template-rows: 100%;
   justify-content: space-between;
   grid-gap: 8px 16px;
@@ -85,6 +85,42 @@
 
 .topBarButton {
   @include topBarButtonBase;
+}
+
+@mixin cutAwayBorderRadiusRight {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+@mixin cutAwayBorderRadiusLeft {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.topBarButtonGroupLeft {
+  @include topBarButtonBase;
+  @include cutAwayBorderRadiusRight;
+  &:before {
+    @include cutAwayBorderRadiusRight;
+  }
+}
+
+.topBarButtonGroupRight {
+  @include topBarButtonBase;
+  @include cutAwayBorderRadiusLeft;
+  &:before {
+    @include cutAwayBorderRadiusLeft;
+  }
+}
+
+.topBarButtonGroupMiddle {
+  @include topBarButtonBase;
+  @include cutAwayBorderRadiusRight;
+  @include cutAwayBorderRadiusLeft;
+  &:before {
+    @include cutAwayBorderRadiusRight;
+    @include cutAwayBorderRadiusLeft;
+  }
 }
 
 .lineUnderlined {
