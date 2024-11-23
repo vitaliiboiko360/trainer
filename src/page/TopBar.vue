@@ -5,7 +5,7 @@ import * as css from './page.module.scss';
 <template>
   <div :class="css.divTopBarOuter">
     <div :class="css.divTopBarButtonWrap1st">
-      <button :class="css.topBarButton"></button>
+      <button :class="css.topBarButtonBackHome"></button>
     </div>
     <div :class="css.divTopBarButtonWrap3rd">
       <button :class="css.topBarButton">Button</button>

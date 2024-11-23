@@ -68,7 +68,6 @@
     top: -2px;
     transition: box-shadow ease;
     z-index: -1;
-    background-image: url(/data/house-down.svg);
     -webkit-background-size: contain;
     -moz-background-size: contain;
     -o-background-size: contain;
@@ -77,10 +76,10 @@
   }
 }
 
-.topBarButtonHome {
+.topBarButtonBackHome {
   @include topBarButtonBase;
   &:before {
-    background-image: url(/data/house-down.svg);
+    background-image: url(/data/back-home.svg);
   }
 }
 
