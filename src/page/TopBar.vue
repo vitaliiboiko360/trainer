@@ -1,25 +1,20 @@
 <script setup>
+import BackHomeButton from './topbar_buttons/BackHomeButton.vue';
+import HiglightShowTranslationButton from './topbar_buttons/HiglightShowTranslationButton.vue';
+import TextDisplayButtonGroup from './topbar_buttons/TextDisplayButtonGroup.vue';
 import * as css from './page.module.scss';
-import { clsx } from 'clsx';
 </script>
 
 <template>
   <div :class="css.divTopBarOuter">
     <div :class="css.divTopBarButtonColumn1">
-      <button :class="css.topBarButtonBackHome"></button>
+      <BackHomeButton />
     </div>
     <div :class="css.divTopBarButtonColumn3">
-      <button
-        :class="clsx(css.topBarGroupedButtonLeft, css.topBarButtonTextByBlocks)"
-      ></button>
-      <button
-        :class="
-          clsx(css.topBarGroupedButtonRight, css.topBarButtonTextOrdinary)
-        "
-      ></button>
+      <TextDisplayButtonGroup />
     </div>
     <div :class="css.divTopBarButtonColumn5">
-      <button :class="css.topBarButtonTranslations"></button>
+      <HiglightShowTranslationButton />
     </div>
   </div>
 </template>
