@@ -33,17 +33,17 @@
   justify-self: start;
 }
 
-.divTopBarButtonWrap1st {
+.divTopBarButtonColumn1 {
   grid-column: 1;
   @include justifySelfStart;
 }
 
-.divTopBarButtonWrap3rd {
+.divTopBarButtonColumn3 {
   grid-column: 3;
   @include justifySelfStart;
 }
 
-.divTopBarButtonWrap5th {
+.divTopBarButtonColumn5 {
   grid-column: 5;
   @include justifySelfStart;
 }
@@ -144,7 +144,7 @@
   }
 }
 
-.topBarButtonTextPlay {
+.topBarButtonTextByBlocks {
   @extend .topBarButtonBase;
   &:before {
     background-image: url(/data/text_block_view.svg);

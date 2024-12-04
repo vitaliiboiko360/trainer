@@ -5,12 +5,12 @@ import { clsx } from 'clsx';
 
 <template>
   <div :class="css.divTopBarOuter">
-    <div :class="css.divTopBarButtonWrap1st">
+    <div :class="css.divTopBarButtonColumn1">
       <button :class="css.topBarButtonBackHome"></button>
     </div>
-    <div :class="css.divTopBarButtonWrap3rd">
+    <div :class="css.divTopBarButtonColumn3">
       <button
-        :class="clsx(css.topBarGroupedButtonLeft, css.topBarButtonTextPlay)"
+        :class="clsx(css.topBarGroupedButtonLeft, css.topBarButtonTextByBlocks)"
       ></button>
       <button
         :class="
@@ -18,7 +18,7 @@ import { clsx } from 'clsx';
         "
       ></button>
     </div>
-    <div :class="css.divTopBarButtonWrap5th">
+    <div :class="css.divTopBarButtonColumn5">
       <button :class="css.topBarButtonTranslations"></button>
     </div>
   </div>
