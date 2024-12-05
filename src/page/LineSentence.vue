@@ -8,9 +8,9 @@ const { textLine: textLineInfo, index } = defineProps(['textLine', 'index']);
 
 const {
   text: textLine,
-  endParagraph = false,
   start: startTime,
   end: endTime,
+  endParagraph = false,
 } = textLineInfo;
 
 const refToSpan = ref();

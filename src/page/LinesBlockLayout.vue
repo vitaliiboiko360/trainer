@@ -36,10 +36,8 @@ const displayedLines: Ref<Array<LineAndIndex>> = ref(
   pageBlocks[currentPageBlock.value]
 );
 
-watch(currentPageBlock, async () => {
-  displayedLines.value = pageBlocks[currentPageBlock.value];
-  console.log(displayedLines.value.map((v) => JSON.stringify(v)).join(' '));
-  await nextTick();
+watch(currentPageBlock, (updatedCurrentPageBlock) => {
+  displayedLines.value = pageBlocks[updatedCurrentPageBlock];
 });
 </script>
 
@@ -49,5 +47,6 @@ watch(currentPageBlock, async () => {
     v-for="{ textLineInfo: textLine, index } in displayedLines"
     :textLine
     :index
+    :key="index"
   />
 </template>
