@@ -20,7 +20,7 @@ const onClickNext = () => {
     <div :class="css.divTopBarButtonColumn1">
       <button @click="onClickPrev">previous</button>
     </div>
-    <div :class="css.divTopBarButtonColumn3">
+    <div :class="clsx(css.divTopBarButtonColumn3, css.whiteSpaceNoWrap)">
       <span :innerText="`current page is ${currentPageBlock ?? ''}`"></span>
     </div>
     <div :class="css.divTopBarButtonColumn5">

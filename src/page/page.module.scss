@@ -48,6 +48,10 @@
   @include justifySelfStart;
 }
 
+.whiteSpaceNoWrap {
+  white-space: nowrap;
+}
+
 .divTopBarButtonColumn5 {
   grid-column: 5;
   @include justifySelfStart;
