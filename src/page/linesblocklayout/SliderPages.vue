@@ -2,6 +2,7 @@
 import { ref, defineProps } from 'vue';
 import * as css from '../page.module.scss';
 import { currentPageBlock } from '../state/currentPageBlock';
+import clsx from 'clsx';
 
 const { lastIndex } = defineProps(['lastIndex']);
 
@@ -15,7 +16,7 @@ const onClickNext = () => {
 </script>
 
 <template>
-  <div :class="css.divTopBarOuter">
+  <div :class="clsx(css.divTopBarOuter, css.marginTopBottom)">
     <div :class="css.divTopBarButtonColumn1">
       <button @click="onClickPrev">previous</button>
     </div>

@@ -29,6 +29,11 @@
   justify-items: stretch;
 }
 
+.marginTopBottom {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 @mixin justifySelfStart {
   justify-self: start;
 }
