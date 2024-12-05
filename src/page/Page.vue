@@ -1,7 +1,7 @@
 <script setup>
 import { useQuery } from '@tanstack/vue-query';
 import * as css from './page.module.scss';
-import TextBlock from './TextBlock.vue';
+import TextPage from './TextPage.vue';
 import Audio from './audio/Audio.vue';
 
 import { queryJson } from '../query/default';
@@ -21,6 +21,6 @@ const { isPending, isError, data, error, isFetched } = useQuery({
   <span v-if="isPending">Loading...</span>
   <span v-else-if="isError">Error: {{ error.message }}</span>
   <div v-else :class="css.divPage">
-    <TextBlock :data />
+    <TextPage :data />
   </div>
 </template>
