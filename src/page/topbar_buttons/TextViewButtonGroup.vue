@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import * as css from '../page.module.scss';
+import css from '../page.module.scss';
 import { clsx } from 'clsx';
 import { textView, TEXTVIEW_BUTTONS as buttons } from '../state/textView.ts';
 

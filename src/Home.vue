@@ -1,7 +1,7 @@
 <script setup>
 import HomeTitle from './home/HomeTitle.vue';
 import ListLessons from './home/ListLessons.vue';
-import * as css from './home/home.module.scss';
+import css from './home/home.module.scss';
 </script>
 
 <template>

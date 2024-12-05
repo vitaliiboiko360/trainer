@@ -1,6 +1,6 @@
 <script setup>
 import { ref, defineProps } from 'vue';
-import * as css from '../page.module.scss';
+import css from '../page.module.scss';
 import { currentPageBlock } from '../state/currentPageBlock';
 import clsx from 'clsx';
 

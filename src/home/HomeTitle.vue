@@ -1,5 +1,5 @@
 <script setup>
-import * as css from './home.module.scss';
+import css from './home.module.scss';
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup>
 import { useQuery } from '@tanstack/vue-query';
-import * as css from './page.module.scss';
+import css from './page.module.scss';
 import TextPage from './TextPage.vue';
 import Audio from './audio/Audio.vue';
 

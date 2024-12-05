@@ -1,5 +1,5 @@
 <script setup>
-import * as css from './home.module.scss';
+import css from './home.module.scss';
 import { useQuery } from '@tanstack/vue-query';
 import { useRouter } from 'vue-router';
 
