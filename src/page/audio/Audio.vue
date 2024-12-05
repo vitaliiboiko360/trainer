@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { activePlayTime } from '../activePlayTime';
+import { playTime } from '../state/platTime';
 
 const { audioSource } = defineProps(['audioSource']);
 const audio = ref();
 const previousOnTimeUpdateHandler = ref();
 
-watch(activePlayTime, () => {
+watch(playTime, () => {
   if (!audio.value) return console.log(`!!!!audio.value= `, audio.value);
 
-  const { startTime, endTime } = activePlayTime;
+  const { startTime, endTime } = playTime;
 
   audio.value!.removeEventListener(
     'timeupdate',

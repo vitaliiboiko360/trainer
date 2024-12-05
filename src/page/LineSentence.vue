@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { gsap } from 'gsap';
-import {
-  activePlayTime,
-  activeAnimationSentenceNumber,
-} from './activePlayTime';
+import { playTime, activeAnimationSentenceNumber } from './state/platTime';
 import * as css from './page.module.scss';
 
 const { textLine: textLineInfo, index } = defineProps(['textLine', 'index']);
@@ -19,7 +16,7 @@ const {
 const refToSpan = ref();
 
 const onClick = (event) => {
-  activePlayTime.updateTime(startTime, endTime);
+  playTime.updateTime(startTime, endTime);
   activeAnimationSentenceNumber.value = index;
 
   let scopedEventTarget = event.currentTarget;

@@ -1,6 +1,6 @@
 import { reactive, ref } from 'vue';
 
-export const activePlayTime = reactive({
+export const playTime = reactive({
   startTime: -1,
   endTime: -1,
   booleanToTriggerUpdatesByRepeatedClicks: true,
