@@ -1,11 +1,19 @@
 <script setup>
-import { watch, ref } from 'vue';
+import { ref } from 'vue';
 import * as css from '../page.module.scss';
 import { clsx } from 'clsx';
 import { textView, TEXTVIEW_BUTTONS as buttons } from '../state/textView.ts';
 
 const onClick = (value) => {
   textView.value = value;
+  switch (value) {
+    case buttons.TextByBlock:
+      textOrdinaryClassList.value = textOrdinaryClassList.value.slice(0, 2);
+      return textByBlockClassList.value.push(css.selectedButton);
+    case buttons.TextOridnaryPage:
+      textByBlockClassList.value = textByBlockClassList.value.slice(0, 2);
+      return textOrdinaryClassList.value.push(css.selectedButton);
+  }
 };
 
 let textByBlockClassList = ref([
@@ -17,17 +25,6 @@ let textOrdinaryClassList = ref([
   css.topBarGroupedButtonRight,
   css.topBarButtonTextOrdinary,
 ]);
-watch(textView, () => {
-  console.log(`textView= ${textView.value}`);
-  switch (textView.value) {
-    case buttons.TextByBlock:
-      textOrdinaryClassList.value = textOrdinaryClassList.value.slice(0, 2);
-      return textByBlockClassList.value.push(css.selectedButton);
-    case buttons.TextOridnaryPage:
-      textByBlockClassList.value = textByBlockClassList.value.slice(0, 2);
-      return textOrdinaryClassList.value.push(css.selectedButton);
-  }
-});
 </script>
 
 <template>
