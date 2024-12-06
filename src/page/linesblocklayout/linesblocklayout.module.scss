@@ -1,0 +1,95 @@
+@mixin buttonPageSliderBase {
+  position: relative;
+  height: 2.5rem;
+  padding: 1rem;
+  &:before {
+    content: '';
+    position: absolute;
+    // z-index: -1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    left: -2px;
+    right: -2px;
+    top: -2px;
+    bottom: -2px;
+  }
+}
+
+.buttonPageSliderLeftPrevious {
+  @include buttonPageSliderBase;
+  &:before {
+    background-image: url(data/chevron-left-feather.svg);
+  }
+}
+
+.buttonPageSliderRightNext {
+  @include buttonPageSliderBase;
+  &:before {
+    background-image: url(data/chevron-right-feather.svg);
+  }
+}
+
+@mixin pTagPageNumberBase {
+  display: inline;
+  position: relative;
+  height: 2.5rem;
+  width: 2.5rem;
+  margin: 0;
+  padding: 0rem 1rem 0rem;
+  &:before {
+    content: '';
+    position: absolute;
+    // z-index: -1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    left: -2px;
+    right: -2px;
+    top: -2px;
+    bottom: -2px;
+  }
+}
+
+.pTagPageNumber_1 {
+  @include pTagPageNumberBase;
+  &:before {
+    background-image: url(data/1-square.svg);
+  }
+}
+
+.pTagPageNumber_2 {
+  @include pTagPageNumberBase;
+  &:before {
+    background-image: url(data/2-square.svg);
+  }
+}
+
+.pTagPageNumber_3 {
+  @include pTagPageNumberBase;
+  &:before {
+    background-image: url(data/3-square.svg);
+  }
+}
+
+.divPageNumbers {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+@mixin divPageSliderFlex {
+  display: flex;
+  align-items: center;
+}
+
+.divPageSliderRight {
+  @include divPageSliderFlex;
+  grid-column: 4;
+  justify-self: end;
+}
+
+.divPageSliderLeft {
+  @include divPageSliderFlex;
+  grid-column: 2;
+  justify-self: start;
+}

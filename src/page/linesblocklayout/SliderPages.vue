@@ -1,4 +1,5 @@
 <script setup>
+import PagesGoToNumbers from './PagesGoToNumbers.vue';
 import { ref, defineProps } from 'vue';
 import css from './linesblocklayout.module.scss';
 import cssPage from '../page.module.scss';
@@ -17,27 +18,25 @@ const onClickNext = () => {
 </script>
 
 <template>
-  <div
-    :class="
-      clsx(
-        cssPage.divTopBarOuter,
-        cssPage.marginTopBottom,
-        cssPage.divPageSlider
-      )
-    "
-  >
-    <div :class="cssPage.divGridColumn2">
+  <div :class="clsx(cssPage.divTopBarOuter, cssPage.divPageSlider)">
+    <div :class="css.divPageSliderLeft">
       <button
         @click="onClickPrev"
         :class="css.buttonPageSliderLeftPrevious"
       ></button>
     </div>
     <div
-      :class="clsx(cssPage.divTopBarButtonColumn3, cssPage.whiteSpaceNoWrap)"
+      :class="
+        clsx(
+          cssPage.divTopBarButtonColumn3,
+          cssPage.whiteSpaceNoWrap,
+          cssPage.clearJustifySelf
+        )
+      "
     >
-      <span :innerText="`current page is ${currentPageBlock ?? ''}`"></span>
+      <PagesGoToNumbers :lastIndex />
     </div>
-    <div :class="cssPage.divGridColumn4">
+    <div :class="css.divPageSliderRight">
       <button
         @click="onClickNext"
         :class="css.buttonPageSliderRightNext"
