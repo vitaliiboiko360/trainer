@@ -1,6 +1,7 @@
 <script setup>
 import { ref, defineProps } from 'vue';
-import css from '../page.module.scss';
+import css from './linesblocklayout.module.scss';
+import cssPage from '../page.module.scss';
 import { currentPageBlock } from '../state/currentPageBlock';
 import clsx from 'clsx';
 
@@ -16,15 +17,31 @@ const onClickNext = () => {
 </script>
 
 <template>
-  <div :class="clsx(css.divTopBarOuter, css.marginTopBottom)">
-    <div :class="css.divTopBarButtonColumn1">
-      <button @click="onClickPrev">previous</button>
+  <div
+    :class="
+      clsx(
+        cssPage.divTopBarOuter,
+        cssPage.marginTopBottom,
+        cssPage.divPageSlider
+      )
+    "
+  >
+    <div :class="cssPage.divGridColumn2">
+      <button
+        @click="onClickPrev"
+        :class="css.buttonPageSliderLeftPrevious"
+      ></button>
     </div>
-    <div :class="clsx(css.divTopBarButtonColumn3, css.whiteSpaceNoWrap)">
+    <div
+      :class="clsx(cssPage.divTopBarButtonColumn3, cssPage.whiteSpaceNoWrap)"
+    >
       <span :innerText="`current page is ${currentPageBlock ?? ''}`"></span>
     </div>
-    <div :class="css.divTopBarButtonColumn5">
-      <button @click="onClickNext">next</button>
+    <div :class="cssPage.divGridColumn4">
+      <button
+        @click="onClickNext"
+        :class="css.buttonPageSliderRightNext"
+      ></button>
     </div>
   </div>
 </template>
