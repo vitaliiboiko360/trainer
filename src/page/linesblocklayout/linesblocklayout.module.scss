@@ -82,19 +82,20 @@
   gap: 0.3rem;
 }
 
-@mixin divPageSliderFlex {
+@mixin divPageSliderBase {
   display: flex;
   align-items: center;
+  opacity: 0.5;
 }
 
 .divPageSliderRight {
-  @include divPageSliderFlex;
+  @include divPageSliderBase;
   grid-column: 4;
   justify-self: end;
 }
 
 .divPageSliderLeft {
-  @include divPageSliderFlex;
+  @include divPageSliderBase;
   grid-column: 2;
   justify-self: start;
 }
