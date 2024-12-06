@@ -36,6 +36,7 @@
   width: 2.5rem;
   margin: 0;
   padding: 0rem 1rem 0rem;
+  opacity: 0.5;
   &:before {
     content: '';
     position: absolute;
@@ -68,6 +69,10 @@
   &:before {
     background-image: url(data/3-square.svg);
   }
+}
+
+.pTagPageNumberSelected {
+  opacity: 1;
 }
 
 .divPageNumbers {

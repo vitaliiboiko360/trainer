@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineProps } from 'vue';
+import { defineProps } from 'vue';
 import css from './linesblocklayout.module.scss';
 import cssPage from '../page.module.scss';
 import { currentPageBlock } from '../state/currentPageBlock';
@@ -11,6 +11,10 @@ const { lastIndex } = defineProps(['lastIndex']);
 
 <template>
   <div :class="clsx(css.divPageNumbers, cssPage.whiteSpaceNoWrap)">
-    <PageNumber v-for="i in lastIndex + 1" :index="i" />
+    <PageNumber
+      v-for="i in lastIndex + 1"
+      :index="i"
+      :isActive="currentPageBlock == i - 1"
+    />
   </div>
 </template>
