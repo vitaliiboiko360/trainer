@@ -29,7 +29,7 @@
   }
 }
 
-@mixin pTagPageNumberBase {
+@mixin buttonPageNumberBase {
   display: inline;
   position: relative;
   height: 2.5rem;
@@ -38,6 +38,7 @@
   padding: 0rem 1rem 0rem;
   opacity: 0.5;
   cursor: pointer;
+  border: 0;
   &:before {
     content: '';
     position: absolute;
@@ -51,28 +52,28 @@
   }
 }
 
-.pTagPageNumber_1 {
-  @include pTagPageNumberBase;
+.buttonPageNumber_1 {
+  @include buttonPageNumberBase;
   &:before {
     background-image: url(data/1-square.svg);
   }
 }
 
-.pTagPageNumber_2 {
-  @include pTagPageNumberBase;
+.buttonPageNumber_2 {
+  @include buttonPageNumberBase;
   &:before {
     background-image: url(data/2-square.svg);
   }
 }
 
-.pTagPageNumber_3 {
-  @include pTagPageNumberBase;
+.buttonPageNumber_3 {
+  @include buttonPageNumberBase;
   &:before {
     background-image: url(data/3-square.svg);
   }
 }
 
-.pTagPageNumberSelected {
+.buttonPageNumberSelected {
   opacity: 1;
 }
 

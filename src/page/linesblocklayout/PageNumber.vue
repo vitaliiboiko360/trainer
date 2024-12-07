@@ -12,12 +12,12 @@ const onClick = (setNewIndex) => {
 <template>
   <button
     v-if="index == 1"
-    :class="[css.pTagPageNumber_1, isActive && css.pTagPageNumberSelected]"
+    :class="[css.buttonPageNumber_1, isActive && css.buttonPageNumberSelected]"
     @click="() => onClick(index - 1)"
   ></button>
   <button
     v-if="index == 2"
-    :class="[css.pTagPageNumber_2, isActive && css.pTagPageNumberSelected]"
+    :class="[css.buttonPageNumber_2, isActive && css.buttonPageNumberSelected]"
     @click="() => onClick(index - 1)"
   ></button>
 </template>
