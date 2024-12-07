@@ -10,14 +10,14 @@ const onClick = (setNewIndex) => {
 </script>
 
 <template>
-  <p
+  <button
     v-if="index == 1"
     :class="[css.pTagPageNumber_1, isActive && css.pTagPageNumberSelected]"
     @click="() => onClick(index - 1)"
-  ></p>
-  <p
+  ></button>
+  <button
     v-if="index == 2"
     :class="[css.pTagPageNumber_2, isActive && css.pTagPageNumberSelected]"
     @click="() => onClick(index - 1)"
-  ></p>
+  ></button>
 </template>
