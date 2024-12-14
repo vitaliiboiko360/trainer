@@ -12,6 +12,7 @@
 }
 
 .homeDivTitle {
+  @include nunitoFont;
   margin-bottom: 2rem;
   margin-top: 4rem;
 }

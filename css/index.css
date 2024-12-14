@@ -22,7 +22,6 @@ html {
 }
 
 body {
-  font-family: 'Merriweather';
   background: rgb(var(--color-snow));
   margin: 0;
   padding: 0;
@@ -38,7 +37,6 @@ h4,
 h5,
 h6 {
   margin: 0 0 1rem 0;
-  font-family: 'Merriweather', serif;
 }
 
 p {
