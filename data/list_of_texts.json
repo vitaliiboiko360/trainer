@@ -42,29 +42,14 @@
       "artwork": "1f3e1"
     },
     {
-      "title": "Una vida nueva",
+      "title": "Una vida nueva [pt1]",
       "resource": "una_vida_nueva_esta_es_la_historia_de_mi_1",
       "artwork": "1f3e1_1"
     },
     {
-      "title": "Una vida nueva",
+      "title": "Una vida nueva [pt2]",
       "resource": "una_vida_nueva_esta_es_la_historia_de_mi_2",
       "artwork": "1f3e1_2"
-    },
-    {
-      "title": "Una vida nueva",
-      "resource": "una_vida_nueva_esta_es_la_historia_de_mi_3",
-      "artwork": "1f3e1_3"
-    },
-    {
-      "title": "Una vida nueva",
-      "resource": "una_vida_nueva_esta_es_la_historia_de_mi_4",
-      "artwork": "1f3e1_3"
-    },
-    {
-      "title": "Una vida nueva",
-      "resource": "una_vida_nueva_esta_es_la_historia_de_mi_5",
-      "artwork": "1f3e1_3"
     }
   ]
 }
