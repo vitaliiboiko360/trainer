@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue';
 import css from '../page.module.scss';
-import { clsx } from 'clsx';
 import { textView, TEXTVIEW_BUTTONS as buttons } from '../state/textView.ts';
 
 const onClick = (value) => {
@@ -29,11 +28,11 @@ let textOrdinaryClassList = ref([
 
 <template>
   <button
-    :class="clsx(textByBlockClassList)"
+    :class="textByBlockClassList"
     @click="() => onClick(buttons.TextByBlock)"
   ></button>
   <button
-    :class="clsx(textOrdinaryClassList)"
+    :class="textOrdinaryClassList"
     @click="() => onClick(buttons.TextOridnaryPage)"
   ></button>
 </template>

@@ -4,7 +4,6 @@ import { ref, defineProps } from 'vue';
 import css from './linesblocklayout.module.scss';
 import cssPage from '../page.module.scss';
 import { currentPageBlock } from '../state/currentPageBlock';
-import clsx from 'clsx';
 
 const { lastIndex } = defineProps(['lastIndex']);
 
@@ -18,7 +17,7 @@ const onClickNext = () => {
 </script>
 
 <template>
-  <div :class="clsx(cssPage.divTopBarOuter, cssPage.divPageSlider)">
+  <div :class="[cssPage.divTopBarOuter, cssPage.divPageSlider]">
     <div :class="css.divPageSliderLeft">
       <button
         @click="onClickPrev"
@@ -26,13 +25,11 @@ const onClickNext = () => {
       ></button>
     </div>
     <div
-      :class="
-        clsx(
-          cssPage.divTopBarButtonColumn3,
-          cssPage.whiteSpaceNoWrap,
-          cssPage.clearJustifySelf
-        )
-      "
+      :class="[
+        cssPage.divTopBarButtonColumn3,
+        cssPage.whiteSpaceNoWrap,
+        cssPage.clearJustifySelf,
+      ]"
     >
       <PagesGoToNumbers :lastIndex />
     </div>
