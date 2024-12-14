@@ -54,3 +54,21 @@
     z-index: -1;
   }
 }
+
+// Animation styles
+//
+.animationOuterDiv {
+  height: 15rem;
+  width: 40rem;
+  background-color: #e5e5e5;
+  margin-bottom: 2rem;
+}
+
+.buttonHolderDiv {
+  display: inline;
+}
+
+.buttonPlayPause {
+  height: 0.6rem;
+  position: absolute;
+}
