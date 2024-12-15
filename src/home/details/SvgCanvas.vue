@@ -1,5 +1,7 @@
-<script setup></script>
+<script setup>
+import { HEIGHT_REM, WIDTH_REM } from './etc';
+</script>
 
 <template>
-  <svg :height="`15rem`" :width="`40rem`"></svg>
+  <svg :height="HEIGHT_REM" :width="WIDTH_REM"></svg>
 </template>
