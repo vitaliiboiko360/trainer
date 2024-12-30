@@ -3,7 +3,8 @@ import { gsap } from 'gsap';
 import { watch, ref } from 'vue';
 import { CENTER_X, CENTER_Y } from './etc';
 import * as css from '../home.module.scss';
-import { textBlock } from './refs';
+import { onCompleteStartTextInside, textBlock } from './refs';
+import TextInside from './TextInside.vue';
 
 const divElement = ref();
 
@@ -21,12 +22,7 @@ let paramsTo = {
   top: '-=5',
 };
 
-let isPrinted;
 const onDrawUpdate = (target) => {
-  if (!isPrinted) {
-    isPrinted = true;
-  }
-
   target.style.height = `${animationDynamicParams.height}rem`;
   target.style.width = `${animationDynamicParams.width}rem`;
   target.style.left = `${animationDynamicParams.left}rem`;
@@ -35,12 +31,13 @@ const onDrawUpdate = (target) => {
 
 const startAnimation = (target) => {
   gsap.to(animationDynamicParams, {
-    duration: 1.3,
+    duration: 1,
     height: paramsTo.height,
     width: paramsTo.width,
     left: paramsTo.left,
     top: paramsTo.top,
     onUpdate: () => onDrawUpdate(target),
+    onComplete: onCompleteStartTextInside,
   });
 };
 
@@ -54,7 +51,9 @@ watch(textBlock, () => {
   <div
     :ref="(el) => (divElement = el)"
     :class="[css.textBlockOuterDiv, $style.localTextBlock]"
-  ></div>
+  >
+    <TextInside />
+  </div>
 </template>
 
 <style module>
