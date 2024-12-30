@@ -1,13 +1,13 @@
 <script setup>
 import { gsap } from 'gsap';
-import { watch, ref, useTemplateRef } from 'vue';
+import { watch, ref } from 'vue';
 import { CENTER_X, CENTER_Y } from './etc';
 import * as css from '../home.module.scss';
 import { textBlock } from './refs';
 
 const divElement = ref();
 
-let paramsInit = {
+let animationDynamicParams = {
   height: 0,
   width: 0,
   left: CENTER_X,
@@ -17,8 +17,8 @@ let paramsInit = {
 let paramsTo = {
   height: 5,
   width: 20,
-  left: -10,
-  top: -5,
+  left: '-=10',
+  top: '-=5',
 };
 
 let isPrinted;
@@ -27,36 +27,33 @@ const onDrawUpdate = (target) => {
     isPrinted = true;
     console.log(`target=${target}`);
   }
-  // if (!target) {
-  //   console.log('onDrawUpdate target = null');
-  //   return;
-  // }
-  target.height &&= `${paramsInit.height}rem`;
-  target.width &&= `${paramsInit.width}rem`;
+
+  target.style.height = `${animationDynamicParams.height}rem`;
+  target.style.width = `${animationDynamicParams.width}rem`;
+  target.style.left = `${animationDynamicParams.left}rem`;
+  target.style.right = `${animationDynamicParams.right}rem`;
 };
 
 const startAnimation = (target) => {
-  gsap.to(paramsInit, {
+  gsap.to(animationDynamicParams, {
     duration: 1.5,
     height: paramsTo.height,
     width: paramsTo.width,
-    // left: paramsTo.left,
-    // top: paramsTo.top,
+    left: paramsTo.left,
+    top: paramsTo.top,
     onUpdate: () => onDrawUpdate(target),
   });
 };
 
 watch(textBlock, () => {
-  console.log(`==${textBlock.value}`);
   if (textBlock.value != 1) return;
-  startAnimation(divElement);
-  console.log(`divElement.value=${divElement?.value}`);
+  startAnimation(divElement.value);
 });
 </script>
 
 <template>
   <div
-    :ref="divElement"
+    :ref="(el) => (divElement = el)"
     :class="[css.textBlockOuterDiv, $style.localTextBlock]"
   ></div>
 </template>
