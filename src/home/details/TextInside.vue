@@ -1,8 +1,11 @@
 <script setup>
 import { gsap } from 'gsap';
+import TextPlugin from 'gsap/TextPlugin';
 import { watch, ref } from 'vue';
 import * as css from '../home.module.scss';
 import { textInside } from './refs';
+
+gsap.registerPlugin(TextPlugin);
 
 const pElement = ref();
 
