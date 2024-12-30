@@ -25,7 +25,6 @@ let isPrinted;
 const onDrawUpdate = (target) => {
   if (!isPrinted) {
     isPrinted = true;
-    console.log(`target=${target}`);
   }
 
   target.style.height = `${animationDynamicParams.height}rem`;
@@ -36,7 +35,7 @@ const onDrawUpdate = (target) => {
 
 const startAnimation = (target) => {
   gsap.to(animationDynamicParams, {
-    duration: 1.5,
+    duration: 1.3,
     height: paramsTo.height,
     width: paramsTo.width,
     left: paramsTo.left,
