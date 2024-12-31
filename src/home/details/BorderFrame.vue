@@ -1,7 +1,7 @@
 <script setup>
 import { gsap } from 'gsap';
-import { watch, ref } from 'vue';
-import { CENTER_X, CENTER_Y, HEIGHT_REM, WIDTH_REM } from './etc';
+import { watch, ref, onMounted } from 'vue';
+import { CENTER_X, CENTER_Y, HEIGHT_REM, HEIGHT, WIDTH_REM } from './etc';
 import * as css from '../home.module.scss';
 import { onCompleteStartTextInside, textBlock } from './refs';
 import TextInside from './TextInside.vue';
@@ -14,7 +14,7 @@ let animationDynamicParams = {
 };
 
 let paramsTo = {
-  top: '-=15',
+  top: '-=5',
 };
 
 const onDrawUpdate = (target) => {
@@ -22,12 +22,13 @@ const onDrawUpdate = (target) => {
 };
 
 const startAnimation = (target) => {
-  gsap.set(target, { top: HEIGHT_REM, left: HEIGHT_REM, opacity: 1 });
+  gsap.set(target, { top: HEIGHT_REM, left: `${HEIGHT / 2}rem`, opacity: 1 });
   gsap.to(animationDynamicParams, {
     duration: 1,
     top: paramsTo.top,
     onUpdate: () => onDrawUpdate(target),
     onComplete: onCompleteStartTextInside,
+    ease: 'none',
   });
 };
 
@@ -37,6 +38,14 @@ watch(textBlock, () => {
   } else {
     console.log(`divElement.value = ${divElement.value}`);
   }
+});
+
+onMounted(() => {
+  gsap.set(divElement.value, {
+    top: HEIGHT_REM,
+    left: `${HEIGHT / 2}rem`,
+    opacity: 1,
+  });
 });
 </script>
 

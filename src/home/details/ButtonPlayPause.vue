@@ -2,12 +2,9 @@
 import * as css from '../home.module.scss';
 import { textBlock } from './refs';
 
-const onClick = (event) => {
-  if (event.detail == 2) {
-    textBlock.value = 1;
-  } else {
-    textBlock.value = 0;
-  }
+const onClick = () => {
+  textBlock.value = textBlock.value == 1 ? 0 : 1;
+  console.log(`textBlock.value= ${textBlock.value}`);
 };
 </script>
 
