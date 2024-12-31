@@ -9,7 +9,13 @@ const onClick = () => {
 </script>
 
 <template>
-  <div :class="css.buttonHolderDiv">
+  <div :class="[css.buttonHolderDiv, $style.buttonPlayPause]">
     <button :class="css.buttonPlayPause" @click="onClick"></button>
   </div>
 </template>
+
+<style module>
+.buttonPlayPause {
+  z-index: 1;
+}
+</style>

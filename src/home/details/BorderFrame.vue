@@ -13,8 +13,8 @@ let animationDynamicParams = {
   top: HEIGHT_REM,
 };
 
-let paramsTo = {
-  top: '-=5',
+const paramsTo = {
+  top: '-=10rem',
 };
 
 const onDrawUpdate = (target) => {
@@ -22,27 +22,25 @@ const onDrawUpdate = (target) => {
 };
 
 const startAnimation = (target) => {
-  gsap.set(target, { top: HEIGHT_REM, left: `${HEIGHT / 2}rem`, opacity: 1 });
-  gsap.to(animationDynamicParams, {
+  gsap.set(target, { left: `${HEIGHT / 2}rem`, opacity: 1 });
+  gsap.to(target, {
     duration: 1,
     top: paramsTo.top,
     onUpdate: () => onDrawUpdate(target),
     onComplete: onCompleteStartTextInside,
-    ease: 'none',
+    ease: 'powerIn',
   });
 };
 
 watch(textBlock, () => {
-  if (textBlock.value == 1 && divElement.value) {
+  if (textBlock.value == 1) {
     startAnimation(divElement.value);
-  } else {
-    console.log(`divElement.value = ${divElement.value}`);
   }
 });
 
 onMounted(() => {
   gsap.set(divElement.value, {
-    top: HEIGHT_REM,
+    top: `${HEIGHT}rem`,
     left: `${HEIGHT / 2}rem`,
     opacity: 1,
   });
@@ -58,6 +56,7 @@ onMounted(() => {
   position: absolute;
   border-radius: 1rem;
   border: grey solid 2px;
+  top: '`${v-bind(HEIGHT)}rem`';
   width: 15rem;
   height: 45rem;
   opacity: 0;
