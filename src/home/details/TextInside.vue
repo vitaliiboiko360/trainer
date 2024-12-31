@@ -11,8 +11,12 @@ const pElement = ref();
 
 const startAnimation = (target) => {
   gsap.to(target, {
-    duration: 2,
-    text: 'This is the new text',
+    duration: 1.3,
+    text: {
+      value: 'This is the new text this is the new text',
+      delimiter: ' ',
+      speed: 1,
+    },
     ease: 'none',
   });
 };

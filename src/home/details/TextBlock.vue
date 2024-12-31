@@ -42,8 +42,9 @@ const startAnimation = (target) => {
 };
 
 watch(textBlock, () => {
-  if (textBlock.value != 1) return;
-  startAnimation(divElement.value);
+  if (textBlock.value == 1) {
+    startAnimation(divElement.value);
+  }
 });
 </script>
 
