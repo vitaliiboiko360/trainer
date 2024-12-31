@@ -16,9 +16,9 @@ let animationDynamicParams = {
 };
 
 let paramsTo = {
-  height: 5,
-  width: 20,
-  left: '-=10',
+  height: 7,
+  width: 15,
+  left: '-=7.5',
   top: '-=5',
 };
 

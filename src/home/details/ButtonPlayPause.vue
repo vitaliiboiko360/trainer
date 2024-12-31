@@ -4,7 +4,7 @@ import { textBlock } from './refs';
 
 const onClick = (event) => {
   if (event.detail == 2) {
-    textBlock.value++;
+    textBlock.value = 1;
   } else {
     textBlock.value = 0;
   }
