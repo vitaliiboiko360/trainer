@@ -5,6 +5,7 @@ import { CENTER_X, CENTER_Y, HEIGHT_REM, HEIGHT, WIDTH_REM } from './etc';
 import * as css from '../home.module.scss';
 import { onCompleteStartTextInside, textBlock, textInside } from './refs';
 import TextInside from './TextInside.vue';
+import Svg from '../Svg.vue';
 
 const divElement = ref();
 
@@ -56,6 +57,19 @@ onMounted(() => {
 
 <template>
   <div :ref="(el) => (divElement = el)" :class="$style.frameBorder">
+    <Svg :class="$style.topSvgVentsAboveScreen" :viewBox="`0 0 60 5`">
+      <circle cx="3" cy="3" r="2" fill="darkgrey"></circle>
+      <line
+        x1="11"
+        y1="3"
+        x2="50"
+        y2="3"
+        stroke="darkgrey"
+        stroke-width="3px"
+        stroke-linecap="round"
+        fill="darkgrey"
+      ></line>
+    </Svg>
     <div :class="$style.screenInsideBorder"></div>
   </div>
 </template>
@@ -78,5 +92,12 @@ onMounted(() => {
   height: 40rem;
   top: 1rem;
   left: 0.2rem;
+}
+.topSvgVentsAboveScreen {
+  position: absolute;
+  height: 6px;
+  width: 60px;
+  top: 5px;
+  left: 5.8rem;
 }
 </style>
