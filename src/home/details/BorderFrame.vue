@@ -25,7 +25,7 @@ const onDrawUpdate = (target) => {
 const startAnimation = (target) => {
   if (textInside.value == 1) {
     gsap.to(target, {
-      duration: 0.5,
+      duration: 0.4,
       keyframes: { opacity: [1, 0.7, 0.5, 0.3, 0.1, 0.3, 0.5, 0.7, 1] },
     });
     return;
@@ -71,6 +71,7 @@ onMounted(() => {
       ></line>
     </Svg>
     <div :class="$style.screenInsideBorder"></div>
+    <div :class="[$style.screenInsideBorder, $style.whiteBackground]"></div>
   </div>
 </template>
 
@@ -83,6 +84,10 @@ onMounted(() => {
   width: 15rem;
   height: 45rem;
   opacity: 0;
+  background-color: #f1e7e7;
+}
+.whiteBackground {
+  background-color: #fff;
 }
 .screenInsideBorder {
   border: darkgray solid 1px;
@@ -92,6 +97,7 @@ onMounted(() => {
   height: 40rem;
   top: 1rem;
   left: 0.2rem;
+  background-color: #ffffffc4;
 }
 .topSvgVentsAboveScreen {
   position: absolute;
