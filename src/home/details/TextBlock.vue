@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { watch, ref } from 'vue';
 import { CENTER_X, CENTER_Y } from './etc';
 import * as css from '../home.module.scss';
-import { onCompleteStartTextInside, textBlock } from './refs';
+import { onCompleteStartTextInside, textBlock, textInside } from './refs';
 import TextInside from './TextInside.vue';
 
 const divElement = ref();
@@ -42,6 +42,7 @@ const startAnimation = (target) => {
 };
 
 watch(textBlock, () => {
+  if (textInside.value == 1) return;
   if (textBlock.value == 1) {
     startAnimation(divElement.value);
   }

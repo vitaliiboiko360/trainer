@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { watch, ref, onMounted } from 'vue';
 import { CENTER_X, CENTER_Y, HEIGHT_REM, HEIGHT, WIDTH_REM } from './etc';
 import * as css from '../home.module.scss';
-import { onCompleteStartTextInside, textBlock } from './refs';
+import { onCompleteStartTextInside, textBlock, textInside } from './refs';
 import TextInside from './TextInside.vue';
 
 const divElement = ref();
@@ -14,7 +14,7 @@ let animationDynamicParams = {
 };
 
 const paramsTo = {
-  top: '-=10rem',
+  top: '-=12rem',
 };
 
 const onDrawUpdate = (target) => {
@@ -22,6 +22,13 @@ const onDrawUpdate = (target) => {
 };
 
 const startAnimation = (target) => {
+  if (textInside.value == 1) {
+    gsap.to(target, {
+      duration: 0.5,
+      keyframes: { opacity: [1, 0.7, 0.5, 0.3, 0.1, 0.3, 0.5, 0.7, 1] },
+    });
+    return;
+  }
   gsap.set(target, { left: `${HEIGHT / 2}rem`, opacity: 1 });
   gsap.to(target, {
     duration: 1,
@@ -48,7 +55,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div :ref="(el) => (divElement = el)" :class="$style.frameBorder"></div>
+  <div :ref="(el) => (divElement = el)" :class="$style.frameBorder">
+    <div :class="$style.screenInsideBorder"></div>
+  </div>
 </template>
 
 <style module>
@@ -60,5 +69,14 @@ onMounted(() => {
   width: 15rem;
   height: 45rem;
   opacity: 0;
+}
+.screenInsideBorder {
+  border: darkgray solid 1px;
+  border-radius: 2px;
+  position: absolute;
+  width: 14.4rem;
+  height: 40rem;
+  top: 1rem;
+  left: 0.2rem;
 }
 </style>
