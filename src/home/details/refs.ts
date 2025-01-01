@@ -7,4 +7,9 @@ export const onCompleteStartTextInside = () => {
   textInside.value = 1;
 };
 
+export const pointHand = ref(0);
+export const onCompleteStartPointHand = () => {
+  pointHand.value = 1;
+};
+
 export const frameBorder = ref(0);
