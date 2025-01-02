@@ -3,7 +3,12 @@ import { gsap } from 'gsap';
 import { watch, ref, onMounted } from 'vue';
 import { CENTER_X, CENTER_Y, HEIGHT_REM, HEIGHT, WIDTH_REM } from './etc';
 import * as css from '../home.module.scss';
-import { onCompleteStartTextInside, textBlock, textInside } from './refs';
+import {
+  onCompleteStartPointHand,
+  onCompleteStartTextInside,
+  textBlock,
+  textInside,
+} from './refs';
 import TextInside from './TextInside.vue';
 import Svg from '../Svg.vue';
 
@@ -23,10 +28,15 @@ const onDrawUpdate = (target) => {
 };
 
 const startAnimation = (target) => {
+  const onComplete = () => {
+    onCompleteStartPointHand();
+    onCompleteStartTextInside();
+  };
   if (textInside.value == 1) {
     gsap.to(target, {
       duration: 0.4,
       keyframes: { opacity: [1, 0.7, 0.5, 0.3, 0.1, 0.3, 0.5, 0.7, 1] },
+      onComplete: () => onComplete(),
     });
     return;
   }
@@ -103,7 +113,7 @@ onMounted(() => {
   position: absolute;
   height: 6px;
   width: 60px;
-  top: 5px;
+  top: 4.1px;
   left: 5.8rem;
 }
 </style>

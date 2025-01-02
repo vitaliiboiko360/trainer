@@ -17,7 +17,11 @@ watch(pointHand, () => {
 </script>
 
 <template>
-  <img :ref="refImg" :class="[$style.imgHand]" :src="`${IMG_POINT_HAND_SRC}`" />
+  <img
+    :ref="(el) => (refImg = el)"
+    :class="[$style.imgHand]"
+    :src="`${IMG_POINT_HAND_SRC}`"
+  />
 </template>
 
 <style module>
