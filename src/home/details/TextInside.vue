@@ -22,15 +22,22 @@ const startAnimation = (target) => {
   // });
 };
 
+shuffle(TXT_LINES);
+const txtLines = ref(TXT_LINES);
+
 watch(textInside, () => {
-  if (textInside.value != 1) return;
+  if (textInside.value < 1) return;
+  console.log(`SHUFFLE textInside=${textInside}`);
+  let children = [...refDiv.value.children];
+  shuffle(children);
+  refDiv.value.replaceChildren(...children);
   startAnimation(refDiv.value);
 });
 </script>
 
 <template>
-  <div ref="(el) => (refDiv = el)">
-    <p v-for="(line, index) in shuffle(TXT_LINES)" key="index">{{ line }}</p>
+  <div :ref="(el) => (refDiv = el)">
+    <p v-for="(line, index) in TXT_LINES" :key="index">{{ line }}</p>
   </div>
 </template>
 

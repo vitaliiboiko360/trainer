@@ -32,28 +32,27 @@ const startAnimation = (target) => {
     onCompleteStartPointHand();
     onCompleteStartTextInside();
   };
-  if (textInside.value == 1) {
+
+  if (textBlock.value == 1) {
+    gsap.set(target, { left: `${HEIGHT / 2}rem`, opacity: 1 });
     gsap.to(target, {
-      duration: 0.4,
-      keyframes: { opacity: [1, 0.7, 0.5, 0.3, 0.1, 0.3, 0.5, 0.7, 1] },
-      onComplete: () => onComplete(),
+      duration: 1,
+      top: paramsTo.top,
+      onUpdate: () => onDrawUpdate(target),
+      onComplete: () => onCompleteStartTextInside(),
+      ease: 'powerIn',
     });
-    return;
   }
-  gsap.set(target, { left: `${HEIGHT / 2}rem`, opacity: 1 });
+
   gsap.to(target, {
-    duration: 1,
-    top: paramsTo.top,
-    onUpdate: () => onDrawUpdate(target),
-    onComplete: onCompleteStartTextInside,
-    ease: 'powerIn',
+    duration: 0.4,
+    keyframes: { opacity: [1, 0.7, 0.5, 0.3, 0.1, 0.3, 0.5, 0.7, 1] },
+    onComplete: () => onComplete(),
   });
 };
 
 watch(textBlock, () => {
-  if (textBlock.value == 1) {
-    startAnimation(divElement.value);
-  }
+  startAnimation(divElement.value);
 });
 
 onMounted(() => {

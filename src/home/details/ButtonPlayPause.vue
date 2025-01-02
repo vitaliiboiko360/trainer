@@ -3,7 +3,7 @@ import * as css from '../home.module.scss';
 import { textBlock } from './refs';
 
 const onClick = () => {
-  textBlock.value = textBlock.value == 1 ? 0 : 1;
+  textBlock.value++;
   console.log(`textBlock.value= ${textBlock.value}`);
 };
 </script>
