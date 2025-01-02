@@ -81,7 +81,9 @@ onMounted(() => {
       ></line>
     </Svg>
     <div :class="$style.screenInsideBorder"></div>
-    <div :class="[$style.screenInsideBorder, $style.whiteBackground]"></div>
+    <div :class="[$style.screenInsideBorder, $style.whiteBackground]">
+      <TextInside />
+    </div>
   </div>
 </template>
 

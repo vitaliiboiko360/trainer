@@ -12,7 +12,6 @@ onMounted(() => {
 });
 watch(pointHand, () => {
   if (pointHand.value != 1) return;
-  console.log(`pointHand= ${pointHand}`);
 });
 </script>
 

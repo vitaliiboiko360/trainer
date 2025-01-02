@@ -4,32 +4,33 @@ import TextPlugin from 'gsap/TextPlugin';
 import { watch, ref } from 'vue';
 import * as css from '../home.module.scss';
 import { textInside } from './refs';
+import { TXT_LINES, shuffle } from './etc';
 
 gsap.registerPlugin(TextPlugin);
 
-const pElement = ref();
+const refDiv = ref();
 
 const startAnimation = (target) => {
-  gsap.to(target, {
-    duration: 1.3,
-    text: {
-      value: 'This is the new text this is the new text',
-      delimiter: ' ',
-      speed: 1,
-    },
-    ease: 'none',
-  });
+  // gsap.to(target, {
+  //   duration: 1.3,
+  //   text: {
+  //     value: 'This is the new text this is the new text',
+  //     delimiter: ' ',
+  //     speed: 1,
+  //   },
+  //   ease: 'none',
+  // });
 };
 
 watch(textInside, () => {
   if (textInside.value != 1) return;
-  startAnimation(pElement.value);
+  startAnimation(refDiv.value);
 });
 </script>
 
 <template>
-  <div>
-    <p :ref="(el) => (pElement = el)"></p>
+  <div ref="(el) => (refDiv = el)">
+    <p v-for="(line, index) in shuffle(TXT_LINES)" key="index">{{ line }}</p>
   </div>
 </template>
 
