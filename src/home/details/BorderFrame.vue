@@ -39,9 +39,9 @@ const startAnimation = (target) => {
       duration: 1,
       top: paramsTo.top,
       onUpdate: () => onDrawUpdate(target),
-      onComplete: () => onCompleteStartTextInside(),
       ease: 'powerIn',
     });
+    return;
   }
 
   gsap.to(target, {

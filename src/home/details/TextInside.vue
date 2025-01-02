@@ -27,7 +27,7 @@ const txtLines = ref(TXT_LINES);
 
 watch(textInside, () => {
   if (textInside.value < 1) return;
-  console.log(`SHUFFLE textInside=${textInside}`);
+  console.log(`SHUFFLE textInside=${textInside.value}`);
   let children = [...refDiv.value.children];
   shuffle(children);
   refDiv.value.replaceChildren(...children);
