@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    preserveAspectRatio="xMidYMid slice"
-   width="800px"
-   height="800px"
    id="Capa_1"
    data-name="Capa 1"
    viewBox="0 0 300 300"
@@ -38,7 +36,7 @@
      inkscape:current-layer="Capa_1"
      showgrid="false" />
   <title
-     id="title1">psychotherapy-icon</title>
+     id="title1">listening-head</title>
   <g
      id="g7">
     <path
@@ -86,7 +84,7 @@
     <rdf:RDF>
       <cc:Work
          rdf:about="">
-        <dc:title>psychotherapy-icon</dc:title>
+        <dc:title>listening-head</dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
