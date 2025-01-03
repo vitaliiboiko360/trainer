@@ -9,8 +9,11 @@ const onClick = () => {
 </script>
 
 <template>
-  <div :class="[css.buttonHolderDiv, $style.buttonPlayPause]">
-    <button :class="css.buttonPlayPause" @click="onClick"></button>
+  <div :class="[css.buttonHolderDiv]">
+    <button
+      :class="[css.buttonPlayPause, $style.buttonPlayPause]"
+      @click="onClick"
+    ></button>
   </div>
 </template>
 

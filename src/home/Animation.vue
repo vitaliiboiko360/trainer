@@ -5,6 +5,7 @@ import SvgCanvas from './details/SvgCanvas.vue';
 import * as css from './home.module.scss';
 import BorderFrame from './details/BorderFrame.vue';
 import PointHand from './details/PointHand.vue';
+import ListenginHead from './details/ListenginHead.vue';
 </script>
 
 <template>
@@ -13,6 +14,7 @@ import PointHand from './details/PointHand.vue';
     <!-- <TextBlock /> -->
     <BorderFrame />
     <PointHand />
+    <ListenginHead />
     <SvgCanvas />
   </div>
 </template>

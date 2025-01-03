@@ -4,6 +4,8 @@ export const HEIGHT = 15;
 export const HEIGHT_REM = `${HEIGHT}rem`;
 export const CENTER_X = 20;
 export const CENTER_Y = 7.5;
+export const CENTER_X_REM = '20rem';
+export const CENTER_Y_REM = '7.5rem';
 
 export const IMG_POINT_HAND_SRC = '/data/backhand-index-pointing-up_1f446.png';
 
@@ -45,3 +47,15 @@ export function shuffle(array) {
     ];
   }
 }
+
+export const SVG_SRC = '/data/listening-head.svg';
+
+export const SVG_DIMS = {
+  width: '10rem',
+  height: '10rem',
+};
+
+export const SVG_DIMS_2 = {
+  width: '800px',
+  height: '800px',
+};
