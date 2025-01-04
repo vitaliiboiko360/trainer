@@ -4,6 +4,7 @@ import { watch, ref, onMounted } from 'vue';
 import { CENTER_X, CENTER_Y, HEIGHT_REM, HEIGHT, WIDTH_REM } from './etc';
 import * as css from '../home.module.scss';
 import {
+  incrementHiglightTextInside,
   onCompleteStartPointHand,
   onCompleteStartTextInside,
   textBlock,

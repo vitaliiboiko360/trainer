@@ -1,7 +1,6 @@
 <script setup>
 import { SVG_SRC, CENTER_X_REM, CENTER_Y_REM, SVG_DIMS } from './etc';
 import Svg from '../Svg.vue';
-
 const PROPS = {
   top: '-1.5rem',
   left: '23rem',

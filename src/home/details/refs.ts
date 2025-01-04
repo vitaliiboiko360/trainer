@@ -13,3 +13,8 @@ export const onCompleteStartPointHand = () => {
 };
 
 export const frameBorder = ref(0);
+
+export const hihglightTextInside = ref(0);
+export const incrementHiglightTextInside = () => {
+  hihglightTextInside.value++;
+};

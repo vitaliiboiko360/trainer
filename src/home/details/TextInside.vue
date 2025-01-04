@@ -3,7 +3,11 @@ import { gsap } from 'gsap';
 import TextPlugin from 'gsap/TextPlugin';
 import { watch, ref } from 'vue';
 import * as css from '../home.module.scss';
-import { textInside } from './refs';
+import {
+  hihglightTextInside,
+  incrementHiglightTextInside,
+  textInside,
+} from './refs';
 import { TXT_LINES, shuffle } from './etc';
 
 gsap.registerPlugin(TextPlugin);
@@ -27,18 +31,42 @@ const txtLines = ref(TXT_LINES);
 
 watch(textInside, () => {
   if (textInside.value < 1) return;
-  console.log(`SHUFFLE textInside=${textInside.value}`);
   let children = [...refDiv.value.children];
   shuffle(children);
   refDiv.value.replaceChildren(...children);
   startAnimation(refDiv.value);
+  incrementHiglightTextInside();
+});
+
+watch(hihglightTextInside, () => {
+  if (hihglightTextInside.value < 1) return;
+  const firstLine = refDiv.value.children.item(0);
+  const words = firstLine.textContent.split(' ');
+  const spans = words.map((word, index) => {
+    let element = document.createElement('span');
+    element.textContent = word + (index == words.length - 1 ? '' : ' ');
+    return element;
+  });
+  firstLine.replaceChildren(...spans);
 });
 </script>
 
 <template>
   <div :ref="(el) => (refDiv = el)">
-    <p v-for="(line, index) in TXT_LINES" :key="index">{{ line }}</p>
+    <p
+      v-for="(line, index) in TXT_LINES"
+      :key="index"
+      :class="[$style.spanInParagraph]"
+    >
+      {{ line }}
+    </p>
   </div>
 </template>
 
-<style module></style>
+<style module>
+.spanInParagraph {
+  span {
+    color: grey;
+  }
+}
+</style>
