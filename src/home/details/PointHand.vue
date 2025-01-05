@@ -1,17 +1,31 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue';
 import { IMG_POINT_HAND_SRC } from './etc';
-import { gsap } from 'gsap';
+import MotionPathPlugin, { gsap } from 'gsap';
 import { pointHand } from './refs';
+
+gsap.registerPlugin(MotionPathPlugin);
 
 const refImg = ref();
 onMounted(() => {
-  gsap.set(refImg.value, {
-    opacity: 0,
-  });
+  // gsap.set(refImg.value, {
+  //   opacity: 0,
+  // });
 });
 watch(pointHand, () => {
-  if (pointHand.value != 1) return;
+  if (pointHand.value < 1) return;
+  gsap.to(refImg.value, {
+    duration: 0.6,
+    opacity: 1,
+  });
+  gsap.to(refImg.value, {
+    duration: 1.2,
+    motionPath: {
+      path: '#pathID',
+      align: '#pathID',
+      alignOrigin: [0.5, 0.5],
+    },
+  });
 });
 </script>
 
@@ -33,5 +47,6 @@ watch(pointHand, () => {
   position: absolute;
   top: 1rem;
   left: 5rem;
+  opacity: 0;
 }
 </style>

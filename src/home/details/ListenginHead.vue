@@ -15,6 +15,9 @@ const xmlns = 'http://www.w3.org/1999/xhtml';
     <foreignObject :xmlns :height="PROPS.height" :width="PROPS.width">
       <object :data="SVG_SRC" :type="`image/svg+xml`"></object>
     </foreignObject>
+    <foreignObject :xmlns :height="PROPS.height" :width="PROPS.width">
+      <object :data="SVG_SRC" :type="`image/svg+xml`"></object>
+    </foreignObject>
   </Svg>
 </template>
 

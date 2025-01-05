@@ -40,6 +40,7 @@ watch(textInside, () => {
 
 watch(hihglightTextInside, () => {
   if (hihglightTextInside.value < 1) return;
+
   const firstLine = refDiv.value.children.item(0);
   const words = firstLine.textContent.split(' ');
   const spans = words.map((word, index) => {

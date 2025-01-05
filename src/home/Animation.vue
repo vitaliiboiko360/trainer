@@ -10,12 +10,12 @@ import ListenginHead from './details/ListenginHead.vue';
 
 <template>
   <div :class="[css.animationOuterDiv, $style.animationOuterDiv]">
+    <SvgCanvas />
     <ButtonPlayPause />
     <!-- <TextBlock /> -->
     <BorderFrame />
-    <PointHand />
     <ListenginHead />
-    <SvgCanvas />
+    <PointHand />
   </div>
 </template>
 
