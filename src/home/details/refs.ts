@@ -28,3 +28,5 @@ export const pointHandCoordinates = reactive({
     this.y = y;
   },
 });
+
+export const refSvgCanvas = ref();
