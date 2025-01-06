@@ -9,7 +9,7 @@ import {
 } from './etc';
 import { refSvgCanvas } from './refs';
 </script>
-
+//
 <template>
   <svg
     :ref="(el) => (refSvgCanvas = el)"
@@ -19,11 +19,18 @@ import { refSvgCanvas } from './refs';
     :xmlns
     :viewBox="`0 0 ${WIDTH_PX} ${HEIGHT_PX}`"
   >
-    <path
+    <!-- <path
       :id="POINT_HAND_PATH_ID"
       :d="`M70 86C148 44 200 142 204 96`"
       :fill="`none`"
       :stroke="`red`"
+      :stroke-width="`2px`"
+    /> -->
+    <path
+      :id="POINT_HAND_PATH_ID"
+      :d="`M70 86C140 120 149 118 166 111 178 105 189 106 212 108`"
+      :fill="`none`"
+      :stroke="`green`"
       :stroke-width="`2px`"
     />
   </svg>
