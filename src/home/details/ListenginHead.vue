@@ -17,7 +17,7 @@ const PROPS = {
 </script>
 
 <template>
-  <Svg :class="[$style.imgSvg]" :xmlns="xmlnsSvg" viewBox="">
+  <Svg :class="[$style.imgSvg]" :xmlns="xmlnsSvg">
     <foreignObject
       :xmlns="xmlnsXhtml"
       :height="PROPS.height"
