@@ -2,8 +2,8 @@
 import {
   HEIGHT,
   WIDTH,
-  HEIGHT_REM,
-  WIDTH_REM,
+  HEIGHT_PX,
+  WIDTH_PX,
   xmlnsSvg as xmlns,
   POINT_HAND_PATH_ID,
 } from './etc';
@@ -13,16 +13,18 @@ import { refSvgCanvas } from './refs';
 <template>
   <svg
     :ref="(el) => (refSvgCanvas = el)"
-    :height="HEIGHT_REM"
-    :width="WIDTH_REM"
+    :height="HEIGHT_PX"
+    :width="WIDTH_PX"
     :class="[$style.svgHolder]"
     :xmlns
-    :viewBox="`0 0 ${WIDTH} ${HEIGHT}`"
+    :viewBox="`0 0 ${WIDTH_PX} ${HEIGHT_PX}`"
   >
     <path
       :id="POINT_HAND_PATH_ID"
-      :d="`M10 10C15 17 26 21 33 19`"
+      :d="`M70 86C148 44 200 142 204 96`"
+      :fill="`none`"
       :stroke="`red`"
+      :stroke-width="`2px`"
     />
   </svg>
 </template>
