@@ -7,6 +7,9 @@ export const CENTER_Y = 7.5;
 export const CENTER_X_REM = '20rem';
 export const CENTER_Y_REM = '7.5rem';
 
+export const xmlnsSvg = 'http://www.w3.org/2000/svg';
+export const xmlnsXhtml = 'http://www.w3.org/1999/xhtml';
+
 export const IMG_POINT_HAND_SRC = '/data/backhand-index-pointing-up_1f446.png';
 
 export const TXT_LINES = [

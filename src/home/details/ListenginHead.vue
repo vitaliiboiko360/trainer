@@ -1,5 +1,12 @@
 <script setup>
-import { SVG_SRC, CENTER_X_REM, CENTER_Y_REM, SVG_DIMS } from './etc';
+import {
+  SVG_SRC,
+  CENTER_X_REM,
+  CENTER_Y_REM,
+  SVG_DIMS,
+  xmlnsSvg,
+  xmlnsXhtml,
+} from './etc';
 import Svg from '../Svg.vue';
 const PROPS = {
   top: '-1.5rem',
@@ -7,15 +14,22 @@ const PROPS = {
   width: '13rem',
   height: '14rem',
 };
-const xmlns = 'http://www.w3.org/1999/xhtml';
 </script>
 
 <template>
-  <Svg :class="[$style.imgSvg]">
-    <foreignObject :xmlns :height="PROPS.height" :width="PROPS.width">
+  <Svg :class="[$style.imgSvg]" :xmlns="xmlnsSvg" viewBox="">
+    <foreignObject
+      :xmlns="xmlnsXhtml"
+      :height="PROPS.height"
+      :width="PROPS.width"
+    >
       <object :data="SVG_SRC" :type="`image/svg+xml`"></object>
     </foreignObject>
-    <foreignObject :xmlns :height="PROPS.height" :width="PROPS.width">
+    <foreignObject
+      :xmlns="xmlnsXhtml"
+      :height="PROPS.height"
+      :width="PROPS.width"
+    >
       <object :data="SVG_SRC" :type="`image/svg+xml`"></object>
     </foreignObject>
   </Svg>
