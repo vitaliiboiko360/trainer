@@ -4,8 +4,6 @@ import { IMG_POINT_HAND_SRC, POINT_HAND_PATH_ID } from './etc';
 import MotionPathPlugin, { gsap } from 'gsap';
 import { pointHand, refSvgCanvas } from './refs';
 
-gsap.registerPlugin(MotionPathPlugin);
-
 const refImg = ref();
 onMounted(() => {
   // gsap.set(refImg.value, {
@@ -14,15 +12,17 @@ onMounted(() => {
 });
 watch(pointHand, () => {
   if (pointHand.value < 1) return;
+  gsap.registerPlugin(MotionPathPlugin);
   gsap.to(refImg.value, {
     duration: 0.6,
     opacity: 1,
   });
+  console.log(refSvgCanvas.value);
   gsap.to(refImg.value, {
     duration: 1.2,
     motionPath: {
-      path: refSvgCanvas?.value?.getElementById('#' + POINT_HAND_PATH_ID),
-      align: refSvgCanvas?.value?.getElementById('#' + POINT_HAND_PATH_ID),
+      // path: refSvgCanvas?.value?.getElementById('#' + POINT_HAND_PATH_ID),
+      align: refSvgCanvas.value.getElementById('#' + POINT_HAND_PATH_ID),
       alignOrigin: [0.5, 0.5],
     },
   });

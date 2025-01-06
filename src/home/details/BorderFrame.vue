@@ -40,6 +40,7 @@ const startAnimation = (target) => {
       duration: 1,
       top: paramsTo.top,
       onUpdate: () => onDrawUpdate(target),
+      onComplete: onComplete,
       ease: 'powerIn',
     });
     return;
