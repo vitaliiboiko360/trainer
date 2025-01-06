@@ -62,3 +62,5 @@ export const SVG_DIMS_2 = {
   width: '800px',
   height: '800px',
 };
+
+export const POINT_HAND_PATH_ID = 'point-hand-path-id';

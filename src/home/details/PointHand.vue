@@ -1,8 +1,8 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue';
-import { IMG_POINT_HAND_SRC } from './etc';
+import { IMG_POINT_HAND_SRC, POINT_HAND_PATH_ID } from './etc';
 import MotionPathPlugin, { gsap } from 'gsap';
-import { pointHand } from './refs';
+import { pointHand, refSvgCanvas } from './refs';
 
 gsap.registerPlugin(MotionPathPlugin);
 
@@ -21,8 +21,8 @@ watch(pointHand, () => {
   gsap.to(refImg.value, {
     duration: 1.2,
     motionPath: {
-      path: '#pathID',
-      align: '#pathID',
+      path: refSvgCanvas?.value?.getElementById('#' + POINT_HAND_PATH_ID),
+      align: refSvgCanvas?.value?.getElementById('#' + POINT_HAND_PATH_ID),
       alignOrigin: [0.5, 0.5],
     },
   });
