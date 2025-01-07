@@ -13,6 +13,7 @@ export default defineConfig({
   base: './',
   mode: 'development',
   server: {
+    host: '0.0.0.0',
     port: 3000,
     fs: {
       allow: ['./data/', './'],
