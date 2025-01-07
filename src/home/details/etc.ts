@@ -67,3 +67,4 @@ export const SVG_DIMS_2 = {
 };
 
 export const POINT_HAND_PATH_ID = 'point-hand-path-id';
+export const POINT_HAND_PATH_ID_2 = 'point-hand-path-id-2';

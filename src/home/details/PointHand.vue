@@ -1,6 +1,10 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue';
-import { IMG_POINT_HAND_SRC, POINT_HAND_PATH_ID } from './etc';
+import {
+  IMG_POINT_HAND_SRC,
+  POINT_HAND_PATH_ID,
+  POINT_HAND_PATH_ID_2,
+} from './etc';
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { pointHand, refSvgCanvas } from './refs';
@@ -15,20 +19,36 @@ onMounted(() => {
 });
 watch(pointHand, () => {
   if (pointHand.value < 1) return;
-
-  gsap.to(refImg.value, {
-    duration: 0.6,
-    opacity: 1,
-  });
   console.log(refSvgCanvas.value);
-  gsap.to(refImg.value, {
+  let tl = gsap.timeline();
+  tl.to(refImg.value, {
     duration: 1.2,
     motionPath: {
       path: refSvgCanvas.value.getElementById(POINT_HAND_PATH_ID),
       align: refSvgCanvas.value.getElementById(POINT_HAND_PATH_ID),
       alignOrigin: [0.5, 0.5],
     },
-  });
+    keyframes: {
+      opacity: [0.5, 0.8, 0.9, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    },
+  })
+    .to(refImg.value, {
+      duration: 0.3,
+      keyframes: {
+        scale: [1, 0.9, 0.8, 0.9, 1],
+      },
+    })
+    .to(refImg.value, {
+      duration: 0.6,
+      motionPath: {
+        path: refSvgCanvas.value.getElementById(POINT_HAND_PATH_ID_2),
+        align: refSvgCanvas.value.getElementById(POINT_HAND_PATH_ID_2),
+        alignOrigin: [0.5, 0.5],
+      },
+      keyframes: {
+        opacity: [1, 1, 0.9, 0.8, 0.5, 0],
+      },
+    });
 });
 </script>
 
