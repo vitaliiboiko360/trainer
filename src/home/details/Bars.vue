@@ -7,8 +7,8 @@ import { onMounted } from 'vue';
 
 const refSvgBars = ref();
 const PROPS = {
-  height: '16px',
-  width: '16px',
+  height: '32px',
+  width: '32px',
 };
 
 onMounted(() => {
@@ -23,6 +23,7 @@ onMounted(() => {
     :ref="(el) => (refSvgBars = el)"
     :height="PROPS.height"
     :width="PROPS.width"
+    :class="$style.svgBars"
   >
     <foreignObject :xmlns :height="PROPS.height" :width="PROPS.width">
       <object
@@ -38,7 +39,8 @@ onMounted(() => {
 <style module>
 .svgBars {
   position: absolute;
-  top: -2rem;
-  left: 6rem;
+  top: 1rem;
+  left: 14.5rem;
+  z-index: 1;
 }
 </style>
