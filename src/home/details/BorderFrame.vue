@@ -1,6 +1,7 @@
 <script setup>
 import { gsap } from 'gsap';
 import { watch, ref, onMounted } from 'vue';
+import Bars from './Bars.vue';
 import { CENTER_X, CENTER_Y, HEIGHT_REM, HEIGHT, WIDTH_REM } from './etc';
 import * as css from '../home.module.scss';
 import {
@@ -68,6 +69,7 @@ onMounted(() => {
 
 <template>
   <div :ref="(el) => (divElement = el)" :class="$style.frameBorder">
+    <Bars />
     <Svg :class="$style.topSvgVentsAboveScreen" :viewBox="`0 0 60 5`">
       <circle cx="3" cy="3" r="2" fill="darkgrey"></circle>
       <line
