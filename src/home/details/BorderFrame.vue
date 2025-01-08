@@ -68,8 +68,8 @@ onMounted(() => {
 </script>
 
 <template>
+  <Bars />
   <div :ref="(el) => (divElement = el)" :class="$style.frameBorder">
-    <Bars />
     <Svg :class="$style.topSvgVentsAboveScreen" :viewBox="`0 0 60 5`">
       <circle cx="3" cy="3" r="2" fill="darkgrey"></circle>
       <line
