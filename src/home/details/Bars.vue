@@ -34,3 +34,11 @@ onMounted(() => {
     </foreignObject>
   </Svg>
 </template>
+
+<style module>
+.svgBars {
+  position: absolute;
+  top: -2rem;
+  left: 6rem;
+}
+</style>
