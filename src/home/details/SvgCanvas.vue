@@ -36,7 +36,7 @@ import { refSvgCanvas } from './refs';
     />
     <path
       :id="POINT_HAND_PATH_ID_2"
-      :d="`M208 146C237 149 239 141 238 132 237 112 220 109 212 108`"
+      :d="`M212 108C220 109 237 112 238 132 238 139 237 149 209 148`"
       :fill="`none`"
       :stroke="`green`"
       :stroke-width="`2px`"
