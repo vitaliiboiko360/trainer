@@ -7,8 +7,8 @@ import { onMounted } from 'vue';
 
 const refSvgBars = ref();
 const PROPS = {
-  height: '32px',
-  width: '32px',
+  height: '26px',
+  width: '28px',
 };
 
 onMounted(() => {
@@ -21,16 +21,16 @@ onMounted(() => {
 <template>
   <Svg
     :ref="(el) => (refSvgBars = el)"
-    :height="PROPS.height"
     :width="PROPS.width"
+    :height="PROPS.height"
     :class="$style.svgBars"
   >
-    <foreignObject :xmlns :height="PROPS.height" :width="PROPS.width">
+    <foreignObject :xmlns :width="PROPS.width" :height="PROPS.height">
       <object
         :data="SVG_SRC_BARS"
         :type="`image/svg+xml`"
-        :height="PROPS.height"
         :width="PROPS.width"
+        :height="PROPS.height"
       ></object>
     </foreignObject>
   </Svg>
@@ -39,7 +39,7 @@ onMounted(() => {
 <style module>
 .svgBars {
   position: absolute;
-  top: 1rem;
+  top: 1.4rem;
   left: 14.5rem;
   z-index: 1;
 }
