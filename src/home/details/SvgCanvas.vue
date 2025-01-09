@@ -14,8 +14,8 @@ import { refSvgCanvas } from './refs';
 <template>
   <svg
     :ref="(el) => (refSvgCanvas = el)"
-    :height="HEIGHT_PX"
-    :width="WIDTH_PX"
+    :height="`15em`"
+    :width="`40em`"
     :class="[$style.svgHolder]"
     :xmlns
     :viewBox="`0 0 ${WIDTH_PX} ${HEIGHT_PX}`"

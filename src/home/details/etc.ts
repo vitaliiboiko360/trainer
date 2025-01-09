@@ -1,9 +1,6 @@
 export const WIDTH = 40;
-//assuming root element 1rem = 14px
-export const WIDTH_PX = 40 * 14;
 export const WIDTH_REM = `${WIDTH}rem`;
 export const HEIGHT = 15;
-export const HEIGHT_PX = 15 * 14;
 export const HEIGHT_REM = `${HEIGHT}rem`;
 export const CENTER_X = 20;
 export const CENTER_Y = 7.5;
