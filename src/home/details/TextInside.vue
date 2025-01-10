@@ -31,13 +31,10 @@ const startAnimation = (target) => {
 
 shuffle(TXT_LINES);
 
-const addPathToSvg = (parendDiv, firstLine, svgBackground) => {
+const addPathToSvg = (parentDiv, firstLine, svgBackground) => {
   let mapLinePosition = new Map();
-  const {
-    left: parentLeft,
-    right: parentRight,
-    top: parentTop,
-  } = parendDiv.getBoundingClientRect();
+  const { left: parentLeft, top: parentTop } =
+    parentDiv.getBoundingClientRect();
   Array.from(firstLine.children).forEach((element) => {
     let { left, bottom: childBottom, right } = element.getBoundingClientRect();
     const bottom = Math.ceil(childBottom - parentTop);
@@ -56,8 +53,6 @@ const addPathToSvg = (parendDiv, firstLine, svgBackground) => {
       });
     }
   });
-  console.log(`console= ${[...mapLinePosition.entries()]}`);
-
   for (const [y, x] of mapLinePosition) {
     addPathLine(svgBackground, x.minLeftX, y, x.maxRightX - x.minLeftX);
   }
