@@ -3,6 +3,7 @@ export function addPathLine(svgElment, x1, y1, x2, y2) {
   path.setAttribute('d', `M${x1} ${y1}h${x2}`);
   path.setAttribute('stroke', 'green');
   path.setAttribute('stroke-width', '2px');
+  path.setAttribute('stroke-linecap', 'round');
   svgElment.append(path);
   return path;
 }
