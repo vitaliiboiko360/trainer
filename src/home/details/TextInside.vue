@@ -1,7 +1,7 @@
 <script setup>
 import { gsap } from 'gsap';
 import TextPlugin from 'gsap/TextPlugin';
-import { watch, ref } from 'vue';
+import { watch, ref, onMounted } from 'vue';
 import * as css from '../home.module.scss';
 import {
   hihglightTextInside,
@@ -9,10 +9,12 @@ import {
   textInside,
 } from './refs';
 import { TXT_LINES, shuffle } from './etc';
+import { addPathLine } from './svg';
 
 gsap.registerPlugin(TextPlugin);
 
 const refDiv = ref();
+const refSvg = ref();
 
 const startAnimation = (target) => {
   // gsap.to(target, {
@@ -28,6 +30,19 @@ const startAnimation = (target) => {
 
 shuffle(TXT_LINES);
 const txtLines = ref(TXT_LINES);
+
+onMounted(() => {
+  const { left, top, height, width } = refDiv.value.getBoundingClientRect();
+  let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('width', width);
+  svg.setAttribute('height', height);
+  svg.setAttribute('viewBox', `0 0 ${Math.ceil(width)} ${Math.ceil(height)}`);
+  // svg.style.left = left;
+  // svg.style.top = top;
+  svg.style.position = 'absolute';
+  refDiv.value.after(svg);
+  refSvg.value = svg;
+});
 
 watch(textInside, () => {
   if (textInside.value < 1) return;
@@ -49,11 +64,39 @@ watch(hihglightTextInside, () => {
     return element;
   });
   firstLine.replaceChildren(...spans);
+
+  let mapLinePosition = new Map();
+  const {
+    left: parentLeft,
+    right: parentRight,
+    bottom: parentBottom,
+  } = refDiv.value.getBoundingClientRect();
+  Array.from(firstLine.children).forEach((element) => {
+    let { left, bottom: childBottom, right } = element.getBoundingClientRect();
+    const bottom = Math.ceil(parentBottom - childBottom);
+    let line = mapLinePosition.get(bottom);
+    if (line) {
+      mapLinePosition.set(bottom, {
+        minLeftX: Math.min(parentLeft - left, line.minLeftX),
+        maxRightX: Math.max(parentRight - right, line.maxRightX),
+      });
+    } else {
+      mapLinePosition.set(bottom, {
+        minLeftX: parentLeft - left,
+        maxRightX: parentRight - right,
+      });
+    }
+  });
+  console.log(`console= ${[...mapLinePosition.entries()]}`);
+
+  for (const [y, x] of mapLinePosition) {
+    addPathLine(refSvg.value, x.minLeftX, y, x.maxRightX - x.minLeftX);
+  }
 });
 </script>
 
 <template>
-  <div :ref="(el) => (refDiv = el)">
+  <div :ref="(el) => (refDiv = el)" :class="$style.divOuter">
     <p
       v-for="(line, index) in TXT_LINES"
       :key="index"
@@ -65,6 +108,9 @@ watch(hihglightTextInside, () => {
 </template>
 
 <style module>
+.divOuter {
+  position: absolute;
+}
 .spanInParagraph {
   span {
     color: grey;

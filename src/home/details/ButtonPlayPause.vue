@@ -8,7 +8,6 @@ const refDivOuter = ref();
 
 const onClick = () => {
   textBlock.value++;
-  console.log(`textBlock.value= ${textBlock.value}`);
 };
 const resize = 'resize';
 const onResize = () => {
@@ -17,13 +16,13 @@ const onResize = () => {
       WIDTH
   );
   if (window.innerWidth < width) {
-    const { left } = refDivOuter.value?.getBoundingClientRect();
     refDivOuter.value.style.left = `${Math.ceil(
       (width - window.innerWidth) / 2
     )}px`;
   }
 };
 onMounted(() => {
+  onResize();
   window.addEventListener(resize, onResize);
 });
 onUnmounted(() => {
