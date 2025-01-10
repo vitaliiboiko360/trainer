@@ -1,5 +1,13 @@
 import { ref, reactive } from 'vue';
 
+export const REM_IN_PX = ref(16);
+export const updateRemInPxValue = (value) => {
+  REM_IN_PX.value = parseInt(
+    window.getComputedStyle(document.documentElement).fontSize
+  );
+  return parseInt(window.getComputedStyle(document.documentElement).fontSize);
+};
+
 export const textBlock = ref(0);
 
 export const textInside = ref(0);

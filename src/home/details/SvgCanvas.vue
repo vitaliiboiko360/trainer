@@ -2,23 +2,27 @@
 import {
   HEIGHT,
   WIDTH,
-  HEIGHT_PX,
-  WIDTH_PX,
+  HEIGHT_REM,
+  WIDTH_REM,
   xmlnsSvg as xmlns,
   POINT_HAND_PATH_ID,
   POINT_HAND_PATH_ID_2,
 } from './etc';
-import { refSvgCanvas } from './refs';
+import { refSvgCanvas, REM_IN_PX, updateRemInPxValue } from './refs';
+
+const remInPx = updateRemInPxValue();
 </script>
 // M214 138C222 134 225 135 229 129 237 112 220 109 212 108
 <template>
   <svg
     :ref="(el) => (refSvgCanvas = el)"
-    :height="`15em`"
-    :width="`40em`"
+    :width="`${WIDTH_REM}`"
+    :height="`${HEIGHT_REM}`"
     :class="[$style.svgHolder]"
     :xmlns
-    :viewBox="`0 0 ${WIDTH_PX} ${HEIGHT_PX}`"
+    :viewBox="`0 0 ${WIDTH * (REM_IN_PX ?? remInPx)} ${
+      HEIGHT * (REM_IN_PX ?? remInPx)
+    }`"
   >
     <!-- <path
       :id="POINT_HAND_PATH_ID"

@@ -6,6 +6,21 @@ import * as css from './home.module.scss';
 import BorderFrame from './details/BorderFrame.vue';
 import PointHand from './details/PointHand.vue';
 import ListenginHead from './details/ListenginHead.vue';
+
+import { updateRemInPxValue } from './details/refs';
+import { onUnmounted } from 'vue';
+updateRemInPxValue();
+
+const onResize = () => {
+  updateRemInPxValue();
+};
+
+const resize = 'resize';
+window.addEventListener(resize, onResize);
+
+onUnmounted(() => {
+  window.removeEventListener(resize, onResize);
+});
 </script>
 
 <template>
