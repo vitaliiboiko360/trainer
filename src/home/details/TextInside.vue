@@ -69,21 +69,23 @@ watch(hihglightTextInside, () => {
   const {
     left: parentLeft,
     right: parentRight,
-    bottom: parentBottom,
+    top: parentTop,
   } = refDiv.value.getBoundingClientRect();
   Array.from(firstLine.children).forEach((element) => {
     let { left, bottom: childBottom, right } = element.getBoundingClientRect();
-    const bottom = Math.ceil(parentBottom - childBottom);
+    const bottom = Math.ceil(parentTop - childBottom);
     let line = mapLinePosition.get(bottom);
+    const minLeft = Math.ceil(parentLeft - left);
+    const maxRight = Math.ceil(parentRight - right);
     if (line) {
       mapLinePosition.set(bottom, {
-        minLeftX: Math.min(parentLeft - left, line.minLeftX),
-        maxRightX: Math.max(parentRight - right, line.maxRightX),
+        minLeftX: Math.min(minLeft, line.minLeftX),
+        maxRightX: Math.max(maxRight, line.maxRightX),
       });
     } else {
       mapLinePosition.set(bottom, {
-        minLeftX: parentLeft - left,
-        maxRightX: parentRight - right,
+        minLeftX: minLeft,
+        maxRightX: maxRight,
       });
     }
   });
