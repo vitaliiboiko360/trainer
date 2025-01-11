@@ -278,9 +278,6 @@ watch(startTextAnimation, () => {
 .spanInParagraph {
   span {
     color: grey;
-    ::after {
-      content: '';
-    }
   }
 }
 </style>
