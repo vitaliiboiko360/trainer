@@ -1,33 +1,25 @@
 <script setup>
 import { gsap } from 'gsap';
 import TextPlugin from 'gsap/TextPlugin';
+import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { watch, ref, onMounted } from 'vue';
 import * as css from '../home.module.scss';
 import {
   hihglightTextInside,
   incrementHiglightTextInside,
+  onCompleteStartPointHand,
   REM_IN_PX,
   textInside,
 } from './refs';
-import { TXT_LINES, shuffle } from './etc';
+import { TXT_LINES, countSyllables, shuffle } from './etc';
 import { addPathLine } from './svg';
 
-gsap.registerPlugin(TextPlugin);
+gsap.registerPlugin(TextPlugin, MotionPathPlugin);
 
 const refDiv = ref();
 const refSvg = ref();
 
-const startAnimation = (target) => {
-  // gsap.to(target, {
-  //   duration: 1.3,
-  //   text: {
-  //     value: 'This is the new text this is the new text',
-  //     delimiter: ' ',
-  //     speed: 1,
-  //   },
-  //   ease: 'none',
-  // });
-};
+const startTextAnimation = ref();
 
 shuffle(TXT_LINES);
 
@@ -76,7 +68,6 @@ watch(textInside, () => {
   let children = [...refDiv.value.children];
   shuffle(children);
   refDiv.value.replaceChildren(...children);
-  startAnimation(refDiv.value);
   incrementHiglightTextInside();
 });
 
@@ -94,6 +85,86 @@ watch([hihglightTextInside, REM_IN_PX], () => {
   firstLine.replaceChildren(...spans);
 
   addPathToSvg(refDiv.value, firstLine, refSvg.value);
+  startTextAnimation.value = startTextAnimation.value + 1;
+});
+
+watch(startTextAnimation, () => {
+  let mapLineDurations = new Map();
+  const firstLine = refDiv.value.children.item(0);
+  const { top: parentTop } = firstLine.parentNode.getBoundingClientRect();
+  Array.from(firstLine.children).forEach((element) => {
+    let { bottom: childBottom } = element.getBoundingClientRect();
+    const bottom = Math.ceil(childBottom - parentTop);
+    let lineSyllableCount = mapLineDurations.get(bottom);
+    if (lineSyllableCount) {
+      mapLineDurations.set(
+        bottom,
+        lineSyllableCount + countSyllables(element.textContent)
+      );
+    } else {
+      mapLineDurations.set(bottom, countSyllables(element.textContent));
+    }
+  });
+
+  let cursorElement = document.createElementNS(
+    'http://www.w3.org/2000/svg',
+    'rect'
+  );
+  cursorElement.setAttribute('width', '2px');
+  cursorElement.setAttribute('height', '14px');
+  cursorElement.setAttribute('ry', '1px');
+  cursorElement.setAttribute('stroke', '#0968DB');
+  cursorElement.setAttribute('fill', '#0968DB');
+  cursorElement.setAttribute('stroke-width', '1px');
+  cursorElement.setAttribute('stroke-linecap', 'round');
+  cursorElement.setAttribute('fill-opacity', '0');
+  refSvg.value.append(cursorElement);
+
+  let isRun = false;
+  const runOnce = () => {
+    if (isRun) return;
+    gsap.to(cursorElement, {
+      duration: 0.3,
+      fillOpacity: 1,
+    });
+    isRun = true;
+  };
+
+  console.log(`mapLineDurations= ${[...mapLineDurations.entries()]}`);
+
+  const durations = [...mapLineDurations.entries()]
+    .sort((a, b) => {
+      if (a[0] < b[0]) return -1;
+      if (a[0] > b[0]) return 1;
+      return 0;
+    })
+    .map((lineDuration) => {
+      return lineDuration[1];
+    });
+
+  let animateCursorLine;
+
+  let onComplete = (index) => {
+    if (index + 1 >= durations.length) return; // exhausted input
+    animateCursorLine(++index);
+  };
+
+  animateCursorLine = (index) => {
+    const pathElement = refSvg.value.children.item(index);
+    console.log(`pathElement= ${pathElement.getAttribute('d')}`);
+    gsap.to(cursorElement, {
+      duration: durations[index] * 0.4,
+      motionPath: {
+        path: pathElement,
+        align: pathElement,
+        alignOrigin: [0, 1],
+      },
+      ease: 'none',
+      onComplete: () => onComplete(index),
+    });
+  };
+
+  animateCursorLine(0);
 });
 </script>
 
@@ -102,7 +173,7 @@ watch([hihglightTextInside, REM_IN_PX], () => {
     <p
       v-for="(line, index) in TXT_LINES"
       :key="index"
-      :class="[$style.spanInParagraph]"
+      :class="index == 0 ? [$style.spanInParagraph] : []"
     >
       {{ line }}
     </p>

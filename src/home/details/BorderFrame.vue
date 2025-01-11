@@ -5,11 +5,9 @@ import Bars from './Bars.vue';
 import { CENTER_X, CENTER_Y, HEIGHT_REM, HEIGHT, WIDTH_REM } from './etc';
 import * as css from '../home.module.scss';
 import {
-  incrementHiglightTextInside,
   onCompleteStartPointHand,
   onCompleteStartTextInside,
   textBlock,
-  textInside,
 } from './refs';
 import TextInside from './TextInside.vue';
 import Svg from '../Svg.vue';
