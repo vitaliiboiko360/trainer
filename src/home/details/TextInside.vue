@@ -246,7 +246,7 @@ watch(startTextAnimation, () => {
     };
 
     gsap.to(cursorElement, {
-      duration: durations[lineIndex][1].length * 0.15,
+      duration: durations[lineIndex][1].length * 0.13,
       motionPath: {
         path: pathElement,
         align: pathElement,
