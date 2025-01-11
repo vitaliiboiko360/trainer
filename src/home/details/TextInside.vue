@@ -217,9 +217,6 @@ watch(startTextAnimation, () => {
   });
 
   animateCursorLine = (lineIndex) => {
-    const pathElement = refSvg.value.children.item(lineIndex);
-    console.log(`pathElement= ${pathElement.getAttribute('d')}`);
-
     let highlitedWords = durations[lineIndex][1].elements.map((element) => {
       const { right } = element.getBoundingClientRect();
       return {
@@ -245,6 +242,8 @@ watch(startTextAnimation, () => {
       }
     };
 
+    const pathElement = refSvg.value.children.item(lineIndex);
+    console.log(`pathElement= ${pathElement.getAttribute('d')}`);
     gsap.to(cursorElement, {
       duration: durations[lineIndex][1].length * 0.11,
       motionPath: {
