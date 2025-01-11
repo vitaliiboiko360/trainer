@@ -117,25 +117,15 @@ watch(startTextAnimation, () => {
     'http://www.w3.org/2000/svg',
     'rect'
   );
-  cursorElement.setAttribute('width', '2px');
-  cursorElement.setAttribute('height', '14px');
-  cursorElement.setAttribute('ry', '1px');
+  cursorElement.setAttribute('width', '2');
+  cursorElement.setAttribute('height', '20');
+  cursorElement.setAttribute('ry', '1');
   cursorElement.setAttribute('stroke', '#0968DB');
   cursorElement.setAttribute('fill', '#0968DB');
-  cursorElement.setAttribute('stroke-width', '1px');
+  cursorElement.setAttribute('stroke-width', '1');
   cursorElement.setAttribute('stroke-linecap', 'round');
   cursorElement.setAttribute('fill-opacity', '0');
   refSvg.value.append(cursorElement);
-
-  let isRun = false;
-  const runOnce = () => {
-    if (isRun) return;
-    gsap.to(cursorElement, {
-      duration: 0.3,
-      fillOpacity: 1,
-    });
-    isRun = true;
-  };
 
   console.log(`mapLineDurations= ${[...mapLineDurations.entries()]}`);
 
@@ -156,6 +146,11 @@ watch(startTextAnimation, () => {
     animateCursorLine(++index);
   };
 
+  gsap.to(cursorElement, {
+    duration: 0.3,
+    fillOpacity: 1,
+  });
+
   animateCursorLine = (index) => {
     const pathElement = refSvg.value.children.item(index);
     console.log(`pathElement= ${pathElement.getAttribute('d')}`);
@@ -165,6 +160,7 @@ watch(startTextAnimation, () => {
         path: pathElement,
         align: pathElement,
         alignOrigin: [0, 1],
+        offsetY: -3,
       },
       ease: 'none',
       onComplete: () => onComplete(index),
