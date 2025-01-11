@@ -19,9 +19,11 @@ gsap.registerPlugin(TextPlugin, MotionPathPlugin);
 const refDiv = ref();
 const refSvg = ref();
 
-const startTextAnimation = ref();
+const startTextAnimation = ref(0);
 
 shuffle(TXT_LINES);
+
+let previousFirstLine;
 
 const addPathToSvg = (parentDiv, firstLine, svgBackground) => {
   let mapLinePosition = new Map();
@@ -76,6 +78,11 @@ watch([hihglightTextInside, REM_IN_PX], () => {
   refSvg.value.replaceChildren();
 
   const firstLine = refDiv.value.children.item(0);
+  firstLine.style.color = 'grey';
+  if (previousFirstLine) {
+    previousFirstLine.style.color = '';
+  }
+  previousFirstLine = firstLine;
   const words = firstLine.textContent.split(' ');
   const spans = words.map((word, index) => {
     let element = document.createElement('span');
@@ -170,11 +177,7 @@ watch(startTextAnimation, () => {
 
 <template>
   <div :ref="(el) => (refDiv = el)" :class="$style.divOuter">
-    <p
-      v-for="(line, index) in TXT_LINES"
-      :key="index"
-      :class="index == 0 ? [$style.spanInParagraph] : []"
-    >
+    <p v-for="(line, index) in TXT_LINES" :key="index">
       {{ line }}
     </p>
   </div>
