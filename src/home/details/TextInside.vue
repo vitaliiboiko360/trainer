@@ -42,7 +42,7 @@ const colors = [
   '#FED900',
   '#FEEE8F',
   '#F7C001',
-  '#1CB0F6',
+  'rgb(28 176 246 / 76%)',
 ];
 
 let previousFirstLine;
@@ -120,7 +120,7 @@ const createCursorElement = () => {
     'rect'
   );
   cursorElement.setAttribute('width', '2');
-  cursorElement.setAttribute('height', '20');
+  cursorElement.setAttribute('height', '28');
   cursorElement.setAttribute('ry', '1');
   cursorElement.setAttribute('stroke', '#0968DB');
   cursorElement.setAttribute('fill', '#0968DB');
@@ -250,7 +250,7 @@ watch(startTextAnimation, () => {
         path: pathElement,
         align: pathElement,
         alignOrigin: [0, 1],
-        offsetY: -3,
+        offsetY: 1,
       },
       ease: 'none',
       onUpdate: onUpdate,
