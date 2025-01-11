@@ -63,8 +63,6 @@ const addPathToSvg = (parentDiv, firstLine, svgBackground) => {
   const { left: parentLeft, top: parentTop } =
     parentDiv.getBoundingClientRect();
   Array.from(firstLine.children).forEach((element) => {
-    if (element.textContent == ' ') return;
-
     let { left, bottom: childBottom, right } = element.getBoundingClientRect();
     const bottom = Math.ceil(childBottom - parentTop);
     let line = mapLinePosition.get(bottom);
@@ -90,13 +88,29 @@ const addPathToSvg = (parentDiv, firstLine, svgBackground) => {
 const wrapWordsInSpans = (firstLine) => {
   const words = firstLine.textContent.split(' ');
   const spans = words.map((word, index) => {
-    let spaceBarSpanElement = document.createElement('span');
-    spaceBarSpanElement.textContent = ' ';
     let element = document.createElement('span');
-    element.textContent = word;
-    return index == words.length - 1 ? element : [element, spaceBarSpanElement];
+    let spacedWord = word;
+    if (index == 0) {
+      spacedWord = `${word} `;
+    } else if (index == words.length - 1) {
+      spacedWord = ` ${word}`;
+    } else {
+      spacedWord = ` ${word} `;
+    }
+    element.textContent = spacedWord;
+    return element;
   });
-  firstLine.replaceChildren(...spans.flat());
+  let checkingLineHeight = Infinity;
+  firstLine.replaceChildren();
+  for (let i = 0; i < spans.length; i++) {
+    let spanElement = spans[i];
+    firstLine.append(spanElement);
+    const { height } = spanElement.getBoundingClientRect();
+    if (height > checkingLineHeight) {
+      spanElement.textContent = `${spanElement.textContent.trim()} `;
+    }
+    checkingLineHeight = Math.min(height, checkingLineHeight);
+  }
 };
 
 const createSvgElement = () => {
@@ -165,7 +179,6 @@ watch(startTextAnimation, () => {
   const firstLine = refDiv.value.children.item(0);
   const { top: parentTop } = firstLine.parentNode.getBoundingClientRect();
   Array.from(firstLine.children).forEach((element) => {
-    if (element.textContent == ' ') return;
     let { bottom: childBottom } = element.getBoundingClientRect();
     const bottom = Math.ceil(childBottom - parentTop);
     let lineLenghtAndElements = mapLineDurations.get(bottom);
@@ -239,14 +252,12 @@ watch(startTextAnimation, () => {
         notYetHighlitedElement.isHighlighted = true;
         const color = colors[Math.floor(Math.random() * colors.length)];
         notYetHighlitedElement.element.style.backgroundColor = color;
-        notYetHighlitedElement.element.style.borderLeft = `0px solid ${color}`;
-        notYetHighlitedElement.element.style.borderRight = `0px solid ${color}`;
         notYetHighlitedElement.element.style.borderRadius = '2px';
       }
     };
 
     gsap.to(cursorElement, {
-      duration: durations[lineIndex][1].length * 0.13,
+      duration: durations[lineIndex][1].length * 0.11,
       motionPath: {
         path: pathElement,
         align: pathElement,
