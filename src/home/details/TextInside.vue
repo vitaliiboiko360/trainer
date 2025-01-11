@@ -11,7 +11,7 @@ import {
   textInside,
 } from './refs';
 import { addPathLine } from './svg';
-import { shuffle } from './etc';
+import { shuffle, xmlnsSvg } from './etc';
 
 const { textLines } = defineProps(['textLines']);
 
@@ -22,7 +22,7 @@ const refSvg = ref();
 const startTextAnimation = ref(0);
 
 const colors = [
-  '#47D6FE',
+  '#47d6fe91',
   '#BAF3FF',
   '#FE7A01',
   '#FFC900',
@@ -42,12 +42,13 @@ const colors = [
   '#FED900',
   '#FEEE8F',
   '#F7C001',
-  'rgb(28 176 246 / 76%)',
+  '#1cb0f685',
 ];
 
 let previousFirstLine;
 
 const addPathToSvg = (parentDiv, firstLine, svgBackground) => {
+  svgBackground.replaceChildren();
   let mapLinePosition = new Map();
   const { left: parentLeft, top: parentTop } =
     parentDiv.getBoundingClientRect();
@@ -102,16 +103,14 @@ const wrapWordsInSpans = (firstLine) => {
   }
 };
 
-const createSvgElement = () => {
+const setAttributesToSvgElement = (svg) => {
   const { left, top, height, width } = refDiv.value.getBoundingClientRect();
-  let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('width', `${Math.ceil(width)}`);
   svg.setAttribute('height', height);
   svg.setAttribute('viewBox', `0 0 ${Math.ceil(width)} ${Math.ceil(height)}`);
   // svg.style.left = left;
   // svg.style.top = top;
   svg.style.position = 'absolute';
-  return svg;
 };
 
 const createCursorElement = () => {
@@ -122,8 +121,8 @@ const createCursorElement = () => {
   cursorElement.setAttribute('width', '2');
   cursorElement.setAttribute('height', '28');
   cursorElement.setAttribute('ry', '1');
-  cursorElement.setAttribute('stroke', '#0968DB');
-  cursorElement.setAttribute('fill', '#0968DB');
+  cursorElement.setAttribute('stroke', '#47d6fe');
+  cursorElement.setAttribute('fill', '#47d6fe');
   cursorElement.setAttribute('stroke-width', '1');
   cursorElement.setAttribute('stroke-linecap', 'round');
   cursorElement.setAttribute('fill-opacity', '0');
@@ -133,28 +132,30 @@ const createCursorElement = () => {
 onMounted(() => {
   if (refSvg.value) {
     refSvg.value.replaceChildren();
-    refSvg.value.remove();
   }
-  const svg = createSvgElement();
-  refDiv.value.after(svg);
-  refSvg.value = svg;
+  setAttributesToSvgElement(refSvg.value);
+  refDiv.value.after(refSvg.value);
 });
 
 watch(textInside, () => {
   if (textInside.value < 1) return;
   refSvg.value.replaceChildren();
   let children = [...refDiv.value.children];
+  shuffle(children);
   refDiv.value.replaceChildren(...children);
   incrementHiglightTextInside();
 });
 
 watch(hihglightTextInside, () => {
   if (hihglightTextInside.value < 1) return;
-
+  refSvg.value.replaceChildren();
   const firstLine = refDiv.value.children.item(0);
   firstLine.style.color = 'grey';
   if (previousFirstLine) {
     previousFirstLine.style.color = '';
+    Array.from(previousFirstLine.children).forEach((element) => {
+      element.style.backgroundColor = '';
+    });
   }
   previousFirstLine = firstLine;
   if (firstLine.childElementCount == 0) {
@@ -240,14 +241,14 @@ watch(startTextAnimation, () => {
         notYetHighlitedElement.isHighlighted = true;
         const color = colors[Math.floor(Math.random() * colors.length)];
         notYetHighlitedElement.element.style.backgroundColor = color;
-        notYetHighlitedElement.element.style.borderRadius = '2px';
+        notYetHighlitedElement.element.style.borderRadius = '4px';
       }
     };
 
     const pathElement = refSvg.value.children.item(lineIndex);
     console.log(`pathElement= ${pathElement.getAttribute('d')}`);
     gsap.to(cursorElement, {
-      duration: durations[lineIndex][1].length * 0.11,
+      duration: durations[lineIndex][1].length * 0.05,
       motionPath: {
         path: pathElement,
         align: pathElement,
@@ -270,6 +271,7 @@ watch(startTextAnimation, () => {
       {{ line }}
     </p>
   </div>
+  <svg :ref="(el) => (refSvg = el)" :xlmns="xmlnsSvg" />
 </template>
 
 <style module>
