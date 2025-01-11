@@ -11,6 +11,7 @@ import {
 } from './refs';
 import TextInside from './TextInside.vue';
 import Svg from '../Svg.vue';
+import { TXT_LINES, shuffle } from './etc';
 
 const divElement = ref();
 
@@ -31,6 +32,7 @@ const startAnimation = (target) => {
   const onComplete = () => {
     onCompleteStartPointHand();
     onCompleteStartTextInside();
+    shuffle(TXT_LINES);
   };
 
   if (textBlock.value == 1) {
@@ -83,7 +85,7 @@ onMounted(() => {
     </Svg>
     <div :class="$style.screenInsideBorder"></div>
     <div :class="[$style.screenInsideBorder, $style.whiteBackground]">
-      <TextInside />
+      <TextInside :textLines="TXT_LINES" />
     </div>
   </div>
 </template>

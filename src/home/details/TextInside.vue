@@ -10,25 +10,16 @@ import {
   REM_IN_PX,
   textInside,
 } from './refs';
-import { TXT_LINES, shuffle } from './etc';
 import { addPathLine } from './svg';
+import { shuffle } from './etc';
+
+const { textLines } = defineProps(['textLines']);
 
 gsap.registerPlugin(TextPlugin, MotionPathPlugin);
 
 const refDiv = ref();
 const refSvg = ref();
 const startTextAnimation = ref(0);
-
-function hexToRgb(hex) {
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
-    ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
-      }
-    : null;
-}
 
 const colors = [
   '#47D6FE',
@@ -53,8 +44,6 @@ const colors = [
   '#F7C001',
   '#1CB0F6',
 ];
-
-shuffle(TXT_LINES);
 
 let previousFirstLine;
 
@@ -276,7 +265,7 @@ watch(startTextAnimation, () => {
 
 <template>
   <div :ref="(el) => (refDiv = el)" :class="$style.divOuter">
-    <p v-for="(line, index) in TXT_LINES" :key="index">
+    <p v-for="(line, index) in textLines" :key="index">
       {{ line }}
     </p>
   </div>
