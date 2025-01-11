@@ -35,7 +35,7 @@ const colors = [
   '#FEDF32',
   '#F49101',
   '#D2EAF6',
-  '#1999D7',
+  '#1999d76b',
   '#8FE001',
   '#FFD760',
   '#FAE46D',
@@ -131,7 +131,10 @@ const createCursorElement = () => {
 };
 
 onMounted(() => {
-  if (refSvg.value) refSvg.value.remove();
+  if (refSvg.value) {
+    refSvg.value.replaceChildren();
+    refSvg.value.remove();
+  }
   const svg = createSvgElement();
   refDiv.value.after(svg);
   refSvg.value = svg;
@@ -139,15 +142,14 @@ onMounted(() => {
 
 watch(textInside, () => {
   if (textInside.value < 1) return;
+  refSvg.value.replaceChildren();
   let children = [...refDiv.value.children];
-  shuffle(children);
   refDiv.value.replaceChildren(...children);
   incrementHiglightTextInside();
 });
 
-watch([hihglightTextInside, REM_IN_PX], () => {
+watch(hihglightTextInside, () => {
   if (hihglightTextInside.value < 1) return;
-  refSvg.value.replaceChildren();
 
   const firstLine = refDiv.value.children.item(0);
   firstLine.style.color = 'grey';
