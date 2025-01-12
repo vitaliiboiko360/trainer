@@ -36,8 +36,9 @@ export const TXT_LINES = [
 ];
 
 export function shuffle(array) {
+  array.push(array.shift());
+  return;
   let currentIndex = array.length;
-
   // While there remain elements to shuffle...
   while (currentIndex != 0) {
     // Pick a remaining element...
