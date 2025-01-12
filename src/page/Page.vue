@@ -9,7 +9,7 @@ import router from '../router/router';
 
 const { id, resource } = defineProps(['id', 'resource']);
 
-const url = '/data/mike_tiene_un_perro.json';
+const url = `/data/${resource}.json`;
 
 const { isPending, isError, data, error, isFetched } = useQuery({
   queryKey: [`lesson-${id}`],
