@@ -14,23 +14,39 @@ const PROPS = {
   width: '13rem',
   height: '14rem',
 };
+
+const POSITION_DIV = { x: 38, y: 55, width: `60px`, height: `40px` };
+const ANGLE = 6.02139; // 345 degree in Rad
+const ANGLE2 = 0.523599; // 30 degree in Rad
 </script>
 
 <template>
   <Svg :class="[$style.imgSvg]" :xmlns="xmlnsSvg">
     <foreignObject
       :xmlns="xmlnsXhtml"
-      :height="PROPS.height"
       :width="PROPS.width"
+      :height="PROPS.height"
     >
       <object :data="SVG_SRC" :type="`image/svg+xml`"></object>
     </foreignObject>
     <foreignObject
       :xmlns="xmlnsXhtml"
-      :height="PROPS.height"
       :width="PROPS.width"
+      :height="PROPS.height"
     >
       <object :data="SVG_SRC" :type="`image/svg+xml`"></object>
+    </foreignObject>
+    <foreignObject
+      :xmlns="xmlnsXhtml"
+      :x="POSITION_DIV.x"
+      :y="POSITION_DIV.y"
+      :width="POSITION_DIV.width"
+      :height="POSITION_DIV.height"
+      :transform="`matrix(${Math.cos(ANGLE)},${Math.sin(ANGLE)},${-Math.sin(
+        ANGLE
+      )},${Math.cos(ANGLE)},0,0)`"
+    >
+      <div></div>
     </foreignObject>
   </Svg>
 </template>

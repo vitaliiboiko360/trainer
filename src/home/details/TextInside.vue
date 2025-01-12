@@ -275,8 +275,8 @@ watch(startTextAnimation, () => {
       ease: 'none',
       onUpdate: onUpdate,
       onComplete: () => {
-        flushLine(lineIndex);
         onComplete(lineIndex);
+        flushLine(lineIndex);
       },
     });
   };
