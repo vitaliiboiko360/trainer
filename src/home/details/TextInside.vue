@@ -218,8 +218,14 @@ watch(startTextAnimation, () => {
     });
   });
 
-  let animateCursorLine;
+  const flushLine = (lineIndex) => {
+    durations[lineIndex][1].elements.forEach((element) => {
+      const { left, top, width, height } = element.getBoundingClientRect();
+      console.log(`left=${left} top=${top} width=${width} height=${height}`);
+    });
+  };
 
+  let animateCursorLine;
   let onComplete = (lineIndex) => {
     if (lineIndex + 1 >= Math.min(durations.length, 4)) return; // we limit animaiton to only first 4 lines
     animateCursorLine(++lineIndex);
@@ -268,7 +274,10 @@ watch(startTextAnimation, () => {
       },
       ease: 'none',
       onUpdate: onUpdate,
-      onComplete: () => onComplete(lineIndex),
+      onComplete: () => {
+        flushLine(lineIndex);
+        onComplete(lineIndex);
+      },
     });
   };
 
