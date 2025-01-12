@@ -10,7 +10,14 @@ import Home from '../Home.vue';
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/lesson-:id', component: Page, props: true },
+  {
+    path: '/lesson-:id',
+    component: Page,
+    props: (route) => ({
+      resource: route.query.resource,
+      id: route.params.id,
+    }),
+  },
 ];
 const router = createRouter({
   history: createWebHistory(),

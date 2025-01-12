@@ -24,7 +24,12 @@ const getKey = () => {
   <span v-else-if="isError">Error: {{ error.message }}</span>
   <div v-else>
     <div v-for="(item, index) in data.texts" :key="getKey">
-      <router-link :to="{ path: `/lesson-${toLessonId(index)}` }">
+      <router-link
+        :to="{
+          path: `/lesson-${toLessonId(index)}`,
+          query: { resource: item.resource },
+        }"
+      >
         <div :class="[css.lessonListItem, css.fredokaFont]">
           <LessonListItem :title="item.title" />
         </div>
