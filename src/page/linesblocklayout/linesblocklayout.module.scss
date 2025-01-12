@@ -77,13 +77,6 @@
   opacity: 1;
 }
 
-.divPageNumbers {
-  text-align: center;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-
 @mixin divPageSliderBase {
   display: flex;
   align-items: center;

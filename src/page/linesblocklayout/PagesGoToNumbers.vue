@@ -9,7 +9,7 @@ const { lastIndex } = defineProps(['lastIndex']);
 </script>
 
 <template>
-  <div :class="[css.divPageNumbers, cssPage.whiteSpaceNoWrap]">
+  <div :class="[$style.divPageNumbers, cssPage.whiteSpaceNoWrap]">
     <PageNumber
       v-for="i in lastIndex + 1"
       :index="i"
@@ -17,3 +17,12 @@ const { lastIndex } = defineProps(['lastIndex']);
     />
   </div>
 </template>
+
+<style module>
+.divPageNumbers {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 2.3rem;
+}
+</style>
