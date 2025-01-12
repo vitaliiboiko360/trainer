@@ -38,3 +38,5 @@ export const pointHandCoordinates = reactive({
 });
 
 export const refSvgCanvas = ref();
+
+export const refListeningHeadDiv = ref();
