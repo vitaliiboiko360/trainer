@@ -1,12 +1,11 @@
 <script setup>
 import css from './home.module.scss';
 import { useQuery } from '@tanstack/vue-query';
-import { useRouter } from 'vue-router';
 
 import LessonListItem from './LessonListItem.vue';
 import { queryJson } from '../query/default';
 
-const router = useRouter();
+const toLessonId = (index) => index + 1;
 
 const url = '/data/list_of_texts.json';
 const { isPending, isError, data, error } = useQuery({
@@ -25,7 +24,7 @@ const getKey = () => {
   <span v-else-if="isError">Error: {{ error.message }}</span>
   <div v-else>
     <div v-for="(item, index) in data.texts" :key="getKey">
-      <router-link :to="`/lesson-${index + 1}`">
+      <router-link :to="{ path: `/lesson-${toLessonId(index)}` }">
         <div :class="[css.lessonListItem, css.fredokaFont]">
           <LessonListItem :title="item.title" />
         </div>
