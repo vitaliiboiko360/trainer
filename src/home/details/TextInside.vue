@@ -76,17 +76,19 @@ const addPathToSvg = (parentDiv, firstLine, svgBackground) => {
 };
 
 const wrapWordsInSpans = (firstLine) => {
+  const wrapWordInSpaces = (word, index) => {
+    if (index == 0) {
+      return `${word} `;
+    } else if (index == words.length - 1) {
+      return ` ${word}`;
+    }
+    return ` ${word} `;
+  };
+
   const words = firstLine.textContent.split(' ');
   const spans = words.map((word, index) => {
     let element = document.createElement('span');
-    let spacedWord = word;
-    if (index == 0) {
-      spacedWord = `${word} `;
-    } else if (index == words.length - 1) {
-      spacedWord = ` ${word}`;
-    } else {
-      spacedWord = ` ${word} `;
-    }
+    let spacedWord = wrapWordInSpaces(word, index);
     element.textContent = spacedWord;
     return element;
   });
@@ -94,11 +96,20 @@ const wrapWordsInSpans = (firstLine) => {
   firstLine.replaceChildren();
   for (let i = 0; i < spans.length; i++) {
     let spanElement = spans[i];
+    const previousContent = spanElement.textContent;
+    spanElement.textContent = `${previousContent} `; // remove last x
     firstLine.append(spanElement);
     const { height } = spanElement.getBoundingClientRect();
+    firstLine.removeChild(spanElement);
+
+    let word = spanElement.textContent.trim(); //.slice(0, -1);
     if (height > checkingLineHeight) {
-      spanElement.textContent = `${spanElement.textContent.trim()} `;
+      console.log(`WORD EXCEEDED HEIGHT == ${word}`);
+      spanElement.textContent = `${word} `;
+    } else {
+      spanElement.textContent = wrapWordInSpaces(word, i);
     }
+    firstLine.append(spanElement);
     checkingLineHeight = Math.min(height, checkingLineHeight);
   }
 };
@@ -267,7 +278,11 @@ watch(startTextAnimation, () => {
 
 <template>
   <div :ref="(el) => (refDiv = el)" :class="$style.divOuter">
-    <p v-for="(line, index) in textLines" :key="index">
+    <p
+      v-for="(line, index) in textLines"
+      :key="index"
+      :class="$style.spanInParagraph"
+    >
       {{ line }}
     </p>
   </div>
@@ -281,6 +296,8 @@ watch(startTextAnimation, () => {
 .spanInParagraph {
   span {
     color: grey;
+    white-space: nowrap;
+    display: inline-block;
   }
 }
 </style>
