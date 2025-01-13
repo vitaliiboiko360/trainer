@@ -1,18 +1,13 @@
-import {
-  createMemoryHistory,
-  createRouter,
-  createWebHistory,
-} from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
-import Page from '../page/Page.vue';
-import App from '../App.vue';
 import Home from '../Home.vue';
+import PageEntryPoint from '../page/PageEntryPoint.vue';
 
 const routes = [
   { path: '/', component: Home },
   {
     path: '/lesson-:id',
-    component: Page,
+    component: PageEntryPoint,
     props: (route) => ({
       resource: route.query.resource,
       id: route.params.id,

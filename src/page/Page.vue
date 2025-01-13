@@ -5,19 +5,14 @@ import TextPage from './TextPage.vue';
 import Audio from './audio/Audio.vue';
 
 import { queryJson } from '../query/default';
-import router from '../router/router';
 
 const { id, resource } = defineProps(['id', 'resource']);
-
 const url = `/data/${resource}.json`;
 
 const { isPending, isError, data, error, isFetched } = useQuery({
   queryKey: [`lesson-${id}`],
   queryFn: () => queryJson(url),
 });
-console.log(`resource= ${resource}`);
-console.log(`id= ${id}`);
-router.replace({ query: null });
 </script>
 
 <template>

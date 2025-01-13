@@ -9,3 +9,10 @@ const getResponse = async (url) => {
 export async function queryJson(url) {
   return (await getResponse(url)).json();
 }
+
+export const LIST_TEXT_JSON_KEY = 'list';
+export const LIST_TEXT_JSON_URL = '/data/list_of_texts.json';
+
+export async function queryListOfTextJson() {
+  return (await getResponse(LIST_TEXT_JSON_URL)).json();
+}
