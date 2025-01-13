@@ -28,6 +28,6 @@ router.replace({ query: null });
     :id
     :resource="data.texts[idToIndex(id)].resource"
   />
-  <span v-else-if="isPending">Loading...</span>
+  <span v-else-if="isPending">Loading PageEntryPoint...</span>
   <span v-else-if="isError">Error {{ error }}</span>
 </template>

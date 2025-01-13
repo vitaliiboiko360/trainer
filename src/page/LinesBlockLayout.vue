@@ -7,6 +7,8 @@ import { currentPageBlock } from './state/currentPageBlock';
 import type { Ref } from 'vue';
 import cloneDeep from 'lodash.clonedeep';
 
+const to1BasedIndex = (index) => index + 1;
+
 const { lines } = defineProps(['lines']);
 type TextLineInfo = {
   text: string;
@@ -21,7 +23,7 @@ let pageBlocks: Array<Array<LineAndIndex>> = [];
 lines.forEach((lineElement, index) => {
   currentBlock.push({
     textLineInfo: lineElement,
-    index: index + 1 /* LineSentence expects 1-based indexing */,
+    index: to1BasedIndex(index) /* LineSentence expects 1-based indexing */,
   });
   if (lineElement.endParagraph) {
     pageBlocks.push(cloneDeep(currentBlock));
@@ -30,7 +32,7 @@ lines.forEach((lineElement, index) => {
 });
 pageBlocks.push(cloneDeep(currentBlock));
 
-const lastIndex = pageBlocks.length - 1;
+const totalNumberOfPages = pageBlocks.length - 1;
 
 const displayedLines: Ref<Array<LineAndIndex>> = ref(
   pageBlocks[currentPageBlock.value]
@@ -42,7 +44,7 @@ watch(currentPageBlock, (updatedCurrentPageBlock) => {
 </script>
 
 <template>
-  <SliderPages :lastIndex />
+  <SliderPages :lastIndex="totalNumberOfPages" />
   <LineSentence
     v-for="{ textLineInfo: textLine, index } in displayedLines"
     :textLine

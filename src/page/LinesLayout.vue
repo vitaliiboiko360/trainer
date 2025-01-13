@@ -7,6 +7,8 @@ import { TEXTVIEW_BUTTONS as buttons } from './state/textView';
 
 const { lines } = defineProps(['lines']);
 
+const to1BasedIndex = (index) => index + 1;
+
 watch(textView, () => {
   console.log(`textView= ${textView.value}`);
 });
@@ -18,6 +20,6 @@ watch(textView, () => {
     v-if="textView == buttons.TextOridnaryPage"
     v-for="(textLine, index) in lines"
     :textLine="textLine"
-    :index="index + 1"
+    :index="to1BasedIndex(index)"
   />
 </template>
