@@ -3,14 +3,13 @@ import css from './home.module.scss';
 import { useQuery } from '@tanstack/vue-query';
 
 import LessonListItem from './LessonListItem.vue';
-import { queryJson } from '../query/default';
+import { LIST_TEXT_JSON_KEY, queryListOfTextJson } from '../query/default';
 
 const toLessonId = (index) => index + 1;
 
-const url = '/data/list_of_texts.json';
 const { isPending, isError, data, error } = useQuery({
-  queryKey: ['list'],
-  queryFn: () => queryJson(url),
+  queryKey: [LIST_TEXT_JSON_KEY],
+  queryFn: () => queryListOfTextJson(),
 });
 
 let counter = 0;
@@ -37,5 +36,3 @@ const getKey = () => {
     </div>
   </div>
 </template>
-
-//@click="() => router.push(`/lesson-${index + 1}`)"
