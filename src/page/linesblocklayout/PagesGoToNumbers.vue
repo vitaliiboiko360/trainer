@@ -22,6 +22,6 @@ const { lastIndex } = defineProps(['lastIndex']);
   text-align: center;
   display: flex;
   align-items: center;
-  gap: 2.3rem;
+  gap: 1.7rem;
 }
 </style>
