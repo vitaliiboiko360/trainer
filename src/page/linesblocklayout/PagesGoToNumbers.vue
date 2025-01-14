@@ -5,15 +5,16 @@ import { currentPageBlock } from '../state/currentPageBlock';
 import PageNumber from './PageNumber.vue';
 const refPageNumbersContainer = ref();
 const { lastIndex } = defineProps(['lastIndex']);
+
 onMounted(() => {
-  new ResizeObserver(console.log).observe(refPageNumbersContainer.value);
+  console.log(`window.innerWidth == ${window.innerWidth}`);
 });
 </script>
 
 <template>
   <div
-    :ref="(el) => (refPageNumbersContainer = ref)"
-    :class="[$style.divPageNumbers, cssPage.whiteSpaceNoWrap]"
+    :ref="(el) => (refPageNumbersContainer = el)"
+    :class="[$style.flexOneLiner]"
   >
     <PageNumber
       v-for="pageNumber in lastIndex + 1"
@@ -24,10 +25,20 @@ onMounted(() => {
 </template>
 
 <style module>
-.divPageNumbers {
+.flexOneLiner {
   text-align: center;
   display: flex;
   align-items: center;
   gap: 1.7rem;
+  white-space: nowrap;
+}
+.gridTwoLines {
+  display: grid;
+  span:nth-child(4n + 3) {
+    grid-column: 2;
+  }
+  span:nth-child(4n + 4) {
+    grid-column: 1;
+  }
 }
 </style>
