@@ -93,8 +93,6 @@ if (totalCharacterCountInLastBlock > 0) {
   }
 }
 
-console.log(`number of blocks = ${pageBlocks.length}`);
-
 const totalNumberOfPages = pageBlocks.length - 1;
 
 const displayedLines: Ref<Array<LineAndIndex>> = ref(
