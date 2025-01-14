@@ -60,34 +60,44 @@ lines.forEach(putLinesInBlocks(CHARACTER_NUMBER_PER_BLOCK));
 const getTotalCharacterCount = (total, line) => {
   return total + line.textLineInfo.text.length;
 };
+
 let totalCharacterCountInLastBlock = currentBlock.reduce(
   getTotalCharacterCount,
   0
 );
+
 if (totalCharacterCountInLastBlock > 0) {
   if (
     totalCharacterCountInLastBlock <
     0.5 * pageBlocks.reduce(getAverageCharacterCount, 0)
   ) {
     let stepToReduceCharacterLimitThreshold = 30;
+
     do {
       pageBlocks = [];
+
       lines.forEach(
         putLinesInBlocks(
           CHARACTER_NUMBER_PER_BLOCK - stepToReduceCharacterLimitThreshold
         )
       );
+
       totalCharacterCountInLastBlock = currentBlock.reduce(
         getTotalCharacterCount,
         0
       );
+
       stepToReduceCharacterLimitThreshold += 15;
-      if (stepToReduceCharacterLimitThreshold > 50) break;
+
+      if (stepToReduceCharacterLimitThreshold > 50) {
+        break;
+      }
     } while (
       totalCharacterCountInLastBlock <
       0.5 * pageBlocks.reduce(getAverageCharacterCount, 0)
     );
   }
+
   if (currentBlock.reduce(getTotalCharacterCount, 0) > 0) {
     pageBlocks.push(cloneDeep(currentBlock));
   }
