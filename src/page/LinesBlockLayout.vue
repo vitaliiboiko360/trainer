@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { watch, ref, nextTick } from 'vue';
 import LineSentence from './LineSentence.vue';
-import { textView } from './state/textView';
 import SliderPages from './linesblocklayout/SliderPages.vue';
 import { currentPageBlock } from './state/currentPageBlock';
 import type { Ref } from 'vue';
@@ -20,29 +19,59 @@ type TextLineInfo = {
 };
 type LineAndIndex = {
   textLineInfo: TextLineInfo;
-  index: number;
+  lineNumber: number;
 };
 let currentBlock: Array<LineAndIndex> = [];
 let pageBlocks: Array<Array<LineAndIndex>> = [];
 
-let characterCount = 0;
-lines.forEach((lineElement, index) => {
-  characterCount += lineElement.text.length;
-  currentBlock.push({
-    textLineInfo: lineElement,
-    index: to1BasedIndex(index) /* LineSentence expects 1-based indexing */,
-  });
+const putLinesInBlocks = (characterCountPerBlock) => {
+  let characterCount = 0;
+  currentBlock = [];
+  return (lineElement, index) => {
+    characterCount += lineElement.text.length;
+    currentBlock.push({
+      textLineInfo: lineElement,
+      lineNumber:
+        to1BasedIndex(index) /* LineSentence expects 1-based indexing */,
+    });
+    if (
+      characterCount >= characterCountPerBlock
+      // ||
+      // lineElement.endParagraph
+    ) {
+      // if we exceeded num per block threshold, we're flushing lines to block
+      pageBlocks.push(cloneDeep(currentBlock));
+      currentBlock = [];
+      characterCount = 0;
+    }
+  };
+};
+
+const getAverageCharacterCount = (total, arrayOfLines, index) => {
+  const characterCountInBlock = arrayOfLines.reduce(
+    (total, line) => total + line.textLineInfo.text.length,
+    0
+  );
+  return Math.ceil(total + characterCountInBlock / (index + 1));
+};
+
+lines.forEach(putLinesInBlocks(CHARACTER_NUMBER_PER_BLOCK));
+
+const getTotalCharacterCount = (total, line) => {
+  return total + line.textLineInfo.text.length;
+};
+const totalCharacterCount = currentBlock.reduce(getTotalCharacterCount, 0);
+if (totalCharacterCount > 0) {
   if (
-    characterCount >= CHARACTER_NUMBER_PER_BLOCK ||
-    lineElement.endParagraph
+    totalCharacterCount <
+    0.5 * pageBlocks.reduce(getAverageCharacterCount, 0)
   ) {
-    pageBlocks.push(cloneDeep(currentBlock));
-    currentBlock = [];
-    characterCount = 0;
+    pageBlocks = [];
+    lines.forEach(putLinesInBlocks(CHARACTER_NUMBER_PER_BLOCK - 30));
   }
-});
-if (currentBlock.length > 0) {
-  pageBlocks.push(cloneDeep(currentBlock));
+  if (currentBlock.length > 0) {
+    pageBlocks.push(cloneDeep(currentBlock));
+  }
 }
 
 console.log(`number of blocks = ${pageBlocks.length}`);
@@ -53,17 +82,17 @@ const displayedLines: Ref<Array<LineAndIndex>> = ref(
   pageBlocks[currentPageBlock.value]
 );
 
-watch(currentPageBlock, (updatedCurrentPageBlock) => {
-  displayedLines.value = pageBlocks[updatedCurrentPageBlock];
+watch(currentPageBlock, (newUserSelectedCurrentPageBlock) => {
+  displayedLines.value = pageBlocks[newUserSelectedCurrentPageBlock];
 });
 </script>
 
 <template>
   <SliderPages :lastIndex="totalNumberOfPages" />
   <LineSentence
-    v-for="{ textLineInfo: textLine, index } in displayedLines"
+    v-for="{ textLineInfo: textLine, lineNumber } in displayedLines"
     :textLine
-    :index
-    :key="index"
+    :index="lineNumber"
+    :key="lineNumber"
   />
 </template>
