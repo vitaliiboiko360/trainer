@@ -6,30 +6,31 @@ import { textView, TEXTVIEW_BUTTONS as buttons } from '../state/textView.ts';
 const onClick = (value) => {
   textView.value = value;
   switch (value) {
-    case buttons.EachLineOnTheirOwn:
+    case buttons.LineOnTheirOwn:
       textOrdinaryClassList.value = textOrdinaryClassList.value.slice(0, 2);
-      return textByBlockClassList.value.push(css.selectedButton);
+      return textLineOnTheirOwnClassList.value.push(css.selectedButton);
     case buttons.TextOridnaryPage:
-      textByBlockClassList.value = textByBlockClassList.value.slice(0, 2);
+      textLineOnTheirOwnClassList.value =
+        textLineOnTheirOwnClassList.value.slice(0, 2);
       return textOrdinaryClassList.value.push(css.selectedButton);
   }
 };
 
-let textByBlockClassList = ref([
+let textLineOnTheirOwnClassList = ref([
   css.topBarGroupedButtonLeft,
-  css.topBarButtonTextByBlocks,
+  css.topBarButtonLineOnTheirOwn,
   css.selectedButton,
 ]);
 let textOrdinaryClassList = ref([
   css.topBarGroupedButtonRight,
-  css.topBarButtonTextOrdinary,
+  css.topBarButton_TextOrdinary,
 ]);
 </script>
 
 <template>
   <button
-    :class="textByBlockClassList"
-    @click="() => onClick(buttons.EachLineOnTheirOwn)"
+    :class="textLineOnTheirOwnClassList"
+    @click="() => onClick(buttons.LineOnTheirOwn)"
   ></button>
   <button
     :class="textOrdinaryClassList"
