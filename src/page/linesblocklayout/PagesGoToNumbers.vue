@@ -36,11 +36,11 @@ onMounted(() => {});
   display: grid;
   grid-template-columns: repeat(v-bind(numberOfColumns), 2.5rem);
   grid-template-rows: repeat(2, 2.5rem);
-  column-gap: 1.8rem;
-  row-gap: 0.3rem;
+  column-gap: 0.6rem;
+  row-gap: 0rem;
   button:nth-child(even) {
     grid-row: 2;
-    margin-left: 2.2rem;
+    margin-left: 1.6em;
   }
   button:nth-child(odd) {
     grid-row: 1;
