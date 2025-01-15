@@ -68,5 +68,6 @@ watch(activeAnimationSentenceNumber, () => {
 <style module>
 .spanLineByLine {
   display: block;
+  width: fit-content;
 }
 </style>
