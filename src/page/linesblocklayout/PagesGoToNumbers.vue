@@ -6,15 +6,15 @@ import PageNumber from './PageNumber.vue';
 const refPageNumbersContainer = ref();
 const { lastIndex } = defineProps(['lastIndex']);
 
-onMounted(() => {
-  console.log(`window.innerWidth == ${window.innerWidth}`);
-});
+const numberOfColumns = Math.floor(lastIndex / 2);
+
+onMounted(() => {});
 </script>
 
 <template>
   <div
     :ref="(el) => (refPageNumbersContainer = el)"
-    :class="[$style.flexOneLiner]"
+    :class="[lastIndex > 5 ? $style.gridTwoLines : $style.flexOneLiner]"
   >
     <PageNumber
       v-for="pageNumber in lastIndex + 1"
@@ -34,11 +34,16 @@ onMounted(() => {
 }
 .gridTwoLines {
   display: grid;
-  span:nth-child(4n + 3) {
-    grid-column: 2;
+  grid-template-columns: repeat(v-bind(numberOfColumns), 2.5rem);
+  grid-template-rows: repeat(2, 2.5rem);
+  column-gap: 1.8rem;
+  row-gap: 0.3rem;
+  button:nth-child(even) {
+    grid-row: 2;
+    margin-left: 2.2rem;
   }
-  span:nth-child(4n + 4) {
-    grid-column: 1;
+  button:nth-child(odd) {
+    grid-row: 1;
   }
 }
 </style>
