@@ -174,10 +174,13 @@
   }
 }
 
-.topBarButtonTextByBlocks {
+.topBarButtonLineOnTheirOwn {
   @extend .topBarButtonBase;
   &:before {
-    background-image: url(/data/text_block_view.svg);
+    background-image: url(/data/list-check.svg);
+    background-size: 85%;
+    background-position-x: center;
+    background-position-y: center;
   }
 }
 
@@ -209,7 +212,7 @@
   }
 }
 
-.topBarButtonTextOrdinary {
+.topBarButton_TextOrdinary {
   @extend .topBarButtonBase;
   &:before {
     background-image: url(/data/text_ordinary.svg);
