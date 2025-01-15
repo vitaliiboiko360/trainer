@@ -3,6 +3,7 @@ import { ref, watch } from 'vue';
 import { gsap } from 'gsap';
 import { playTime, activeAnimationSentenceNumber } from './state/platTime';
 import css from './page.module.scss';
+import { textView } from './state/textView';
 
 const { textLine: textLineInfo, index } = defineProps(['textLine', 'index']);
 
@@ -53,8 +54,19 @@ watch(activeAnimationSentenceNumber, () => {
       ><b>{{ textLine }}</b></span
     >
   </div>
-  <span v-else ref="refToSpan" @click="onClick" :class="css.lineUnderlined">
+  <span
+    v-else
+    ref="refToSpan"
+    @click="onClick"
+    :class="[css.lineUnderlined, !textView && $style.spanLineByLine]"
+  >
     {{ textLine }} </span
-  ><span v-if="index > 1">&nbsp;</span>
+  ><span v-if="index > 1 && textView">&nbsp;</span>
   <br v-if="endParagraph" />
 </template>
+
+<style module>
+.spanLineByLine {
+  display: block;
+}
+</style>
