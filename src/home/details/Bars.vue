@@ -1,9 +1,10 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { gsap } from 'gsap';
 import Svg from '../Svg.vue';
 import { SVG_SRC_BARS, xmlnsXhtml as xmlns } from './etc';
 import { onMounted } from 'vue';
+import { startTextAnimation } from './refs';
 
 const refSvgBars = ref();
 const PROPS = {
@@ -14,7 +15,21 @@ const PROPS = {
 onMounted(() => {
   if (refSvgBars.value)
     gsap.set(refSvgBars.value, {
-      opacity: 0.5,
+      opacity: 0,
+    });
+});
+
+watch(startTextAnimation, () => {
+  if (refSvgBars.value && startTextAnimation.value > 0)
+    gsap.to(refSvgBars.value, {
+      opacity: 0.6,
+      duration: 0.5,
+    });
+
+  if (refSvgBars.value && startTextAnimation.value > 1)
+    gsap.to(refSvgBars.value, {
+      opacity: 0,
+      duration: 0.3,
     });
 });
 </script>

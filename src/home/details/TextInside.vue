@@ -3,11 +3,10 @@ import { gsap } from 'gsap';
 import TextPlugin from 'gsap/TextPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { watch, ref, onMounted } from 'vue';
-
+import { startTextAnimation } from './refs';
 import {
   hihglightTextInside,
   incrementHiglightTextInside,
-  REM_IN_PX,
   textInside,
 } from './refs';
 import { addPathLine } from './svg';
@@ -19,7 +18,6 @@ gsap.registerPlugin(TextPlugin, MotionPathPlugin);
 
 const refDiv = ref();
 const refSvg = ref();
-const startTextAnimation = ref(0);
 
 const colors = [
   '#47d6fe91',
@@ -201,13 +199,12 @@ watch(startTextAnimation, () => {
   const cursorElement = createCursorElement();
   refSvg.value.append(cursorElement);
 
-  console.log(`mapLineDurations= ${[...mapLineDurations.entries()]}`);
-
   const durations = [...mapLineDurations.entries()].sort((a, b) => {
     if (a[0] < b[0]) return -1;
     if (a[0] > b[0]) return 1;
     return 0;
   });
+
   durations.forEach((keyValue) => {
     keyValue[1].elements.sort((a, b) => {
       const { right: rightA } = a.getBoundingClientRect();
@@ -220,14 +217,17 @@ watch(startTextAnimation, () => {
 
   const flushLine = (lineIndex) => {
     durations[lineIndex][1].elements.forEach((element) => {
-      const { left, top, width, height } = element.getBoundingClientRect();
-      console.log(`left=${left} top=${top} width=${width} height=${height}`);
+      // const { left, top, width, height } = element.getBoundingClientRect();
+      // console.log(`left=${left} top=${top} width=${width} height=${height}`);
     });
   };
 
   let animateCursorLine;
   let onComplete = (lineIndex) => {
-    if (lineIndex + 1 >= Math.min(durations.length, 4)) return; // we limit animaiton to only first 4 lines
+    if (lineIndex + 1 >= Math.min(durations.length, 4)) {
+      startTextAnimation.value += 1;
+      return; // we limit animaiton to only first 4 lines
+    }
     animateCursorLine(++lineIndex);
   };
 
