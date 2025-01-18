@@ -6,22 +6,21 @@ import { textView, TEXTVIEW_BUTTONS as buttons } from '../state/textView.ts';
 const onClick = (value) => {
   textView.value = value;
   switch (value) {
-    case buttons.LineOnTheirOwn:
-      textOrdinaryClassList.value = textOrdinaryClassList.value.slice(0, 2);
-      return textLineOnTheirOwnClassList.value.push(css.selectedButton);
-    case buttons.TextOridnaryPage:
-      textLineOnTheirOwnClassList.value =
-        textLineOnTheirOwnClassList.value.slice(0, 2);
-      return textOrdinaryClassList.value.push(css.selectedButton);
+    case buttons.LineMode:
+      paragraphModeClassList.value = paragraphModeClassList.value.slice(0, 2);
+      return lineModeClassList.value.push(css.selectedButton);
+    case buttons.ParagraphMode:
+      lineModeClassList.value = lineModeClassList.value.slice(0, 2);
+      return paragraphModeClassList.value.push(css.selectedButton);
   }
 };
 
-let textLineOnTheirOwnClassList = ref([
+let lineModeClassList = ref([
   css.topBarGroupedButtonLeft,
   css.topBarButtonLineOnTheirOwn,
   css.selectedButton,
 ]);
-let textOrdinaryClassList = ref([
+let paragraphModeClassList = ref([
   css.topBarGroupedButtonRight,
   css.topBarButton_TextOrdinary,
 ]);
@@ -29,11 +28,11 @@ let textOrdinaryClassList = ref([
 
 <template>
   <button
-    :class="textLineOnTheirOwnClassList"
-    @click="() => onClick(buttons.LineOnTheirOwn)"
+    :class="lineModeClassList"
+    @click="() => onClick(buttons.LineMode)"
   ></button>
   <button
-    :class="textOrdinaryClassList"
-    @click="() => onClick(buttons.TextOridnaryPage)"
+    :class="paragraphModeClassList"
+    @click="() => onClick(buttons.ParagraphMode)"
   ></button>
 </template>
