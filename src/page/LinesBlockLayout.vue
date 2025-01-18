@@ -119,6 +119,7 @@ watch(currentPageBlock, (newUserSelectedCurrentPageBlock) => {
   <LineSentence
     v-for="{ textLineInfo: textLine, lineNumber } in displayedLines"
     :textLine
+    :totalLineNumber="lines.length"
     :index="lineNumber"
     :key="lineNumber"
   />

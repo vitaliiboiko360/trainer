@@ -5,7 +5,11 @@ import { playTime, activeAnimationSentenceNumber } from './state/platTime';
 import css from './page.module.scss';
 import { textView } from './state/textView';
 
-const { textLine: textLineInfo, index } = defineProps(['textLine', 'index']);
+const {
+  textLine: textLineInfo,
+  index,
+  totalLineNumber,
+} = defineProps(['textLine', 'index', 'totalLineNumber']);
 
 const {
   text: textLine,
@@ -58,7 +62,11 @@ watch(activeAnimationSentenceNumber, () => {
     v-else
     ref="refToSpan"
     @click="onClick"
-    :class="[css.lineUnderlined, !textView && $style.spanLineByLine]"
+    :class="[
+      css.lineUnderlined,
+      !textView && $style.spanLineByLine,
+      index > 0 && index < totalLineNumber - 1 ? $style.regularLine : undefined,
+    ]"
   >
     {{ textLine }} </span
   ><span v-if="index > 1 && textView">&nbsp;</span>
@@ -69,6 +77,10 @@ watch(activeAnimationSentenceNumber, () => {
 .spanLineByLine {
   display: block;
   width: fit-content;
+}
+.regularLine {
+  padding-bottom: 0.3rem;
+  border-bottom: 1px dashed gainsboro;
 }
 .lineBreak {
   height: 0.5rem;
