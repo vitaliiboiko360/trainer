@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import TextPlugin from 'gsap/TextPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { watch, ref, onMounted } from 'vue';
-import { startTextAnimation } from './refs';
+import { endTextAnimation, startTextAnimation } from './refs';
 import {
   hihglightTextInside,
   incrementHiglightTextInside,
@@ -225,7 +225,7 @@ watch(startTextAnimation, () => {
   let animateCursorLine;
   let onComplete = (lineIndex) => {
     if (lineIndex + 1 >= Math.min(durations.length, 4)) {
-      startTextAnimation.value += 1;
+      endTextAnimation.value += 1;
       return; // we limit animaiton to only first 4 lines
     }
     animateCursorLine(++lineIndex);

@@ -42,3 +42,4 @@ export const refSvgCanvas = ref();
 export const refListeningHeadDiv = ref();
 
 export const startTextAnimation = ref(0);
+export const endTextAnimation = ref(0);
