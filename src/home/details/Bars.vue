@@ -12,20 +12,21 @@ const PROPS = {
 };
 
 onMounted(() => {
-  gsap.set(refSvgBars.value, {
-    opacity: 0.5,
-  });
+  if (refSvgBars.value)
+    gsap.set(refSvgBars.value, {
+      opacity: 0.5,
+    });
 });
 </script>
 
 <template>
-  <Svg
-    :ref="(el) => (refSvgBars = el)"
-    :width="PROPS.width"
-    :height="PROPS.height"
-    :class="$style.svgBars"
-  >
-    <foreignObject :xmlns :width="PROPS.width" :height="PROPS.height">
+  <Svg :width="PROPS.width" :height="PROPS.height" :class="$style.svgBars">
+    <foreignObject
+      :ref="(el) => (refSvgBars = el)"
+      :xmlns
+      :width="PROPS.width"
+      :height="PROPS.height"
+    >
       <object
         :data="SVG_SRC_BARS"
         :type="`image/svg+xml`"
