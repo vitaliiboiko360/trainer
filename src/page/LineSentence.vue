@@ -62,12 +62,15 @@ watch(activeAnimationSentenceNumber, () => {
   >
     {{ textLine }} </span
   ><span v-if="index > 1 && textView">&nbsp;</span>
-  <br v-if="endParagraph" />
+  <br v-if="endParagraph" :class="$style.lineBreak" />
 </template>
 
 <style module>
 .spanLineByLine {
   display: block;
   width: fit-content;
+}
+.lineBreak {
+  height: 0.5rem;
 }
 </style>
