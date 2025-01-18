@@ -70,7 +70,7 @@ watch(activeAnimationSentenceNumber, () => {
   >
     {{ textLine }} </span
   ><span v-if="index > 1 && textView">&nbsp;</span>
-  <br v-if="endParagraph" :class="$style.lineBreak" />
+  <p v-if="endParagraph" :class="$style.lineBreak" />
 </template>
 
 <style module>
@@ -83,6 +83,7 @@ watch(activeAnimationSentenceNumber, () => {
   border-bottom: 1px dashed gainsboro;
 }
 .lineBreak {
-  height: 0.5rem;
+  height: 0.9rem;
+  content: '';
 }
 </style>
