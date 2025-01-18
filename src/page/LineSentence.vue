@@ -65,7 +65,7 @@ watch(activeAnimationSentenceNumber, () => {
     :class="[
       css.lineUnderlined,
       !textView && $style.spanLineByLine,
-      index > 0 && index < totalLineNumber - 1 ? $style.regularLine : undefined,
+      index > 0 && index < totalLineNumber ? $style.regularLine : undefined,
     ]"
   >
     {{ textLine }} </span
