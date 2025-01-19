@@ -52,6 +52,13 @@ watch(activeAnimationSentenceNumber, () => {
 });
 </script>
 
+// .concat(
+<!-- textView == 0 && [
+          $style.spanLineByLine,
+          !(lineNumber == 1 || isLast) && $style.regularLine,
+        ]
+      ) -->
+
 <template>
   <div v-if="lineNumber == 1" :class="css.titleLine">
     <span ref="refToSpan" @click="onClick" :class="css.lineUnderlined"
@@ -62,14 +69,11 @@ watch(activeAnimationSentenceNumber, () => {
     v-else
     ref="refToSpan"
     @click="onClick"
-    :class="
-      [css.lineUnderlined].concat(
-        textView == 0 && [
-          $style.spanLineByLine,
-          !(lineNumber == 1 || isLast) && $style.regularLine,
-        ]
-      )
-    "
+    :class="[
+      css.lineUnderlined,
+      { [$style.spanLineByLine]: textView == 0 },
+      { [$style.regularLine]: textView == 0 && !isLast },
+    ]"
   >
     {{ textLine }} </span
   ><span v-if="lineNumber > 1 && textView">&nbsp;</span>
