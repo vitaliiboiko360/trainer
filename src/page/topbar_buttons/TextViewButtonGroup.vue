@@ -1,10 +1,11 @@
 <script setup>
-import { ref } from 'vue';
+import { nextTick, ref } from 'vue';
 import css from '../page.module.scss';
 import { textView, TEXTVIEW_BUTTONS as buttons } from '../state/textView.ts';
 
 const onClick = (value) => {
   textView.value = value;
+  nextTick();
   switch (value) {
     case buttons.LineMode:
       paragraphModeClassList.value = paragraphModeClassList.value.slice(0, 2);
