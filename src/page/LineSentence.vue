@@ -5,11 +5,11 @@ import { playTime, activeAnimationSentenceNumber } from './state/platTime';
 import css from './page.module.scss';
 import { textView } from './state/textView';
 
-const {
-  textLine: textLineInfo,
-  index,
-  totalLineNumber,
-} = defineProps(['textLine', 'index', 'totalLineNumber']);
+const { textLine: textLineInfo, lineNumber } = defineProps([
+  'textLine',
+  'lineNumber',
+  'isLast',
+]);
 
 const {
   text: textLine,
@@ -22,7 +22,7 @@ const refToSpan = ref();
 
 const onClick = (event) => {
   playTime.updateTime(startTime, endTime);
-  activeAnimationSentenceNumber.value = index;
+  activeAnimationSentenceNumber.value = lineNumber;
 
   let scopedEventTarget = event.currentTarget;
 
@@ -41,7 +41,7 @@ const onClick = (event) => {
 watch(activeAnimationSentenceNumber, () => {
   if (
     activeAnimationSentenceNumber.value >= 0 &&
-    activeAnimationSentenceNumber.value != index
+    activeAnimationSentenceNumber.value != lineNumber
   ) {
     if (refToSpan.value) {
       gsap.set(refToSpan.value, {
@@ -53,7 +53,7 @@ watch(activeAnimationSentenceNumber, () => {
 </script>
 
 <template>
-  <div v-if="index == 1" :class="css.titleLine">
+  <div v-if="lineNumber == 1" :class="css.titleLine">
     <span ref="refToSpan" @click="onClick" :class="css.lineUnderlined"
       ><b>{{ textLine }}</b></span
     >
@@ -62,14 +62,17 @@ watch(activeAnimationSentenceNumber, () => {
     v-else
     ref="refToSpan"
     @click="onClick"
-    :class="[
-      css.lineUnderlined,
-      !textView && $style.spanLineByLine,
-      index > 0 && index < totalLineNumber ? $style.regularLine : undefined,
-    ]"
+    :class="
+      [css.lineUnderlined].concat(
+        textView == 0 && [
+          $style.spanLineByLine,
+          !(lineNumber == 1 || isLast) && $style.regularLine,
+        ]
+      )
+    "
   >
     {{ textLine }} </span
-  ><span v-if="index > 1 && textView">&nbsp;</span>
+  ><span v-if="lineNumber > 1 && textView">&nbsp;</span>
   <p v-if="endParagraph" :class="$style.lineBreak" />
 </template>
 

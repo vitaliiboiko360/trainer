@@ -117,10 +117,10 @@ watch(currentPageBlock, (newUserSelectedCurrentPageBlock) => {
 <template>
   <SliderPages :lastIndex="totalNumberOfPages" />
   <LineSentence
-    v-for="{ textLineInfo: textLine, lineNumber } in displayedLines"
+    v-for="({ textLineInfo: textLine, lineNumber }, index) in displayedLines"
     :textLine
-    :totalLineNumber="displayedLines.length"
-    :index="lineNumber"
+    :lineNumber
     :key="lineNumber"
+    :isLast="index == displayedLines.length - 1"
   />
 </template>
