@@ -34,11 +34,7 @@ const putLinesInBlocks = (characterCountPerBlock) => {
       lineNumber:
         to1BasedIndex(index) /* LineSentence expects 1-based indexing */,
     });
-    if (
-      characterCount >= characterCountPerBlock
-      // ||
-      // lineElement.endParagraph
-    ) {
+    if (characterCount >= characterCountPerBlock) {
       // if we exceeded num per block threshold, we're flushing lines to block
       pageBlocks.push(cloneDeep(currentBlock));
       currentBlock = [];
@@ -52,7 +48,7 @@ const getAverageCharacterCount = (total, arrayOfLines, index) => {
     (total, line) => total + line.textLineInfo.text.length,
     0
   );
-  return Math.ceil(total + characterCountInBlock / (index + 1));
+  return Math.ceil(total + characterCountInBlock / to1BasedIndex(index));
 };
 
 lines.forEach(putLinesInBlocks(CHARACTER_NUMBER_PER_BLOCK));
