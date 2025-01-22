@@ -32,7 +32,10 @@ const getKey = () => {
           }"
         >
           <div :class="[css.lessonListItem, css.fredokaFont]">
-            <LessonListItem :title="item.title" />
+            <LessonListItem
+              :title="item.title"
+              :lessonNumber="toLessonId(index)"
+            />
           </div>
         </router-link>
       </div>
@@ -41,6 +44,12 @@ const getKey = () => {
 </template>
 
 <style module>
+.lessonCardContainer {
+  p {
+    margin: 0 0.25rem;
+  }
+}
+
 .lessonsTitle {
   font-weight: 400;
   text-align: center;
