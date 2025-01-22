@@ -63,6 +63,7 @@ onMounted(() => {
     left: `${HEIGHT / 2}rem`,
     opacity: 1,
   });
+  shuffle(TXT_LINES);
 });
 </script>
 

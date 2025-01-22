@@ -148,9 +148,13 @@ onMounted(() => {
 
 watch(textInside, () => {
   if (textInside.value < 1) return;
-  refSvg.value.replaceChildren();
+
   let children = [...refDiv.value.children];
-  shuffle(children);
+
+  if (textInside.value > 1) shuffle(children);
+
+  refSvg.value.replaceChildren();
+
   refDiv.value.replaceChildren(...children);
   incrementHiglightTextInside();
 });
