@@ -28,6 +28,8 @@ const onDrawUpdate = (target) => {
   target.style.top = `${animationDynamicParams.top}rem`;
 };
 
+shuffle(TXT_LINES);
+
 const startAnimation = (target) => {
   const onComplete = () => {
     onCompleteStartPointHand();
@@ -63,7 +65,6 @@ onMounted(() => {
     left: `${HEIGHT / 2}rem`,
     opacity: 1,
   });
-  shuffle(TXT_LINES);
 });
 </script>
 
