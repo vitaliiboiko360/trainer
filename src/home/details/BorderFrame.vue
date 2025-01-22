@@ -32,7 +32,6 @@ const startAnimation = (target) => {
   const onComplete = () => {
     onCompleteStartPointHand();
     onCompleteStartTextInside();
-    shuffle(TXT_LINES);
   };
 
   if (textBlock.value == 1) {
@@ -95,7 +94,7 @@ onMounted(() => {
   position: absolute;
   border-radius: 1rem;
   border: grey solid 2px;
-  top: '`${v-bind(HEIGHT)}rem`';
+  top: "`${v-bind(HEIGHT)}` + 'rem'";
   width: 15rem;
   height: 45rem;
   opacity: 0;
