@@ -49,9 +49,9 @@ watch(activeAnimationSentenceNumber, () => {
 
 <template>
   <div v-if="index == 1" :class="css.titleLine">
-    <span ref="refToSpan" @click="onClick" :class="css.lineUnderlined"
-      ><b>{{ textLine }}</b></span
-    >
+    <span ref="refToSpan" @click="onClick" :class="css.lineUnderlined">{{
+      textLine
+    }}</span>
   </div>
   <span v-else ref="refToSpan" @click="onClick" :class="css.lineUnderlined">
     {{ textLine }} </span
