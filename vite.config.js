@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import path from 'path';
 import vitePluginSass from 'vite-plugin-sass';
 import { patchCssModules } from 'vite-css-modules';
+import vuetify from 'vite-plugin-vuetify';
 
 export default defineConfig({
   define: {
@@ -34,7 +35,12 @@ export default defineConfig({
       },
     ],
   },
-  plugins: [patchCssModules(), vitePluginSass(), vue()],
+  plugins: [
+    patchCssModules(),
+    vitePluginSass(),
+    vue(),
+    vuetify({ autoImport: true }),
+  ],
   css: {
     modules: {
       generateScopedName: '[hash]',
