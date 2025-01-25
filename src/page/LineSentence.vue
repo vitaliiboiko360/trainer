@@ -61,15 +61,19 @@ watch(activeAnimationSentenceNumber, () => {
 
 <template>
   <div v-if="lineNumber == 1" :class="css.titleLine">
-    <span ref="refToSpan" @click="onClick" :class="css.lineUnderlined">{{
-      textLine
-    }}</span>
+    <span
+      ref="refToSpan"
+      @click="onClick"
+      :class="[$style.lineButtonPressed, css.lineUnderlined]"
+      >{{ textLine }}</span
+    >
   </div>
   <span
     v-else
     ref="refToSpan"
     @click="onClick"
     :class="[
+      $style.lineButtonPressed,
       css.lineUnderlined,
       { [$style.spanLineByLine]: textView == 0 },
       { [$style.regularLine]: textView == 0 && !isLast },
@@ -81,6 +85,9 @@ watch(activeAnimationSentenceNumber, () => {
 </template>
 
 <style module>
+.lineButtonPressed {
+  cursor: pointer;
+}
 .spanLineByLine {
   display: block;
   width: fit-content;
