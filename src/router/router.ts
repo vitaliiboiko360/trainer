@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 import Home from '../Home.vue';
 import PageEntryPoint from '../page/PageEntryPoint.vue';
+import AdminHome from '../admin/AdminHome.vue';
 
 const routes = [
   { path: '/', component: Home },
@@ -13,6 +14,7 @@ const routes = [
       id: route.params.id,
     }),
   },
+  { path: '/admin', component: AdminHome },
 ];
 const router = createRouter({
   history: createWebHistory(),
