@@ -22,7 +22,7 @@ listOfLessons.texts.forEach((textElement) => {
 //min-width="450"
 <template>
   <v-card class="mx-auto" max-width="760">
-    <v-toolbar color="cyan-lighten-1">
+    <v-toolbar color="blue-lighten-3">
       <v-toolbar-title
         :class="$style.centerToolbar"
         class="mx-lg-auto"
@@ -35,9 +35,9 @@ listOfLessons.texts.forEach((textElement) => {
     <v-list
       :items="items"
       lines="three"
-      item-props
       class="mx-auto"
       max-width="560"
+      item-props
     >
       <template v-slot:subtitle="{ subtitle }">
         <div>{{ subtitle }}</div>
