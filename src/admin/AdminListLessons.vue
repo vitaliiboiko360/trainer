@@ -2,7 +2,6 @@
 import {
   VCard,
   VToolbar,
-  VBtn,
   VToolbarTitle,
   VSpacer,
   VList,
@@ -10,10 +9,19 @@ import {
 import { defineProps } from 'vue';
 const { listOfLessons } = defineProps(['listOfLessons']);
 
+const toLessonId = (index) => index + 1;
 const items = [];
 
-listOfLessons.texts.forEach((textElement) => {
-  const item = { title: textElement.title, subtitle: '0%' };
+listOfLessons.texts.forEach((textElement, index) => {
+  const item = {
+    title: textElement.title,
+    subtitle: '0%',
+    props: { lessonId: toLessonId(index), resourceName: textElement.resource },
+    to: {
+      path: `/admin/edit/lesson-${toLessonId(index)}`,
+      query: { resource: textElement.resource },
+    },
+  };
   items.push(item);
   items.push({ type: 'divider' });
 });
@@ -39,8 +47,8 @@ listOfLessons.texts.forEach((textElement) => {
       max-width="560"
       item-props
     >
-      <template v-slot:subtitle="{ subtitle }">
-        <div>{{ subtitle }}</div>
+      <template v-slot:title="{ title }">
+        <div>{{ title }}</div>
       </template>
     </v-list>
   </v-card>
