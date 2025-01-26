@@ -9,10 +9,22 @@ import { VueQueryPlugin } from '@tanstack/vue-query';
 import 'vuetify/styles';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
+
+import colors from 'vuetify/util/colors';
 import { createVuetify } from 'vuetify';
 const vuetify = createVuetify({
   components,
   directives,
+  theme: {
+    themes: {
+      light: {
+        dark: false,
+        colors: {
+          'surface-variant': colors.indigo.lighten2, //rgb(96, 143, 160)
+        },
+      },
+    },
+  },
 });
 
 const app = createApp(App);
