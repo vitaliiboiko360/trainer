@@ -1,4 +1,5 @@
 <script setup>
+import AdminEditLessonForm from './AdminEditLessonForm.vue';
 import { defineProps } from 'vue';
 const { resource, id } = defineProps(['resource', 'id']);
 </script>
