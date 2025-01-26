@@ -16,7 +16,14 @@ const routes = [
     }),
   },
   { path: '/admin', component: AdminHome },
-  { path: '/admin/edit/lesson-:id', component: AdminEditLesson },
+  {
+    path: '/admin/edit/lesson-:id',
+    component: AdminEditLesson,
+    props: (route) => ({
+      resource: route.query.resource,
+      id: route.params.id,
+    }),
+  },
 ];
 const router = createRouter({
   history: createWebHistory(),
