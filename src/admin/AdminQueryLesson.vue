@@ -2,6 +2,7 @@
 import { useQuery } from '@tanstack/vue-query';
 
 import { queryJson } from '../query/default';
+import AdminEditLessonForm from './AdminEditForm.vue';
 
 const { id, resource } = defineProps(['id', 'resource']);
 const url = `/data/${resource}.json`;
@@ -13,5 +14,5 @@ const { isPending, isError, data, error, isFetched } = useQuery({
 </script>
 
 <template>
-  <div v-if="isFetched">{{ data }}</div>
+  <AdminEditLessonForm v-if="isFetched" :data />
 </template>
