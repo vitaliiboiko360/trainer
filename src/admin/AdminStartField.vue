@@ -1,10 +1,15 @@
 <script setup>
-import { mdiMenuLeft } from '@mdi/js';
-import { defineModel } from 'vue';
+import { mdiMenuLeft, mdiMenuRight } from '@mdi/js';
+import { defineModel, ref } from 'vue';
 const start = defineModel('start');
+
+const isFocused = ref();
+
+const onFocused = (focused) => {
+  isFocused.value = focused;
+};
 </script>
 
-//style="width: 80px"
 <template>
   <v-text-field
     v-model="start"
@@ -12,8 +17,13 @@ const start = defineModel('start');
     type="number"
     variant="outlined"
     hide-details
+    style="width: 80px"
+    @update:focused="onFocused"
     ><template v-slot:append>
-      <v-btn :icon="mdiMenuLeft"></v-btn>
+      <v-btn v-if="isFocused" :icon="mdiMenuRight"></v-btn>
+    </template>
+    <template v-slot:prepend>
+      <v-btn v-if="isFocused" :icon="mdiMenuLeft"></v-btn>
     </template>
   </v-text-field>
 </template>
