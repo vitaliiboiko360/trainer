@@ -1,9 +1,9 @@
 <script setup>
 import { mdiMenuLeft, mdiMenuRight } from '@mdi/js';
 import { defineModel, ref, defineProps, watch } from 'vue';
-import { activeFieldIndex } from './refs';
+import { activeEditFieldId } from './refs';
 
-const { indexNumberLine } = defineProps(['indexNumberLine']);
+const { fieldId } = defineProps(['fieldId']);
 
 const edit = defineModel('edit');
 
@@ -12,15 +12,15 @@ const isEdited = ref();
 
 const onFocused = () => {
   isFocused.value = true;
-  activeFieldIndex.value = indexNumberLine;
+  activeEditFieldId.value = fieldId;
 };
 
 const onEdit = () => {
   isEdited.value = true;
 };
 
-watch(activeFieldIndex, () => {
-  if (activeFieldIndex.value != indexNumberLine) {
+watch(activeEditFieldId, () => {
+  if (activeEditFieldId.value != fieldId) {
     isFocused.value = false;
   }
 });

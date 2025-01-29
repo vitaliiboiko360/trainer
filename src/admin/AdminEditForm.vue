@@ -12,7 +12,7 @@ const { data } = defineProps(['data']);
       :start="line.start"
       :end="line.end"
       :text="line.text"
-      :indexNumberLine="index"
+      :fieldId="index"
     />
   </div>
 </template>
