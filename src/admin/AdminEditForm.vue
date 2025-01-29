@@ -8,10 +8,11 @@ const { data } = defineProps(['data']);
 <template>
   <div>
     <AdminEditFormLine
-      v-for="line in data.lines"
+      v-for="(line, index) in data.lines"
       :start="line.start"
       :end="line.end"
       :text="line.text"
+      :indexNumberLine="index"
     />
   </div>
 </template>
