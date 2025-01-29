@@ -6,10 +6,12 @@ const { data } = defineProps(['data']);
 </script>
 
 <template>
-  <AdminEditFormLine
-    v-for="line in data.lines"
-    :start="line.start"
-    :end="line.end"
-    :text="line.text"
-  />
+  <div>
+    <AdminEditFormLine
+      v-for="line in data.lines"
+      :start="line.start"
+      :end="line.end"
+      :text="line.text"
+    />
+  </div>
 </template>

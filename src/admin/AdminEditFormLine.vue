@@ -3,6 +3,7 @@ import { defineModel, defineProps } from 'vue';
 const { text: textLine } = defineProps(['text']);
 const start = defineModel('start');
 const end = defineModel('end');
+import AdminStartField from './AdminStartField.vue';
 </script>
 
 <template>
@@ -23,4 +24,5 @@ const end = defineModel('end');
     hide-details
   ></v-text-field>
   <div>{{ textLine }}</div>
+  <AdminStartField />
 </template>
