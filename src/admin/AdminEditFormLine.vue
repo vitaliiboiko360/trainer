@@ -9,6 +9,8 @@ const end = defineModel('end');
 import AdminEditField from './AdminEditField.vue';
 </script>
 
+// TODO: replace '100' to some sensible number to distinct between start and end
+edit fields
 <template>
   <div class="d-flex align-start">
     <AdminEditField :edit="start" :indexNumberLine class="flex-0-0-0" />
