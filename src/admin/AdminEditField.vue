@@ -5,7 +5,7 @@ import { activeFieldIndex } from './refs';
 
 const { indexNumberLine } = defineProps(['indexNumberLine']);
 
-const start = defineModel('start');
+const edit = defineModel('edit');
 
 const isFocused = ref();
 const isEdited = ref();
@@ -36,7 +36,7 @@ watch(activeFieldIndex, () => {
       variant="plain"
     ></v-btn>
     <v-text-field
-      v-model="start"
+      v-model="edit"
       density="compact"
       type="number"
       variant="outlined"
