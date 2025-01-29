@@ -6,21 +6,17 @@ const { text: textLine, indexNumberLine } = defineProps([
 ]);
 const start = defineModel('start');
 const end = defineModel('end');
-import AdminStartField from './AdminStartField.vue';
+import AdminEditField from './AdminEditField.vue';
 </script>
 
 <template>
-  <div class="d-flex">
-    <AdminStartField :start :indexNumberLine class="flex-0-1" />
-    <v-text-field
-      class="flex-0-1"
-      v-model="end"
-      density="compact"
-      style="width: 80px"
-      type="number"
-      variant="outlined"
-      hide-details
-    ></v-text-field>
+  <div class="d-flex align-start">
+    <AdminEditField :edit="start" :indexNumberLine class="flex-0-0-0" />
+    <AdminEditField
+      :edit="end"
+      :indexNumberLine="indexNumberLine + 100"
+      class="flex-0-0-0"
+    />
     <div>{{ textLine }}</div>
   </div>
 </template>
