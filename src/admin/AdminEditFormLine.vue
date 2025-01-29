@@ -11,15 +11,7 @@ import AdminStartField from './AdminStartField.vue';
 
 <template>
   <div class="d-flex">
-    <v-text-field
-      class="flex-0-1"
-      v-model="start"
-      density="compact"
-      style="width: 80px"
-      type="number"
-      variant="outlined"
-      hide-details
-    ></v-text-field>
+    <AdminStartField :start :indexNumberLine class="flex-0-1" />
     <v-text-field
       class="flex-0-1"
       v-model="end"
@@ -30,7 +22,5 @@ import AdminStartField from './AdminStartField.vue';
       hide-details
     ></v-text-field>
     <div>{{ textLine }}</div>
-
-    <AdminStartField :indexNumberLine class="flex-0-1" />
   </div>
 </template>
