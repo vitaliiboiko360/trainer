@@ -55,6 +55,7 @@ export function shuffle(array) {
 
 export const SVG_SRC = '/data/listening-head.svg';
 export const SVG_SRC_BARS = '/data/bars_animated.svg';
+export const SVG_RETURN_ADMIN_HOME = '/data/return-admin-home.svg';
 
 export const SVG_DIMS = {
   width: '10rem',
