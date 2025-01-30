@@ -4,5 +4,5 @@ const { icon } = defineProps(['icon']);
 </script>
 
 <template>
-  <v-btn :icon size="x-small" variant="plain"></v-btn>
+  <v-btn :icon size="32" variant="plain"></v-btn>
 </template>

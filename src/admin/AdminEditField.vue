@@ -35,7 +35,7 @@ watch(activeEditFieldId, () => {
 </script>
 
 <template>
-  <div class="d-flex">
+  <div class="d-flex" :class="$style.outerEditTextLineContainer">
     <AdminEditFieldButton
       :icon="mdiMenuLeft"
       v-show="isFocusedStart"
@@ -52,7 +52,7 @@ watch(activeEditFieldId, () => {
       variant="outlined"
       hide-details
       :class="[!isFocusedEnd && $style.inputNoBorder, $style.inputCustomStyle]"
-      style="width: 60px"
+      style="width: 50px"
       @click="onFocusedStart"
     >
     </v-text-field>
@@ -85,7 +85,7 @@ watch(activeEditFieldId, () => {
       variant="outlined"
       hide-details
       :class="[!isFocusedEnd && $style.inputNoBorder, $style.inputCustomStyle]"
-      style="width: 60px"
+      style="width: 50px"
       @click="onFocusedEnd"
     >
     </v-text-field>
@@ -99,17 +99,22 @@ watch(activeEditFieldId, () => {
 </template>
 
 <style module>
+.outerEditTextLineContainer :global(.v-btn) {
+  width: 32px;
+  min-width: 32px;
+  align-items: center;
+}
 .placeholderForEditButton {
   box-sizing: border-box;
   width: 32px;
 }
 .placeholderForEditButtonAppendPrepend {
   box-sizing: border-box;
-  width: 8px;
+  width: 4px;
 }
 .placeholderForEditButtonMiddle {
   box-sizing: border-box;
-  width: 40px;
+  width: 36px;
 }
 .inputNoBorder {
   div input {
@@ -121,6 +126,7 @@ watch(activeEditFieldId, () => {
     padding-inline: 4px 4px;
     padding: 4px;
     text-align: center;
+    font-size: 1rem;
   }
 }
 </style>

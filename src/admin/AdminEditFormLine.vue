@@ -8,7 +8,7 @@ import AdminEditField from './AdminEditField.vue';
 
 edit fields
 <template>
-  <div class="d-flex align-start">
+  <div class="d-flex align-start" :class="$style.textEditLine">
     <AdminEditField
       :editStart="start"
       :editEnd="end"
@@ -18,3 +18,9 @@ edit fields
     <div>{{ textLine }}</div>
   </div>
 </template>
+
+<style module>
+.textEditLine {
+  margin-bottom: 4px;
+}
+</style>
