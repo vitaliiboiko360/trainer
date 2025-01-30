@@ -51,19 +51,28 @@ watch(activeEditFieldId, () => {
       type="number"
       variant="outlined"
       hide-details
-      style="width: 80px"
+      :class="[!isFocusedEnd && $style.inputNoBorder, $style.inputCustomStyle]"
+      style="width: 60px"
       @click="onFocusedStart"
     >
     </v-text-field>
     <div
       v-show="!(isFocusedStart || isFocusedEnd)"
-      :class="$style.placeholderForEditButton"
+      :class="$style.placeholderForEditButtonMiddle"
     ></div>
     <AdminEditFieldButton
       :icon="mdiMenuRight"
       v-show="isFocusedStart"
       @click="onEdit"
     />
+    <div
+      v-show="isFocusedStart"
+      :class="$style.placeholderForEditButtonAppendPrepend"
+    ></div>
+    <div
+      v-show="isFocusedEnd"
+      :class="$style.placeholderForEditButtonAppendPrepend"
+    ></div>
     <AdminEditFieldButton
       :icon="mdiMenuLeft"
       v-show="isFocusedEnd"
@@ -75,7 +84,8 @@ watch(activeEditFieldId, () => {
       type="number"
       variant="outlined"
       hide-details
-      style="width: 80px"
+      :class="[!isFocusedEnd && $style.inputNoBorder, $style.inputCustomStyle]"
+      style="width: 60px"
       @click="onFocusedEnd"
     >
     </v-text-field>
@@ -92,5 +102,25 @@ watch(activeEditFieldId, () => {
 .placeholderForEditButton {
   box-sizing: border-box;
   width: 32px;
+}
+.placeholderForEditButtonAppendPrepend {
+  box-sizing: border-box;
+  width: 8px;
+}
+.placeholderForEditButtonMiddle {
+  box-sizing: border-box;
+  width: 40px;
+}
+.inputNoBorder {
+  div input {
+    outline: 0px;
+  }
+}
+.inputCustomStyle {
+  div input {
+    padding-inline: 4px 4px;
+    padding: 4px;
+    text-align: center;
+  }
 }
 </style>
