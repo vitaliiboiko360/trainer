@@ -6,7 +6,7 @@ import {
 } from '../home/details/etc';
 import Svg from '../home/Svg.vue';
 
-const heightWidth = '24px';
+const heightWidth = '32px';
 
 import AdminQueryLesson from './AdminQueryLesson.vue';
 import { defineProps } from 'vue';
@@ -24,6 +24,7 @@ const { resource, id } = defineProps(['resource', 'id']);
                 :to="{
                   path: '/admin',
                 }"
+                style="margin-left: 16px; margin-top: 6px"
               >
                 <Svg
                   :xmlns="xmlnsSvg"

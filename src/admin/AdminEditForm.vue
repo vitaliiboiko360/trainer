@@ -6,7 +6,7 @@ const { data } = defineProps(['data']);
 </script>
 
 <template>
-  <div>
+  <div class="my-6">
     <AdminEditFormLine
       v-for="(line, index) in data.lines"
       :start="line.start"
