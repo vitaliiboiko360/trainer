@@ -1,0 +1,323 @@
+{
+  "translations": [
+    {
+      "originalLine": "Mike tiene un perro",
+      "translation": {
+        "sentenceEnglishTranslation": "Mike has a dog",
+        "translations": [
+          {
+            "originalWord": "Mike",
+            "translations": [
+              {
+                "partOfSpeech": "Phrase",
+                "words": [
+                  {
+                    "englishWord": "you have",
+                    "spanishWords": "tienes, tiene, tenéis",
+                    "frequency": "Common"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "originalWord": "tiene",
+            "translations": [
+              {
+                "partOfSpeech": "Phrase",
+                "words": [
+                  {
+                    "englishWord": "you have",
+                    "spanishWords": "tienes, tiene, tenéis",
+                    "frequency": "Common"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "originalWord": "un",
+            "translations": [
+              {
+                "partOfSpeech": "Article",
+                "words": [
+                  {
+                    "englishWord": "a",
+                    "spanishWords": "un, una, un cierto, una cierta, el mismo, un tal",
+                    "frequency": "Common"
+                  },
+                  {
+                    "englishWord": "an",
+                    "spanishWords": "un, una, un cierto, el mismo, una cierta, un tal",
+                    "frequency": "Common"
+                  }
+                ]
+              },
+              {
+                "partOfSpeech": "Adjective",
+                "words": [
+                  {
+                    "englishWord": "one",
+                    "spanishWords": "uno, una, un, solo, único, alguno",
+                    "frequency": "Uncommon"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "originalWord": "perro",
+            "translations": [
+              {
+                "partOfSpeech": "Noun",
+                "words": [
+                  {
+                    "englishWord": "dog",
+                    "spanishWords": "perro, can, zorro, bribón, tunante, tachines",
+                    "frequency": "Common"
+                  },
+                  {
+                    "englishWord": "pooch",
+                    "spanishWords": "perro",
+                    "frequency": "Rare"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "originalLine": "Este estudiante tiene un libro.",
+      "translation": {
+        "sentenceEnglishTranslation": "This student has a book.",
+        "translations": [
+          {
+            "originalWord": "Este",
+            "translations": [
+              {
+                "partOfSpeech": "Noun",
+                "words": [
+                  {
+                    "englishWord": "East",
+                    "spanishWords": "Oriente, Este",
+                    "frequency": "Uncommon"
+                  },
+                  {
+                    "englishWord": "Orient",
+                    "spanishWords": "Oriente, alborada, Este",
+                    "frequency": "Rare"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "originalWord": "estudiante",
+            "translations": [
+              {
+                "partOfSpeech": "Noun",
+                "words": [
+                  {
+                    "englishWord": "student",
+                    "spanishWords": "estudiante, alumno, investigador",
+                    "frequency": "Common"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "originalWord": "tiene",
+            "translations": [
+              {
+                "partOfSpeech": "Phrase",
+                "words": [
+                  {
+                    "englishWord": "you have",
+                    "spanishWords": "tienes, tiene, tenéis",
+                    "frequency": "Common"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "originalWord": "un",
+            "translations": [
+              {
+                "partOfSpeech": "Article",
+                "words": [
+                  {
+                    "englishWord": "a",
+                    "spanishWords": "un, una, un cierto, una cierta, el mismo, un tal",
+                    "frequency": "Common"
+                  },
+                  {
+                    "englishWord": "an",
+                    "spanishWords": "un, una, un cierto, el mismo, una cierta, un tal",
+                    "frequency": "Common"
+                  }
+                ]
+              },
+              {
+                "partOfSpeech": "Adjective",
+                "words": [
+                  {
+                    "englishWord": "one",
+                    "spanishWords": "uno, una, un, solo, único, alguno",
+                    "frequency": "Uncommon"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "originalWord": "libro.",
+            "translations": [
+              {
+                "partOfSpeech": "Noun",
+                "words": [
+                  {
+                    "englishWord": "book",
+                    "spanishWords": "libro, carnet, talonario, cartilla, registro, carterilla",
+                    "frequency": "Common"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "originalLine": "Él también tiene una pluma.",
+      "translation": {
+        "sentenceEnglishTranslation": "He also has a pen.",
+        "translations": [
+          {
+            "originalWord": "Él",
+            "translations": [
+              {
+                "partOfSpeech": "Pronoun",
+                "words": [
+                  {
+                    "englishWord": "he",
+                    "spanishWords": "él",
+                    "frequency": "Common"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "originalWord": "también",
+            "translations": [
+              {
+                "partOfSpeech": "Adverb",
+                "words": [
+                  {
+                    "englishWord": "also",
+                    "spanishWords": "también, además, ítem",
+                    "frequency": "Common"
+                  },
+                  {
+                    "englishWord": "too",
+                    "spanishWords": "también, demasiado, muy, además, por otra parte",
+                    "frequency": "Uncommon"
+                  },
+                  {
+                    "englishWord": "as well",
+                    "spanishWords": "también",
+                    "frequency": "Uncommon"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "originalWord": "tiene",
+            "translations": [
+              {
+                "partOfSpeech": "Phrase",
+                "words": [
+                  {
+                    "englishWord": "you have",
+                    "spanishWords": "tienes, tiene, tenéis",
+                    "frequency": "Common"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "originalWord": "una",
+            "translations": [
+              {
+                "partOfSpeech": "Article",
+                "words": [
+                  {
+                    "englishWord": "a",
+                    "spanishWords": "un, una, un cierto, una cierta, el mismo, un tal",
+                    "frequency": "Common"
+                  },
+                  {
+                    "englishWord": "an",
+                    "spanishWords": "un, una, un cierto, el mismo, una cierta, un tal",
+                    "frequency": "Common"
+                  }
+                ]
+              },
+              {
+                "partOfSpeech": "Adjective",
+                "words": [
+                  {
+                    "englishWord": "one",
+                    "spanishWords": "uno, una, un, solo, único, alguno",
+                    "frequency": "Common"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "originalWord": "pluma.",
+            "translations": [
+              {
+                "partOfSpeech": "Noun",
+                "words": [
+                  {
+                    "englishWord": "pen",
+                    "spanishWords": "pluma, corral, gallinero, aprisco, toril, parque",
+                    "frequency": "Common"
+                  },
+                  {
+                    "englishWord": "feather",
+                    "spanishWords": "pluma, horizontal",
+                    "frequency": "Common"
+                  },
+                  {
+                    "englishWord": "quill",
+                    "spanishWords": "pluma, canilla, púa, cálamo, cañón, mondadientes",
+                    "frequency": "Uncommon"
+                  },
+                  {
+                    "englishWord": "plume",
+                    "spanishWords": "penacho, pluma, plumero, plumaje",
+                    "frequency": "Uncommon"
+                  },
+                  {
+                    "englishWord": "hackle",
+                    "spanishWords": "pluma, pelo erizado, rastrillo",
+                    "frequency": "Rare"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
