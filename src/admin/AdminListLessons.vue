@@ -12,7 +12,7 @@ const { listOfLessons } = defineProps(['listOfLessons']);
 const toLessonId = (index) => index + 1;
 const items = [];
 
-listOfLessons.texts.forEach((textElement, index) => {
+listOfLessons.texts.forEach((textElement, index, array) => {
   const item = {
     title: textElement.title,
     subtitle: '0%',
@@ -23,7 +23,9 @@ listOfLessons.texts.forEach((textElement, index) => {
     },
   };
   items.push(item);
-  items.push({ type: 'divider' });
+  if (index != array.length - 1) {
+    items.push({ type: 'divider' });
+  }
 });
 </script>
 
