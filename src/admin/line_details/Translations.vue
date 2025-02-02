@@ -1,14 +1,17 @@
 <script setup>
 import { defineProps } from 'vue';
 
-defineProps(['translations']);
+defineProps(['translation']);
 </script>
 
 <template>
   <div>
     <div>
-      {{ translations.sentenceEnglishTranslation }}
+      {{ translation.sentenceEnglishTranslation }}
     </div>
-    <div></div>
+    <table></table>
+    <div v-for="transItem in translation.translations">
+      {{ transItem }}
+    </div>
   </div>
 </template>

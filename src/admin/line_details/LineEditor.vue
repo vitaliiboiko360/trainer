@@ -29,7 +29,7 @@ const to1Based = (index) => index + 1;
       <div style="width: 200px">
         <AdminEditField :editStart="start" :editEnd="end" :fieldId="index" />
       </div>
-      <div>
+      <div v-if="translation">
         <Translations :translation />
       </div>
     </template>
