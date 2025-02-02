@@ -2,7 +2,7 @@
 import { defineProps } from 'vue';
 import LineEditor from './line_details/LineEditor.vue';
 
-const { data } = defineProps(['data']);
+const { data, translations: tr } = defineProps(['data', 'translations']);
 </script>
 
 <template>
@@ -14,6 +14,7 @@ const { data } = defineProps(['data']);
         :end="line.end"
         :text="line.text"
         :index
+        :translation="tr.translations.at(index)"
       />
     </v-expansion-panels>
   </div>

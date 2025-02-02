@@ -6,6 +6,7 @@ const { text: textLine, index } = defineProps([
   'start',
   'end',
   'index',
+  'translation',
 ]);
 
 const to1Based = (index) => index + 1;
@@ -25,6 +26,9 @@ const to1Based = (index) => index + 1;
       </div>
       <div style="width: 200px">
         <AdminEditField :editStart="start" :editEnd="end" :fieldId="index" />
+      </div>
+      <div>
+        {{ translation }}
       </div>
     </template>
   </v-expansion-panel>
