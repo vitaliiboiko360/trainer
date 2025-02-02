@@ -18,7 +18,7 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 3000,
     fs: {
-      allow: ['./data/', './'],
+      allow: ['./data/', './data/tr', './'],
       deny: ['./node_modules'],
     },
   },
@@ -29,6 +29,7 @@ export default defineConfig({
     alias: [
       { find: 'css', replacement: path.resolve(__dirname, 'css') },
       { find: 'data', replacement: path.resolve(__dirname, 'data') },
+      { find: 'data/tr', replacement: path.resolve(__dirname, 'data/tr') },
       {
         find: '@',
         replacement: path.resolve(__dirname, 'src'),
