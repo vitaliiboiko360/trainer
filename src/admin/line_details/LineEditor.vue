@@ -1,5 +1,7 @@
 <script setup>
+import * as appCss from '../../app.module.scss';
 import { defineProps } from 'vue';
+import Translations from './Translations.vue';
 import AdminEditField from '../AdminEditField.vue';
 const { text: textLine, index } = defineProps([
   'text',
@@ -15,7 +17,7 @@ const to1Based = (index) => index + 1;
 <template>
   <v-expansion-panel :key="index">
     <template v-slot:title>
-      <div>
+      <div :class="[$style.titleHeader, appCss.nunitoFont]">
         <p>{{ to1Based(index) + '.   ' + textLine }}</p>
       </div>
     </template>
@@ -28,8 +30,14 @@ const to1Based = (index) => index + 1;
         <AdminEditField :editStart="start" :editEnd="end" :fieldId="index" />
       </div>
       <div>
-        {{ translation }}
+        <Translations :translation />
       </div>
     </template>
   </v-expansion-panel>
 </template>
+
+<style module>
+.titleHeader {
+  font-size: 1.5rem;
+}
+</style>

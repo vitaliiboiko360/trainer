@@ -6,3 +6,7 @@ body {
   scrollbar-gutter: stable;
   @include fredokaFont;
 }
+
+.nunitoFont {
+  @include nunitoFont;
+}
