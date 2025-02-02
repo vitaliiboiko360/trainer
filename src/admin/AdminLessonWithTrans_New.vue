@@ -15,7 +15,7 @@ console.log('translations length ' + tr.translations.length);
         :end="line.end"
         :text="line.text"
         :index
-        :translation="tr.translations.at(index)"
+        :translationAndOriginalLIne="tr.translations.at(index)"
       />
     </v-expansion-panels>
   </div>

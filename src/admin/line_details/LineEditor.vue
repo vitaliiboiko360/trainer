@@ -6,8 +6,14 @@ import AdminEditField from '../AdminEditField.vue';
 const {
   text: textLine,
   index,
-  translation,
-} = defineProps(['text', 'start', 'end', 'index', 'translation']);
+  translationAndOriginalLIne: trOrig,
+} = defineProps([
+  'text',
+  'start',
+  'end',
+  'index',
+  'translationAndOriginalLIne',
+]);
 
 const to1Based = (index) => index + 1;
 </script>
@@ -28,7 +34,7 @@ const to1Based = (index) => index + 1;
         <AdminEditField :editStart="start" :editEnd="end" :fieldId="index" />
       </div>
       <div>
-        <Translations :translation />
+        <Translations :translation="trOrig.translation" />
       </div>
     </template>
   </v-expansion-panel>
