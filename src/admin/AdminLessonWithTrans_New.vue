@@ -3,6 +3,7 @@ import { defineProps } from 'vue';
 import LineEditor from './line_details/LineEditor.vue';
 
 const { data, translations: tr } = defineProps(['data', 'translations']);
+console.log('translations length ' + tr.translations.length);
 </script>
 
 <template>

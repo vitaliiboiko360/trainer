@@ -1,6 +1,6 @@
 <script setup>
 import { useQuery } from '@tanstack/vue-query';
-
+import { watch } from 'vue';
 import { queryJson } from '../query/default';
 import AdminLessonWithTrans_New from './AdminLessonWithTrans_New.vue';
 
@@ -16,6 +16,10 @@ const { isPending, isError, data, error, isFetched } = useQuery({
 const { isFetched: isFetchedTranslations, data: translations } = useQuery({
   queryKey: [`translations-${id}`],
   queryFn: () => queryJson(urlTranslations),
+});
+
+watch(isFetchedTranslations, () => {
+  console.log('fetched translations ', translations.value.translations.length);
 });
 </script>
 
