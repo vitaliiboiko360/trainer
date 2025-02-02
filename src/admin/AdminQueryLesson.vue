@@ -17,10 +17,6 @@ const { isFetched: isFetchedTranslations, data: translations } = useQuery({
   queryKey: [`translations-${id}`],
   queryFn: () => queryJson(urlTranslations),
 });
-
-watch(isFetchedTranslations, () => {
-  console.log('fetched translations ', translations.value.translations.length);
-});
 </script>
 
 <template>
