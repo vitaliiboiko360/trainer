@@ -7,7 +7,9 @@ defineProps(['wordTranslations']);
 <!-- <th class="text-left">Frequency</th>
 <th class="text-left">Other Words</th> -->
 <template>
-  <div><p></p></div>
+  <div>
+    <p>{{ wordTranslations.originalWord }}</p>
+  </div>
   <v-table density="compact">
     <thead>
       <tr>
