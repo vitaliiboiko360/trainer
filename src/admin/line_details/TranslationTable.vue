@@ -1,7 +1,8 @@
 <script setup>
 import { defineProps } from 'vue';
 
-defineProps(['wordTranslations']);
+const { wordTranslations } = defineProps(['wordTranslations']);
+console.log(wordTranslations);
 </script>
 
 <!-- <th class="text-left">Frequency</th>

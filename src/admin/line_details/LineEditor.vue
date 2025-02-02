@@ -3,13 +3,11 @@ import * as appCss from '../../app.module.scss';
 import { defineProps } from 'vue';
 import Translations from './Translations.vue';
 import AdminEditField from '../AdminEditField.vue';
-const { text: textLine, index } = defineProps([
-  'text',
-  'start',
-  'end',
-  'index',
-  'translation',
-]);
+const {
+  text: textLine,
+  index,
+  translation,
+} = defineProps(['text', 'start', 'end', 'index', 'translation']);
 
 const to1Based = (index) => index + 1;
 </script>
@@ -29,7 +27,7 @@ const to1Based = (index) => index + 1;
       <div style="width: 200px">
         <AdminEditField :editStart="start" :editEnd="end" :fieldId="index" />
       </div>
-      <div v-if="translation">
+      <div>
         <Translations :translation />
       </div>
     </template>
