@@ -8,10 +8,13 @@ const { wordTranslations } = defineProps(['wordTranslations']);
 <th class="text-left">Other Words</th> -->
 <template>
   <div>
-    <p>{{ wordTranslations.originalWord }}</p>
+    <div :class="$style.originalWord">{{ wordTranslations.originalWord }}</div>
   </div>
   <div v-for="(wordInfo, index) in wordTranslations.translations" :key="index">
-    <div>PartOfSpeech: {{ wordInfo.partOfSpeech }}</div>
+    <div :class="$style.partOfSpeech">
+      <span>PartOfSpeech:</span>
+      {{ wordInfo.partOfSpeech }}
+    </div>
     <v-table density="compact">
       <thead>
         <tr>
@@ -36,3 +39,52 @@ const { wordTranslations } = defineProps(['wordTranslations']);
     </v-table>
   </div>
 </template>
+
+<style module>
+.originalWord {
+  margin: 10px 20px;
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: 0.375em;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #363636;
+  display: inline-flex;
+  height: 2.5em;
+  justify-content: center;
+  line-height: 1.5;
+  padding: calc(0.3em - 1px) 0.7em;
+  position: relative;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+}
+.partOfSpeech {
+  span {
+    font-size: 1rem;
+    color: #1d1e2e;
+  }
+  margin: 0px 20px 25px;
+  background-color: rgb(91 147 215 / 16%);
+  border-radius: 8px;
+  border-width: 0;
+  color: #5965ff;
+  display: inline-block;
+  font-size: 1.3rem;
+  line-height: 20px;
+  list-style: none;
+  padding: 10px 12px;
+  text-align: center;
+  transition: all 200ms;
+  vertical-align: baseline;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+</style>
