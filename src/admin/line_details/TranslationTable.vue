@@ -12,25 +12,21 @@ const { wordTranslations } = defineProps(['wordTranslations']);
   </div>
   <div v-for="(wordInfo, index) in wordTranslations.translations" :key="index">
     <div>PartOfSpeech: {{ wordInfo.partOfSpeech }}</div>
-    <v-table
-      density="compact"
-      v-for="(word, index) in wordInfo.words"
-      :key="index"
-    >
+    <v-table density="compact">
       <thead>
         <tr>
-          <th>Usage Frequency</th>
           <th>English Word</th>
+          <th>Usage Frequency</th>
           <th>Similar Spanish Words</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr v-for="(word, index) in wordInfo.words" :key="index">
           <td :key="1">
-            {{ word.frequency }}
+            {{ word.englishWord }}
           </td>
           <td :key="2">
-            {{ word.englishWord }}
+            {{ word.frequency }}
           </td>
           <td :key="3">
             {{ word.spanishWords }}
