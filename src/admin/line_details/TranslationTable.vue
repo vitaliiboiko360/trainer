@@ -10,29 +10,33 @@ const { wordTranslations } = defineProps(['wordTranslations']);
   <div>
     <p>{{ wordTranslations.originalWord }}</p>
   </div>
-  <v-table density="compact">
-    <thead>
-      <tr>
-        <th class="text-left">PartOfSpeech</th>
-        <th class="text-left">English Word | Frequency | Other Words</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        v-for="(wordInfo, index) in wordTranslations.translations"
-        :key="index"
-      >
-        <td>{{ wordInfo.partOfSpeech }}</td>
-        <td v-for="(word, index) in wordInfo.words" :key="index">
-          <tbody>
-            <tr>
-              <td :key="1">{{ word.englishWord }}</td>
-              <td :key="2">{{ word.frequency }}</td>
-              <td :key="3">{{ word.spanishWords }}</td>
-            </tr>
-          </tbody>
-        </td>
-      </tr>
-    </tbody>
-  </v-table>
+  <div v-for="(wordInfo, index) in wordTranslations.translations" :key="index">
+    <div>PartOfSpeech: {{ wordInfo.partOfSpeech }}</div>
+    <v-table
+      density="compact"
+      v-for="(word, index) in wordInfo.words"
+      :key="index"
+    >
+      <thead>
+        <tr>
+          <th>Usage Frequency</th>
+          <th>English Word</th>
+          <th>Similar Spanish Words</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td :key="1">
+            {{ word.frequency }}
+          </td>
+          <td :key="2">
+            {{ word.englishWord }}
+          </td>
+          <td :key="3">
+            {{ word.spanishWords }}
+          </td>
+        </tr>
+      </tbody>
+    </v-table>
+  </div>
 </template>
