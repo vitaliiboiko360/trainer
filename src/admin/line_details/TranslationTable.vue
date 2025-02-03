@@ -1,6 +1,6 @@
 <script setup>
 import { defineProps } from 'vue';
-
+import { mdiOpenInNew } from '@mdi/js';
 const { wordTranslations } = defineProps(['wordTranslations']);
 </script>
 
@@ -9,6 +9,13 @@ const { wordTranslations } = defineProps(['wordTranslations']);
 <template>
   <div>
     <div :class="$style.originalWord">{{ wordTranslations.originalWord }}</div>
+    <v-btn
+      style="bottom: -38px; left: -10px"
+      target="_blank"
+      size="24"
+      :href="`https://translate.google.com/details?sl=es&tl=en&text=${wordTranslations.originalWord}&op=translate`"
+      ><v-icon size="22" color="#1a73e8" :icon="mdiOpenInNew"></v-icon
+    ></v-btn>
   </div>
   <div v-for="(wordInfo, index) in wordTranslations.translations" :key="index">
     <div :class="$style.partOfSpeech">
