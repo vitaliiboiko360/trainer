@@ -17,7 +17,11 @@ const { wordTranslations } = defineProps(['wordTranslations']);
       ><v-icon size="22" color="#1a73e8" :icon="mdiOpenInNew"></v-icon
     ></v-btn>
   </div>
-  <div v-for="(wordInfo, index) in wordTranslations.translations" :key="index">
+  <div
+    :class="$style.table"
+    v-for="(wordInfo, index) in wordTranslations.translations"
+    :key="index"
+  >
     <div :class="$style.partOfSpeech">
       <span>PartOfSpeech:</span>
       {{ wordInfo.partOfSpeech }}
@@ -48,6 +52,9 @@ const { wordTranslations } = defineProps(['wordTranslations']);
 </template>
 
 <style module>
+.table {
+  margin-bottom: 15px;
+}
 .originalWord {
   margin: 10px 20px;
   align-items: center;
