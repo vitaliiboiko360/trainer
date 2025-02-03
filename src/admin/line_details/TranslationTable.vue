@@ -18,7 +18,10 @@ const { wordTranslations } = defineProps(['wordTranslations']);
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(wordInfo, index) in wordTranslations" :key="index">
+      <tr
+        v-for="(wordInfo, index) in wordTranslations.translations"
+        :key="index"
+      >
         <td>{{ wordInfo.partOfSpeech }}</td>
         <td v-for="(word, index) in wordInfo.words" :key="index">
           <tbody>
