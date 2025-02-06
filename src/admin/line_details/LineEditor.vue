@@ -31,7 +31,7 @@ const to1Based = (index) => index + 1;
         <p style="display: inline; margin: 0 10px">Start:</p>
         <p style="display: inline; margin: 0 10px">End:</p>
       </div>
-      <div style="width: 200px">
+      <div :class="$style.timePlayPanel">
         <AdminEditField :editStart="start" :editEnd="end" :fieldId="index" />
         <v-btn size="46"
           ><v-icon size="42" :icon="mdiPlayCircleOutline"></v-icon
@@ -47,5 +47,9 @@ const to1Based = (index) => index + 1;
 <style module>
 .titleHeader {
   font-size: 1.5rem;
+}
+.timePlayPanel {
+  width: 200px;
+  display: flex;
 }
 </style>
