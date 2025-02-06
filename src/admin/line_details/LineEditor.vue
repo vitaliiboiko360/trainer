@@ -3,6 +3,7 @@ import * as appCss from '../../app.module.scss';
 import { defineProps } from 'vue';
 import Translations from './Translations.vue';
 import AdminEditField from '../AdminEditField.vue';
+import { mdiPlayCircleOutline } from '@mdi/js';
 const {
   text: textLine,
   index,
@@ -32,6 +33,9 @@ const to1Based = (index) => index + 1;
       </div>
       <div style="width: 200px">
         <AdminEditField :editStart="start" :editEnd="end" :fieldId="index" />
+        <v-btn size="46"
+          ><v-icon size="42" :icon="mdiPlayCircleOutline"></v-icon
+        ></v-btn>
       </div>
       <div>
         <Translations :translation="trOrig.translation" />
