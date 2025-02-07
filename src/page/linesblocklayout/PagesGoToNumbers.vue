@@ -40,7 +40,7 @@ onMounted(() => {});
   row-gap: 0rem;
   button:nth-child(even) {
     grid-row: 2;
-    margin-left: 1.6em;
+    margin-left: 1.6rem;
   }
   button:nth-child(odd) {
     grid-row: 1;
