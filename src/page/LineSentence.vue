@@ -5,6 +5,8 @@ import { playTime, activeAnimationSentenceNumber } from './state/platTime';
 import css from './page.module.scss';
 import { textView } from './state/textView';
 
+import LinePlayTextAudio from './LinePlayTextAudio.vue';
+
 const { textLine: textLineInfo, lineNumber } = defineProps([
   'textLine',
   'lineNumber',
@@ -53,7 +55,8 @@ watch(activeAnimationSentenceNumber, () => {
 </script>
 
 <template>
-  <div v-if="lineNumber == 1" :class="css.titleLine">
+  <div v-if="lineNumber == 1" :class="[css.titleLine, {[$style.lineContainerFlex]: true}]">
+    <LinePlayTextAudio />
     <span
       ref="refToSpan"
       @click="onClick"
@@ -61,23 +64,28 @@ watch(activeAnimationSentenceNumber, () => {
       >{{ textLine }}</span
     >
   </div>
-  <span
-    v-else
-    ref="refToSpan"
-    @click="onClick"
-    :class="[
-      $style.lineButtonPressed,
-      css.lineUnderlined,
-      { [$style.spanLineByLine]: textView == 0 },
-      { [$style.regularLine]: textView == 0 && !isLast },
-    ]"
-  >
-    {{ textLine }} </span
-  ><span v-if="lineNumber > 1 && textView">&nbsp;</span>
+  <div v-else :class="$style.lineContainerFlex">
+    <LinePlayTextAudio />
+    <span
+      ref="refToSpan"
+      @click="onClick"
+      :class="[
+        $style.lineButtonPressed,
+        css.lineUnderlined,
+        { [$style.spanLineByLine]: textView == 0 },
+        { [$style.regularLine]: textView == 0 && !isLast },
+      ]"
+      >{{ textLine }}</span
+    >
+  </div>
+  <span v-if="lineNumber > 1 && textView">&nbsp;</span>
   <p v-if="endParagraph" :class="$style.lineBreak" />
 </template>
 
 <style module>
+.lineContainerFlex {
+  display: flex;
+}
 .lineButtonPressed {
   cursor: pointer;
 }
