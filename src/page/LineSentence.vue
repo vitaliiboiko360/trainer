@@ -52,13 +52,6 @@ watch(activeAnimationSentenceNumber, () => {
 });
 </script>
 
-// .concat(
-<!-- textView == 0 && [
-          $style.spanLineByLine,
-          !(lineNumber == 1 || isLast) && $style.regularLine,
-        ]
-      ) -->
-
 <template>
   <div v-if="lineNumber == 1" :class="css.titleLine">
     <span
