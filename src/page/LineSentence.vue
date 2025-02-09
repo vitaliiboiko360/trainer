@@ -3,7 +3,7 @@ import { ref, watch } from 'vue';
 import { gsap } from 'gsap';
 import { playTime, activeAnimationSentenceNumber } from './state/platTime';
 import css from './page.module.scss';
-import { textView } from './state/textView';
+import { textView, TEXTVIEW_BUTTONS } from './state/textView';
 
 import LinePlayTextAudio from './LinePlayTextAudio.vue';
 
@@ -55,8 +55,11 @@ watch(activeAnimationSentenceNumber, () => {
 </script>
 
 <template>
-  <div v-if="lineNumber == 1" :class="[css.titleLine, {[$style.lineContainerFlex]: true}]">
-    <LinePlayTextAudio />
+  <div
+    v-if="lineNumber == 1"
+    :class="[css.titleLine, { [$style.lineContainerFlex]: true }]"
+  >
+    <LinePlayTextAudio v-if="textView == TEXTVIEW_BUTTONS.LineMode" />
     <span
       ref="refToSpan"
       @click="onClick"
@@ -65,20 +68,25 @@ watch(activeAnimationSentenceNumber, () => {
     >
   </div>
   <div v-else :class="$style.lineContainerFlex">
-    <LinePlayTextAudio />
+    <LinePlayTextAudio v-if="textView == TEXTVIEW_BUTTONS.LineMode" />
     <span
       ref="refToSpan"
       @click="onClick"
       :class="[
         $style.lineButtonPressed,
         css.lineUnderlined,
-        { [$style.spanLineByLine]: textView == 0 },
-        { [$style.regularLine]: textView == 0 && !isLast },
+        { [$style.spanLineByLine]: textView == TEXTVIEW_BUTTONS.LineMode },
+        {
+          [$style.regularLine]:
+            textView == TEXTVIEW_BUTTONS.LineMode && !isLast,
+        },
       ]"
       >{{ textLine }}</span
     >
   </div>
-  <span v-if="lineNumber > 1 && textView">&nbsp;</span>
+  <span v-if="lineNumber > 1 && textView == TEXTVIEW_BUTTONS.ParagraphMode"
+    >&nbsp;</span
+  >
   <p v-if="endParagraph" :class="$style.lineBreak" />
 </template>
 

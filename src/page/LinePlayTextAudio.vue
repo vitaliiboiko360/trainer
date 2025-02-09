@@ -8,5 +8,6 @@
 .buttonPlayAudio {
   height: 30px;
   width: 40px;
+  margin-top: 0.75rem;
 }
 </style>
