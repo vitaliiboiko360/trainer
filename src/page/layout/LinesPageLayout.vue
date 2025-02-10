@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { watch, ref } from 'vue';
-import LineSentence from './LineSentence.vue';
-import SliderPages from './layout/SliderPages.vue';
+import LineSentence from '../line/LineSentence.vue';
+import SliderPages from './SliderPages.vue';
 import { currentPageBlock } from '../state/currentPageBlock';
 import type { Ref } from 'vue';
 import cloneDeep from 'lodash.clonedeep';
