@@ -15,13 +15,10 @@ import css from '../page.module.scss';
       { [css.titleLine]: lineNumber == 1 },
     ]"
   >
-    <LineSentence
-      :textLine
-      :lineNumber
-      :key="lineNumber"
-      :isLast="index == displayedLines.length - 1"
-    >
-      <span v-if="lineNumber > 1">&nbsp;</span></LineSentence
+    <LineSentence :textLine :lineNumber :key="lineNumber"
+      ><template
+        ><span v-if="lineNumber > 1">&nbsp;</span></template
+      ></LineSentence
     >
   </div>
 </template>

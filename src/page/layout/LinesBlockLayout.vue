@@ -11,21 +11,19 @@ const { displayedLines } = defineProps(['displayedLines']);
     :class="[
       $style.lineContainerFlex,
       $style.spanLineByLine,
-      { [$style.regularLine]: lineNumber != 1 },
+      {
+        [$style.lineBottomUnderline]:
+          lineNumber != 1 && index != displayedLines.length - 1,
+      },
       { [css.titleLine]: lineNumber == 1 },
     ]"
   >
-    <LineSentence
-      :textLine
-      :lineNumber
-      :key="lineNumber"
-      :isLast="index == displayedLines.length - 1"
-    />
+    <LineSentence :textLine :lineNumber :key="lineNumber" />
   </div>
 </template>
 
 <style module>
-.regularLine {
+.lineBottomUnderline {
   padding-bottom: 0.3rem;
   border-bottom: 1px dashed gainsboro;
 }

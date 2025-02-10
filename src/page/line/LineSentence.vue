@@ -7,7 +7,6 @@ import css from '../page.module.scss';
 const { textLine: textLineInfo, lineNumber } = defineProps([
   'textLine',
   'lineNumber',
-  'isLast',
 ]);
 
 const {

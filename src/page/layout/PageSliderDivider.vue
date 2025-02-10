@@ -16,16 +16,19 @@ type TextLineInfo = {
   end: number;
   endParagraph: boolean | undefined;
 };
+
 type LineAndIndex = {
   textLineInfo: TextLineInfo;
   lineNumber: number;
 };
+
 let currentBlock: Array<LineAndIndex> = [];
 let pageBlocks: Array<Array<LineAndIndex>> = [];
 
 const putLinesInBlocks = (characterCountPerBlock) => {
   let characterCount = 0;
   currentBlock = [];
+  console.log(`characterCountPerBlock = ${characterCountPerBlock}`);
   return (lineElement, index) => {
     characterCount += lineElement.text.length;
     currentBlock.push({
@@ -84,7 +87,7 @@ if (totalCharacterCountInLastBlock > 0) {
 
       stepToReduceCharacterLimitThreshold += 15;
 
-      if (stepToReduceCharacterLimitThreshold > 50) {
+      if (stepToReduceCharacterLimitThreshold > 70) {
         break;
       }
     } while (
