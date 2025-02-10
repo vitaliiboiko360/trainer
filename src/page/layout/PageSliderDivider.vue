@@ -2,6 +2,7 @@
 import { watch, ref } from 'vue';
 import { currentPageBlock } from '../state/currentPageBlock';
 import type { Ref } from 'vue';
+import SliderPages from './SliderPages.vue';
 import cloneDeep from 'lodash.clonedeep';
 
 const CHARACTER_NUMBER_PER_BLOCK = 250;
@@ -109,5 +110,6 @@ watch(currentPageBlock, (newUserSelectedCurrentPageBlock) => {
 </script>
 
 <template>
-  <slot :totalNumberOfPages :displayedLines></slot>
+  <SliderPages :lastIndex="totalNumberOfPages" />
+  <slot :displayedLines></slot>
 </template>
