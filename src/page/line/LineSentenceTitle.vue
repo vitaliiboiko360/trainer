@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { gsap } from 'gsap';
-import { playTime, activeAnimationSentenceNumber } from './state/platTime';
+import { playTime, activeAnimationSentenceNumber } from '../state/platTime';
 import css from './page.module.scss';
 
 const { textLine: textLineInfo, index } = defineProps(['textLine', 'index']);

@@ -1,8 +1,8 @@
 <script setup>
-import BackHomeButton from './topbar_buttons/BackHomeButton.vue';
-import HiglightShowTranslationButton from './topbar_buttons/HiglightShowTranslationButton.vue';
-import TextDisplayButtonGroup from './topbar_buttons/TextViewButtonGroup.vue';
-import css from './page.module.scss';
+import BackHomeButton from './BackHomeButton.vue';
+import HiglightShowTranslationButton from './HiglightShowTranslationButton.vue';
+import TextDisplayButtonGroup from './TextViewButtonGroup.vue';
+import css from '../page.module.scss';
 </script>
 
 <template>

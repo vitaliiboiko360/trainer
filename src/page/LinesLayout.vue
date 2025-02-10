@@ -1,7 +1,7 @@
 <script setup>
 import { watch } from 'vue';
 import { textView } from './state/textView';
-import LinesBlockLayout from './LinesBlockLayout.vue';
+import LinesBlockLayout from './layout/LinesBlockLayout.vue';
 
 const { lines } = defineProps(['lines']);
 

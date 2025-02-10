@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { gsap } from 'gsap';
-import { playTime, activeAnimationSentenceNumber } from './state/platTime';
-import css from './page.module.scss';
-import { textView, TEXTVIEW_BUTTONS } from './state/textView';
+import { playTime, activeAnimationSentenceNumber } from '../state/platTime';
+import css from '../page.module.scss';
+import { textView, TEXTVIEW_BUTTONS } from '../state/textView';
 
 import LinePlayTextAudio from './LinePlayTextAudio.vue';
 

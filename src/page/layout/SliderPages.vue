@@ -1,7 +1,7 @@
 <script setup>
 import PagesGoToNumbers from './PagesGoToNumbers.vue';
 import { ref, defineProps } from 'vue';
-import css from './linesblocklayout.module.scss';
+import css from './layout.module.scss';
 import cssPage from '../page.module.scss';
 import { currentPageBlock } from '../state/currentPageBlock';
 
