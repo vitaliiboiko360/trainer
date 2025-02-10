@@ -11,7 +11,7 @@ const { displayedLines } = defineProps(['displayedLines']);
     :class="[
       $style.lineContainerFlex,
       $style.spanLineByLine,
-      $style.regularLine,
+      { [$style.regularLine]: lineNumber != 1 },
       { [css.titleLine]: lineNumber == 1 },
     ]"
   >

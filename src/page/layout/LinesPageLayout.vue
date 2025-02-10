@@ -11,7 +11,7 @@ import css from '../page.module.scss';
     :class="[
       $style.lineContainerFlex,
       $style.spanLineByLine,
-      { [$style.containerAsLine]: lineNumber > 1 },
+      { [$style.containerAsLine]: lineNumber != 1 },
       { [css.titleLine]: lineNumber == 1 },
     ]"
   >
