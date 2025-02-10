@@ -69,25 +69,21 @@ if (totalCharacterCountInLastBlock > 0) {
     totalCharacterCountInLastBlock <
     0.5 * pageBlocks.reduce(getAverageCharacterCount, 0)
   ) {
-    let stepToReduceCharacterLimitThreshold = 30;
+    let characterLimit = CHARACTER_NUMBER_PER_BLOCK;
 
     do {
       pageBlocks = [];
 
-      lines.forEach(
-        putLinesInBlocks(
-          CHARACTER_NUMBER_PER_BLOCK - stepToReduceCharacterLimitThreshold
-        )
-      );
+      lines.forEach(putLinesInBlocks(characterLimit));
 
       totalCharacterCountInLastBlock = currentBlock.reduce(
         getTotalCharacterCount,
         0
       );
 
-      stepToReduceCharacterLimitThreshold += 15;
+      characterLimit -= 15;
 
-      if (stepToReduceCharacterLimitThreshold > 70) {
+      if (CHARACTER_NUMBER_PER_BLOCK - characterLimit > 70) {
         break;
       }
     } while (
