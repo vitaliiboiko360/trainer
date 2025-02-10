@@ -3,9 +3,6 @@ import { ref, watch } from 'vue';
 import { gsap } from 'gsap';
 import { playTime, activeAnimationSentenceNumber } from '../state/platTime';
 import css from '../page.module.scss';
-import { textView, TEXTVIEW_BUTTONS } from '../state/textView';
-
-import LinePlayTextAudio from './LinePlayTextAudio.vue';
 
 const { textLine: textLineInfo, lineNumber } = defineProps([
   'textLine',
@@ -55,56 +52,24 @@ watch(activeAnimationSentenceNumber, () => {
 </script>
 
 <template>
-  <div
+  <span
     v-if="lineNumber == 1"
-    :class="[css.titleLine, { [$style.lineContainerFlex]: true }]"
+    ref="refToSpan"
+    @click="onClick"
+    :class="[$style.lineButtonPressed, css.lineUnderlined]"
+    >{{ textLine }}</span
   >
-    <LinePlayTextAudio v-if="textView == TEXTVIEW_BUTTONS.LineMode" />
-    <span
-      ref="refToSpan"
-      @click="onClick"
-      :class="[$style.lineButtonPressed, css.lineUnderlined]"
-      >{{ textLine }}</span
-    >
-  </div>
-  <div v-else :class="$style.lineContainerFlex">
-    <LinePlayTextAudio v-if="textView == TEXTVIEW_BUTTONS.LineMode" />
-    <span
-      ref="refToSpan"
-      @click="onClick"
-      :class="[
-        $style.lineButtonPressed,
-        css.lineUnderlined,
-        { [$style.spanLineByLine]: textView == TEXTVIEW_BUTTONS.LineMode },
-        {
-          [$style.regularLine]:
-            textView == TEXTVIEW_BUTTONS.LineMode && !isLast,
-        },
-      ]"
-      >{{ textLine }}</span
-    >
-  </div>
-  <span v-if="lineNumber > 1 && textView == TEXTVIEW_BUTTONS.ParagraphMode"
-    >&nbsp;</span
+  <span
+    v-else
+    ref="refToSpan"
+    @click="onClick"
+    :class="[$style.lineButtonPressed, css.lineUnderlined]"
+    >{{ textLine }}</span
   >
   <p v-if="endParagraph" :class="$style.lineBreak" />
 </template>
 
 <style module>
-.lineContainerFlex {
-  display: flex;
-}
-.lineButtonPressed {
-  cursor: pointer;
-}
-.spanLineByLine {
-  display: block;
-  width: fit-content;
-}
-.regularLine {
-  padding-bottom: 0.3rem;
-  border-bottom: 1px dashed gainsboro;
-}
 .lineBreak {
   height: 0.9rem;
   content: '';

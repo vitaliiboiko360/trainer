@@ -11,12 +11,10 @@ const { lines } = defineProps(['lines']);
   <PageSliderDivider :lines v-slot="slotProps">
     <LinesBlockLayout
       v-if="textView == TEXTVIEW_BUTTONS.LineMode"
-      :totalNumberOfPages="slotProps.totalNumberOfPages"
       :displayedLines="slotProps.displayedLines"
     />
     <LinesPageLayout
       v-if="textView == TEXTVIEW_BUTTONS.ParagraphMode"
-      :totalNumberOfPages="slotProps.totalNumberOfPages"
       :displayedLines="slotProps.displayedLines"
     />
   </PageSliderDivider>
