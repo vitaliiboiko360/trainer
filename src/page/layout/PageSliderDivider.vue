@@ -28,7 +28,6 @@ let pageBlocks: Array<Array<LineAndIndex>> = [];
 const putLinesInBlocks = (characterCountPerBlock) => {
   let characterCount = 0;
   currentBlock = [];
-  console.log(`characterCountPerBlock = ${characterCountPerBlock}`);
   return (lineElement, index) => {
     characterCount += lineElement.text.length;
     currentBlock.push({
