@@ -10,5 +10,6 @@
   width: 40px;
   margin-top: 0.75rem;
   border: 1px dashed grey;
+  flex-shrink: 0;
 }
 </style>
