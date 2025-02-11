@@ -12,6 +12,7 @@ import css from '../page.module.scss';
       $style.lineContainerFlex,
       $style.spanLineByLine,
       { [$style.containerAsLine]: lineNumber != 1 },
+      { [$style.topLine]: index == 0 },
       { [css.titleLine]: lineNumber == 1 },
     ]"
   >
@@ -26,5 +27,8 @@ import css from '../page.module.scss';
 }
 .containerAsLine {
   display: inline;
+}
+.topLine {
+  margin-top: 1rem;
 }
 </style>
