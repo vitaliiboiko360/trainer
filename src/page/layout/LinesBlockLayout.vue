@@ -16,6 +16,7 @@ const { displayedLines } = defineProps(['displayedLines']);
         [$style.lineBottomUnderline]:
           lineNumber != 1 && index != displayedLines.length - 1,
       },
+      { [$style.topLine]: index == 0 },
       { [css.titleLine]: lineNumber == 1 },
     ]"
   >
@@ -34,5 +35,8 @@ const { displayedLines } = defineProps(['displayedLines']);
 }
 .spanLineByLine {
   width: fit-content;
+}
+.topLine {
+  margin-top: 3rem;
 }
 </style>
