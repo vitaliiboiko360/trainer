@@ -37,10 +37,7 @@
   user-select: none;
 
   &::before {
-    background-color: var(
-      --web-ui_card-background-color,
-      rgb(var(--color-snow))
-    );
+    background-color: var(--color-snow);
     border: 2px solid var(--parent-border-color);
     border-radius: 12px;
     bottom: -2px;
