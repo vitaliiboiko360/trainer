@@ -3,5 +3,9 @@ import PlayerButtonBar from './player/PlayerButtonBar.vue';
 </script>
 
 <template>
-  <PlayerButtonBar />
+  <div>
+    <PlayerButtonBar />
+  </div>
 </template>
+
+<style module></style>
