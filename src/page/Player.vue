@@ -3,9 +3,13 @@ import PlayerButtonBar from './player/PlayerButtonBar.vue';
 </script>
 
 <template>
-  <div>
+  <div :class="$style.playerOuter">
     <PlayerButtonBar />
   </div>
 </template>
 
-<style module></style>
+<style module>
+.playerOuter {
+  margin-top: 2rem;
+}
+</style>

@@ -23,8 +23,8 @@ const onClick = () => {
 
 <template>
   <div>
-    <v-btn rounded="lg" size="70" @click="onClick"
-      ><v-icon size="60" :icon="isPlay ? iconPlay : iconPause"
+    <v-btn rounded="lg" size="80" @click="onClick"
+      ><v-icon size="70" :icon="isPlay ? iconPlay : iconPause"
     /></v-btn>
   </div>
 </template>
