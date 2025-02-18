@@ -1,6 +1,6 @@
 <script setup>
+import LinePlayIndicator from '../line/LinePlayIndicator.vue';
 import LineSentence from '../line/LineSentence.vue';
-import LinePlayTextAudio from '../line/LinePlayTextAudio.vue';
 import css from '../page.module.scss';
 import { defineProps } from 'vue';
 const { displayedLines } = defineProps(['displayedLines']);
@@ -20,7 +20,7 @@ const { displayedLines } = defineProps(['displayedLines']);
       { [css.titleLine]: lineNumber == 1 },
     ]"
   >
-    <LinePlayTextAudio />
+    <LinePlayIndicator />
     <LineSentence :textLine :lineNumber :key="lineNumber" />
   </div>
 </template>
