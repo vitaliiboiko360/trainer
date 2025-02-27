@@ -8,7 +8,7 @@ const icontCurrentWillBePlaying =
 <template>
   <div>
     <v-icon :icon="iconEmptyLine"></v-icon>
-    <v-icon :icon="icontCurrentWillBePlaying"></v-icon>
+    <!-- <v-icon :icon="icontCurrentWillBePlaying"></v-icon> -->
   </div>
 </template>
 
