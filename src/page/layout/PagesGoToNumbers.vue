@@ -29,7 +29,7 @@ onMounted(() => {});
   text-align: center;
   display: flex;
   align-items: center;
-  gap: 1.3rem;
+  gap: 1rem;
   white-space: nowrap;
 }
 .gridTwoLines {
