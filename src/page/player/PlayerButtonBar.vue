@@ -1,4 +1,5 @@
 <script setup>
+import PlaybackSpeed from './PlaybackSpeed.vue';
 import PlayPauseButton from './PlayPauseButton.vue';
 import PreviousNextButton from './PreviousNextButton.vue';
 </script>
@@ -9,6 +10,7 @@ import PreviousNextButton from './PreviousNextButton.vue';
       <PreviousNextButton previous="true" />
       <PlayPauseButton />
       <PreviousNextButton next="true" />
+      <PlaybackSpeed />
     </div>
   </div>
 </template>
