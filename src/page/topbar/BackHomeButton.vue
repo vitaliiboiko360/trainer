@@ -1,5 +1,6 @@
 <script setup>
 import css from '../page.module.scss';
+import cssTopbar from './topbar.module.scss';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -9,5 +10,8 @@ const onClick = () => {
 </script>
 
 <template>
-  <button :class="css.topBarButtonBackHome" @click="onClick"></button>
+  <button
+    :class="[css.topBarButtonBackHome, cssTopbar.topbarButtonBase]"
+    @click="onClick"
+  ></button>
 </template>
