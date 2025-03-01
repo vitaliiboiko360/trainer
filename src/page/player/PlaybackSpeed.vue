@@ -23,17 +23,29 @@ const onClick = () => {
         ><span :class="$style.playbackSpeedValue">0.87x</span></v-btn
       >
     </div>
-    <v-btn rounded="lg" size="55" @click="onClick"
-      ><v-icon size="25" :icon="icon" /><span :class="$style.playbackSpeedValue"
-        >{{ playbackSpeed }}x</span
-      ></v-btn
-    >
+    <v-btn rounded="lg" size="55" @click="onClick">
+      <div :class="$style.buttonInnerDiv">
+        <span :class="[$style.playbackSpeedValue, $style.valueInButton]"
+          >{{ playbackSpeed }}x</span
+        ><v-icon size="30" :icon="icon" :class="$style.iconInButton" /></div
+    ></v-btn>
   </div>
 </template>
 
 <style module>
+.buttonInnerDiv {
+  position: relative;
+}
+.iconInButton {
+  position: absolute;
+  right: -8px;
+  top: -26px;
+}
+.valueInButton {
+  position: absolute;
+}
 .playbackSpeedValue {
-  font-size: 0.8rem;
+  font-size: 1rem;
   text-transform: none;
   letter-spacing: normal;
 }
