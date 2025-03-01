@@ -7,21 +7,23 @@ const { displayedLines } = defineProps(['displayedLines']);
 </script>
 
 <template>
-  <div
-    v-for="({ textLineInfo: textLine, lineNumber }, index) in displayedLines"
-    :class="[
-      $style.lineContainerFlex,
-      $style.spanLineByLine,
-      {
-        [$style.lineBottomUnderline]:
-          lineNumber != 1 && index != displayedLines.length - 1,
-      },
-      { [$style.topLine]: index == 0 },
-      { [css.titleLine]: lineNumber == 1 },
-    ]"
-  >
-    <LinePlayIndicator />
-    <LineSentence :textLine :lineNumber :key="lineNumber" />
+  <div :class="$style.linesOuterContainer">
+    <div
+      v-for="({ textLineInfo: textLine, lineNumber }, index) in displayedLines"
+      :class="[
+        $style.lineContainerFlex,
+        $style.spanLineByLine,
+        {
+          [$style.lineBottomUnderline]:
+            lineNumber != 1 && index != displayedLines.length - 1,
+        },
+        { [$style.topLine]: index == 0 },
+        { [css.titleLine]: lineNumber == 1 },
+      ]"
+    >
+      <LinePlayIndicator />
+      <LineSentence :textLine :lineNumber :key="lineNumber" />
+    </div>
   </div>
 </template>
 
@@ -38,5 +40,8 @@ const { displayedLines } = defineProps(['displayedLines']);
 }
 .topLine {
   margin-top: 3rem;
+}
+.linesOuterContainer {
+  margin-left: -1rem;
 }
 </style>
