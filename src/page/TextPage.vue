@@ -8,9 +8,15 @@ const { lines } = data;
 </script>
 
 <template>
-  <div :class="css.divTextBlock">
+  <div :class="[css.divTextBlock, $style.pageMainBlock]">
     <TopBar />
     <LinesLayout :lines />
     <Player />
   </div>
 </template>
+
+<style module>
+.pageMainBlock {
+  /* min-width: 709px; */
+}
+</style>

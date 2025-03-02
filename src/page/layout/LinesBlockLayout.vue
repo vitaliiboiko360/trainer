@@ -44,6 +44,6 @@ const store = useIndicatorIndexStore();
   margin-top: 3rem;
 }
 .linesOuterContainer {
-  margin-left: -1rem;
+  margin-left: 0rem;
 }
 </style>
