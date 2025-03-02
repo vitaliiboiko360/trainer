@@ -2,7 +2,7 @@
 import LinePlayIndicator from '../line/LinePlayIndicator.vue';
 import LineSentence from '../line/LineSentence.vue';
 import css from '../page.module.scss';
-import { defineProps, onBeforeMount, onMounted } from 'vue';
+import { defineProps } from 'vue';
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
 const { displayedLines } = defineProps(['displayedLines']);
 const store = useIndicatorIndexStore();
@@ -23,7 +23,7 @@ const store = useIndicatorIndexStore();
         { [css.titleLine]: lineNumber == 1 },
       ]"
     >
-      <LinePlayIndicator v-if="index == store.indicatorIndex" />
+      <LinePlayIndicator v-if="lineNumber == store.indicatorIndex" />
       <LineSentence :textLine :lineNumber :key="lineNumber" />
     </div>
   </div>
