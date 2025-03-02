@@ -9,20 +9,37 @@ const icon =
 
 const menuOpened = ref(false);
 const repeatCount = ref(1);
+const repeatCountMenuItem1 = ref(2);
+const repeatCountMenuItem2 = ref(3);
 const onClick = () => {
-  let newValue = (repeatCount.value + 1) % 4;
-  repeatCount.value = newValue == 0 ? 1 : newValue;
   menuOpened.value = !menuOpened.value;
+};
+const onClick1 = () => {
+  menuOpened.value = false;
+  const menuItemRepeatCount = repeatCountMenuItem1.value;
+  repeatCountMenuItem1.value = repeatCount.value;
+  repeatCount.value = menuItemRepeatCount;
+};
+const onClick2 = () => {
+  menuOpened.value = false;
+  const menuItemRepeatCount = repeatCountMenuItem2.value;
+  repeatCountMenuItem2.value = repeatCount.value;
+  repeatCount.value = menuItemRepeatCount;
 };
 </script>
 
 <template>
   <div :class="$style.menuRepeatCountOuterDiv">
     <div v-if="menuOpened" :class="[$style.menuItem, $style.item2]">
-      <v-btn rounded="lg" size="45"><v-icon size="40" :icon="icon" /> </v-btn>
+      <v-btn rounded="lg" size="45" @click="onClick2"
+        ><v-icon size="40" :icon="icon" />
+      </v-btn>
+      <span :class="$style.menuItmeValue">{{ repeatCountMenuItem2 }}</span>
     </div>
     <div v-if="menuOpened" :class="[$style.menuItem, $style.item1]">
-      <v-btn rounded="lg" size="45"><v-icon size="40" :icon="icon" /> </v-btn>
+      <v-btn rounded="lg" size="45" @click="onClick1"
+        ><v-icon size="40" :icon="icon" /></v-btn
+      ><span :class="$style.menuItmeValue">{{ repeatCountMenuItem1 }}</span>
     </div>
     <div :class="[$style.buttonMenuItem]">
       <v-btn rounded="lg" size="55" @click="onClick"
@@ -42,6 +59,15 @@ const onClick = () => {
   top: 6px;
   left: 22px;
   font-size: 1.3rem;
+  text-transform: none;
+  letter-spacing: normal;
+  pointer-events: none;
+}
+.menuItmeValue {
+  position: absolute;
+  top: 4px;
+  left: 18px;
+  font-size: 1rem;
   text-transform: none;
   letter-spacing: normal;
   pointer-events: none;
