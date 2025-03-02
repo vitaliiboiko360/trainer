@@ -9,22 +9,26 @@ const store = useIndicatorIndexStore();
 </script>
 
 <template>
-  <div :class="$style.linesOuterContainer">
-    <div
-      v-for="({ textLineInfo: textLine, lineNumber }, index) in displayedLines"
-      :class="[
-        $style.lineContainerFlex,
-        $style.spanLineByLine,
-        {
-          [$style.lineBottomUnderline]:
-            lineNumber != 1 && index != displayedLines.length - 1,
-        },
-        { [$style.topLine]: index == 0 },
-        { [css.titleLine]: lineNumber == 1 },
-      ]"
-    >
-      <LinePlayIndicator v-if="lineNumber == store.indicatorIndex" />
-      <LineSentence :textLine :lineNumber :key="lineNumber" />
+  <div :class="$style.linesBlock">
+    <div :class="$style.linesOuterContainer">
+      <div
+        v-for="(
+          { textLineInfo: textLine, lineNumber }, index
+        ) in displayedLines"
+        :class="[
+          $style.lineContainerFlex,
+          $style.spanLineByLine,
+          {
+            [$style.lineBottomUnderline]:
+              lineNumber != 1 && index != displayedLines.length - 1,
+          },
+          { [$style.topLine]: index == 0 },
+          { [css.titleLine]: lineNumber == 1 },
+        ]"
+      >
+        <LinePlayIndicator v-if="lineNumber == store.indicatorIndex" />
+        <LineSentence :textLine :lineNumber :key="lineNumber" />
+      </div>
     </div>
   </div>
 </template>
@@ -46,5 +50,9 @@ const store = useIndicatorIndexStore();
 .linesOuterContainer {
   margin-left: 0rem;
   min-width: 18rem;
+}
+.linesBlock {
+  display: flex;
+  padding: 0 2px;
 }
 </style>
