@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { playTime } from '../state/platTime';
+import { playTime } from '../state/playTime';
 
 const { audioSource } = defineProps(['audioSource']);
 const audio = ref();
