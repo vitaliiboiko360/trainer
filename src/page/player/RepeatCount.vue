@@ -42,6 +42,9 @@ const onClick = () => {
   top: 6px;
   left: 22px;
   font-size: 1.3rem;
+  text-transform: none;
+  letter-spacing: normal;
+  pointer-events: none;
 }
 .menuRepeatCountOuterDiv {
   position: relative;
