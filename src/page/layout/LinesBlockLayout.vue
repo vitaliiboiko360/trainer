@@ -45,5 +45,6 @@ const store = useIndicatorIndexStore();
 }
 .linesOuterContainer {
   margin-left: 0rem;
+  min-width: 18rem;
 }
 </style>
