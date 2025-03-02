@@ -15,6 +15,7 @@
     "@tanstack/vue-query": "^5.59.17",
     "gsap": "^3.12.5",
     "lodash.clonedeep": "^4.5.0",
+    "pinia": "^3.0.1",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5",
     "vuetify": "^3.7.7"

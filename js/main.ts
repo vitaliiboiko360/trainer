@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-
+import { createPinia } from 'pinia';
 import router from '../src/router/router';
 
 import App from '../src/App.vue';
@@ -34,9 +34,10 @@ const vuetify = createVuetify({
     },
   },
 });
-
+const pinia = createPinia();
 const app = createApp(App);
 app.use(VueQueryPlugin);
 app.use(vuetify);
 app.use(router);
+app.use(pinia);
 app.mount('#app');
