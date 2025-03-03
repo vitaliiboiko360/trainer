@@ -48,11 +48,10 @@ const store = useIndicatorIndexStore();
   margin-top: 3rem;
 }
 .linesOuterContainer {
-  margin-left: 0rem;
-  min-width: 18rem;
+  margin-left: 2rem;
+  margin-right: 1rem;
 }
 .linesBlock {
   display: flex;
-  padding: 0 2px;
 }
 </style>
