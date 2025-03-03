@@ -6,7 +6,7 @@ import css from '../page.module.scss';
 </script>
 
 <template>
-  <div :class="css.divTopBarOuter">
+  <div :class="[css.divTopBarOuter, $style.outerDiv]">
     <div :class="css.divTopBarButtonColumn1">
       <BackHomeButton />
     </div>
@@ -18,3 +18,10 @@ import css from '../page.module.scss';
     </div>
   </div>
 </template>
+
+<style module>
+.outerDiv {
+  margin-left: 1.5rem;
+  margin-right: 0.6rem;
+}
+</style>
