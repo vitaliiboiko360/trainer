@@ -63,8 +63,8 @@ const getKey = () => {
   div:nth-child(4n + 2) {
     margin-left: 0;
   }
-  div:nth-child(4n + 4) {
+  /* div:nth-child(4n + 4) {
     margin-left: 2rem;
-  }
+  } */
 }
 </style>
