@@ -62,6 +62,7 @@ const onClick2 = () => {
   text-transform: none;
   letter-spacing: normal;
   pointer-events: none;
+  font-weight: 500;
 }
 .menuItmeValue {
   position: absolute;
@@ -71,6 +72,7 @@ const onClick2 = () => {
   text-transform: none;
   letter-spacing: normal;
   pointer-events: none;
+  font-weight: 500;
 }
 .menuRepeatCountOuterDiv {
   position: relative;
