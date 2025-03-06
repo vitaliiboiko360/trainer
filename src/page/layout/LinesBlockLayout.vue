@@ -16,7 +16,6 @@ const store = useIndicatorIndexStore();
           { textLineInfo: textLine, lineNumber }, index
         ) in displayedLines"
         :class="[
-          $style.lineContainerFlex,
           $style.spanLineByLine,
           {
             [$style.lineBottomUnderline]:
@@ -38,11 +37,12 @@ const store = useIndicatorIndexStore();
   padding-bottom: 0.3rem;
   border-bottom: 1px dashed gainsboro;
 }
-.lineContainerFlex {
+/* .lineContainerFlex {
   display: flex;
-}
+} */
 .spanLineByLine {
   width: fit-content;
+  display: inline-block;
 }
 .topLine {
   margin-top: 3rem;
