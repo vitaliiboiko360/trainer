@@ -17,6 +17,7 @@ const {
 } = textLineInfo;
 
 const refToSpan = ref();
+const refToAnimation = ref();
 
 const onClick = (event) => {
   playTime.updateTime(startTime, endTime);
@@ -28,7 +29,11 @@ const onClick = (event) => {
     gsap.set(scopedEventTarget, { backgroundSize: '0 100%' });
   };
 
-  gsap.to(event.currentTarget, {
+  refToAnimation.value?.kill();
+  gsap.set(event.currentTarget, {
+    backgroundSize: '0% 100%',
+  });
+  refToAnimation.value = gsap.to(event.currentTarget, {
     duration: endTime - startTime,
     backgroundSize: '100% 100%',
     ease: 'none',
@@ -36,16 +41,14 @@ const onClick = (event) => {
   });
 };
 
-watch(activeAnimationSentenceNumber, () => {
-  if (
-    activeAnimationSentenceNumber.value >= 0 &&
-    activeAnimationSentenceNumber.value != lineNumber
-  ) {
-    if (refToSpan.value) {
-      gsap.set(refToSpan.value, {
-        backgroundSize: '0% 100%',
-      });
-    }
+watch([activeAnimationSentenceNumber], () => {
+  if (refToAnimation.value && refToAnimation.value.isActive()) {
+    refToAnimation.value.kill();
+  }
+  if (refToSpan.value) {
+    gsap.set(refToSpan.value, {
+      backgroundSize: '0% 100%',
+    });
   }
 });
 </script>
@@ -53,14 +56,14 @@ watch(activeAnimationSentenceNumber, () => {
 <template>
   <span
     v-if="lineNumber == 1"
-    ref="refToSpan"
+    :ref="(el) => (refToSpan = el)"
     @click="onClick"
     :class="[$style.lineButtonPressed, css.lineUnderlined]"
     >{{ textLine }}</span
   >
   <span
     v-else
-    ref="refToSpan"
+    :ref="(el) => (refToSpan = el)"
     @click="onClick"
     :class="[$style.lineButtonPressed, css.lineUnderlined]"
     >{{ textLine }}</span
