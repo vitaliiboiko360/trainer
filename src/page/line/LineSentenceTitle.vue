@@ -49,12 +49,31 @@ watch(activeAnimationSentenceNumber, () => {
 
 <template>
   <div v-if="index == 1" :class="css.titleLine">
-    <span ref="refToSpan" @click="onClick" :class="css.lineUnderlined">{{
+    <span ref="refToSpan" @click="onClick" :class="$style.lineUnderlined">{{
       textLine
     }}</span>
   </div>
-  <span v-else ref="refToSpan" @click="onClick" :class="css.lineUnderlined">
+  <span v-else ref="refToSpan" @click="onClick" :class="$style.lineUnderlined">
     {{ textLine }} </span
   ><span v-if="index > 1">&nbsp;</span>
   <br v-if="endParagraph" />
 </template>
+
+<style module>
+.lineUnderlined {
+  background: linear-gradient(
+    0deg,
+    rgb(255 0 19 / 48%) 0%,
+    rgba(255, 0, 255, 0) 16%,
+    rgb(0 199 255) 16%,
+    rgb(63 255 0 / 0%) 41%,
+    rgba(255, 0, 255, 0) 41%
+  );
+  box-decoration-break: slice;
+  -webkit-box-decoration-break: slice;
+  border-radius: 0.4rem;
+  background-size: 0 100%;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+}
+</style>
