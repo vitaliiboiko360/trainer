@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue';
 import { gsap } from 'gsap';
 import { playTime, activeAnimationSentenceNumber } from '../state/playTime';
-import css from '../page.module.scss';
+import LineTextWordsArray from './LineTextWordsArray.vue';
 
 const { textLine: textLineInfo, lineNumber } = defineProps([
   'textLine',
@@ -58,16 +58,16 @@ watch([activeAnimationSentenceNumber], () => {
     v-if="lineNumber == 1"
     :ref="(el) => (refToSpan = el)"
     @click="onClick"
-    :class="[$style.lineButtonPressed, css.lineUnderlined]"
+    :class="[$style.lineButtonPressed, $style.lineUnderlined]"
     >{{ textLine }}</span
   >
   <span
     v-else
     :ref="(el) => (refToSpan = el)"
     @click="onClick"
-    :class="[$style.lineButtonPressed, css.lineUnderlined]"
-    >{{ textLine }}</span
-  >
+    :class="[$style.lineButtonPressed, $style.lineUnderlined]"
+    ><LineTextWordsArray :textLine
+  /></span>
   <p v-if="endParagraph" :class="$style.lineBreak" />
 </template>
 
@@ -76,4 +76,22 @@ watch([activeAnimationSentenceNumber], () => {
   height: 0.9rem;
   content: '';
 }
+.lineUnderlined {
+  background: linear-gradient(
+    0deg,
+    rgb(255 0 19 / 48%) 0%,
+    rgba(255, 0, 255, 0) 16%,
+    rgb(0 199 255) 16%,
+    rgb(63 255 0 / 0%) 41%,
+    rgba(255, 0, 255, 0) 41%
+  );
+  box-decoration-break: slice;
+  -webkit-box-decoration-break: slice;
+  border-radius: 0.4rem;
+  background-size: 0 100%;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+}
 </style>
+
+// padding: 0 0.5em 0 0.1em;
