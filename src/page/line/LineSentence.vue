@@ -23,34 +23,34 @@ const onClick = (event) => {
   playTime.updateTime(startTime, endTime);
   activeAnimationSentenceNumber.value = lineNumber;
 
-  let scopedEventTarget = event.currentTarget;
+  // let scopedEventTarget = event.currentTarget;
 
-  const onComplete = () => {
-    gsap.set(scopedEventTarget, { backgroundSize: '0 100%' });
-  };
+  // const onComplete = () => {
+  //   gsap.set(scopedEventTarget, { backgroundSize: '0 100%' });
+  // };
 
-  refToAnimation.value?.kill();
-  gsap.set(event.currentTarget, {
-    backgroundSize: '0% 100%',
-  });
-  refToAnimation.value = gsap.to(event.currentTarget, {
-    duration: endTime - startTime,
-    backgroundSize: '100% 100%',
-    ease: 'none',
-    onComplete: () => setTimeout(onComplete, 150),
-  });
+  // refToAnimation.value?.kill();
+  // gsap.set(event.currentTarget, {
+  //   backgroundSize: '0% 100%',
+  // });
+  // refToAnimation.value = gsap.to(event.currentTarget, {
+  //   duration: endTime - startTime,
+  //   backgroundSize: '100% 100%',
+  //   ease: 'none',
+  //   onComplete: () => setTimeout(onComplete, 150),
+  // });
 };
 
-watch([activeAnimationSentenceNumber], () => {
-  if (refToAnimation.value && refToAnimation.value.isActive()) {
-    refToAnimation.value.kill();
-  }
-  if (refToSpan.value) {
-    gsap.set(refToSpan.value, {
-      backgroundSize: '0% 100%',
-    });
-  }
-});
+// watch([activeAnimationSentenceNumber], () => {
+//   if (refToAnimation.value && refToAnimation.value.isActive()) {
+//     refToAnimation.value.kill();
+//   }
+//   if (refToSpan.value) {
+//     gsap.set(refToSpan.value, {
+//       backgroundSize: '0% 100%',
+//     });
+//   }
+// });
 </script>
 
 <template>
