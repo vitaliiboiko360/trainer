@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { gsap } from 'gsap';
-import { playTime, activeAnimationSentenceNumber } from '../state/playTime';
+import {
+  playTime,
+  activeAnimationSentenceNumber,
+  detectClickEvent,
+} from '../state/playTime';
 import LineTextWordsArray from './LineTextWordsArray.vue';
 
 const { textLine: textLineInfo, lineNumber } = defineProps([
@@ -23,6 +27,7 @@ const onClick = (event) => {
   playTime.updateTime(startTime, endTime);
   activeAnimationSentenceNumber.value = lineNumber;
 
+  detectClickEvent.value = !detectClickEvent.value;
   // let scopedEventTarget = event.currentTarget;
 
   // const onComplete = () => {
