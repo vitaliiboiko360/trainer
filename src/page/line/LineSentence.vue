@@ -59,8 +59,8 @@ watch([activeAnimationSentenceNumber], () => {
     :ref="(el) => (refToSpan = el)"
     @click="onClick"
     :class="[$style.lineButtonPressed, $style.lineUnderlined]"
-    >{{ textLine }}</span
-  >
+    ><LineTextWordsArray :textLine
+  /></span>
   <span
     v-else
     :ref="(el) => (refToSpan = el)"
