@@ -1,7 +1,10 @@
 <script setup>
 import { watch, ref, onMounted } from 'vue';
 import { gsap } from 'gsap';
-import { activeAnimationSentenceNumber } from '../state/playTime';
+import {
+  activeAnimationSentenceNumber,
+  detectClickEvent,
+} from '../state/playTime';
 const { textLine, duration, lineNumber } = defineProps([
   'textLine',
   'duration',
@@ -10,6 +13,7 @@ const { textLine, duration, lineNumber } = defineProps([
 
 const total = ref(0);
 const refToUnderlineDivs = ref([]);
+const currentAnimation = ref();
 
 onMounted(() => {
   if (total.value != 0) return;
@@ -22,7 +26,17 @@ onMounted(() => {
   console.log(`total = ${total.value}`);
 });
 
-watch([activeAnimationSentenceNumber], () => {
+watch([activeAnimationSentenceNumber, detectClickEvent], () => {
+  if (currentAnimation.value) {
+    currentAnimation.value.kill();
+  }
+  refToUnderlineDivs.value.forEach((div) => {
+    gsap.set(div, { display: 'none' });
+    gsap.set(div, {
+      clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z')`,
+    });
+  });
+
   if (
     activeAnimationSentenceNumber.value < 0 ||
     activeAnimationSentenceNumber.value != lineNumber ||
@@ -30,6 +44,7 @@ watch([activeAnimationSentenceNumber], () => {
   ) {
     return;
   }
+
   let index = 0;
   const startAnimateUnderline = (i) => {
     // console.log(
@@ -46,24 +61,21 @@ watch([activeAnimationSentenceNumber], () => {
     const { width } = underlineDiv.getBoundingClientRect();
     // console.log(`width == ${width} ${underlineDiv.getBoundingClientRect()}`);
     console.log(`width =${width}  total.value=${total.value}`);
-    gsap.to(animatedValue, {
+    currentAnimation.value = gsap.to(animatedValue, {
       w: width,
       duration: duration * (width / total.value),
+      ease: 'none',
       onUpdate: () => {
         gsap.set(underlineDiv, {
-          clipPath: `path(
-            'M0 1.5a1.5 1.5 90 011.5-1.5h${animatedValue.w}a1 1 90 010 3h-${animatedValue.w}A1.5 1.5 90 010 1.5z'
-          )`,
+          clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${animatedValue.w}a1 1 90 010 3h-${animatedValue.w}A1.5 1.5 90 010 1.5z')`,
         });
       },
       onComplete: () => {
-        if (index + 1 == refToUnderlineDivs.value.length) {
+        if (index + 1 >= refToUnderlineDivs.value.length) {
           refToUnderlineDivs.value.forEach((div) => {
             gsap.set(div, { display: 'none' });
             gsap.set(div, {
-              clipPath: `path(
-            'M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z'
-          )`,
+              clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z')`,
             });
           });
         } else {
