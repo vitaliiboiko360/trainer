@@ -1,5 +1,5 @@
 <script setup>
-import { watch, ref } from 'vue';
+import { watch, ref, onMounted } from 'vue';
 import { gsap } from 'gsap';
 import { activeAnimationSentenceNumber } from '../state/playTime';
 const { textLine, duration, lineNumber } = defineProps([
@@ -8,13 +8,20 @@ const { textLine, duration, lineNumber } = defineProps([
   'lineNumber',
 ]);
 
-let total = 0;
-const durationArray = textLine.split(' ').map((w) => {
-  total += w.length;
-  return w.length;
+const total = ref(0);
+const refToUnderlineDivs = ref([]);
+
+onMounted(() => {
+  if (total.value != 0) return;
+  refToUnderlineDivs.value.forEach((uDiv) => {
+    uDiv.style.display = 'block';
+    const { width } = uDiv.getBoundingClientRect();
+    uDiv.style.display = 'none';
+    total.value = total.value + width;
+  });
+  console.log(`total = ${total.value}`);
 });
 
-const refToUnderlineDivs = ref([]);
 watch([activeAnimationSentenceNumber], () => {
   if (
     activeAnimationSentenceNumber.value < 0 ||
@@ -25,21 +32,23 @@ watch([activeAnimationSentenceNumber], () => {
   }
   let index = 0;
   const startAnimateUnderline = (i) => {
-    console.log(
-      `i == ${i} refToUnderlineDivs.value.length=${
-        refToUnderlineDivs.value.length
-      } \ntotal=${total} durationArray.at(i)/total=${
-        durationArray.at(i) / total
-      }`
-    );
+    // console.log(
+    //   `i == ${i} refToUnderlineDivs.value.length=${
+    //     refToUnderlineDivs.value.length
+    //   } \ntotal=${total} durationArray.at(i)/total=${
+    //     durationArray.at(i) / total
+    //   }`
+    // );
     let animatedValue = { w: 0 };
     if (i > refToUnderlineDivs.value.length - 1) return;
     const underlineDiv = refToUnderlineDivs.value[i];
-    const { width } = underlineDiv.getBoundingClientRect();
     gsap.set(underlineDiv, { display: 'block' });
+    const { width } = underlineDiv.getBoundingClientRect();
+    // console.log(`width == ${width} ${underlineDiv.getBoundingClientRect()}`);
+    console.log(`width =${width}  total.value=${total.value}`);
     gsap.to(animatedValue, {
       w: width,
-      duration: duration * (durationArray.at(i) / total),
+      duration: duration * (width / total.value),
       onUpdate: () => {
         gsap.set(underlineDiv, {
           clipPath: `path(
@@ -48,7 +57,18 @@ watch([activeAnimationSentenceNumber], () => {
         });
       },
       onComplete: () => {
-        startAnimateUnderline(++index);
+        if (index + 1 == refToUnderlineDivs.value.length) {
+          refToUnderlineDivs.value.forEach((div) => {
+            gsap.set(div, { display: 'none' });
+            gsap.set(div, {
+              clipPath: `path(
+            'M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z'
+          )`,
+            });
+          });
+        } else {
+          startAnimateUnderline(++index);
+        }
       },
     });
   };
