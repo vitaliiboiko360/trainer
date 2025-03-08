@@ -55,18 +55,10 @@ watch([activeAnimationSentenceNumber], () => {
 
 <template>
   <span
-    v-if="lineNumber == 1"
     :ref="(el) => (refToSpan = el)"
     @click="onClick"
-    :class="[$style.lineButtonPressed, $style.lineUnderlined]"
-    ><LineTextWordsArray :textLine
-  /></span>
-  <span
-    v-else
-    :ref="(el) => (refToSpan = el)"
-    @click="onClick"
-    :class="[$style.lineButtonPressed, $style.lineUnderlined]"
-    ><LineTextWordsArray :textLine
+    :class="[$style.lineUnderlined]"
+    ><LineTextWordsArray :textLine :duration="endTime - startTime" :lineNumber
   /></span>
   <p v-if="endParagraph" :class="$style.lineBreak" />
 </template>
