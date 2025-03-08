@@ -11,19 +11,17 @@ const { textLine, duration, lineNumber } = defineProps([
   'lineNumber',
 ]);
 
-const total = ref(0);
+const totalWidth = ref(0);
 const refToUnderlineDivs = ref([]);
 const currentAnimation = ref();
 
 onMounted(() => {
-  if (total.value != 0) return;
   refToUnderlineDivs.value.forEach((uDiv) => {
     uDiv.style.display = 'block';
     const { width } = uDiv.getBoundingClientRect();
     uDiv.style.display = 'none';
-    total.value = total.value + width;
+    totalWidth.value = totalWidth.value + width;
   });
-  // console.log(`total = ${total.value}`);
 });
 
 watch([activeAnimationSentenceNumber, detectClickEvent], () => {
@@ -58,26 +56,19 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
 
   let index = 0;
   const startAnimateUnderline = (i) => {
-    // console.log(
-    //   `i == ${i} refToUnderlineDivs.value.length=${
-    //     refToUnderlineDivs.value.length
-    //   } \ntotal=${total} durationArray.at(i)/total=${
-    //     durationArray.at(i) / total
-    //   }`
-    // );
     let animatedValue = { w: 0 };
+
     if (i > refToUnderlineDivs.value.length - 1) return;
+
     const underlineDiv = refToUnderlineDivs.value[i];
+
     gsap.set(underlineDiv, { display: 'block' });
+
     const { width } = underlineDiv.getBoundingClientRect();
-    // console.log(`width == ${width} ${underlineDiv.getBoundingClientRect()}`);
-    // console.log(`width =${width}  total.value=${total.value}`);
-    // console.log(
-    //   `duration * (width / total.value) == ${duration * (width / total.value)}`
-    // );
+
     currentAnimation.value = gsap.to(animatedValue, {
       w: width,
-      duration: duration * (width / total.value),
+      duration: duration * (width / totalWidth.value),
       ease: 'none',
       onUpdate: () => {
         gsap.set(underlineDiv, {
@@ -101,6 +92,7 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
       },
     });
   };
+
   startAnimateUnderline(index);
 });
 </script>
