@@ -60,7 +60,7 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
     gsap.set(underlineDiv, { display: 'block' });
     const { width } = underlineDiv.getBoundingClientRect();
     // console.log(`width == ${width} ${underlineDiv.getBoundingClientRect()}`);
-    console.log(`width =${width}  total.value=${total.value}`);
+    // console.log(`width =${width}  total.value=${total.value}`);
     currentAnimation.value = gsap.to(animatedValue, {
       w: width,
       duration: duration * (width / total.value),
