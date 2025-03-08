@@ -17,9 +17,7 @@ const currentAnimation = ref();
 
 onMounted(() => {
   refToUnderlineDivs.value.forEach((uDiv) => {
-    uDiv.style.display = 'block';
     const { width } = uDiv.getBoundingClientRect();
-    uDiv.style.display = 'none';
     totalWidth.value = totalWidth.value + width;
   });
 });
@@ -35,7 +33,7 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
       currentAnimation.value = undefined;
     }
     refToUnderlineDivs.value.forEach((div) => {
-      gsap.set(div, { display: 'none' });
+      gsap.set(div, { backgroundColor: 'unset' });
       gsap.set(div, {
         clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z')`,
       });
@@ -48,7 +46,7 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
     currentAnimation.value = undefined;
   }
   refToUnderlineDivs.value.forEach((div) => {
-    gsap.set(div, { display: 'none' });
+    gsap.set(div, { backgroundColor: 'unset' });
     gsap.set(div, {
       clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z')`,
     });
@@ -62,9 +60,9 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
 
     const underlineDiv = refToUnderlineDivs.value[i];
 
-    gsap.set(underlineDiv, { display: 'block' });
-
     const { width } = underlineDiv.getBoundingClientRect();
+
+    gsap.set(underlineDiv, { backgroundColor: '#0178d5' });
 
     currentAnimation.value = gsap.to(animatedValue, {
       w: width,
@@ -80,7 +78,7 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
           setTimeout(() => {
             currentAnimation.value = undefined;
             refToUnderlineDivs.value.forEach((div) => {
-              gsap.set(div, { display: 'none' });
+              gsap.set(div, { backgroundColor: 'unset' });
               gsap.set(div, {
                 clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z')`,
               });
@@ -108,7 +106,6 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
       <div
         :ref="(el) => refToUnderlineDivs.push(el)"
         :class="$style.underLine"
-        :dur="1"
       ></div>
     </div>
   </span>
@@ -122,10 +119,8 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
 .underLine {
   height: 4px;
   box-sizing: border-box;
-  background-color: #0178d5;
   clip-path: path(
     'M0 1.5a1.5 1.5 90 011.5-1.5h0a1 1 90 010 3h-0A1.5 1.5 90 010 1.5z'
   );
-  display: none;
 }
 </style>
