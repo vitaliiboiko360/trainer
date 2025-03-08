@@ -27,8 +27,27 @@ onMounted(() => {
 });
 
 watch([activeAnimationSentenceNumber, detectClickEvent], () => {
+  if (
+    activeAnimationSentenceNumber.value < 0 ||
+    activeAnimationSentenceNumber.value != lineNumber ||
+    refToUnderlineDivs.value.length == 0
+  ) {
+    if (currentAnimation.value) {
+      currentAnimation.value.kill();
+      currentAnimation.value = undefined;
+    }
+    refToUnderlineDivs.value.forEach((div) => {
+      gsap.set(div, { display: 'none' });
+      gsap.set(div, {
+        clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z')`,
+      });
+    });
+    return;
+  }
+
   if (currentAnimation.value) {
     currentAnimation.value.kill();
+    currentAnimation.value = undefined;
   }
   refToUnderlineDivs.value.forEach((div) => {
     gsap.set(div, { display: 'none' });
@@ -36,14 +55,6 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
       clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z')`,
     });
   });
-
-  if (
-    activeAnimationSentenceNumber.value < 0 ||
-    activeAnimationSentenceNumber.value != lineNumber ||
-    refToUnderlineDivs.value.length == 0
-  ) {
-    return;
-  }
 
   let index = 0;
   const startAnimateUnderline = (i) => {
@@ -61,6 +72,9 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
     const { width } = underlineDiv.getBoundingClientRect();
     // console.log(`width == ${width} ${underlineDiv.getBoundingClientRect()}`);
     // console.log(`width =${width}  total.value=${total.value}`);
+    // console.log(
+    //   `duration * (width / total.value) == ${duration * (width / total.value)}`
+    // );
     currentAnimation.value = gsap.to(animatedValue, {
       w: width,
       duration: duration * (width / total.value),
@@ -72,7 +86,8 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
       },
       onComplete: () => {
         if (index + 1 >= refToUnderlineDivs.value.length) {
-          setInterval(() => {
+          setTimeout(() => {
+            currentAnimation.value = undefined;
             refToUnderlineDivs.value.forEach((div) => {
               gsap.set(div, { display: 'none' });
               gsap.set(div, {
