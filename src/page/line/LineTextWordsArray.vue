@@ -60,12 +60,25 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
 
     const underlineDiv = refToUnderlineDivs.value[i];
 
-    const { width } = underlineDiv.getBoundingClientRect();
+    const { width, y } = underlineDiv.getBoundingClientRect();
 
     gsap.set(underlineDiv, { backgroundColor: '#0178d5' });
 
+    let isLastOnLine = false;
+    if (i + 1 < refToUnderlineDivs.value.length) {
+      const { y: nextY } =
+        refToUnderlineDivs.value[i + 1].getBoundingClientRect();
+      const round = (v) => Math.round(parseFloat(v));
+      if (round(y) != round(nextY)) {
+        isLastOnLine = true;
+      }
+    }
+
     currentAnimation.value = gsap.to(animatedValue, {
-      w: width,
+      w:
+        i == refToUnderlineDivs.value.length - 1 || isLastOnLine
+          ? width - 10
+          : width,
       duration: duration * (width / totalWidth.value),
       ease: 'none',
       onUpdate: () => {
@@ -119,6 +132,7 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
 .underLine {
   height: 4px;
   box-sizing: border-box;
+  margin: 0px -1px;
   clip-path: path(
     'M0 1.5a1.5 1.5 90 011.5-1.5h0a1 1 90 010 3h-0A1.5 1.5 90 010 1.5z'
   );
