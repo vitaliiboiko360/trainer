@@ -23,7 +23,7 @@ onMounted(() => {
     uDiv.style.display = 'none';
     total.value = total.value + width;
   });
-  console.log(`total = ${total.value}`);
+  // console.log(`total = ${total.value}`);
 });
 
 watch([activeAnimationSentenceNumber, detectClickEvent], () => {
@@ -72,12 +72,14 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
       },
       onComplete: () => {
         if (index + 1 >= refToUnderlineDivs.value.length) {
-          refToUnderlineDivs.value.forEach((div) => {
-            gsap.set(div, { display: 'none' });
-            gsap.set(div, {
-              clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z')`,
+          setInterval(() => {
+            refToUnderlineDivs.value.forEach((div) => {
+              gsap.set(div, { display: 'none' });
+              gsap.set(div, {
+                clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z')`,
+              });
             });
-          });
+          }, 150);
         } else {
           startAnimateUnderline(++index);
         }
