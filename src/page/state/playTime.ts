@@ -13,3 +13,5 @@ export const playTime = reactive({
 });
 
 export const activeAnimationSentenceNumber = ref(-1);
+
+export const detectClickEvent = ref(false);
