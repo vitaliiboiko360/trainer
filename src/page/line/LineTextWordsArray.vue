@@ -11,6 +11,20 @@ const { textLine, duration, lineNumber } = defineProps([
   'lineNumber',
 ]);
 
+const colorHexes = [
+  'b1ecff',
+  'c1dbd4',
+  'd1e4df',
+  'edeae1',
+  'e4e1ed',
+  'f2f1f7',
+  'f1f7f2',
+  'e1eee3',
+  'eceee1',
+  'e1ecee',
+  'f6f7f1',
+];
+
 const totalWidth = ref(0);
 
 const refToUnderlineDivs = ref([]);
@@ -77,12 +91,15 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
       }
     }
 
+    //
     const updatedObject = {
       key: 0,
     };
     const keyframes = [1, 1, 2, 2, 3, 3, 5, 2, 3];
     const word = refToWordSpans.value[i];
-    gsap.set(word, { background: '#b1ecff' });
+    gsap.set(word, {
+      background: `#${colorHexes[~~(Math.random() * colorHexes.length)]}`,
+    });
     gsap.to(updatedObject, {
       keyframes: {
         key: keyframes,
