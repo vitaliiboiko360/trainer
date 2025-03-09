@@ -12,7 +12,10 @@ const { textLine, duration, lineNumber } = defineProps([
 ]);
 
 const totalWidth = ref(0);
+
 const refToUnderlineDivs = ref([]);
+const refToWordSpans = ref([]);
+
 const currentAnimation = ref();
 
 onMounted(() => {
@@ -74,6 +77,26 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
       }
     }
 
+    const updatedObject = {
+      key: 0,
+    };
+    const keyframes = [1, 1, 2, 2, 3, 3, 5, 2, 3];
+    const word = refToWordSpans.value[i];
+    gsap.set(word, { background: '#b1ecff' });
+    gsap.to(updatedObject, {
+      keyframes: {
+        key: keyframes,
+        ease: 'none',
+      },
+      onUpdate: () => {
+        gsap.set(word, {
+          boxShadow: `0px 0px 0 ${updatedObject.key}px #c1d5db`,
+        });
+      },
+      duration: duration * (width / totalWidth.value),
+    });
+    //
+
     currentAnimation.value = gsap.to(animatedValue, {
       w:
         i == refToUnderlineDivs.value.length - 1 || isLastOnLine
@@ -96,7 +119,10 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
                 clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z')`,
               });
             });
-          }, 150);
+            refToWordSpans.value.forEach((span) => {
+              gsap.set(span, { boxShadow: 'unset', background: 'unset' });
+            });
+          }, 250);
         } else {
           startAnimateUnderline(++index);
         }
@@ -115,7 +141,9 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
       :key="index"
       :class="$style.lineWrap"
     >
-      <span>{{ `${word} ` }} </span>
+      <span :ref="(el) => refToWordSpans.push(el)" :class="$style.word"
+        >{{ `${word} ` }}
+      </span>
       <div
         :ref="(el) => refToUnderlineDivs.push(el)"
         :class="$style.underLine"
@@ -136,5 +164,8 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
   clip-path: path(
     'M0 1.5a1.5 1.5 90 011.5-1.5h0a1 1 90 010 3h-0A1.5 1.5 90 010 1.5z'
   );
+}
+.word {
+  border-radius: 14px;
 }
 </style>
