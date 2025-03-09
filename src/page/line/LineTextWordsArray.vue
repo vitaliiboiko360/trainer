@@ -31,6 +31,7 @@ const refToUnderlineDivs = ref([]);
 const refToWordSpans = ref([]);
 
 const currentAnimation = ref();
+const currentAnimation2 = ref();
 
 onMounted(() => {
   refToUnderlineDivs.value.forEach((uDiv) => {
@@ -40,6 +41,12 @@ onMounted(() => {
 });
 
 watch([activeAnimationSentenceNumber, detectClickEvent], () => {
+  const clearAnimation2 = () => {
+    refToWordSpans.value.forEach((span) => {
+      gsap.set(span, { boxShadow: 'unset', background: 'unset' });
+    });
+  };
+
   if (
     activeAnimationSentenceNumber.value < 0 ||
     activeAnimationSentenceNumber.value != lineNumber ||
@@ -55,6 +62,8 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
         clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z')`,
       });
     });
+
+    clearAnimation2();
     return;
   }
 
@@ -68,6 +77,8 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
       clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z')`,
     });
   });
+
+  clearAnimation2();
 
   let index = 0;
   const startAnimateUnderline = (i) => {
@@ -92,25 +103,38 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
     }
 
     //
+    if (currentAnimation2.value) {
+      currentAnimation2.value.kill();
+      currentAnimation2.value = undefined;
+    }
+    const randomColor = `#${colorHexes[~~(Math.random() * colorHexes.length)]}`;
     const updatedObject = {
       key: 0,
     };
-    const keyframes = [1, 1, 2, 2, 3, 3, 5, 2, 3];
+    const keyframes = [1, 3, 5, 2];
     const word = refToWordSpans.value[i];
     gsap.set(word, {
-      background: `#${colorHexes[~~(Math.random() * colorHexes.length)]}`,
+      background: randomColor,
     });
-    gsap.to(updatedObject, {
+    currentAnimation2.value = gsap.to(updatedObject, {
       keyframes: {
         key: keyframes,
-        ease: 'none',
       },
       onUpdate: () => {
         gsap.set(word, {
-          boxShadow: `0px 0px 0 ${updatedObject.key}px #c1d5db`,
+          boxShadow: `0px 0px 0 ${
+            updatedObject.key
+          }px ${randomColor}, 0px 0px 0 ${updatedObject.key + 3}px #c1d5db`,
         });
       },
-      duration: duration * (width / totalWidth.value),
+      duration: Math.max(0.8, duration * (width / totalWidth.value)),
+      onComplete: () => {
+        if (i + 1 == refToWordSpans.value.length) {
+          setTimeout(() => {
+            clearAnimation2();
+          }, 150);
+        }
+      },
     });
     //
 
@@ -136,9 +160,6 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
                 clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z')`,
               });
             });
-            refToWordSpans.value.forEach((span) => {
-              gsap.set(span, { boxShadow: 'unset', background: 'unset' });
-            });
           }, 250);
         } else {
           startAnimateUnderline(++index);
@@ -158,9 +179,10 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
       :key="index"
       :class="$style.lineWrap"
     >
-      <span :ref="(el) => refToWordSpans.push(el)" :class="$style.word"
-        >{{ `${word} ` }}
-      </span>
+      <span :ref="(el) => refToWordSpans.push(el)" :class="$style.word">{{
+        `${word}`
+      }}</span
+      ><span>{{ ` ` }}</span>
       <div
         :ref="(el) => refToUnderlineDivs.push(el)"
         :class="$style.underLine"
@@ -183,6 +205,6 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
   );
 }
 .word {
-  border-radius: 14px;
+  border-radius: 10px;
 }
 </style>
