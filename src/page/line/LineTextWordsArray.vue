@@ -122,9 +122,7 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
       },
       onUpdate: () => {
         gsap.set(word, {
-          boxShadow: `0px 0px 0 ${
-            updatedObject.key
-          }px ${randomColor}, 0px 0px 0 ${updatedObject.key + 3}px #c1d5db`,
+          boxShadow: `0px 0px 0 ${updatedObject.key}px ${randomColor}`, //, 0px 0px 0 ${updatedObject.key + 3}px #c1d5db
         });
       },
       duration: Math.max(0.8, duration * (width / totalWidth.value)),
