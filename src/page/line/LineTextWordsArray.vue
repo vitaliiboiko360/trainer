@@ -201,6 +201,7 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
   clip-path: path(
     'M0 1.5a1.5 1.5 90 011.5-1.5h0a1 1 90 010 3h-0A1.5 1.5 90 010 1.5z'
   );
+  /* filter: drop-shadow(16px 16px 20px rgb(88, 140, 177)) invert(75%); */
 }
 .word {
   border-radius: 10px;
