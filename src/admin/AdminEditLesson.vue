@@ -14,7 +14,7 @@ const { resource, id } = defineProps(['resource', 'id']);
 </script>
 
 <template>
-  <v-container class="bg-surface-variant">
+  <v-container class="bg-surface-variant" :class="$style.container">
     <v-row justify="center" no-gutters>
       <v-col align-self="center" cols="auto">
         <v-sheet :elevation="9" border rounded>
@@ -52,3 +52,17 @@ const { resource, id } = defineProps(['resource', 'id']);
     </v-row>
   </v-container>
 </template>
+
+<style module>
+.container {
+  &::before {
+    content: '';
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: -10px;
+    bottom: -10px;
+    backdrop-filter: blur(1px);
+  }
+}
+</style>

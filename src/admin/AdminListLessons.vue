@@ -31,29 +31,31 @@ listOfLessons.texts.forEach((textElement, index, array) => {
 
 //min-width="450"
 <template>
-  <v-card class="mx-auto" max-width="760">
-    <v-toolbar color="blue-lighten-3">
-      <v-toolbar-title
-        :class="$style.centerToolbar"
-        class="mx-lg-auto"
-        width="560px"
-        >List of Lessons</v-toolbar-title
-      >
-      <v-spacer></v-spacer>
-    </v-toolbar>
+  <v-container :class="[`bg-surface-variant`, $style.container]">
+    <v-card class="mx-auto" max-width="760">
+      <v-toolbar>
+        <v-toolbar-title
+          :class="$style.centerToolbar"
+          class="mx-lg-auto"
+          width="560px"
+          >List of Lessons</v-toolbar-title
+        >
+        <v-spacer></v-spacer>
+      </v-toolbar>
 
-    <v-list
-      :items="items"
-      lines="three"
-      class="mx-auto"
-      max-width="560"
-      item-props
-    >
-      <template v-slot:title="{ title }">
-        <div>{{ title }}</div>
-      </template>
-    </v-list>
-  </v-card>
+      <v-list
+        :items="items"
+        lines="three"
+        class="mx-auto"
+        max-width="560"
+        item-props
+      >
+        <template v-slot:title="{ title }">
+          <div>{{ title }}</div>
+        </template>
+      </v-list>
+    </v-card>
+  </v-container>
 </template>
 
 <style module>
@@ -61,5 +63,16 @@ listOfLessons.texts.forEach((textElement, index, array) => {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.container {
+  &::before {
+    content: '';
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: -10px;
+    bottom: -10px;
+    backdrop-filter: blur(2px);
+  }
 }
 </style>
