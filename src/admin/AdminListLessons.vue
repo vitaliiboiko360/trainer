@@ -6,6 +6,7 @@ import {
   VSpacer,
   VList,
 } from 'vuetify/components';
+import { mdiPlaylistEdit } from '@mdi/js';
 import { defineProps } from 'vue';
 const { listOfLessons } = defineProps(['listOfLessons']);
 
@@ -34,10 +35,9 @@ listOfLessons.texts.forEach((textElement, index, array) => {
   <v-container :class="[`bg-surface-variant`, $style.container]">
     <v-card class="mx-auto" max-width="760">
       <v-toolbar>
-        <v-toolbar-title
-          :class="$style.centerToolbar"
-          class="mx-lg-auto"
-          width="560px"
+        <v-spacer></v-spacer>
+        <v-icon :icon="mdiPlaylistEdit"></v-icon>
+        <v-toolbar-title :class="$style.centerToolbar" class="mx-lg-auto"
           >List of Lessons</v-toolbar-title
         >
         <v-spacer></v-spacer>
