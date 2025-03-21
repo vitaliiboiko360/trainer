@@ -205,5 +205,6 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
 }
 .word {
   border-radius: 10px;
+  text-shadow: #ffffff 1px 0 10px;
 }
 </style>
