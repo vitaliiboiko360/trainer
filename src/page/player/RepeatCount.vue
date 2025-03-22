@@ -66,7 +66,7 @@ const onClick2 = () => {
 }
 .menuItmeValue {
   position: absolute;
-  top: 4px;
+  top: 5px;
   left: 18px;
   font-size: 1rem;
   text-transform: none;
