@@ -16,6 +16,12 @@ let counter = 0;
 const getKey = () => {
   return `lesson-item-key-${counter++}`;
 };
+
+const getRotateStyle = () => {
+  const degNumber =
+    (~~(Math.random() * 2) + 1) * (Math.floor(Math.random() * 2) || -1);
+  return `transform: rotate(${degNumber}deg)`;
+};
 </script>
 
 <template>
@@ -24,7 +30,11 @@ const getKey = () => {
   <div v-else>
     <div><h3 :class="$style.lessonsTitle">Lessons</h3></div>
     <div :class="$style.lessonItemsContainer">
-      <div v-for="(item, index) in data.texts" :key="getKey">
+      <div
+        v-for="(item, index) in data.texts"
+        :key="getKey"
+        :style="`${getRotateStyle()}`"
+      >
         <router-link
           :to="{
             path: `/lesson-${toLessonId(index)}`,
