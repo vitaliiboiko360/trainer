@@ -1,7 +1,9 @@
-<script setup></script>
+<script setup>
+import Slideshow from './banner/Slideshow.vue';
+</script>
 
 <template>
-  <div :class="$style.banner"></div>
+  <div :class="$style.banner"><Slideshow /></div>
 </template>
 
 <style module>
