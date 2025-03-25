@@ -17,11 +17,16 @@ const getKey = () => {
   return `lesson-item-key-${counter++}`;
 };
 
-const getRotateStyle = () => {
-  const degNumber =
-    (~~(Math.random() * 2) + 1) * (Math.floor(Math.random() * 2) || -1);
+let previousAngle = 0;
+function getRotateStyle() {
+  let degNumber;
+  do {
+    degNumber =
+      (~~(Math.random() * 2) + 1) * (Math.floor(Math.random() * 2) || -1);
+  } while (degNumber == previousAngle);
+  previousAngle = degNumber;
   return `transform: rotate(${degNumber}deg)`;
-};
+}
 </script>
 
 <template>
