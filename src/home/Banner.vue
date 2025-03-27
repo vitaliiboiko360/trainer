@@ -12,7 +12,8 @@ import Slideshow from './banner/Slideshow.vue';
   --b-width: 40rem;
   height: var(--b-height);
   width: var(--b-width);
-  & > div {
+  & > div,
+  svg {
     height: var(--b-height);
     width: var(--b-width);
   }
