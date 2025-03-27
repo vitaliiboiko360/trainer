@@ -1,7 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import Slide from './Slide.vue';
-import gsap from 'gsap';
 
 const show1 = ref(false);
 
