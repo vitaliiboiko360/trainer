@@ -7,6 +7,7 @@ const shifts = [60, 90, 120];
 
 const refImg = ref();
 const refText = ref();
+const refSvg = ref();
 
 const createWordElement = (textToInsert) => {
   const pElement = document.createElement('p');
@@ -25,12 +26,14 @@ const animateText = (target, leftShift) => {
 };
 
 onMounted(() => {
+  gsap.set(refImg.value, { opacity: 0 });
   gsap.to(refImg.value, {
     opacity: 1,
     duration: 0.8,
     left: '+=120',
     onComplete: () => {
       refImg.value.style.opacity = 1;
+      refImg.value.style.left = refImg.value.style.left;
       words.forEach((word, index) => {
         setTimeout(() => {
           animateText(createWordElement(word), `+=${shifts[index]}`);
@@ -43,11 +46,21 @@ onMounted(() => {
 
 <template>
   <div :class="$style.container">
+    <svg :ref="(el) => (refSvg = el)" :class="$style.svg">
+      <rect
+        x="0"
+        y="0"
+        width="140"
+        height="140"
+        rx="25"
+        ry="25"
+        fill="#f0f7ff"
+      />
+    </svg>
     <div :ref="(el) => (refText = el)" :class="$style.text"></div>
     <img
       :ref="(el) => (refImg = el)"
       :class="$style.image"
-      style="opacity: 0"
       src="/data/hm/home-1.png"
     />
   </div>
@@ -56,6 +69,11 @@ onMounted(() => {
 <style module>
 .container {
   position: relative;
+}
+.svg {
+  width: 10rem;
+  height: 10rem;
+  position: absolute;
 }
 .text {
   position: absolute;
