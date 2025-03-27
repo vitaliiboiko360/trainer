@@ -5,9 +5,23 @@ import gsap from 'gsap';
 const words = ['Learn', 'Spanish', 'Online'];
 const shifts = [60, 90, 120];
 
+const keyfms1 = [
+  `matrix(0,0,0,0,370,90)`,
+  `matrix(0.5,0,0,0.5,370,90)`,
+  `matrix(1,0,0,1,370,90)`,
+];
+
+const keyfms2 = [
+  `matrix(-0,0,0,0,380,40)`,
+  `matrix(-0.5,0,0,0.5,380,40)`,
+  `matrix(-1,0,0,1,380,40)`,
+];
+
 const refImg = ref();
 const refText = ref();
 const refSvg = ref();
+const refPolygon = ref();
+const refRect = ref();
 
 const createWordElement = (textToInsert) => {
   const pElement = document.createElement('p');
@@ -27,6 +41,21 @@ const animateText = (target, leftShift) => {
       marginLeft: leftShift,
     })
   );
+};
+
+const starBubbleAnimation = () => {
+  gsap.to(refPolygon.value, {
+    duration: 0.6,
+    keyframes: keyfms1.map((key) => {
+      return { transform: key };
+    }),
+  });
+  gsap.to(refRect.value, {
+    duration: 0.8,
+    keyframes: keyfms2.map((key) => {
+      return { transform: key };
+    }),
+  });
 };
 
 onMounted(() => {
@@ -50,6 +79,8 @@ onMounted(() => {
               }, i + 1 * 450);
             }
           }, 2800);
+
+          setTimeout(starBubbleAnimation, 3000);
         }
       });
     },
@@ -60,8 +91,15 @@ onMounted(() => {
 <template>
   <div :class="$style.container">
     <svg :ref="(el) => (refSvg = el)" :class="$style.svg">
-      <polygon points="50,0 0,50 0,0" fill="#f0f7ff"></polygon>
+      <polygon
+        :ref="(el) => (refPolygon = el)"
+        transform="matrix(0,0,0,0,0,0)"
+        points="50,0 0,50 0,0"
+        fill="#f0f7ff"
+      ></polygon>
       <rect
+        :ref="(el) => (refRect = el)"
+        transform="matrix(-0,0,0,0,0,0)"
         x="0"
         y="0"
         width="280"
