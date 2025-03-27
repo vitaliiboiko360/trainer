@@ -60,15 +60,16 @@ onMounted(() => {
 <template>
   <div :class="$style.container">
     <svg :ref="(el) => (refSvg = el)" :class="$style.svg">
+      <polygon points="50,0 0,50 0,0" fill="#f0f7ff"></polygon>
       <rect
         x="0"
         y="0"
-        width="140"
-        height="140"
+        width="280"
+        height="130"
         rx="25"
         ry="25"
         fill="#f0f7ff"
-      />
+      ></rect>
     </svg>
     <div :ref="(el) => (refText = el)" :class="$style.text"></div>
     <img
