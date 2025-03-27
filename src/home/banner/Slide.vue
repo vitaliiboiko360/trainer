@@ -5,7 +5,15 @@ import gsap from 'gsap';
 const words = ['Learn', 'Spanish', 'Online'];
 
 const refImg = ref();
-const refText = ref([]);
+const refText = ref();
+
+const createWordElement = (textToInsert) => {
+  const pElement = document.createElement('p');
+  pElement.style.opacity = '0';
+  pElement.textContent = textToInsert;
+  refText.value.append(pElement);
+  return pElement;
+};
 
 const animateText = (target, leftShift) => {
   gsap.to(target, {
@@ -19,13 +27,12 @@ onMounted(() => {
   gsap.to(refImg.value, {
     opacity: 1,
     duration: 0.8,
-    // ease: ,
     left: '+=120',
     onComplete: () => {
       refImg.value.style.opacity = 1;
-      Array.from({ length: 3 }).map((_, index) => {
+      words.forEach((word, index) => {
         setTimeout(() => {
-          animateText(refText.value[index], `+=${25 + 45 * (index + 1)}`);
+          animateText(createWordElement(word), `+=${25 + 45 * (index + 1)}`);
         }, 100 * (index + 1));
       });
     },
@@ -35,15 +42,7 @@ onMounted(() => {
 
 <template>
   <div :class="$style.container">
-    <div :class="$style.text">
-      <p
-        v-for="word of words"
-        :ref="(el) => refText.push(el)"
-        style="opacity: 0"
-      >
-        {{ word }}
-      </p>
-    </div>
+    <div :ref="(el) => (refText = el)" :class="$style.text"></div>
     <img
       :ref="(el) => (refImg = el)"
       :class="$style.image"
