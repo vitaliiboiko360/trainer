@@ -8,8 +8,14 @@ import Slideshow from './banner/Slideshow.vue';
 
 <style module>
 .banner {
-  height: 15rem;
-  width: 40rem;
+  --b-height: 15rem;
+  --b-width: 40rem;
+  height: var(--b-height);
+  width: var(--b-width);
+  & > div {
+    height: var(--b-height);
+    width: var(--b-width);
+  }
   background-color: #e5e5e530;
   margin-bottom: 2rem;
   position: relative;
