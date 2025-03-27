@@ -17,12 +17,16 @@ const createWordElement = (textToInsert) => {
   return pElement;
 };
 
+let tweens = [];
+
 const animateText = (target, leftShift) => {
-  gsap.to(target, {
-    opacity: 1,
-    duration: 0.7,
-    marginLeft: leftShift,
-  });
+  tweens.push(
+    gsap.to(target, {
+      opacity: 1,
+      duration: 0.7,
+      marginLeft: leftShift,
+    })
+  );
 };
 
 onMounted(() => {
@@ -38,6 +42,15 @@ onMounted(() => {
         setTimeout(() => {
           animateText(createWordElement(word), `+=${shifts[index]}`);
         }, 100 * (index + 1));
+        if (index == words.length - 1) {
+          setTimeout(() => {
+            for (let i = tweens.length - 1; i >= 0; i--) {
+              setTimeout(() => {
+                tweens[i].reverse();
+              }, i + 1 * 450);
+            }
+          }, 2800);
+        }
       });
     },
   });
