@@ -19,5 +19,6 @@ import Slideshow from './banner/Slideshow.vue';
   background-color: #e5e5e530;
   margin-bottom: 2rem;
   position: relative;
+  border-radius: 0.5rem;
 }
 </style>
