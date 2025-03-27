@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue';
 import gsap from 'gsap';
 
 const words = ['Learn', 'Spanish', 'Online'];
+const shifts = [60, 90, 120];
 
 const refImg = ref();
 const refText = ref();
@@ -32,7 +33,7 @@ onMounted(() => {
       refImg.value.style.opacity = 1;
       words.forEach((word, index) => {
         setTimeout(() => {
-          animateText(createWordElement(word), `+=${25 + 45 * (index + 1)}`);
+          animateText(createWordElement(word), `+=${shifts[index]}`);
         }, 100 * (index + 1));
       });
     },
