@@ -8,15 +8,15 @@ const words = ['Learn', 'Spanish', 'Online'];
 const shifts = [60, 90, 120];
 
 const keyfms1 = [
-  `matrix(0,0,0,0,370,90)`,
-  `matrix(0.5,0,0,0.5,370,90)`,
-  `matrix(1,0,0,1,370,90)`,
+  `matrix(0,0,0,0,370,80)`,
+  `matrix(0.5,0,0,0.5,370,80)`,
+  `matrix(1,0,0,1,370,80)`,
 ];
 
 const keyfms2 = [
-  `matrix(-0,0,0,0,380,40)`,
-  `matrix(-0.5,0,0,0.5,380,40)`,
-  `matrix(-1,0,0,1,380,40)`,
+  `matrix(-0,0,0,0,380,60)`,
+  `matrix(-0.5,0,0,0.5,380,60)`,
+  `matrix(-1,0,0,1,380,60)`,
 ];
 
 const refImg = ref();
@@ -70,7 +70,9 @@ const starBubbleAnimation = () => {
       return { transform: key };
     }),
     onComplete: () => {
-      startTextBubble.value = true;
+      setTimeout(() => {
+        startTextBubble.value = true;
+      }, 600);
     },
   });
 };
@@ -97,7 +99,9 @@ onMounted(() => {
             }
           }, 2300);
 
-          setTimeout(starBubbleAnimation, 2700);
+          setTimeout(() => {
+            starBubbleAnimation();
+          }, 2700);
         }
       });
     },
@@ -119,8 +123,8 @@ onMounted(() => {
         transform="matrix(-0,0,0,0,0,0)"
         x="0"
         y="0"
-        width="280"
-        height="130"
+        width="260"
+        height="90"
         rx="25"
         ry="25"
         fill="#f0f7ff"
@@ -132,7 +136,9 @@ onMounted(() => {
       :class="$style.image"
       src="/data/hm/home-1.png"
     />
-    <div :class="$style.textBubble"><TextBubble v-if="startTextBubble" /></div>
+    <div :class="$style.textBubble">
+      <TextBubble v-if="startTextBubble"></TextBubble>
+    </div>
   </div>
 </template>
 
@@ -162,12 +168,8 @@ onMounted(() => {
 }
 .textBubble {
   position: absolute;
-  left: 136px;
-  top: 53px;
-  &::before {
-    content: 'A';
-    font-size: 1rem;
-    color: black;
-  }
+  left: 144px;
+  top: 68px;
+  width: 13rem;
 }
 </style>
