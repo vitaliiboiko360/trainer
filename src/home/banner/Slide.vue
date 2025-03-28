@@ -2,6 +2,8 @@
 import { onMounted, ref } from 'vue';
 import gsap from 'gsap';
 
+import TextBubble from './TextBubble.vue';
+
 const words = ['Learn', 'Spanish', 'Online'];
 const shifts = [60, 90, 120];
 
@@ -67,6 +69,9 @@ const starBubbleAnimation = () => {
     keyframes: keyfms2.map((key) => {
       return { transform: key };
     }),
+    onComplete: () => {
+      startTextBubble.value = true;
+    },
   });
 };
 
@@ -127,6 +132,7 @@ onMounted(() => {
       :class="$style.image"
       src="/data/hm/home-1.png"
     />
+    <div :class="$style.textBubble"><TextBubble v-if="startTextBubble" /></div>
   </div>
 </template>
 
@@ -153,5 +159,15 @@ onMounted(() => {
   /* width: 100%; */
   object-fit: contain;
   left: 200px;
+}
+.textBubble {
+  position: absolute;
+  left: 136px;
+  top: 53px;
+  &::before {
+    content: 'A';
+    font-size: 1rem;
+    color: black;
+  }
 }
 </style>
