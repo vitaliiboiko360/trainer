@@ -72,7 +72,7 @@ const starBubbleAnimation = () => {
     onComplete: () => {
       setTimeout(() => {
         startTextBubble.value = true;
-      }, 600);
+      }, 200);
     },
   });
 };
@@ -171,5 +171,6 @@ onMounted(() => {
   left: 144px;
   top: 68px;
   width: 13rem;
+  color: #3d3d3d;
 }
 </style>
