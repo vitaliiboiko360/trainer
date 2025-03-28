@@ -23,10 +23,22 @@ const refSvg = ref();
 const refPolygon = ref();
 const refRect = ref();
 
+const startTextBubble = ref(false);
+
+let colorOrder = 0;
+const colors = ['#E0F2FD', '#D7F1F1', '#c4c0ff'];
 const createWordElement = (textToInsert) => {
   const pElement = document.createElement('p');
+  const spanElement = document.createElement('span');
   pElement.style.opacity = '0';
-  pElement.textContent = textToInsert;
+  spanElement.style.background = `linear-gradient(${
+    colors[colorOrder++ % colors.length]
+  } 85%, transparent 0)`;
+  spanElement.style.borderRadius = '2px';
+  spanElement.style.paddingLeft = '5px';
+  spanElement.style.paddingRight = '5px';
+  spanElement.textContent = textToInsert;
+  pElement.appendChild(spanElement);
   refText.value.append(pElement);
   return pElement;
 };
@@ -132,6 +144,8 @@ onMounted(() => {
   left: 36px;
   top: 53px;
   font-family: 'Nunito';
+  /* text-shadow: 2px 2px 2px #c4c0ff; */
+  color: #fff;
 }
 .image {
   position: absolute;
