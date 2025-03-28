@@ -51,7 +51,7 @@ const starBubbleAnimation = () => {
     }),
   });
   gsap.to(refRect.value, {
-    duration: 0.8,
+    duration: 0.6,
     keyframes: keyfms2.map((key) => {
       return { transform: key };
     }),
@@ -78,9 +78,9 @@ onMounted(() => {
                 tweens[i].reverse();
               }, i + 1 * 450);
             }
-          }, 2800);
+          }, 2300);
 
-          setTimeout(starBubbleAnimation, 3000);
+          setTimeout(starBubbleAnimation, 2700);
         }
       });
     },
