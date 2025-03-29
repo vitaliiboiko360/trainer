@@ -171,6 +171,6 @@ onMounted(() => {
   left: 144px;
   top: 68px;
   width: 13rem;
-  color: #3d3d3d;
+  color: #555555;
 }
 </style>
