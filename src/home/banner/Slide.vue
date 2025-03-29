@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import TextBubble from './TextBubble.vue';
 
 const words = ['Learn', 'Spanish', 'Online'];
-const shifts = [60, 90, 120];
+const shifts = [70, 90, 120];
 
 const keyfms1 = [
   `matrix(0,0,0,0,370,80)`,
