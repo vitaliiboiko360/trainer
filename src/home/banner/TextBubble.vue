@@ -1,12 +1,11 @@
 <script setup>
-import { ref, onMounted, getCurrentInstance, watch, toRef } from 'vue';
+import { ref, onMounted, getCurrentInstance, watch } from 'vue';
 
 import gsap from 'gsap';
 import { TextPlugin } from 'gsap/TextPlugin';
 gsap.registerPlugin(TextPlugin);
 
 const refPText = ref();
-const refPTextShadow = ref();
 
 const colorValues = [
   '#E6F4EA',
@@ -24,13 +23,22 @@ const textMessages = [
   { text: 'Es domingo por la mañana', colorIndices: [0, 1, 0, 0, 1] },
 ];
 
-const createWordElement = (textToInsert, targetToInsertTo) => {
-  const spanElement = document.createElement('span');
-  // spanElement.style.opacity = '0';
-  spanElement.style.color = 'rgba(0, 0, 0, 0)';
-  spanElement.textContent = `${textToInsert} `;
-  targetToInsertTo.append(spanElement);
-  return spanElement;
+const createWordElement = (
+  textToInsert,
+  targetToInsertTo,
+  arrayOfCharacterSpans
+) => {
+  const wordSpan = document.createElement('span');
+  for (let i = 0; i <= textToInsert.length; i++) {
+    const character = textToInsert.charAt(i) || ' ';
+    const characterSpan = document.createElement('span');
+    characterSpan.style.opacity = '0';
+    characterSpan.textContent = character;
+    arrayOfCharacterSpans.push(characterSpan);
+    wordSpan.appendChild(characterSpan);
+  }
+  targetToInsertTo.appendChild(wordSpan);
+  return wordSpan;
 };
 
 onMounted(() => {
@@ -43,24 +51,42 @@ watch(textMsgOrder, () => {
   // unused = instance.vnode.el.parentNode;
 
   const { text, colorIndices } = textMessages[textMsgOrder.value];
-
   const words = text.split(' ');
 
-  gsap.to(refPText.value, {
-    // opacity: 1,
-    duration: text.length * 0.1,
-    ease: 'none',
-    text: {
-      value: text,
-      delimiter: '',
-    },
-  });
   const animateWord = (word, index) => {
     const color = colorValues[colorIndices[index]];
-    const spanElement = createWordElement(word, refPTextShadow.value);
-    spanElement.style.backgroundColor = color;
-    const updatedObject = { key: 0 };
+
     gsap.set(refPText.value, { opacity: 1 });
+
+    let arrayOfCharacterSpans = [];
+
+    const spanElement = createWordElement(
+      word,
+      refPText.value,
+      arrayOfCharacterSpans
+    );
+
+    const animateChar = (index) => {
+      const characterSpan = arrayOfCharacterSpans[index];
+      gsap.to(characterSpan, {
+        opacity: 1,
+        duration: 0.1,
+        ease: 'none',
+        onComplete: () => {
+          const newIndex = index + 1;
+          if (newIndex < arrayOfCharacterSpans.length) {
+            animateChar(newIndex);
+          }
+        },
+      });
+    };
+
+    animateChar(0);
+
+    spanElement.style.backgroundColor = color;
+
+    const updatedObject = { key: 0 };
+
     gsap.to(updatedObject, {
       duration: 0.6,
       key: 3,
@@ -81,9 +107,6 @@ watch(textMsgOrder, () => {
             while (refPText.value.firstChild) {
               refPText.value.removeChild(refPText.value.lastChild);
             }
-            while (refPTextShadow.value.firstChild) {
-              refPTextShadow.value.removeChild(refPTextShadow.value.lastChild);
-            }
           }, 700);
           setTimeout(() => {
             textMsgOrder.value = (textMsgOrder.value + 1) % textMessages.length;
@@ -98,18 +121,11 @@ watch(textMsgOrder, () => {
 </script>
 
 <template>
-  <p :ref="(el) => (refPTextShadow = el)" :class="$style.pTextShadow"></p>
   <p :ref="(el) => (refPText = el)" :class="$style.pText"></p>
 </template>
 
 <style module>
 .pText {
   white-space: pre-wrap;
-}
-.pTextShadow {
-  display: inline-block;
-  position: absolute;
-  left: 0px;
-  top: 0px;
 }
 </style>
