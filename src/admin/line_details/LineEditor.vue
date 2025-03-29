@@ -38,7 +38,10 @@ const to1Based = (index) => index + 1;
         ></v-btn>
       </div>
       <div>
-        <Translations :translation="trOrig.translation" />
+        <Translations
+          v-if="trOrig"
+          :translation="trOrig ? trOrig.translation : undefined"
+        />
       </div>
     </template>
   </v-expansion-panel>

@@ -14,7 +14,7 @@ const { data, translations: tr } = defineProps(['data', 'translations']);
         :end="line.end"
         :text="line.text"
         :index
-        :translationAndOriginalLIne="tr.translations.at(index)"
+        :translationAndOriginalLIne="tr?.translations?.at(index)"
       />
     </v-expansion-panels>
   </div>
