@@ -1,11 +1,14 @@
 <script setup>
 import * as appCss from '../../app.module.scss';
-import { defineProps } from 'vue';
+import { defineProps, computed } from 'vue';
 import Translations from './Translations.vue';
 import AdminEditField from '../AdminEditField.vue';
 import { mdiPlayCircleOutline } from '@mdi/js';
+import ReadyIcon from './ReadyIcon.vue';
 const {
   text: textLine,
+  start,
+  end,
   index,
   translationAndOriginalLIne: trOrig,
 } = defineProps([
@@ -17,11 +20,19 @@ const {
 ]);
 
 const to1Based = (index) => index + 1;
+
+const isAudioReady = computed(() => {
+  if (index == 0) {
+    return end != 0;
+  }
+  return start != 0 && end != 0;
+});
 </script>
 
 <template>
   <v-expansion-panel :key="index">
     <template v-slot:title>
+      <ReadyIcon :isAudioReady />
       <div :class="[$style.titleHeader, appCss.nunitoFont]">
         <p>{{ to1Based(index) + '.   ' + textLine }}</p>
       </div>
