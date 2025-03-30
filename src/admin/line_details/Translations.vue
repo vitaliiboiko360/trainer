@@ -30,7 +30,7 @@ const { translation } = defineProps(['translation']);
   display: inline-flex;
   fill: currentcolor;
   font-weight: 500;
-  height: 48px;
+  min-height: 48px;
   justify-content: center;
   letter-spacing: 0.25px;
   line-height: normal;
