@@ -9,9 +9,6 @@ const editStart = defineModel('editStart');
 const editEnd = defineModel('editEnd');
 
 const onClick = () => {
-  console.log(
-    `editStart.value ${editStart.value} editEnd.value  ${editEnd.value}`
-  );
   playTime.updateTime(editStart.value, editEnd.value);
 };
 </script>

@@ -24,7 +24,21 @@ const onFocusedEnd = () => {
   activeEditFieldId.value = fieldId;
 };
 
-const onEdit = () => {};
+const getRoundedValue = (value) => parseFloat(Math.fround(value).toFixed(2));
+
+const increaseStart = () => {
+  editStart.value = getRoundedValue(editStart.value + 0.1);
+};
+const decreaseStart = () => {
+  editStart.value = getRoundedValue(editStart.value - 0.1);
+};
+
+const increaseEnd = () => {
+  editEnd.value = getRoundedValue(editEnd.value + 0.1);
+};
+const decreaseEnd = () => {
+  editEnd.value = getRoundedValue(editEnd.value - 0.1);
+};
 
 watch(activeEditFieldId, () => {
   if (activeEditFieldId.value != fieldId) {
@@ -39,7 +53,7 @@ watch(activeEditFieldId, () => {
     <AudioEditFieldButton
       :icon="mdiMenuLeft"
       v-show="isFocusedStart"
-      @click="onEdit"
+      @click="decreaseStart"
     />
     <div
       v-show="!isFocusedStart"
@@ -63,7 +77,7 @@ watch(activeEditFieldId, () => {
     <AudioEditFieldButton
       :icon="mdiMenuRight"
       v-show="isFocusedStart"
-      @click="onEdit"
+      @click="increaseStart"
     />
     <div
       v-show="isFocusedStart"
@@ -76,7 +90,7 @@ watch(activeEditFieldId, () => {
     <AudioEditFieldButton
       :icon="mdiMenuLeft"
       v-show="isFocusedEnd"
-      @click="onEdit"
+      @click="decreaseEnd"
     />
     <v-text-field
       v-model="editEnd"
@@ -93,7 +107,7 @@ watch(activeEditFieldId, () => {
     <AudioEditFieldButton
       :icon="mdiMenuRight"
       v-show="isFocusedEnd"
-      @click="onEdit"
+      @click="increaseEnd"
     />
   </div>
 </template>
