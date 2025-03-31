@@ -2,9 +2,8 @@
 import * as appCss from '../../app.module.scss';
 import { defineProps, computed } from 'vue';
 import Translations from './Translations.vue';
-import AdminEditField from '../AdminEditField.vue';
-import { mdiPlayCircleOutline } from '@mdi/js';
 import ReadyIcon from './ReadyIcon.vue';
+import AudioControls from './AudioControls.vue';
 const {
   text: textLine,
   start,
@@ -42,12 +41,7 @@ const isAudioReady = computed(() => {
         <p style="display: inline; margin: 0 10px">Start:</p>
         <p style="display: inline; margin: 0 10px">End:</p>
       </div>
-      <div :class="$style.timePlayPanel">
-        <AdminEditField :editStart="start" :editEnd="end" :fieldId="index" />
-        <v-btn size="46"
-          ><v-icon size="42" :icon="mdiPlayCircleOutline"></v-icon
-        ></v-btn>
-      </div>
+      <AudioControls :editStart="start" :editEnd="end" :fieldId="index" />
       <div>
         <Translations
           v-if="trOrig"
@@ -61,9 +55,5 @@ const isAudioReady = computed(() => {
 <style module>
 .titleHeader {
   font-size: 1.5rem;
-}
-.timePlayPanel {
-  width: 200px;
-  display: flex;
 }
 </style>
