@@ -3,7 +3,7 @@ import { defineModel, defineProps } from 'vue';
 const { text: textLine, fieldId } = defineProps(['text', 'fieldId']);
 const start = defineModel('start');
 const end = defineModel('end');
-import AdminEditField from './AdminEditField.vue';
+import AdminEditField from './line_details/AudioEditField.vue';
 </script>
 
 edit fields
