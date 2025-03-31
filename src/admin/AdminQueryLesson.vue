@@ -1,8 +1,8 @@
 <script setup>
 import { useQuery } from '@tanstack/vue-query';
-import { watch } from 'vue';
+
 import { queryJson } from '../query/default';
-import AdminLessonWithTrans_New from './AdminLessonWithTrans_New.vue';
+import AdminLessonWithTranslations from './AdminLessonWithTranslations.vue';
 
 const { id, resource } = defineProps(['id', 'resource']);
 const url = `/data/${resource}.json`;
@@ -20,7 +20,7 @@ const { isFetched: isFetchedTranslations, data: translations } = useQuery({
 </script>
 
 <template>
-  <AdminLessonWithTrans_New
+  <AdminLessonWithTranslations
     v-if="isFetched && isFetchedTranslations"
     :data
     :translations
