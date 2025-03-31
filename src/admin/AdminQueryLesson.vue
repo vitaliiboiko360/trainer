@@ -1,6 +1,6 @@
 <script setup>
 import { useQuery } from '@tanstack/vue-query';
-
+import Audio from '../page/audio/Audio.vue';
 import { queryJson } from '../query/default';
 import AdminLessonWithTranslations from './AdminLessonWithTranslations.vue';
 
@@ -20,6 +20,7 @@ const { isFetched: isFetchedTranslations, data: translations } = useQuery({
 </script>
 
 <template>
+  <Audio v-if="isFetched" :audioSource="`../../../data/${data.audio}`" />
   <AdminLessonWithTranslations
     v-if="isFetched && isFetchedTranslations"
     :data
