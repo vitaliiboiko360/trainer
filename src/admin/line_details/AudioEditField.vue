@@ -1,8 +1,8 @@
 <script setup>
 import { mdiMenuLeft, mdiMenuRight } from '@mdi/js';
 import { defineModel, ref, defineProps, watch } from 'vue';
-import { activeEditFieldId } from './refs';
-import AdminEditFieldButton from './AdminEditFieldButton.vue';
+import { activeEditFieldId } from '../refs';
+import AudioEditFieldButton from './AudioEditFieldButton.vue';
 
 const { fieldId } = defineProps(['fieldId']);
 
@@ -36,7 +36,7 @@ watch(activeEditFieldId, () => {
 
 <template>
   <div class="d-flex" :class="$style.outerEditTextLineContainer">
-    <AdminEditFieldButton
+    <AudioEditFieldButton
       :icon="mdiMenuLeft"
       v-show="isFocusedStart"
       @click="onEdit"
@@ -60,7 +60,7 @@ watch(activeEditFieldId, () => {
       v-show="!(isFocusedStart || isFocusedEnd)"
       :class="$style.placeholderForEditButtonMiddle"
     ></div>
-    <AdminEditFieldButton
+    <AudioEditFieldButton
       :icon="mdiMenuRight"
       v-show="isFocusedStart"
       @click="onEdit"
@@ -73,7 +73,7 @@ watch(activeEditFieldId, () => {
       v-show="isFocusedEnd"
       :class="$style.placeholderForEditButtonAppendPrepend"
     ></div>
-    <AdminEditFieldButton
+    <AudioEditFieldButton
       :icon="mdiMenuLeft"
       v-show="isFocusedEnd"
       @click="onEdit"
@@ -90,7 +90,7 @@ watch(activeEditFieldId, () => {
     >
     </v-text-field>
     <div v-show="!isFocusedEnd" :class="$style.placeholderForEditButton"></div>
-    <AdminEditFieldButton
+    <AudioEditFieldButton
       :icon="mdiMenuRight"
       v-show="isFocusedEnd"
       @click="onEdit"
