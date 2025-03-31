@@ -18,7 +18,11 @@ const onClick = () => {
 
 <template>
   <div :class="$style.timePlayPanel">
-    <AudioEditField :editStart :editEnd :fieldId />
+    <AudioEditField
+      v-model:editStart="editStart"
+      v-model:editEnd="editEnd"
+      :fieldId
+    />
     <v-btn size="46" @click="onClick"
       ><v-icon size="42" :icon="mdiPlayCircleOutline"></v-icon
     ></v-btn>
