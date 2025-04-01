@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { playTime } from '../state/playTime';
+import { isPlaying, playTime } from '../state/playTime';
 
 const { audioSource } = defineProps(['audioSource']);
 const audio = ref();
@@ -17,7 +17,10 @@ watch(playTime, () => {
   );
 
   const onTimeUpdate = (event) => {
-    if (audio.value!.currentTime >= endTime) audio.value!.pause();
+    if (audio.value!.currentTime >= endTime) {
+      audio.value!.pause();
+      isPlaying.value = false;
+    }
   };
   previousOnTimeUpdateHandler.value = onTimeUpdate;
 
@@ -25,6 +28,7 @@ watch(playTime, () => {
 
   audio.value!.currentTime = startTime;
   audio.value!.play();
+  isPlaying.value = true;
 });
 </script>
 
