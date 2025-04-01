@@ -1,6 +1,6 @@
 <script setup>
 import { mdiMenuLeft, mdiMenuRight } from '@mdi/js';
-import { defineModel, ref, defineProps, watch } from 'vue';
+import { defineModel, ref, defineProps, watch, computed } from 'vue';
 import { activeEditFieldId } from '../refs';
 import AudioEditFieldButton from './AudioEditFieldButton.vue';
 
@@ -40,6 +40,38 @@ const decreaseEnd = () => {
   editEnd.value = getRoundedValue(editEnd.value - 0.1);
 };
 
+let increasingIntervalStart;
+const startIncreasingStart = computed(() => {
+  increasingIntervalStart = setInterval(increaseStart, 100);
+});
+const stopIncreasingStart = computed(() => {
+  clearInterval(increasingIntervalStart);
+});
+
+let decreasingIntervalStart;
+const startDecreasingStart = computed(() => {
+  decreasingIntervalStart = setInterval(decreaseStart, 100);
+});
+const stopDecreasingStart = computed(() => {
+  clearInterval(decreasingIntervalStart);
+});
+
+let increasingIntervalEnd;
+const startIncreasingEnd = computed(() => {
+  increasingIntervalEnd = setInterval(increaseEnd, 100);
+});
+const stopIncreasingEnd = computed(() => {
+  clearInterval(increasingIntervalEnd);
+});
+
+let decreasingIntervalEnd;
+const startDecreasingEnd = computed(() => {
+  decreasingIntervalEnd = setInterval(decreaseEnd, 100);
+});
+const stopDecreasingEnd = computed(() => {
+  clearInterval(decreasingIntervalEnd);
+});
+
 watch(activeEditFieldId, () => {
   if (activeEditFieldId.value != fieldId) {
     isFocusedStart.value = false;
@@ -54,6 +86,8 @@ watch(activeEditFieldId, () => {
       :icon="mdiMenuLeft"
       v-show="isFocusedStart"
       @click="decreaseStart"
+      @mousedown="() => startDecreasingStart"
+      @mouseup="() => stopDecreasingStart"
     />
     <div
       v-show="!isFocusedStart"
@@ -78,6 +112,8 @@ watch(activeEditFieldId, () => {
       :icon="mdiMenuRight"
       v-show="isFocusedStart"
       @click="increaseStart"
+      @mousedown="() => startIncreasingStart"
+      @mouseup="() => stopIncreasingStart"
     />
     <div
       v-show="isFocusedStart"
@@ -91,6 +127,8 @@ watch(activeEditFieldId, () => {
       :icon="mdiMenuLeft"
       v-show="isFocusedEnd"
       @click="decreaseEnd"
+      @mousedown="() => startDecreasingEnd"
+      @mouseup="() => stopDecreasingEnd"
     />
     <v-text-field
       v-model="editEnd"
@@ -108,6 +146,8 @@ watch(activeEditFieldId, () => {
       :icon="mdiMenuRight"
       v-show="isFocusedEnd"
       @click="increaseEnd"
+      @mousedown="() => startIncreasingEnd"
+      @mouseup="() => stopIncreasingEnd"
     />
   </div>
 </template>
