@@ -37,10 +37,6 @@ const isAudioReady = computed(() => {
       </div>
     </template>
     <template v-slot:text>
-      <div style="width: 200px">
-        <p style="display: inline; margin: 0 10px">Start:</p>
-        <p style="display: inline; margin: 0 10px">End:</p>
-      </div>
       <AudioControls :editStart="start" :editEnd="end" :fieldId="index" />
       <div>
         <Translations

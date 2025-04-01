@@ -2,6 +2,7 @@
 import { mdiPlayCircleOutline } from '@mdi/js';
 import AudioEditField from './AudioEditField.vue';
 import { playTime } from '../../page/state/playTime';
+import AudioSlider from './AudioSlider.vue';
 
 const { fieldId } = defineProps(['fieldId']);
 
@@ -14,6 +15,11 @@ const onClick = () => {
 </script>
 
 <template>
+  <AudioSlider :editStart :editEnd />
+  <div style="width: 200px">
+    <p style="display: inline; margin: 0 10px">Start:</p>
+    <p style="display: inline; margin: 0 10px">End:</p>
+  </div>
   <div :class="$style.timePlayPanel">
     <AudioEditField
       v-model:editStart="editStart"
