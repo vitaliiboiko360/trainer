@@ -1,6 +1,31 @@
 <script setup>
+import gsap from 'gsap';
+import { ref, watch } from 'vue';
+import { isPlaying } from '../../page/state/playTime';
 const { editStart, editEnd } = defineProps(['editStart', 'editEnd']);
-const slider = defineModel('slider');
+
+const anotherSlider = ref(editStart);
+watch(isPlaying, () => {
+  if (isPlaying.value == true) {
+    const sliderUpdatedObject = {
+      slider: editStart,
+    };
+    gsap.to(sliderUpdatedObject, {
+      slider: editEnd,
+      duration: editEnd - editStart,
+      ease: 'none',
+      onUpdate: () => {
+        anotherSlider.value = sliderUpdatedObject.slider;
+      },
+      onComplete: () => {
+        anotherSlider.value = editStart;
+      },
+    });
+  }
+  if (isPlaying.value == false) {
+    anotherSlider.value = editStart;
+  }
+});
 </script>
 
 <template>
@@ -8,13 +33,17 @@ const slider = defineModel('slider');
     <div class="text-caption" :class="$style.labelCaption">Audio Timeline</div>
     <div :class="$style.sliderLine">
       <v-spacer :class="$style.columenOne" />
-
       <v-slider
         :class="$style.columenTwo"
-        v-model="slider"
         thumb-label="always"
+        :model-value="anotherSlider"
+        thumb-size="10"
         color="blue"
         track-color="green"
+        :min="editStart"
+        :max="editEnd"
+        :step="0.1"
+        disabled
       >
         <template v-slot:prepend>
           <div>{{ editStart }}</div>
