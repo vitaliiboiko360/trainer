@@ -31,7 +31,8 @@ watch(isPlaying, () => {
 <template>
   <div>
     <div class="text-caption" :class="$style.labelCaption">
-      Audio Timeline: {{ audioCurrentTimeValue }}
+      Audio Timeline:
+      <span :class="$style.labelCurrentTime">{{ audioCurrentTimeValue }}</span>
     </div>
     <div :class="$style.sliderLine">
       <v-spacer :class="$style.columenOne" />
@@ -60,6 +61,9 @@ watch(isPlaying, () => {
 </template>
 
 <style module>
+.labelCurrentTime {
+  font-size: 1.2rem;
+}
 .labelCaption {
   margin-bottom: 1.8rem;
 }
