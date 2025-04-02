@@ -4,7 +4,7 @@ import { ref, watch } from 'vue';
 import { isPlaying } from '../../page/state/playTime';
 const { editStart, editEnd } = defineProps(['editStart', 'editEnd']);
 
-const anotherSlider = ref(editStart);
+const audioCurrentTimeValue = ref(editStart);
 watch(isPlaying, () => {
   if (isPlaying.value == true) {
     const sliderUpdatedObject = {
@@ -15,28 +15,30 @@ watch(isPlaying, () => {
       duration: editEnd - editStart,
       ease: 'none',
       onUpdate: () => {
-        anotherSlider.value = sliderUpdatedObject.slider;
+        audioCurrentTimeValue.value = sliderUpdatedObject.slider;
       },
       onComplete: () => {
-        anotherSlider.value = editStart;
+        audioCurrentTimeValue.value = editStart;
       },
     });
   }
   if (isPlaying.value == false) {
-    anotherSlider.value = editStart;
+    audioCurrentTimeValue.value = editStart;
   }
 });
 </script>
 
 <template>
   <div>
-    <div class="text-caption" :class="$style.labelCaption">Audio Timeline</div>
+    <div class="text-caption" :class="$style.labelCaption">
+      Audio Timeline: {{ audioCurrentTimeValue }}
+    </div>
     <div :class="$style.sliderLine">
       <v-spacer :class="$style.columenOne" />
       <v-slider
         :class="$style.columenTwo"
         thumb-label="always"
-        :model-value="anotherSlider"
+        :model-value="audioCurrentTimeValue"
         thumb-size="10"
         color="blue"
         track-color="green"
