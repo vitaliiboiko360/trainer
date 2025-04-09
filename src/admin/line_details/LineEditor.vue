@@ -6,17 +6,9 @@ import ReadyIcon from './ReadyIcon.vue';
 import AudioControls from './AudioControls.vue';
 const {
   text: textLine,
-  // start,
-  // end,
   index,
   translationAndOriginalLIne: trOrig,
-} = defineProps([
-  'text',
-  // 'start',
-  // 'end',
-  'index',
-  'translationAndOriginalLIne',
-]);
+} = defineProps(['text', 'index', 'translationAndOriginalLIne']);
 
 const end = defineModel('end');
 const start = defineModel('start');
