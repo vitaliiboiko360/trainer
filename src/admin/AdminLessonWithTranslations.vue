@@ -9,6 +9,7 @@ const lines = data.lines.map((line, index) => {
     start: line.start,
     end: line.end,
     text: line.text,
+    wordCount: line.wordCount ?? line.text.split(' ').length,
     lineNumber: line.lineNumber ?? index,
     speechParts: line.speechParts ?? [],
     translations: line.translations ?? [],
