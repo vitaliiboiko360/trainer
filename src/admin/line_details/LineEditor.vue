@@ -6,25 +6,28 @@ import ReadyIcon from './ReadyIcon.vue';
 import AudioControls from './AudioControls.vue';
 const {
   text: textLine,
-  start,
-  end,
+  // start,
+  // end,
   index,
   translationAndOriginalLIne: trOrig,
 } = defineProps([
   'text',
-  'start',
-  'end',
+  // 'start',
+  // 'end',
   'index',
   'translationAndOriginalLIne',
 ]);
+
+const end = defineModel('end');
+const start = defineModel('start');
 
 const to1Based = (index) => index + 1;
 
 const isAudioReady = computed(() => {
   if (index == 0) {
-    return end != 0;
+    return end.value != 0;
   }
-  return start != 0 && end != 0;
+  return start.value != 0 && end.value != 0;
 });
 </script>
 
@@ -37,7 +40,11 @@ const isAudioReady = computed(() => {
       </div>
     </template>
     <template v-slot:text>
-      <AudioControls :editStart="start" :editEnd="end" :fieldId="index" />
+      <AudioControls
+        v-model:editStart="start"
+        v-model:editEnd="end"
+        :fieldId="index"
+      />
       <div>
         <Translations
           v-if="trOrig"

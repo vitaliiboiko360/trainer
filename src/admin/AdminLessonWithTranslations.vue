@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, reactive } from 'vue';
+import { defineProps, reactive, watch, defineModel } from 'vue';
 import LineEditor from './line_details/LineEditor.vue';
 
 const { data, translations: tr } = defineProps(['data', 'translations']);
@@ -15,6 +15,10 @@ const lines = data.lines.map((line, index) => {
     translations: line.translations ?? [],
   });
 });
+
+watch(lines, () => {
+  console.log('something changed');
+});
 </script>
 
 <template>
@@ -22,12 +26,13 @@ const lines = data.lines.map((line, index) => {
     <v-expansion-panels>
       <LineEditor
         v-for="(line, index) in lines"
-        :start="line.start"
-        :end="line.end"
+        v-model:start="lines[index].start"
+        v-model:end="lines[index].end"
         :text="line.text"
         :lineNumber="line.lineNumber"
         :index
         :translationAndOriginalLIne="tr?.translations?.at(index)"
+        :key="index"
       />
     </v-expansion-panels>
   </div>
