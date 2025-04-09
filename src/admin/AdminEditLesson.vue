@@ -1,16 +1,19 @@
 <script setup>
+import { ref } from 'vue';
 import {
   SVG_RETURN_ADMIN_HOME,
   xmlnsSvg,
   xmlnsXhtml,
 } from '../home/details/etc';
 import Svg from '../home/Svg.vue';
+import { mdiFileCheckOutline } from '@mdi/js';
 
 const heightWidth = '32px';
 
 import AdminQueryLesson from './AdminQueryLesson.vue';
 import { defineProps } from 'vue';
 const { resource, id } = defineProps(['resource', 'id']);
+const buttonSave = ref();
 </script>
 
 <template>
@@ -45,6 +48,15 @@ const { resource, id } = defineProps(['resource', 'id']);
                 </Svg>
               </router-link>
             </template>
+            <v-btn
+              ref="buttonSave"
+              color=""
+              :prepend-icon="mdiFileCheckOutline"
+            >
+              Save
+            </v-btn>
+            <v-spacer></v-spacer>
+            <v-spacer></v-spacer>
           </v-toolbar>
           <AdminQueryLesson :resource :id />
         </v-sheet>

@@ -4,7 +4,11 @@ import Audio from '../page/audio/Audio.vue';
 import { queryJson } from '../query/default';
 import AdminLessonWithTranslations from './AdminLessonWithTranslations.vue';
 
-const { id, resource } = defineProps(['id', 'resource']);
+const { id, resource, buttonSave } = defineProps([
+  'id',
+  'resource',
+  'buttonSave',
+]);
 const url = `/data/${resource}.json`;
 const urlTranslations = `/data/tr/${resource}.json`;
 
@@ -25,5 +29,6 @@ const { isFetched: isFetchedTranslations, data: translations } = useQuery({
     v-if="isFetched && isFetchedTranslations"
     :data
     :translations
+    :buttonSave
   />
 </template>
