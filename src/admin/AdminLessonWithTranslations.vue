@@ -3,7 +3,7 @@ import { defineProps, reactive, watch, defineModel } from 'vue';
 import LineEditor from './line_details/LineEditor.vue';
 
 const { data, translations: tr } = defineProps(['data', 'translations']);
-
+const buttonSaveIsActive = defineModel('buttonSaveIsActive');
 const lines = data.lines.map((line, index) => {
   return reactive({
     start: line.start,
@@ -17,7 +17,9 @@ const lines = data.lines.map((line, index) => {
 });
 
 watch(lines, () => {
-  console.log('something changed');
+  console.log(`changing model`);
+  buttonSaveIsActive.value = true;
+  console.log(` model  =  ${buttonSaveIsActive.value}`);
 });
 </script>
 

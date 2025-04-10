@@ -3,12 +3,8 @@ import { useQuery } from '@tanstack/vue-query';
 import Audio from '../page/audio/Audio.vue';
 import { queryJson } from '../query/default';
 import AdminLessonWithTranslations from './AdminLessonWithTranslations.vue';
-
-const { id, resource, buttonSave } = defineProps([
-  'id',
-  'resource',
-  'buttonSave',
-]);
+const buttonSaveIsActive = defineModel('buttonSaveIsActive');
+const { id, resource } = defineProps(['id', 'resource']);
 const url = `/data/${resource}.json`;
 const urlTranslations = `/data/tr/${resource}.json`;
 
@@ -24,11 +20,13 @@ const { isFetched: isFetchedTranslations, data: translations } = useQuery({
 </script>
 
 <template>
-  <Audio v-if="isFetched" :audioSource="`../../../data/${data.audio}`" />
-  <AdminLessonWithTranslations
-    v-if="isFetched && isFetchedTranslations"
-    :data
-    :translations
-    :buttonSave
-  />
+  <div>
+    <Audio v-if="isFetched" :audioSource="`../../../data/${data.audio}`" />
+    <AdminLessonWithTranslations
+      v-if="isFetched && isFetchedTranslations"
+      :data
+      :translations
+      v-model="buttonSaveIsActive"
+    />
+  </div>
 </template>

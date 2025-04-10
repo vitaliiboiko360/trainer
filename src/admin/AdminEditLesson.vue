@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import {
   SVG_RETURN_ADMIN_HOME,
   xmlnsSvg,
@@ -13,7 +13,11 @@ const heightWidth = '32px';
 import AdminQueryLesson from './AdminQueryLesson.vue';
 import { defineProps } from 'vue';
 const { resource, id } = defineProps(['resource', 'id']);
-const buttonSave = ref();
+const buttonSaveIsActive = defineModel({ default: false });
+
+watch(buttonSaveIsActive, () => {
+  console.log(`model is chnaged`);
+});
 </script>
 
 <template>
@@ -49,8 +53,8 @@ const buttonSave = ref();
               </router-link>
             </template>
             <v-btn
-              ref="buttonSave"
-              color=""
+              :color="buttonSaveIsActive ? `success` : `info`"
+              :disabled="!buttonSaveIsActive"
               :prepend-icon="mdiFileCheckOutline"
             >
               Save
@@ -58,7 +62,7 @@ const buttonSave = ref();
             <v-spacer></v-spacer>
             <v-spacer></v-spacer>
           </v-toolbar>
-          <AdminQueryLesson :resource :id />
+          <AdminQueryLesson :resource :id v-model="buttonSaveIsActive" />
         </v-sheet>
       </v-col>
     </v-row>
