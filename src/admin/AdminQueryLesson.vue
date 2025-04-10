@@ -4,6 +4,7 @@ import Audio from '../page/audio/Audio.vue';
 import { queryJson } from '../query/default';
 import AdminLessonWithTranslations from './AdminLessonWithTranslations.vue';
 const buttonSaveIsActive = defineModel('buttonSaveIsActive');
+const buttonSaveFlushData = defineModel('buttonSaveFlushData');
 const { id, resource } = defineProps(['id', 'resource']);
 const url = `/data/${resource}.json`;
 const urlTranslations = `/data/tr/${resource}.json`;
@@ -27,6 +28,7 @@ const { isFetched: isFetchedTranslations, data: translations } = useQuery({
       :data
       :translations
       v-model:buttonSaveIsActive="buttonSaveIsActive"
+      v-model:buttonSaveFlushData="buttonSaveFlushData"
     />
   </div>
 </template>

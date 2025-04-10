@@ -16,9 +16,8 @@ const { resource, id } = defineProps(['resource', 'id']);
 const buttonSaveIsActive = defineModel('buttonSaveIsActive', {
   default: false,
 });
-
-watch(buttonSaveIsActive, () => {
-  console.log(`model is chnaged`);
+const buttonSaveFlushData = defineModel('buttonSaveFlushData', {
+  default: false,
 });
 </script>
 
@@ -61,7 +60,7 @@ watch(buttonSaveIsActive, () => {
               @click="
                 () => {
                   buttonSaveIsActive = false;
-                  console.log(`buttonSaveIsActive= ${buttonSaveIsActive}`);
+                  buttonSaveFlushData = true;
                 }
               "
             >
@@ -74,6 +73,7 @@ watch(buttonSaveIsActive, () => {
             :resource
             :id
             v-model:buttonSaveIsActive="buttonSaveIsActive"
+            v-model:buttonSaveFlushData="buttonSaveFlushData"
           />
         </v-sheet>
       </v-col>

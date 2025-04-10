@@ -4,6 +4,7 @@ import LineEditor from './line_details/LineEditor.vue';
 
 const { data, translations: tr } = defineProps(['data', 'translations']);
 const buttonSaveIsActive = defineModel('buttonSaveIsActive');
+const buttonSaveFlushData = defineModel('buttonSaveFlushData');
 const lines = data.lines.map((line, index) => {
   return reactive({
     start: line.start,
