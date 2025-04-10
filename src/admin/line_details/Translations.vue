@@ -2,6 +2,7 @@
 import { defineProps } from 'vue';
 import TranslationTable from './TranslationTable.vue';
 const { translation } = defineProps(['translation']);
+const translations = defineModel('translations');
 </script>
 
 <template>

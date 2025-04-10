@@ -2,6 +2,8 @@
 import { defineProps, reactive, watch, defineModel } from 'vue';
 import LineEditor from './line_details/LineEditor.vue';
 
+import { SPEECHPART as SP } from './etc';
+
 const { data, translations: tr } = defineProps(['data', 'translations']);
 const buttonSaveIsActive = defineModel('buttonSaveIsActive');
 const buttonSaveFlushData = defineModel('buttonSaveFlushData');
@@ -12,7 +14,7 @@ const lines = data.lines.map((line, index) => {
     text: line.text,
     wordCount: line.wordCount ?? line.text.split(' ').length,
     lineNumber: line.lineNumber ?? index,
-    speechParts: line.speechParts ?? [],
+    speechParts: line.speechParts ?? new Array().fill(SP.NOT_ASSIGNED),
     translations: line.translations ?? [],
   });
 });
@@ -29,6 +31,7 @@ watch(lines, () => {
         v-for="(line, index) in lines"
         v-model:start="lines[index].start"
         v-model:end="lines[index].end"
+        v-model:translations="lines[index].translations"
         :text="line.text"
         :lineNumber="line.lineNumber"
         :index

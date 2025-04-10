@@ -12,6 +12,7 @@ const {
 
 const end = defineModel('end');
 const start = defineModel('start');
+const translations = defineModel('translations');
 
 const to1Based = (index) => index + 1;
 
@@ -41,6 +42,7 @@ const isAudioReady = computed(() => {
         <Translations
           v-if="trOrig"
           :translation="trOrig ? trOrig.translation : undefined"
+          v-model:translations="translations"
         />
       </div>
     </template>
