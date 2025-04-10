@@ -26,7 +26,7 @@ const { isFetched: isFetchedTranslations, data: translations } = useQuery({
       v-if="isFetched && isFetchedTranslations"
       :data
       :translations
-      v-model="buttonSaveIsActive"
+      v-model:buttonSaveIsActive="buttonSaveIsActive"
     />
   </div>
 </template>

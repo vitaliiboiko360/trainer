@@ -13,7 +13,9 @@ const heightWidth = '32px';
 import AdminQueryLesson from './AdminQueryLesson.vue';
 import { defineProps } from 'vue';
 const { resource, id } = defineProps(['resource', 'id']);
-const buttonSaveIsActive = defineModel({ default: false });
+const buttonSaveIsActive = defineModel('buttonSaveIsActive', {
+  default: false,
+});
 
 watch(buttonSaveIsActive, () => {
   console.log(`model is chnaged`);
@@ -56,13 +58,23 @@ watch(buttonSaveIsActive, () => {
               :color="buttonSaveIsActive ? `success` : `info`"
               :disabled="!buttonSaveIsActive"
               :prepend-icon="mdiFileCheckOutline"
+              @click="
+                () => {
+                  buttonSaveIsActive = false;
+                  console.log(`buttonSaveIsActive= ${buttonSaveIsActive}`);
+                }
+              "
             >
               Save
             </v-btn>
             <v-spacer></v-spacer>
             <v-spacer></v-spacer>
           </v-toolbar>
-          <AdminQueryLesson :resource :id v-model="buttonSaveIsActive" />
+          <AdminQueryLesson
+            :resource
+            :id
+            v-model:buttonSaveIsActive="buttonSaveIsActive"
+          />
         </v-sheet>
       </v-col>
     </v-row>

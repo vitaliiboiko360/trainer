@@ -17,9 +17,7 @@ const lines = data.lines.map((line, index) => {
 });
 
 watch(lines, () => {
-  console.log(`changing model`);
   buttonSaveIsActive.value = true;
-  console.log(` model  =  ${buttonSaveIsActive.value}`);
 });
 </script>
 
