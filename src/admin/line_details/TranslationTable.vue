@@ -36,6 +36,7 @@ const { wordTranslations } = defineProps(['wordTranslations']);
       </thead>
       <tbody>
         <tr v-for="(word, index) in wordInfo.words" :key="index">
+          <v-radio :value="word.englishWord" density="compact"></v-radio>
           <td :key="1">
             {{ word.englishWord }}
           </td>
