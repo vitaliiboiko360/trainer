@@ -26,39 +26,48 @@ const { wordTranslations } = defineProps(['wordTranslations']);
       <span>PartOfSpeech:</span>
       {{ wordInfo.partOfSpeech }}
     </div>
-    <v-table density="compact" style="overflow: visible">
-      <thead>
-        <tr>
-          <th>English Word</th>
-          <th>Usage Frequency</th>
-          <th>Similar Spanish Words</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(word, index) in wordInfo.words" :key="index">
-          <td :key="1">
-            <v-radio
-              :value="word.englishWord"
-              density="compact"
-              :key="`radio-button-${index}`"
-              inline
-              style="top: 0.5rem"
-            ></v-radio>
-            {{ word.englishWord }}
-          </td>
-          <td :key="2">
-            {{ word.frequency }}
-          </td>
-          <td :key="3">
-            {{ word.spanishWords }}
-          </td>
-        </tr>
-      </tbody>
-    </v-table>
+    <div :class="$style.tabelWithButtons">
+      <v-radio-group :class="$style.buttonsGroup">
+        <v-radio
+          v-for="(word, index) in wordInfo.words"
+          :value="word.englishWord"
+          density="compact"
+          style="top: 0.5rem"
+        ></v-radio>
+      </v-radio-group>
+      <v-table density="compact" style="overflow: visible">
+        <thead>
+          <tr>
+            <th>English Word</th>
+            <th>Usage Frequency</th>
+            <th>Similar Spanish Words</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(word, index) in wordInfo.words" :key="index">
+            <td :key="1">{{ word.englishWord }}</td>
+            <td :key="2">
+              {{ word.frequency }}
+            </td>
+            <td :key="3">
+              {{ word.spanishWords }}
+            </td>
+          </tr>
+        </tbody>
+      </v-table>
+    </div>
   </div>
 </template>
 
 <style module>
+.buttonsGroup {
+  grid-column-start: 0;
+  grid-column-end: 0;
+}
+.tabelWithButtons {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+}
 .table {
   margin-bottom: 15px;
 }
