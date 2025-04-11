@@ -32,7 +32,7 @@ const { wordTranslations } = defineProps(['wordTranslations']);
           v-for="(word, index) in wordInfo.words"
           :value="word.englishWord"
           density="compact"
-          style="top: 0.5rem"
+          style="top: 40px; height: 36px"
         ></v-radio>
       </v-radio-group>
       <v-table density="compact" style="overflow: visible">
