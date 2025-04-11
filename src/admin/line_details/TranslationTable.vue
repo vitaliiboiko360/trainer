@@ -26,7 +26,7 @@ const { wordTranslations } = defineProps(['wordTranslations']);
       <span>PartOfSpeech:</span>
       {{ wordInfo.partOfSpeech }}
     </div>
-    <v-table density="compact">
+    <v-table density="compact" style="overflow: visible">
       <thead>
         <tr>
           <th>English Word</th>
@@ -36,8 +36,14 @@ const { wordTranslations } = defineProps(['wordTranslations']);
       </thead>
       <tbody>
         <tr v-for="(word, index) in wordInfo.words" :key="index">
-          <v-radio :value="word.englishWord" density="compact"></v-radio>
           <td :key="1">
+            <v-radio
+              :value="word.englishWord"
+              density="compact"
+              :key="`radio-button-${index}`"
+              inline
+              style="top: 0.5rem"
+            ></v-radio>
             {{ word.englishWord }}
           </td>
           <td :key="2">
