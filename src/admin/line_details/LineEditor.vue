@@ -28,8 +28,11 @@ const isAudioReady = computed(() => {
   <v-expansion-panel :key="index">
     <template v-slot:title>
       <ReadyIcon :isAudioReady />
-      <div :class="[$style.titleHeader, appCss.nunitoFont]">
-        <p>{{ to1Based(index) + '.   ' + textLine }}</p>
+      <div :class="[$style.titleLine, appCss.nunitoFont]">
+        <p :class="[$style.titleHeaderNumber]">
+          {{ to1Based(index) + '. ' }}
+        </p>
+        <span :class="$style.titleHeader">{{ textLine }}</span>
       </div>
     </template>
     <template v-slot:text>
@@ -50,7 +53,16 @@ const isAudioReady = computed(() => {
 </template>
 
 <style module>
+.titleLine {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+}
 .titleHeader {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  line-height: 1.8rem;
+}
+.titleHeaderNumber {
+  font-size: 1.2rem;
+  align-content: center;
 }
 </style>
