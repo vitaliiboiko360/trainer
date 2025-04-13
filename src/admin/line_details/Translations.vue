@@ -10,10 +10,12 @@ const translations = defineModel('translations');
     <div :class="$style.transSentence">
       {{ translation.sentenceEnglishTranslation }}
     </div>
-    <div v-for="transItem in translation.translations">
+    <div v-for="(transItem, index) in translation.translations">
       <TranslationTable
         :wordTranslations="transItem"
         v-model:translations="translations"
+        v-model:wordInEnglish="translations[index].wordInEnglish"
+        v-model:partOfSpeech="translations[index].partOfSpeech"
       />
     </div>
   </div>

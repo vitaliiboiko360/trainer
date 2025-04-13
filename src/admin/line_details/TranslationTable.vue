@@ -3,6 +3,8 @@ import { defineProps } from 'vue';
 import { mdiOpenInNew } from '@mdi/js';
 const { wordTranslations } = defineProps(['wordTranslations']);
 const translations = defineModel('translations');
+const wordInEnglish = defineModel('wordInEnglish');
+const partOfSpeech = defineModel('partOfSpeech');
 </script>
 
 <!-- <th class="text-left">Frequency</th>
@@ -28,7 +30,7 @@ const translations = defineModel('translations');
       {{ wordInfo.partOfSpeech }}
     </div>
     <div :class="$style.tabelWithButtons">
-      <v-radio-group :class="$style.buttonsGroup">
+      <v-radio-group :class="$style.buttonsGroup" v-model="wordInEnglish">
         <v-radio
           v-for="(word, index) in wordInfo.words"
           :value="word.englishWord"
