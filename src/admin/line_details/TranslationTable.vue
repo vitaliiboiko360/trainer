@@ -1,10 +1,17 @@
 <script setup>
-import { defineProps } from 'vue';
+import { computed, defineProps } from 'vue';
 import { mdiOpenInNew } from '@mdi/js';
 const { wordTranslations } = defineProps(['wordTranslations']);
 const translations = defineModel('translations');
 const wordInEnglish = defineModel('wordInEnglish');
 const partOfSpeech = defineModel('partOfSpeech');
+
+function isSelected(partOfSpeechInput, wordInEnglishInput) {
+  return (
+    partOfSpeech.value == partOfSpeechInput &&
+    wordInEnglish.value == wordInEnglishInput
+  );
+}
 </script>
 
 <!-- <th class="text-left">Frequency</th>
@@ -52,7 +59,19 @@ const partOfSpeech = defineModel('partOfSpeech');
         </thead>
         <tbody>
           <tr v-for="(word, index) in wordInfo.words" :key="index">
-            <td :key="1">{{ word.englishWord }}</td>
+            <td
+              :key="1"
+              :class="[
+                {
+                  [$style.selectedEnglishWord]: isSelected(
+                    wordInfo.partOfSpeech,
+                    word.englishWord
+                  ),
+                },
+              ]"
+            >
+              {{ word.englishWord }}
+            </td>
             <td :key="2">
               {{ word.frequency }}
             </td>
@@ -67,6 +86,9 @@ const partOfSpeech = defineModel('partOfSpeech');
 </template>
 
 <style module>
+.selectedEnglishWord {
+  background-color: #e5edf8;
+}
 .buttonsGroup {
   grid-column-start: 0;
   grid-column-end: 0;
