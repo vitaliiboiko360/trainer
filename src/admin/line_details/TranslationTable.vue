@@ -30,7 +30,11 @@ const partOfSpeech = defineModel('partOfSpeech');
       {{ wordInfo.partOfSpeech }}
     </div>
     <div :class="$style.tabelWithButtons">
-      <v-radio-group :class="$style.buttonsGroup" v-model="wordInEnglish">
+      <v-radio-group
+        :class="$style.buttonsGroup"
+        v-model="wordInEnglish"
+        @update:modelValue="() => (partOfSpeech = wordInfo.partOfSpeech)"
+      >
         <v-radio
           v-for="(word, index) in wordInfo.words"
           :value="word.englishWord"
