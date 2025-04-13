@@ -92,6 +92,10 @@ function isSelected(partOfSpeechInput, wordInEnglishInput) {
 .buttonsGroup {
   grid-column-start: 0;
   grid-column-end: 0;
+  margin-top: 0.25rem;
+  div div div {
+    margin-bottom: 0.22rem;
+  }
 }
 .tabelWithButtons {
   display: grid;
