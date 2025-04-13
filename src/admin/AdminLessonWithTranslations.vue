@@ -7,6 +7,7 @@ import { SPEECHPART as SP } from './etc';
 const { data, translations: tr } = defineProps(['data', 'translations']);
 const buttonSaveIsActive = defineModel('buttonSaveIsActive');
 const buttonSaveFlushData = defineModel('buttonSaveFlushData');
+
 const lines = data.lines.map((line, index) => {
   return reactive({
     start: line.start,
@@ -15,7 +16,15 @@ const lines = data.lines.map((line, index) => {
     wordCount: line.wordCount ?? line.text.split(' ').length,
     lineNumber: line.lineNumber ?? index,
     speechParts: line.speechParts ?? new Array().fill(SP.NOT_ASSIGNED),
-    translations: line.translations ?? [],
+    translations:
+      line.translations ??
+      line.text.split(' ').map((word, index) => {
+        return {
+          indexInSentence: index,
+          wordInEnglish: '',
+          partOfSpeech: SP.NOT_ASSIGNED,
+        };
+      }),
   });
 });
 
