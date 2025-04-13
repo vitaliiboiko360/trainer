@@ -4,6 +4,7 @@ import { defineProps, computed } from 'vue';
 import Translations from './Translations.vue';
 import ReadyIcon from './ReadyIcon.vue';
 import AudioControls from './AudioControls.vue';
+import LineEditorTitle from './LineEditorTitle.vue';
 const {
   text: textLine,
   index,
@@ -32,7 +33,12 @@ const isAudioReady = computed(() => {
         <p :class="[$style.titleHeaderNumber]">
           {{ to1Based(index) + '. ' }}
         </p>
-        <span :class="$style.titleHeader">{{ textLine }}</span>
+        <span :class="$style.titleHeader">
+          <LineEditorTitle
+            :line="textLine"
+            :selectedClass="$style.wordSelected"
+          />
+        </span>
       </div>
     </template>
     <template v-slot:text>
