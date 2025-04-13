@@ -11,7 +11,10 @@ const translations = defineModel('translations');
       {{ translation.sentenceEnglishTranslation }}
     </div>
     <div v-for="transItem in translation.translations">
-      <TranslationTable :wordTranslations="transItem" />
+      <TranslationTable
+        :wordTranslations="transItem"
+        v-model:translations="translations"
+      />
     </div>
   </div>
 </template>

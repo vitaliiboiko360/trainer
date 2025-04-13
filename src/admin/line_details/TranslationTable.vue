@@ -2,6 +2,7 @@
 import { defineProps } from 'vue';
 import { mdiOpenInNew } from '@mdi/js';
 const { wordTranslations } = defineProps(['wordTranslations']);
+const translations = defineModel('translations');
 </script>
 
 <!-- <th class="text-left">Frequency</th>
