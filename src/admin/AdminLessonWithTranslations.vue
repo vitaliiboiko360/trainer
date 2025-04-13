@@ -31,6 +31,11 @@ const lines = data.lines.map((line, index) => {
 watch(lines, () => {
   buttonSaveIsActive.value = true;
 });
+watch(buttonSaveFlushData, () => {
+  if (buttonSaveFlushData.value) {
+    console.log(JSON.stringify(lines)); //testing request data
+  }
+});
 </script>
 
 <template>
