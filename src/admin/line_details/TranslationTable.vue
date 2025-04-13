@@ -87,7 +87,7 @@ function isSelected(partOfSpeechInput, wordInEnglishInput) {
 
 <style module>
 .selectedEnglishWord {
-  background-color: #e5edf8;
+  background-color: #dfe0fecb;
 }
 .buttonsGroup {
   grid-column-start: 0;
