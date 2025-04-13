@@ -59,6 +59,14 @@ const isAudioReady = computed(() => {
 </template>
 
 <style module>
+.wordSelected {
+  background-color: #dfe0fe9d;
+  border-radius: 0.2rem;
+  padding: 0.2rem 0.2rem;
+  display: inline-block;
+  white-space: pre;
+  text-shadow: #fff 1px 0 10px;
+}
 .titleLine {
   display: grid;
   grid-template-columns: 2.4rem 1fr;
