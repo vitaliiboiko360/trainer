@@ -111,8 +111,9 @@ function isSelected(partOfSpeechInput, wordInEnglishInput) {
   background-color: #fff;
   border: 1px solid #dbdbdb;
   border-radius: 0.375em;
-  box-shadow: none;
+  /* box-shadow: none; */
   box-sizing: border-box;
+  box-shadow: inset 0 0 30px 10px #4f88f245;
   color: #363636;
   display: inline-flex;
   height: 2.5em;
@@ -133,7 +134,7 @@ function isSelected(partOfSpeechInput, wordInEnglishInput) {
     color: #1d1e2e;
   }
   margin: 0px 20px 25px;
-  background-color: rgb(91 147 215 / 16%);
+  background-color: rgba(91, 147, 215, 0.076);
   border-radius: 8px;
   border-width: 0;
   color: #5965ff;
