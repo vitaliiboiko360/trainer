@@ -61,12 +61,13 @@ const isAudioReady = computed(() => {
 
 <style module>
 .wordSelected {
-  background-color: #dfe0fe9d;
+  box-shadow: inset 0 0 14px 8px #dfe0fe9d;
+  /* background-color: #dfe0fe9d; */
   border-radius: 0.2rem;
   padding: 0.2rem 0.2rem;
   display: inline-block;
   white-space: pre;
-  text-shadow: #fff 1px 0 10px;
+  /* text-shadow: #fff 1px 0 10px; */
 }
 .titleLine {
   display: grid;
