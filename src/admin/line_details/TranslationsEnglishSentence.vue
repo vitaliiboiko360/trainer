@@ -1,25 +1,34 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 
 const sentence = defineProps(['sentence']);
 const refDiv = ref();
 
-let previousTop = 0;
-
 const onWheel = (event) => {
-  if (event.deltaY > 0) {
-    const { top } = refDiv.value.getBoundingClientRect();
-    if (top > 0 && Math.abs(top - previousTop) > 50) {
-      console.log(`top is = ${top}`);
-      previousTop = top;
-    }
+  const { top: parentTop } = refDiv.value.parentElement.getBoundingClientRect();
+  const { width } = refDiv.value.getBoundingClientRect();
 
-    //(window.innerHeight || document.documentElement.clientHeight);
+  if (parentTop < 0) {
+    refDiv.value.style.position = 'fixed';
+    refDiv.value.style.top = `-17px`;
+    refDiv.value.style.left = `${
+      ((window.innerWidth || document.documentElement.clientWidth) - width) / 2
+    }px`;
+  }
+
+  if (parentTop > 0) {
+    refDiv.value.style.position = 'unset';
   }
 };
 
 onMounted(() => {
   document.addEventListener('wheel', onWheel);
+  document.addEventListener('scroll', onWheel);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('wheel', onWheel);
+  document.removeEventListener('scroll', onWheel);
 });
 </script>
 
@@ -62,6 +71,6 @@ onMounted(() => {
   touch-action: manipulation;
   width: auto;
   will-change: transform, opacity;
-  z-index: 0;
+  z-index: 10;
 }
 </style>
