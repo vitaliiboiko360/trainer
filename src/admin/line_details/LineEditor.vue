@@ -37,6 +37,7 @@ const isAudioReady = computed(() => {
           <LineEditorTitle
             :line="textLine"
             :selectedClass="$style.wordSelected"
+            v-model:translations="translations"
           />
         </span>
       </div>
