@@ -8,9 +8,11 @@ const translations = defineModel('translations');
 
 <template>
   <div>
-    <TranslationsEnglishSentence
-      :sentence="translation.sentenceEnglishTranslation"
-    />
+    <div :class="$style.translationContainer">
+      <TranslationsEnglishSentence
+        :sentence="translation.sentenceEnglishTranslation"
+      />
+    </div>
     <div v-for="(transItem, index) in translation.translations">
       <TranslationTable
         :wordTranslations="transItem"
@@ -22,4 +24,8 @@ const translations = defineModel('translations');
   </div>
 </template>
 
-<style module></style>
+<style module>
+.translationContainer {
+  min-height: 78px;
+}
+</style>
