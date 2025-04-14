@@ -9,7 +9,12 @@ const translations = defineModel('translations');
       :class="[{ [selectedClass]: translations[index].wordInEnglish != '' }]"
       >{{ word }}</span
     >
-    <span>{{ ` ` }}</span></span
+    <span :class="$style.spaceSpan">&emsp13;</span></span
   >
 </template>
-<style module></style>
+<style module>
+.spaceSpan {
+  margin: 0 -0.11rem;
+  white-space: pre;
+}
+</style>
