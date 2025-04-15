@@ -33,10 +33,34 @@ onMounted(() => {});
       :href="`https://translate.google.com/details?sl=es&tl=en&text=${wordTranslations.originalWord}&op=translate`"
       ><v-icon size="22" color="#1a73e8" :icon="mdiOpenInNew"></v-icon
     ></v-btn>
-    <div :class="$style.choosenTranslation">
-      <div>{{ wordInEnglish == '' ? 'NO_WORD' : wordInEnglish }}</div>
-      <v-divider :thickness="2" class="border-opacity-50" vertical></v-divider>
-      <div>{{ NSP[partOfSpeech as number] }}</div>
+    <div :class="$style.choosenTranslationBlock">
+      <div :class="$style.choosenTranslation">
+        <div>
+          <v-divider :thickness="2" class="border-opacity-50"></v-divider>
+          <div :class="[{ [$style.notAssigned]: wordInEnglish == '' }]">
+            {{ wordInEnglish == '' ? '  no value  ' : wordInEnglish }}
+          </div>
+          <v-divider :thickness="2" class="border-opacity-50"></v-divider>
+        </div>
+        <v-divider
+          :thickness="2"
+          class="border-opacity-50"
+          vertical
+        ></v-divider>
+        <div>
+          <v-divider :thickness="2" class="border-opacity-50"></v-divider>
+          <div
+            :class="[{ [$style.notAssigned]: partOfSpeech == SP.NOT_ASSIGNED }]"
+          >
+            {{
+              partOfSpeech == SP.NOT_ASSIGNED
+                ? '  no value  '
+                : SPN[partOfSpeech as number]
+            }}
+          </div>
+          <v-divider :thickness="2" class="border-opacity-50"></v-divider>
+        </div>
+      </div>
     </div>
   </div>
   <div
@@ -113,13 +137,20 @@ onMounted(() => {});
 </template>
 
 <style module>
+.notAssigned {
+  white-space: pre;
+  font-style: italic;
+}
+.choosenTranslationBlock {
+  align-self: center;
+}
 .choosenTranslation {
   display: flex;
   height: fit-content;
   align-items: center;
   align-self: center;
   font-size: 1rem;
-  gap: 20%;
+  gap: 1rem;
   margin-left: 3rem;
 }
 .wordAndChoosenTranslation {
