@@ -58,13 +58,7 @@ onMounted(() => {});
             wordInEnglish = '';
           }
         "
-        @click:append="
-          () => {
-            console.log(`append is clicked`);
-          }
-        "
         :prepend-icon="mdiCloseThick"
-        :append-icon="mdiPencilPlus"
       >
         <v-radio
           v-for="(word, index) in wordInfo.words"

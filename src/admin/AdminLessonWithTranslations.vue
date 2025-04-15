@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { defineProps, reactive, watch, defineModel } from 'vue';
 import LineEditor from './line_details/LineEditor.vue';
 
