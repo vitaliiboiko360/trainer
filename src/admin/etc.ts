@@ -21,3 +21,12 @@ export enum SPEECHPARTNAME {
   'ADVERB',
   'PRONOUN',
 }
+
+export const NAMESPEECHPART = [
+  'NOT_ASSIGNED',
+  'NOUN',
+  'VERB',
+  'ADJECTIVE',
+  'ADVERB',
+  'PRONOUN',
+];

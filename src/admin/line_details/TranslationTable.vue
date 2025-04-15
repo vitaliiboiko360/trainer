@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { computed, defineProps, onMounted } from 'vue';
 import { mdiOpenInNew, mdiCloseThick, mdiPencilPlus } from '@mdi/js';
-import { SPEECHPART as SP, SPEECHPARTNAME as SPN } from '../etc';
+import {
+  SPEECHPART as SP,
+  SPEECHPARTNAME as SPN,
+  NAMESPEECHPART as NSP,
+} from '../etc';
 const { wordTranslations } = defineProps(['wordTranslations']);
 const translations = defineModel('translations');
 const wordInEnglish = defineModel('wordInEnglish');
@@ -20,7 +24,7 @@ onMounted(() => {});
 <!-- <th class="text-left">Frequency</th>
 <th class="text-left">Other Words</th> -->
 <template>
-  <div>
+  <div :class="$style.wordAndChoosenTranslation">
     <div :class="$style.originalWord">{{ wordTranslations.originalWord }}</div>
     <v-btn
       style="bottom: -38px; left: -10px"
@@ -29,6 +33,11 @@ onMounted(() => {});
       :href="`https://translate.google.com/details?sl=es&tl=en&text=${wordTranslations.originalWord}&op=translate`"
       ><v-icon size="22" color="#1a73e8" :icon="mdiOpenInNew"></v-icon
     ></v-btn>
+    <div :class="$style.choosenTranslation">
+      <div>{{ wordInEnglish == '' ? 'NO_WORD' : wordInEnglish }}</div>
+      <v-divider :thickness="2" class="border-opacity-50" vertical></v-divider>
+      <div>{{ NSP[partOfSpeech as number] }}</div>
+    </div>
   </div>
   <div
     :class="$style.table"
@@ -104,6 +113,18 @@ onMounted(() => {});
 </template>
 
 <style module>
+.choosenTranslation {
+  display: flex;
+  height: fit-content;
+  align-items: center;
+  align-self: center;
+  font-size: 1rem;
+  gap: 20%;
+  margin-left: 3rem;
+}
+.wordAndChoosenTranslation {
+  display: flex;
+}
 .selectedEnglishWord {
   background-color: #dfe0fecb;
 }
