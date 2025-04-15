@@ -1,6 +1,7 @@
-<script setup>
-import { computed, defineProps } from 'vue';
-import { mdiOpenInNew } from '@mdi/js';
+<script setup lang="ts">
+import { computed, defineProps, onMounted } from 'vue';
+import { mdiOpenInNew, mdiCloseThick, mdiPencilPlus } from '@mdi/js';
+import { SPEECHPART as SP, SPEECHPARTNAME as SPN } from '../etc';
 const { wordTranslations } = defineProps(['wordTranslations']);
 const translations = defineModel('translations');
 const wordInEnglish = defineModel('wordInEnglish');
@@ -12,6 +13,8 @@ function isSelected(partOfSpeechInput, wordInEnglishInput) {
     wordInEnglish.value == wordInEnglishInput
   );
 }
+
+onMounted(() => {});
 </script>
 
 <!-- <th class="text-left">Frequency</th>
@@ -40,13 +43,34 @@ function isSelected(partOfSpeechInput, wordInEnglishInput) {
       <v-radio-group
         :class="$style.buttonsGroup"
         v-model="wordInEnglish"
-        @update:modelValue="() => (partOfSpeech = wordInfo.partOfSpeech)"
+        direction="vertical"
+        @update:modelValue="
+          () => (partOfSpeech = SPN[wordInfo.partOfSpeech.toUpperCase()])
+        "
+        @click:prepend="
+          () => {
+            if (
+              wordInfo.words.map((w) => w.englishWord).indexOf(wordInEnglish) ==
+              -1
+            )
+              return;
+            partOfSpeech = SP.NOT_ASSIGNED;
+            wordInEnglish = '';
+          }
+        "
+        @click:append="
+          () => {
+            console.log(`append is clicked`);
+          }
+        "
+        :prepend-icon="mdiCloseThick"
+        :append-icon="mdiPencilPlus"
       >
         <v-radio
           v-for="(word, index) in wordInfo.words"
+          :class="$style.buttonIndividual"
           :value="word.englishWord"
           density="compact"
-          style="top: 40px; height: 36px"
         ></v-radio>
       </v-radio-group>
       <v-table density="compact" style="overflow: visible">
@@ -89,10 +113,24 @@ function isSelected(partOfSpeechInput, wordInEnglishInput) {
 .selectedEnglishWord {
   background-color: #dfe0fecb;
 }
+.buttonIndividual {
+  top: 4px;
+  height: 36px;
+}
 .buttonsGroup {
-  grid-column-start: 0;
-  grid-column-end: 0;
+  grid-column-start: 1;
+  grid-column-end: 1;
   margin-top: 0.25rem;
+  display: flex;
+  flex-direction: column;
+
+  div:nth-child(3) {
+    margin-left: 0;
+    align-self: center;
+  }
+  div:nth-child(1) {
+    align-self: center;
+  }
   div div div {
     margin-bottom: 0.22rem;
   }
