@@ -31,9 +31,22 @@ const lines = data.lines.map((line, index) => {
 watch(lines, () => {
   buttonSaveIsActive.value = true;
 });
-watch(buttonSaveFlushData, () => {
+watch(buttonSaveFlushData, async () => {
   if (buttonSaveFlushData.value) {
     console.log(JSON.stringify(lines)); //testing request data
+    const dataToSend = {
+      _id: data._id,
+      name: data.name,
+      audio: data.audio,
+      lines: lines,
+    };
+    const response = await fetch(`http://127.0.0.1:4000/lesson/${data.name}`, {
+      method: 'PUT',
+      body: JSON.stringify(dataToSend),
+    });
+    console.log(
+      `response status ${response.status}\nstatusText ${response.statusText}`
+    );
   }
 });
 </script>
