@@ -16,7 +16,15 @@ const refInput = ref();
 
 watch(refInput, () => {
   if (refInput.value) {
-    refInput.value.querySelector('input').focus();
+    const input = refInput.value.querySelector('input');
+    input.focus();
+    input.addEventListener('focusout', () => {
+      wordInEnglish.value = input.value;
+      isEditActive.value = false;
+    });
+    input.addEventListener('input', () => {
+      wordInEnglish.value = input.value;
+    });
   }
 });
 </script>
@@ -56,6 +64,7 @@ watch(refInput, () => {
         <div>
           <v-divider :thickness="2" class="border-opacity-50"></v-divider>
           <div
+          v-if="!isEditActive"
             :class="[{ [$style.notAssigned]: partOfSpeech == SP.NOT_ASSIGNED }]"
           >
             {{
@@ -74,14 +83,12 @@ watch(refInput, () => {
 <style module>
 .editField {
   width: 100%;
-  div div div {
-    position: relative;
-    display: inline-block;
-    input {
-      /* position: absolute; */
-      padding: 0 1rem;
-      width: 100%;
-    }
+  position: relative;
+  display: inline-block;
+  input {
+    position: absolute;
+    padding: 0 1rem;
+    width: 100%;
   }
 }
 .outerDiv {
