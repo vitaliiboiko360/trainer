@@ -51,6 +51,7 @@ const partOfSpeech = defineModel('partOfSpeech');
   align-self: center;
   display: inline-block;
   margin-left: auto;
+  margin-right: 1rem;
 }
 .choosenTranslationBlock {
   align-self: center;
