@@ -1,20 +1,24 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import {
   SPEECHPART as SP,
   SPEECHPARTNAME as SPN,
   NAMESPEECHPART as NSP,
 } from '../etc';
-import { mdiOpenInNew, mdiCloseThick, mdiPencilPlus } from '@mdi/js';
+import { mdiPencilPlus, mdiCheckBold } from '@mdi/js';
 const wordInEnglish = defineModel('wordInEnglish');
 const partOfSpeech = defineModel('partOfSpeech');
+
+const isEditActive = ref(false);
+const onClick = () => (isEditActive.value = !isEditActive.value);
 </script>
 
 <template>
   <div :class="$style.outerDiv">
     <div :class="$style.choosenTranslationBlock">
       <div>
-        <v-btn :ripple="false" rounded="xl"
-          ><v-icon :icon="mdiPencilPlus"></v-icon
+        <v-btn :ripple="false" rounded="xl" @click="onClick"
+          ><v-icon :icon="isEditActive ? mdiCheckBold : mdiPencilPlus"></v-icon
         ></v-btn>
       </div>
       <div :class="$style.choosenTranslation">
