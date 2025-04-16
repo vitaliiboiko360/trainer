@@ -27,13 +27,15 @@ onMounted(() => {});
 <template>
   <div :class="$style.wordAndChoosenTranslation">
     <div :class="$style.originalWord">{{ wordTranslations.originalWord }}</div>
-    <v-btn
-      style="bottom: -38px; left: -10px"
-      target="_blank"
-      size="24"
-      :href="`https://translate.google.com/details?sl=es&tl=en&text=${wordTranslations.originalWord}&op=translate`"
-      ><v-icon size="22" color="#1a73e8" :icon="mdiOpenInNew"></v-icon
-    ></v-btn>
+    <div :class="$style.buttonDictionaryLink">
+      <v-btn
+        style="bottom: -38px; left: -10px"
+        target="_blank"
+        size="24"
+        :href="`https://translate.google.com/details?sl=es&tl=en&text=${wordTranslations.originalWord}&op=translate`"
+        ><v-icon size="22" color="#1a73e8" :icon="mdiOpenInNew"></v-icon
+      ></v-btn>
+    </div>
     <ChoosenWords
       v-model:wordInEnglish="wordInEnglish"
       v-model:partOfSpeech="partOfSpeech"
@@ -113,6 +115,12 @@ onMounted(() => {});
 </template>
 
 <style module>
+.wordAndChoosenTranslation {
+  display: flex;
+}
+.buttonDictionaryLink {
+  display: inline-block;
+}
 .selectedEnglishWord {
   background-color: #dfe0fecb;
 }
