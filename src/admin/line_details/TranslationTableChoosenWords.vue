@@ -13,7 +13,12 @@ const partOfSpeechName = defineModel({
 });
 
 const isEditActive = ref(false);
-const onClick = () => (isEditActive.value = !isEditActive.value);
+const onClick = () => {
+  isEditActive.value = !isEditActive.value;
+  if (isEditActive.value) {
+    partOfSpeechName.value = NSP[partOfSpeech.value as number];
+  }
+};
 
 const refInput = ref();
 
@@ -23,7 +28,6 @@ watch(refInput, () => {
     input.focus();
     input.addEventListener('focusout', () => {
       wordInEnglish.value = input.value;
-      // isEditActive.value = false;
     });
     input.addEventListener('input', () => {
       wordInEnglish.value = input.value;
