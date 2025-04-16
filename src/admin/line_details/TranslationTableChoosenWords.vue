@@ -8,6 +8,9 @@ import {
 import { mdiPencilPlus, mdiCheckBold } from '@mdi/js';
 const wordInEnglish = defineModel('wordInEnglish');
 const partOfSpeech = defineModel('partOfSpeech');
+const partOfSpeechName = defineModel({
+  default: NSP[0],
+});
 
 const isEditActive = ref(false);
 const onClick = () => (isEditActive.value = !isEditActive.value);
@@ -20,7 +23,7 @@ watch(refInput, () => {
     input.focus();
     input.addEventListener('focusout', () => {
       wordInEnglish.value = input.value;
-      isEditActive.value = false;
+      // isEditActive.value = false;
     });
     input.addEventListener('input', () => {
       wordInEnglish.value = input.value;
@@ -28,7 +31,6 @@ watch(refInput, () => {
   }
 });
 </script>
-// ref="(el) => (refInputOuterDiv = el)"
 
 <template>
   <div :class="$style.outerDiv">
@@ -52,8 +54,8 @@ watch(refInput, () => {
             :ref="(el) => (refInput = el)"
             role="textbox"
             contenteditable
-            ><input :defaultValue="wordInEnglish" type="text" autofocus></input></span
-          >
+            ><input :defaultValue="wordInEnglish" type="text" autofocus
+          /></span>
           <v-divider :thickness="2" class="border-opacity-50"></v-divider>
         </div>
         <v-divider
@@ -64,7 +66,7 @@ watch(refInput, () => {
         <div>
           <v-divider :thickness="2" class="border-opacity-50"></v-divider>
           <div
-          v-if="!isEditActive"
+            v-if="!isEditActive"
             :class="[{ [$style.notAssigned]: partOfSpeech == SP.NOT_ASSIGNED }]"
           >
             {{
@@ -73,7 +75,19 @@ watch(refInput, () => {
                 : SPN[partOfSpeech as number]
             }}
           </div>
-          <v-divider :thickness="2" class="border-opacity-50"></v-divider>
+          <v-select
+            v-if="isEditActive"
+            :model-value="partOfSpeechName"
+            :class="$style.selectPartOfSpeech"
+            :items="NSP"
+            :update:modelValue="(partOfSpeech = SPN[partOfSpeechName])"
+            density="compact"
+          ></v-select>
+          <v-divider
+            v-if="!isEditActive"
+            :thickness="2"
+            class="border-opacity-50"
+          ></v-divider>
         </div>
       </div>
     </div>
@@ -81,6 +95,11 @@ watch(refInput, () => {
 </template>
 
 <style module>
+.selectPartOfSpeech {
+  div:nth-child(2) {
+    display: none;
+  }
+}
 .editField {
   width: 100%;
   position: relative;
@@ -104,6 +123,7 @@ watch(refInput, () => {
 .notAssigned {
   white-space: pre;
   font-style: italic;
+  background-color: rgba(224, 181, 181, 0.225);
 }
 .choosenTranslation {
   display: flex;
