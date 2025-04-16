@@ -24,9 +24,19 @@ const onClick = () => (isEditActive.value = !isEditActive.value);
       <div :class="$style.choosenTranslation">
         <div>
           <v-divider :thickness="2" class="border-opacity-50"></v-divider>
-          <div :class="[{ [$style.notAssigned]: wordInEnglish == '' }]">
+          <div
+            v-if="!isEditActive"
+            :class="[{ [$style.notAssigned]: wordInEnglish == '' }]"
+          >
             {{ wordInEnglish == '' ? '  no value  ' : wordInEnglish }}
           </div>
+          <v-text-field
+            v-if="isEditActive"
+            :model-value="wordInEnglish"
+            width=""
+            density="'compact'"
+            focused="true"
+          ></v-text-field>
           <v-divider :thickness="2" class="border-opacity-50"></v-divider>
         </div>
         <v-divider
