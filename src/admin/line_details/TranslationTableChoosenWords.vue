@@ -4,45 +4,61 @@ import {
   SPEECHPARTNAME as SPN,
   NAMESPEECHPART as NSP,
 } from '../etc';
+import { mdiOpenInNew, mdiCloseThick, mdiPencilPlus } from '@mdi/js';
 const wordInEnglish = defineModel('wordInEnglish');
 const partOfSpeech = defineModel('partOfSpeech');
 </script>
 
 <template>
-  <div :class="$style.choosenTranslationBlock">
-    <div :class="$style.choosenTranslation">
+  <div :class="$style.outerDiv">
+    <div :class="$style.choosenTranslationBlock">
       <div>
-        <v-divider :thickness="2" class="border-opacity-50"></v-divider>
-        <div :class="[{ [$style.notAssigned]: wordInEnglish == '' }]">
-          {{ wordInEnglish == '' ? '  no value  ' : wordInEnglish }}
-        </div>
-        <v-divider :thickness="2" class="border-opacity-50"></v-divider>
+        <v-btn><v-icon :icon="mdiPencilPlus"></v-icon></v-btn>
       </div>
-      <v-divider :thickness="2" class="border-opacity-50" vertical></v-divider>
-      <div>
-        <v-divider :thickness="2" class="border-opacity-50"></v-divider>
-        <div
-          :class="[{ [$style.notAssigned]: partOfSpeech == SP.NOT_ASSIGNED }]"
-        >
-          {{
-            partOfSpeech == SP.NOT_ASSIGNED
-              ? '  no value  '
-              : SPN[partOfSpeech as number]
-          }}
+      <div :class="$style.choosenTranslation">
+        <div>
+          <v-divider :thickness="2" class="border-opacity-50"></v-divider>
+          <div :class="[{ [$style.notAssigned]: wordInEnglish == '' }]">
+            {{ wordInEnglish == '' ? '  no value  ' : wordInEnglish }}
+          </div>
+          <v-divider :thickness="2" class="border-opacity-50"></v-divider>
         </div>
-        <v-divider :thickness="2" class="border-opacity-50"></v-divider>
+        <v-divider
+          :thickness="2"
+          class="border-opacity-50"
+          vertical
+        ></v-divider>
+        <div>
+          <v-divider :thickness="2" class="border-opacity-50"></v-divider>
+          <div
+            :class="[{ [$style.notAssigned]: partOfSpeech == SP.NOT_ASSIGNED }]"
+          >
+            {{
+              partOfSpeech == SP.NOT_ASSIGNED
+                ? '  no value  '
+                : SPN[partOfSpeech as number]
+            }}
+          </div>
+          <v-divider :thickness="2" class="border-opacity-50"></v-divider>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style module>
-.notAssigned {
-  white-space: pre;
-  font-style: italic;
+.outerDiv {
+  align-self: center;
+  display: inline-block;
+  margin-left: auto;
 }
 .choosenTranslationBlock {
   align-self: center;
+  display: flex;
+}
+.notAssigned {
+  white-space: pre;
+  font-style: italic;
 }
 .choosenTranslation {
   display: flex;
