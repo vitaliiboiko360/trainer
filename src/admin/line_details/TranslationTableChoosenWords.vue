@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { nextTick, onMounted, ref, watch } from 'vue';
 import {
   SPEECHPART as SP,
   SPEECHPARTNAME as SPN,
@@ -11,7 +11,16 @@ const partOfSpeech = defineModel('partOfSpeech');
 
 const isEditActive = ref(false);
 const onClick = () => (isEditActive.value = !isEditActive.value);
+
+const refInput = ref();
+
+watch(refInput, () => {
+  if (refInput.value) {
+    refInput.value.querySelector('input').focus();
+  }
+});
 </script>
+// ref="(el) => (refInputOuterDiv = el)"
 
 <template>
   <div :class="$style.outerDiv">
@@ -30,14 +39,13 @@ const onClick = () => (isEditActive.value = !isEditActive.value);
           >
             {{ wordInEnglish == '' ? '  no value  ' : wordInEnglish }}
           </div>
-          <v-text-field
+          <span
             v-if="isEditActive"
-            :model-value="wordInEnglish"
-            :class="$style.editField"
-            width=""
-            density="'compact'"
-            focused="true"
-          ></v-text-field>
+            :ref="(el) => (refInput = el)"
+            role="textbox"
+            contenteditable
+            ><input :defaultValue="wordInEnglish" type="text" autofocus></input></span
+          >
           <v-divider :thickness="2" class="border-opacity-50"></v-divider>
         </div>
         <v-divider
@@ -68,8 +76,10 @@ const onClick = () => (isEditActive.value = !isEditActive.value);
   width: 100%;
   div div div {
     position: relative;
+    display: inline-block;
     input {
-      position: absolute;
+      /* position: absolute; */
+      padding: 0 1rem;
       width: 100%;
     }
   }
