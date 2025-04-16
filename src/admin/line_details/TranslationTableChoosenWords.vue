@@ -33,6 +33,7 @@ const onClick = () => (isEditActive.value = !isEditActive.value);
           <v-text-field
             v-if="isEditActive"
             :model-value="wordInEnglish"
+            :class="$style.editField"
             width=""
             density="'compact'"
             focused="true"
@@ -63,6 +64,16 @@ const onClick = () => (isEditActive.value = !isEditActive.value);
 </template>
 
 <style module>
+.editField {
+  width: 100%;
+  div div div {
+    position: relative;
+    input {
+      position: absolute;
+      width: 100%;
+    }
+  }
+}
 .outerDiv {
   align-self: center;
   display: inline-block;
