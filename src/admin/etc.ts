@@ -11,6 +11,7 @@ export enum SPEECHPART {
   ADJECTIVE,
   ADVERB,
   PRONOUN,
+  ARTICLE,
 }
 
 export enum SPEECHPARTNAME {
@@ -20,6 +21,7 @@ export enum SPEECHPARTNAME {
   'ADJECTIVE',
   'ADVERB',
   'PRONOUN',
+  'ARTICLE',
 }
 
 export const NAMESPEECHPART = [
@@ -29,4 +31,5 @@ export const NAMESPEECHPART = [
   'ADJECTIVE',
   'ADVERB',
   'PRONOUN',
+  'ARTICLE',
 ];
