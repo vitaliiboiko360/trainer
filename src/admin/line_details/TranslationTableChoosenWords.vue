@@ -13,7 +13,9 @@ const partOfSpeech = defineModel('partOfSpeech');
   <div :class="$style.outerDiv">
     <div :class="$style.choosenTranslationBlock">
       <div>
-        <v-btn><v-icon :icon="mdiPencilPlus"></v-icon></v-btn>
+        <v-btn :ripple="false" rounded="xl"
+          ><v-icon :icon="mdiPencilPlus"></v-icon
+        ></v-btn>
       </div>
       <div :class="$style.choosenTranslation">
         <div>
