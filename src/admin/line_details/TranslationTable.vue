@@ -135,6 +135,10 @@ onMounted(() => {});
   display: flex;
   flex-direction: column;
 
+  > div:nth-child(1) i svg {
+    fill: #ffa000;
+  }
+
   div:nth-child(3) {
     margin-left: 0;
     align-self: center;
