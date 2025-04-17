@@ -14,7 +14,7 @@ const partOfSpeech = defineModel('partOfSpeech');
 
 function isSelected(partOfSpeechInput, wordInEnglishInput) {
   return (
-    partOfSpeech.value == partOfSpeechInput &&
+    partOfSpeech.value == SPN[partOfSpeechInput] &&
     wordInEnglish.value == wordInEnglishInput
   );
 }
@@ -93,7 +93,7 @@ onMounted(() => {});
               :class="[
                 {
                   [$style.selectedEnglishWord]: isSelected(
-                    wordInfo.partOfSpeech,
+                    wordInfo.partOfSpeech.toUpperCase(),
                     word.englishWord
                   ),
                 },
