@@ -136,7 +136,7 @@ onMounted(() => {});
   flex-direction: column;
 
   > div:nth-child(1) i svg {
-    fill: #ffa000;
+    fill: #8d6e63;
   }
 
   div:nth-child(3) {
