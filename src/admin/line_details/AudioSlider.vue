@@ -31,7 +31,7 @@ watch(isPlaying, () => {
 <template>
   <div>
     <div class="text-caption" :class="$style.labelCaption">
-      Audio Timeline:
+      Audio Currnt Time, Second:
       <span :class="$style.labelCurrentTime">{{ audioCurrentTimeValue }}</span>
     </div>
     <div :class="$style.sliderLine">
