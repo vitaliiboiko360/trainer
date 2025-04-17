@@ -54,7 +54,10 @@ watch(refInput, () => {
           <v-divider :thickness="2" class="border-opacity-50"></v-divider>
           <div
             v-if="!isEditActive"
-            :class="[{ [$style.notAssigned]: wordInEnglish == '' }]"
+            :class="[
+              { [$style.notAssigned]: wordInEnglish == '' },
+              { [$style.assigned]: wordInEnglish != '' },
+            ]"
           >
             {{ wordInEnglish == '' ? '  no value  ' : wordInEnglish }}
           </div>
@@ -76,7 +79,12 @@ watch(refInput, () => {
           <v-divider :thickness="2" class="border-opacity-50"></v-divider>
           <div
             v-if="!isEditActive"
-            :class="[{ [$style.notAssigned]: partOfSpeech == SP.NOT_ASSIGNED }]"
+            :class="[
+              {
+                [$style.notAssigned]: partOfSpeech == SP.NOT_ASSIGNED,
+                [$style.assigned]: partOfSpeech != SP.NOT_ASSIGNED,
+              },
+            ]"
           >
             {{
               partOfSpeech == SP.NOT_ASSIGNED
@@ -87,7 +95,6 @@ watch(refInput, () => {
           <v-select
             v-if="isEditActive"
             v-model="partOfSpeechName"
-            menu
             :class="$style.selectPartOfSpeech"
             :items="NSP"
             @update:modelValue="
@@ -140,6 +147,11 @@ watch(refInput, () => {
   white-space: pre;
   font-style: italic;
   background-color: rgba(224, 181, 181, 0.225);
+}
+
+.assigned {
+  white-space: pre;
+  background-color: rgba(98, 154, 95, 0.234);
 }
 .choosenTranslation {
   display: flex;
