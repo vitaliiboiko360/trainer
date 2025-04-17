@@ -39,13 +39,20 @@ watch(buttonSaveFlushData, async () => {
       audio: data.audio,
       lines: lines,
     };
-    const response = await fetch(`http://127.0.0.1:4000/lesson/${data.name}`, {
-      method: 'PUT',
-      body: JSON.stringify(dataToSend),
-    });
-    console.log(
-      `response status ${response.status}\nstatusText ${response.statusText}`
-    );
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:4000/lessons/${data.name}`,
+        {
+          method: 'PUT',
+          body: JSON.stringify(dataToSend),
+        }
+      );
+      console.log(
+        `response status ${response.status}\nstatusText ${response.statusText}`
+      );
+    } catch (e) {
+      console.log(e);
+    }
   }
 });
 </script>
