@@ -41,9 +41,12 @@ watch(buttonSaveFlushData, async () => {
     };
     try {
       const response = await fetch(
-        `http://127.0.0.1:4000/lessons/${data.name}`,
+        `http://localhost:4000/lessons/${data.name}`,
         {
           method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify(dataToSend),
         }
       );
