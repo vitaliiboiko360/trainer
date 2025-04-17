@@ -8,15 +8,17 @@ import {
 import { mdiPencilPlus, mdiCheckBold } from '@mdi/js';
 const wordInEnglish = defineModel('wordInEnglish');
 const partOfSpeech = defineModel('partOfSpeech');
-const partOfSpeechName = defineModel({
+const partOfSpeechName = defineModel('partOfSpeechName', {
   default: NSP[0],
 });
 
 const isEditActive = ref(false);
 const onClick = () => {
   isEditActive.value = !isEditActive.value;
-  if (isEditActive.value) {
+  if (isEditActive.value == true) {
     partOfSpeechName.value = NSP[partOfSpeech.value as number];
+  } else {
+    partOfSpeech.value = SPN[partOfSpeechName.value];
   }
 };
 
@@ -41,7 +43,10 @@ watch(refInput, () => {
     <div :class="$style.choosenTranslationBlock">
       <div>
         <v-btn :ripple="false" rounded="xl" @click="onClick"
-          ><v-icon :icon="isEditActive ? mdiCheckBold : mdiPencilPlus"></v-icon
+          ><v-icon
+            :icon="isEditActive ? mdiCheckBold : mdiPencilPlus"
+            :color="isEditActive ? 'warning' : 'info'"
+          ></v-icon
         ></v-btn>
       </div>
       <div :class="$style.choosenTranslation">
@@ -81,10 +86,17 @@ watch(refInput, () => {
           </div>
           <v-select
             v-if="isEditActive"
-            :model-value="partOfSpeechName"
+            v-model="partOfSpeechName"
+            menu
             :class="$style.selectPartOfSpeech"
             :items="NSP"
-            :update:modelValue="(partOfSpeech = SPN[partOfSpeechName])"
+            @update:modelValue="
+              () => {
+                console.log(partOfSpeech);
+                console.log(partOfSpeechName);
+                partOfSpeech = SPN[partOfSpeechName];
+              }
+            "
             density="compact"
           ></v-select>
           <v-divider
