@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, onMounted, ref, watch } from 'vue';
+import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import {
   SPEECHPART as SP,
   SPEECHPARTNAME as SPN,
@@ -23,6 +23,7 @@ const onClick = () => {
 };
 
 const refInput = ref();
+const refDivButton = ref();
 
 watch(refInput, () => {
   if (refInput.value) {
@@ -36,11 +37,28 @@ watch(refInput, () => {
     });
   }
 });
+
+const onClickCheckIfOutsideDiv = (e) => {
+  if (refDivButton.value.contains(e.target) == false) {
+    isEditActive.value = false;
+  }
+};
+
+onMounted(() => {
+  document.addEventListener('click', onClickCheckIfOutsideDiv);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', onClickCheckIfOutsideDiv);
+});
 </script>
 
 <template>
   <div :class="$style.outerDiv">
-    <div :class="$style.choosenTranslationBlock">
+    <div
+      :ref="(el) => (refDivButton = el)"
+      :class="$style.choosenTranslationBlock"
+    >
       <div>
         <v-btn :ripple="false" rounded="xl" @click="onClick"
           ><v-icon
@@ -65,7 +83,6 @@ watch(refInput, () => {
             v-if="isEditActive"
             :ref="(el) => (refInput = el)"
             role="textbox"
-            contenteditable
             ><input :defaultValue="wordInEnglish" type="text" autofocus
           /></span>
           <v-divider :thickness="2" class="border-opacity-50"></v-divider>
