@@ -33,7 +33,6 @@ watch(lines, () => {
 });
 watch(buttonSaveFlushData, async () => {
   if (buttonSaveFlushData.value == true) {
-    console.log(`buttonSaveFlushData = ${buttonSaveFlushData.value}`);
     const dataToSend = {
       name: data.name,
       audio: data.audio,
