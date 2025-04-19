@@ -32,8 +32,8 @@ watch(lines, () => {
   buttonSaveIsActive.value = true;
 });
 watch(buttonSaveFlushData, async () => {
-  if (buttonSaveFlushData.value) {
-    console.log(JSON.stringify(lines)); //testing request data
+  if (buttonSaveFlushData.value == true) {
+    console.log(`buttonSaveFlushData = ${buttonSaveFlushData.value}`);
     const dataToSend = {
       name: data.name,
       audio: data.audio,
@@ -50,12 +50,10 @@ watch(buttonSaveFlushData, async () => {
           body: JSON.stringify(dataToSend),
         }
       );
-      console.log(
-        `response status ${response.status}\nstatusText ${response.statusText}`
-      );
     } catch (e) {
       console.log(e);
     }
+    buttonSaveFlushData.value = false;
   }
 });
 </script>
