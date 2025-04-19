@@ -116,8 +116,6 @@ onBeforeUnmount(() => {
             :items="NSP"
             @update:modelValue="
               () => {
-                console.log(partOfSpeech);
-                console.log(partOfSpeechName);
                 partOfSpeech = SPN[partOfSpeechName];
               }
             "
