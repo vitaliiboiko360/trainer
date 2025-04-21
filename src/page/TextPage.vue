@@ -4,7 +4,15 @@ import TopBar from './topbar/TopBar.vue';
 import Player from './Player.vue';
 import css from './page.module.scss';
 const { data } = defineProps(['data']);
-const { lines } = data;
+const { lines: inputLines } = data;
+const lines = inputLines.map((line, index) => {
+  return {
+    text: line.text,
+    start: line.start,
+    end: line.end,
+    lineNumber: index,
+  };
+});
 </script>
 
 <template>
