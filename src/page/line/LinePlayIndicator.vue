@@ -8,9 +8,16 @@ const currentPlayIcon =
 </script>
 
 <template>
-  <div>
-    <v-icon :icon="currentPlayIcon" size="40"></v-icon>
+  <div :class="$style.divContainer">
+    <v-icon :class="$style.icon" :icon="currentPlayIcon" size="40"></v-icon>
   </div>
 </template>
 
-<style module></style>
+<style module>
+.divContainer {
+  display: inline-block;
+}
+.icon {
+  display: inline-block;
+}
+</style>
