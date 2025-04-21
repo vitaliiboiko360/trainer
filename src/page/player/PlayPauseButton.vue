@@ -15,7 +15,7 @@ const iconPlay =
 const iconPause =
   'M8.75 5.5A1 1 90 019.75 6.5v11a1 1 90 01-2 0v-11a1 1 90 011-1m6.5 0a1 1 90 011 1v11a1 1 90 01-2 0v-11a1 1 90 011-1';
 
-const isPlay = ref(true);
+import { isPlay } from '../state/playTime';
 const onClick = () => {
   isPlay.value = !isPlay.value;
 };
