@@ -10,7 +10,7 @@ const audio = ref();
 const previousOnTimeUpdateHandler = ref();
 
 watch(playTime, () => {
-  if (!audio.value) return console.log(`!!!!audio.value= `, audio.value);
+  if (!audio.value) return;
 
   const { startTime, endTime } = playTime;
 
