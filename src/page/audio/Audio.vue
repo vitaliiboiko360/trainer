@@ -31,7 +31,16 @@ watch(playTime, () => {
   isPlaying.value = true;
 });
 
-watch(isPlay, () => {});
+watch(isPlay, () => {
+  if (isPlay.value == true) {
+    if (audio.value.currentTime >= playTime.endTime) {
+      audio.value.currentTime = playTime.startTime;
+    }
+    audio.value.play();
+  } else if (isPlay.value == false) {
+    audio.value.pause();
+  }
+});
 </script>
 
 <template>
