@@ -2,6 +2,9 @@
 import { ref, watch } from 'vue';
 import { isPlaying, playTime, isPlay } from '../state/playTime';
 
+import { useIndicatorIndexStore } from '../../store/indicatorIndex';
+const lineIndicatorStore = useIndicatorIndexStore();
+
 const { audioSource } = defineProps(['audioSource']);
 const audio = ref();
 const previousOnTimeUpdateHandler = ref();
