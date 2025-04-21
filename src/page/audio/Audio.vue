@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { isPlaying, playTime } from '../state/playTime';
+import { isPlaying, playTime, isPlay } from '../state/playTime';
 
 const { audioSource } = defineProps(['audioSource']);
 const audio = ref();
@@ -30,6 +30,8 @@ watch(playTime, () => {
   audio.value!.play();
   isPlaying.value = true;
 });
+
+watch(isPlay, () => {});
 </script>
 
 <template>
