@@ -123,6 +123,8 @@ const displayedLines: Ref<Array<LineAndIndex>> = ref(
   pageBlocks[currentPageBlock.value]
 );
 
+indicatorIndexStore.updateMaxValue(lines.length);
+
 watch(currentPageBlock, (newUserSelectedCurrentPageBlock) => {
   displayedLines.value = pageBlocks[newUserSelectedCurrentPageBlock];
 });
