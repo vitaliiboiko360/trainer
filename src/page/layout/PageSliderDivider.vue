@@ -5,6 +5,9 @@ import type { Ref } from 'vue';
 import SliderPages from './SliderPages.vue';
 import cloneDeep from 'lodash.clonedeep';
 
+import { useIndicatorIndexStore } from '../../store/indicatorIndex';
+const indicatorIndexStore = useIndicatorIndexStore();
+
 const CHARACTER_NUMBER_PER_BLOCK = 250;
 const to1BasedIndex = (index) => index + 1;
 
@@ -121,6 +124,20 @@ const displayedLines: Ref<Array<LineAndIndex>> = ref(
 
 watch(currentPageBlock, (newUserSelectedCurrentPageBlock) => {
   displayedLines.value = pageBlocks[newUserSelectedCurrentPageBlock];
+});
+
+watch(indicatorIndexStore, () => {
+  const foundIndex = lineNumberRanges.findIndex((lineRange) => {
+    if (
+      lineRange.start <= indicatorIndexStore.indicatorIndex &&
+      lineRange.end <= indicatorIndexStore.indicatorIndex
+    ) {
+      return true;
+    }
+  });
+  if (foundIndex != -1) {
+    currentPageBlock.value = foundIndex;
+  }
 });
 </script>
 
