@@ -28,6 +28,7 @@ type LineAndIndex = {
 let currentBlock: Array<LineAndIndex> = [];
 let pageBlocks: Array<Array<LineAndIndex>> = [];
 
+let lineNumberRange: LineNumberRange = { start: 0, end: 0 };
 type LineNumberRange = {
   start: number;
   end: number;
@@ -37,7 +38,7 @@ let lineNumberRanges: Array<LineNumberRange> = [];
 const putLinesInBlocks = (characterCountPerBlock) => {
   let characterCount = 0;
   currentBlock = [];
-  let lineNumberRange: LineNumberRange = { start: 0, end: 0 };
+  lineNumberRange = { start: 0, end: 0 };
   return (lineElement, index) => {
     if (lineNumberRange.start == 0) {
       lineNumberRange.start = to1BasedIndex(index);
@@ -130,13 +131,12 @@ watch(indicatorIndexStore, () => {
   const foundIndex = lineNumberRanges.findIndex((lineRange) => {
     if (
       lineRange.start <= indicatorIndexStore.indicatorIndex &&
-      lineRange.end <= indicatorIndexStore.indicatorIndex
+      lineRange.end >= indicatorIndexStore.indicatorIndex
     ) {
       return true;
     }
   });
   if (foundIndex != -1 && foundIndex != currentPageBlock.value) {
-    console.log(`foundIndex== ${foundIndex}`);
     currentPageBlock.value = foundIndex;
   }
 });
