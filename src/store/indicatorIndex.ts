@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 export const useIndicatorIndexStore = defineStore('indicatorIndex', {
   state: () => ({
-    indicatorIndexState: 0,
+    indicatorIndexState: 1,
   }),
   getters: {
     indicatorIndex: (state) => state.indicatorIndexState,
