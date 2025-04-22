@@ -24,17 +24,24 @@ type LineAndIndex = {
 
 let currentBlock: Array<LineAndIndex> = [];
 let pageBlocks: Array<Array<LineAndIndex>> = [];
-let lineNumberRanges: Array<{
+
+type LineNumberRange = {
   start: number;
   end: number;
-  block: Array<LineAndIndex>;
-}> = [];
+};
+let lineNumberRanges: Array<LineNumberRange> = [];
 
 const putLinesInBlocks = (characterCountPerBlock) => {
   let characterCount = 0;
   currentBlock = [];
+  let lineNumberRange: LineNumberRange = { start: 0, end: 0 };
   return (lineElement, index) => {
+    if (lineNumberRange.start == 0) {
+      lineNumberRange.start = to1BasedIndex(index);
+    }
+
     characterCount += lineElement.text.length;
+
     currentBlock.push({
       textLineInfo: lineElement,
       lineNumber:
@@ -43,6 +50,11 @@ const putLinesInBlocks = (characterCountPerBlock) => {
     if (characterCount >= characterCountPerBlock) {
       // if we exceeded num per block threshold, we're flushing lines to block
       pageBlocks.push(cloneDeep(currentBlock));
+
+      lineNumberRange.end = to1BasedIndex(index);
+      lineNumberRanges.push(lineNumberRange);
+      lineNumberRange = { start: 0, end: 0 };
+
       currentBlock = [];
       characterCount = 0;
     }
