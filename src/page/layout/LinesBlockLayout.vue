@@ -45,6 +45,7 @@ const { displayedLines } = defineProps(['displayedLines']);
 .spanLineByLine {
   width: fit-content;
   display: inline-block;
+  position: relative;
 }
 .topLine {
   margin-top: 3rem;

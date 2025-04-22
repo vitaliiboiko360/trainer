@@ -16,6 +16,8 @@ const currentPlayIcon =
 <style module>
 .divContainer {
   display: inline-block;
+  position: absolute;
+  left: -2rem;
 }
 .icon {
   display: inline-block;
