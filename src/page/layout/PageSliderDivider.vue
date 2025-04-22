@@ -55,7 +55,7 @@ const putLinesInBlocks = (characterCountPerBlock) => {
       pageBlocks.push(cloneDeep(currentBlock));
 
       lineNumberRange.end = to1BasedIndex(index);
-      lineNumberRanges.push(lineNumberRange);
+      lineNumberRanges.push(cloneDeep(lineNumberRange));
       lineNumberRange = { start: 0, end: 0 };
 
       currentBlock = [];
@@ -92,7 +92,7 @@ if (totalCharacterCountInLastBlock > 0) {
 
     do {
       pageBlocks = [];
-
+      lineNumberRanges = [];
       lines.forEach(putLinesInBlocks(characterLimit));
 
       totalCharacterCountInLastBlock = currentBlock.reduce(
@@ -136,6 +136,7 @@ watch(indicatorIndexStore, () => {
     }
   });
   if (foundIndex != -1) {
+    console.log(`foundIndex== ${foundIndex}`);
     currentPageBlock.value = foundIndex;
   }
 });
