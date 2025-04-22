@@ -135,7 +135,7 @@ watch(indicatorIndexStore, () => {
       return true;
     }
   });
-  if (foundIndex != -1) {
+  if (foundIndex != -1 && foundIndex != currentPageBlock.value) {
     console.log(`foundIndex== ${foundIndex}`);
     currentPageBlock.value = foundIndex;
   }
