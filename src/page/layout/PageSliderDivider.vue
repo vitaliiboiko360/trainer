@@ -24,6 +24,11 @@ type LineAndIndex = {
 
 let currentBlock: Array<LineAndIndex> = [];
 let pageBlocks: Array<Array<LineAndIndex>> = [];
+let lineNumberRanges: Array<{
+  start: number;
+  end: number;
+  block: Array<LineAndIndex>;
+}> = [];
 
 const putLinesInBlocks = (characterCountPerBlock) => {
   let characterCount = 0;
