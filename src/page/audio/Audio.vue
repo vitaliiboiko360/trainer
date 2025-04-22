@@ -18,11 +18,15 @@ watch(playTime, () => {
     'timeupdate',
     previousOnTimeUpdateHandler.value
   );
-
+  let isAlreadyUpdatedIndicator = false;
   const onTimeUpdate = (event) => {
     if (audio.value!.currentTime >= endTime) {
       audio.value!.pause();
       isPlaying.value = false;
+      if (isAlreadyUpdatedIndicator == false) {
+        lineIndicatorStore.updateToNext();
+        isAlreadyUpdatedIndicator = true;
+      }
     }
   };
   previousOnTimeUpdateHandler.value = onTimeUpdate;
