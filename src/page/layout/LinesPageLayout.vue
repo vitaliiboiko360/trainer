@@ -20,9 +20,13 @@ import css from '../page.module.scss';
       { [css.titleLine]: lineNumber == 1 },
     ]"
   >
-    <LinePlayIndicator v-if="lineNumber == lineIndicatorStore.indicatorIndex" />
-    <LineSentence :textLine :lineNumber :key="lineNumber" />
-    <span v-if="lineNumber > 1">&nbsp;</span>
+    <LineSentence :textLine :lineNumber :key="lineNumber">
+      <template v-slot:indicator>
+        <LinePlayIndicator
+          v-if="lineNumber == lineIndicatorStore.indicatorIndex"
+        />
+      </template>
+    </LineSentence>
   </div>
 </template>
 

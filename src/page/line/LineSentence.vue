@@ -63,8 +63,11 @@ const onClick = (event) => {
     :ref="(el) => (refToSpan = el)"
     @click="onClick"
     :class="[$style.lineUnderlined]"
-    ><LineTextWordsArray :textLine :duration="endTime - startTime" :lineNumber
-  /></span>
+    ><LineTextWordsArray :textLine :duration="endTime - startTime" :lineNumber>
+      <template v-slot:indicator>
+        <slot name="indicator"></slot>
+      </template> </LineTextWordsArray
+  ></span>
   <p v-if="endParagraph" :class="$style.lineBreak" />
 </template>
 
