@@ -44,7 +44,7 @@ const { displayedLines } = defineProps(['displayedLines']);
 } */
 .spanLineByLine {
   width: fit-content;
-  display: inline-block;
+  /* display: inline-block; */
   position: relative;
 }
 .topLine {
