@@ -27,12 +27,23 @@ const cursorIcon = 'M12 16a1 1 90 011-1h3a1 1 90 010 2h-3A1 1 90 0112 16';
 </template>
 
 <style module>
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .divInnerContainer {
-  display: relative;
+  position: relative;
   i {
     position: absolute;
+    -webkit-filter: drop-shadow(0px 0px 8px #1a9fef);
+    filter: drop-shadow(0px 0px 8px #1a9fef);
   }
   i:nth-child(2) {
+    animation: pulse 1.5s linear infinite alternate-reverse;
     left: 0px;
   }
 }
@@ -40,6 +51,7 @@ const cursorIcon = 'M12 16a1 1 90 011-1h3a1 1 90 010 2h-3A1 1 90 0112 16';
   display: inline-block;
   position: absolute;
   left: -2rem;
+  top: 0.3rem;
 }
 .icon {
   display: inline-block;
