@@ -10,21 +10,32 @@ const cursorIcon = 'M12 16a1 1 90 011-1h3a1 1 90 010 2h-3A1 1 90 0112 16';
 
 <template>
   <div :class="$style.divContainer">
-    <v-icon
-      color="#1a9fef"
-      :class="$style.icon"
-      :icon="currentPlayIcon"
-      size="40"
-    ></v-icon>
-    <v-icon
-      :class="[$style.icon, $style.iconCursor]"
-      :icon="cursorIcon"
-      size="40"
-    ></v-icon>
+    <div :class="$style.divInnerContainer">
+      <v-icon
+        color="#1a9fef"
+        :class="$style.icon"
+        :icon="currentPlayIcon"
+        size="40"
+      ></v-icon>
+      <v-icon
+        :class="[$style.icon, $style.iconCursor]"
+        :icon="cursorIcon"
+        size="40"
+      ></v-icon>
+    </div>
   </div>
 </template>
 
 <style module>
+.divInnerContainer {
+  display: relative;
+  i {
+    position: absolute;
+  }
+  i:nth-child(2) {
+    left: 0px;
+  }
+}
 .divContainer {
   display: inline-block;
   position: absolute;
