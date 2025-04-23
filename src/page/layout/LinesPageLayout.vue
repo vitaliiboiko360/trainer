@@ -4,7 +4,7 @@ import LineSentence from '../line/LineSentence.vue';
 import LinePlayIndicator from '../line/LinePlayIndicator.vue';
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
 
-const lineIndicatorStore = useIndicatorIndexStore();
+const indicatorIndexStore = useIndicatorIndexStore();
 const { displayedLines } = defineProps(['displayedLines']);
 import css from '../page.module.scss';
 </script>
@@ -23,7 +23,7 @@ import css from '../page.module.scss';
     <LineSentence :textLine :lineNumber :key="lineNumber">
       <template v-slot:indicator>
         <LinePlayIndicator
-          v-if="lineNumber == lineIndicatorStore.indicatorIndex"
+          v-if="lineNumber == indicatorIndexStore.indicatorIndex"
         />
       </template>
     </LineSentence>

@@ -5,6 +5,8 @@ import {
   activeAnimationSentenceNumber,
   detectClickEvent,
 } from '../state/playTime';
+import { useIndicatorIndexStore } from '../../store/indicatorIndex';
+const indicatorIndexStore = useIndicatorIndexStore();
 const { textLine, duration, lineNumber } = defineProps([
   'textLine',
   'duration',
@@ -130,6 +132,7 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
         if (i + 1 == refToWordSpans.value.length) {
           setTimeout(() => {
             clearAnimation2();
+            indicatorIndexStore.update(lineNumber + 1);
           }, 150);
         }
       },
@@ -165,7 +168,7 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
       },
     });
   };
-
+  indicatorIndexStore.update(lineNumber);
   startAnimateUnderline(index);
 });
 </script>

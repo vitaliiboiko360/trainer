@@ -9,7 +9,7 @@ const iconBackward =
   'M4.5 8A.5.5 0 015 8.5v3.248l6.267-3.636c.52-.302 1.233.043 1.233.696v2.94l6.267-3.636c.52-.302 1.233.043 1.233.696v7.384c0 .653-.713.998-1.233.696L12.5 13.252v2.94c0 .653-.713.998-1.233.696L5 13.252V16.5a.5.5 0 01-1 0V8.5a.5.5 0 01.5-.5m7 1.133L5.696 12.5 11.5 15.867zm7.5 0L13.196 12.5 19 15.867z';
 
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
-const store = useIndicatorIndexStore();
+const indicatorIndexStore = useIndicatorIndexStore();
 </script>
 
 <template>
@@ -19,13 +19,13 @@ const store = useIndicatorIndexStore();
         v-if="next"
         size="60"
         :icon="iconForward"
-        @click="() => store.updateToNext()"
+        @click="() => indicatorIndexStore.updateToNext()"
       />
       <v-icon
         v-if="previous"
         size="60"
         :icon="iconBackward"
-        @click="() => store.updateToPrev()"
+        @click="() => indicatorIndexStore.updateToPrev()"
       />
     </v-btn>
   </div>
