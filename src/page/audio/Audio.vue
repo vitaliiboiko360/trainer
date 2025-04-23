@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { isPlaying, playTime, isPlay } from '../state/playTime';
+import {
+  isPlaying,
+  playTime,
+  isPlay,
+  activeAnimationSentenceNumber,
+} from '../state/playTime';
 
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
 const indicatorIndexStore = useIndicatorIndexStore();
@@ -49,6 +54,7 @@ watch(isPlay, () => {
     const currentIndex = indicatorIndexStore.indicatorIndex - 1;
     const { start: startTime, end: endTime } = timeData[currentIndex];
     playTime.updateTime(startTime, endTime);
+    activeAnimationSentenceNumber.value = indicatorIndexStore.indicatorIndex;
   } else if (isPlay.value == false) {
     audio.value.pause();
   }
