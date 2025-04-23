@@ -16,7 +16,7 @@ const { isPending, isError, data, error, isFetched } = useQuery({
 </script>
 
 <template>
-  <Audio v-if="isFetched" :audioSource="data.audio" />
+  <Audio v-if="isFetched" :audioSource="data.audio" :timeData="data.lines" />
   <span v-if="isPending">Loading Page...</span>
   <span v-else-if="isError">Error: {{ error.message }}</span>
   <div v-else :class="css.divPage">
