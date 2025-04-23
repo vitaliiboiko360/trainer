@@ -5,7 +5,7 @@ import { isPlaying, playTime, isPlay } from '../state/playTime';
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
 const indicatorIndexStore = useIndicatorIndexStore();
 
-const { audioSource } = defineProps(['audioSource']);
+const { audioSource, timeData } = defineProps(['audioSource', 'timeData']);
 const audio = ref();
 const previousOnTimeUpdateHandler = ref();
 
@@ -23,9 +23,10 @@ watch(playTime, () => {
     if (audio.value!.currentTime >= endTime) {
       audio.value!.pause();
       isPlaying.value = false;
+      isPlay.value = false;
       if (isAlreadyUpdatedIndicator == false) {
-        // indicatorIndexStore.updateToNext();
         isAlreadyUpdatedIndicator = true;
+        indicatorIndexStore.update(indicatorIndexStore.indicatorIndex + 1);
       }
     }
   };
@@ -40,10 +41,14 @@ watch(playTime, () => {
 
 watch(isPlay, () => {
   if (isPlay.value == true) {
-    if (audio.value.currentTime >= playTime.endTime) {
-      audio.value.currentTime = playTime.startTime;
-    }
-    audio.value.play();
+    // if (audio.value.currentTime >= playTime.endTime) {
+    //   audio.value.currentTime = playTime.startTime;
+    // }
+    // audio.value.play();
+
+    const currentIndex = indicatorIndexStore.indicatorIndex - 1;
+    const { start: startTime, end: endTime } = timeData[currentIndex];
+    playTime.updateTime(startTime, endTime);
   } else if (isPlay.value == false) {
     audio.value.pause();
   }
