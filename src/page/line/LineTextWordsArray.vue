@@ -171,7 +171,8 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
 </script>
 
 <template>
-  <span>
+  <span :class="$style.lineWrapOuter">
+    <slot name="indicator"></slot>
     <div
       v-for="(word, index) of textLine.split(' ')"
       :key="index"
@@ -180,16 +181,20 @@ watch([activeAnimationSentenceNumber, detectClickEvent], () => {
       <span :ref="(el) => refToWordSpans.push(el)" :class="$style.word">{{
         `${word}`
       }}</span
-      ><span>{{ ` ` }}</span>
+      ><span v-if="index != textLine.split(' ').length - 1">{{ ` ` }}</span>
       <div
         :ref="(el) => refToUnderlineDivs.push(el)"
         :class="$style.underLine"
       ></div>
     </div>
   </span>
+  <span v-if="lineNumber > 1">{{ ` ` }}</span>
 </template>
 
 <style module>
+.lineWrapOuter {
+  position: relative;
+}
 .lineWrap {
   display: inline-block;
   white-space: pre;
