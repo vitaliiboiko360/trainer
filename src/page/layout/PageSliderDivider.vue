@@ -51,7 +51,8 @@ const putLinesInBlocks = (characterCountPerBlock) => {
       lineNumber:
         to1BasedIndex(index) /* LineSentence expects 1-based indexing */,
     });
-    if (characterCount >= characterCountPerBlock) {
+
+    if (characterCount >= characterCountPerBlock || index == lines.length - 1) {
       // if we exceeded num per block threshold, we're flushing lines to block
       pageBlocks.push(cloneDeep(currentBlock));
 
@@ -79,10 +80,9 @@ const getTotalCharacterCount = (total, line) => {
   return total + line.textLineInfo.text.length;
 };
 
-let totalCharacterCountInLastBlock = currentBlock.reduce(
-  getTotalCharacterCount,
-  0
-);
+let totalCharacterCountInLastBlock = pageBlocks
+  .at(-1)
+  .reduce(getTotalCharacterCount, 0);
 
 if (totalCharacterCountInLastBlock > 0) {
   if (
@@ -96,14 +96,13 @@ if (totalCharacterCountInLastBlock > 0) {
       lineNumberRanges = [];
       lines.forEach(putLinesInBlocks(characterLimit));
 
-      totalCharacterCountInLastBlock = currentBlock.reduce(
-        getTotalCharacterCount,
-        0
-      );
+      totalCharacterCountInLastBlock = pageBlocks
+        .at(-1)
+        .reduce(getTotalCharacterCount, 0);
 
       characterLimit -= 15;
 
-      if (CHARACTER_NUMBER_PER_BLOCK - characterLimit > 70) {
+      if (CHARACTER_NUMBER_PER_BLOCK - characterLimit > 50) {
         break;
       }
     } while (
