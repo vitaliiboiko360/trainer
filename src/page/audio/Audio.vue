@@ -24,6 +24,7 @@ watch(playTime, () => {
     previousOnTimeUpdateHandler.value
   );
   let isAlreadyUpdatedIndicator = false;
+  const lineNumber = indicatorIndexStore.indicatorIndex;
   const onTimeUpdate = (event) => {
     if (audio.value!.currentTime >= endTime) {
       audio.value!.pause();
@@ -31,7 +32,7 @@ watch(playTime, () => {
       isPlay.value = false;
       if (isAlreadyUpdatedIndicator == false) {
         isAlreadyUpdatedIndicator = true;
-        indicatorIndexStore.update(indicatorIndexStore.indicatorIndex + 1);
+        indicatorIndexStore.update(lineNumber + 1);
       }
     }
   };
