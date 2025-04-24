@@ -10,27 +10,32 @@ import css from '../page.module.scss';
 </script>
 
 <template>
-  <div
-    v-for="({ textLineInfo: textLine, lineNumber }, index) in displayedLines"
-    :class="[
-      $style.linePageLayoutContainer,
-      $style.spanLineByLine,
-      { [$style.containerAsLine]: lineNumber != 1 },
-      { [$style.topLine]: index == 0 },
-      { [css.titleLine]: lineNumber == 1 },
-    ]"
-  >
-    <LineSentence :textLine :lineNumber :key="lineNumber">
-      <template v-slot:indicator>
-        <LinePlayIndicator
-          v-if="lineNumber == indicatorIndexStore.indicatorIndex"
-        />
-      </template>
-    </LineSentence>
+  <div :class="$style.pageLayoutContainer">
+    <div
+      v-for="({ textLineInfo: textLine, lineNumber }, index) in displayedLines"
+      :class="[
+        $style.linePageLayoutContainer,
+        $style.spanLineByLine,
+        { [$style.containerAsLine]: lineNumber != 1 },
+        { [$style.topLine]: index == 0 },
+        { [css.titleLine]: lineNumber == 1 },
+      ]"
+    >
+      <LineSentence :textLine :lineNumber :key="lineNumber">
+        <template v-slot:indicator>
+          <LinePlayIndicator
+            v-if="lineNumber == indicatorIndexStore.indicatorIndex"
+          />
+        </template>
+      </LineSentence>
+    </div>
   </div>
 </template>
 
 <style module>
+.pageLayoutContainer {
+  padding: 0 0.1rem 0 1.8rem;
+}
 .linePageLayoutContainer {
   position: relative;
 }
