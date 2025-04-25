@@ -6,7 +6,6 @@ const show1 = ref(false);
 
 onMounted(() => {
   setTimeout(() => {
-    console.log(`test`);
     show1.value = true;
   }, 1500);
 });
