@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, getCurrentInstance, watch } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 
 import gsap from 'gsap';
 
