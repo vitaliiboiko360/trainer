@@ -4,6 +4,8 @@ import path from 'path';
 import vitePluginSass from 'vite-plugin-sass';
 import { patchCssModules } from 'vite-css-modules';
 import vuetify from 'vite-plugin-vuetify';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 export default defineConfig({
   define: {
@@ -58,6 +60,30 @@ export default defineConfig({
     output: {
       dir: 'js',
       name: 'index.js',
+    },
+    rollupOptions: {
+      external: [
+        'gsap',
+        'MotionPathPlugin',
+        'gsap/MotionPathPlugin',
+        'vue',
+        /node_modules/,
+      ],
+      output: {
+        globals: {
+          gsap: 'gsap',
+        },
+      },
+      plugins: [
+        visualizer({
+          emitFile: true,
+          filename: 'stats.html',
+        }),
+        nodeResolve({
+          jsnext: true,
+          skip: ['gsap', 'gsap/MotionPathPlugin', 'MotionPathPlugin'],
+        }),
+      ],
     },
   },
   optimizeDeps: {
