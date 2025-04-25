@@ -67,13 +67,14 @@ export default defineConfig({
         'MotionPathPlugin',
         'gsap/MotionPathPlugin',
         'vue',
-        /node_modules/,
+        // /node_modules/,
       ],
-      output: {
-        globals: {
-          gsap: 'gsap',
-        },
-      },
+      // output: {
+      //   globals: {
+      //     vue: 'vue',
+      //     gsap: 'gsap',
+      //   },
+      // },
       plugins: [
         visualizer({
           emitFile: true,
