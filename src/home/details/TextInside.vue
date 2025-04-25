@@ -1,6 +1,5 @@
 <script setup>
 import { gsap } from 'gsap';
-import TextPlugin from 'gsap/TextPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { watch, ref, onMounted } from 'vue';
 import { endTextAnimation, startTextAnimation } from './refs';
@@ -14,7 +13,7 @@ import { shuffle, xmlnsSvg } from './etc';
 
 const { textLines } = defineProps(['textLines']);
 
-gsap.registerPlugin(TextPlugin, MotionPathPlugin);
+gsap.registerPlugin(MotionPathPlugin);
 
 const refDiv = ref();
 const refSvg = ref();
