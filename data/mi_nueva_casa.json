@@ -1,5 +1,6 @@
 {
-  "audio": "mi_nueva_casa",
+  "name": "mi_nueva_casa",
+  "audio": "mi_nueva_casa.mp3",
   "lines": [
     {
       "text": "Mi nueva casa",
