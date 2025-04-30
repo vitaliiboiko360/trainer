@@ -11,7 +11,7 @@ export async function queryJson(url) {
 }
 
 export const LIST_TEXT_JSON_KEY = 'list_of_texts';
-export const LIST_TEXT_JSON_URL = 'lessons/list_of_texts';
+export const LIST_TEXT_JSON_URL = '/api/lessons/list_of_texts';
 
 export async function queryListOfTextJson() {
   return (await getResponse(LIST_TEXT_JSON_URL)).json();

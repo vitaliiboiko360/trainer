@@ -39,7 +39,7 @@ watch(buttonSaveFlushData, async () => {
       lines: lines,
     };
     try {
-      const response = await fetch(`/lessons/${data.name}`, {
+      const response = await fetch(`/api/lessons/${data.name}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
