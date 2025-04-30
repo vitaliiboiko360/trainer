@@ -6,8 +6,8 @@ import AdminLessonWithTranslations from './AdminLessonWithTranslations.vue';
 const buttonSaveIsActive = defineModel('buttonSaveIsActive');
 const buttonSaveFlushData = defineModel('buttonSaveFlushData');
 const { id, resource } = defineProps(['id', 'resource']);
-const url = `/data/${resource}.json`;
-const urlTranslations = `/data/tr/${resource}.json`;
+const url = `/api/lessons/${resource}`;
+const urlTranslations = `/api/translations/${resource}`;
 
 const { isPending, isError, data, error, isFetched } = useQuery({
   queryKey: [`lesson-${id}`],
