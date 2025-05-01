@@ -23,12 +23,13 @@ export default defineConfig({
       allow: ['./data/', './data/tr', './', './data/hm'],
       deny: ['./node_modules'],
     },
-      proxy: {
+    proxy: {
       '/api': {
         target: 'http://192.168.0.101:4000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
+    },
   },
   esbuild: {
     legalComments: 'none',
