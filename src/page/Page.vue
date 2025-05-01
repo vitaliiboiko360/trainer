@@ -7,7 +7,7 @@ import Audio from './audio/Audio.vue';
 import { queryJson } from '../query/default';
 
 const { id, resource } = defineProps(['id', 'resource']);
-const url = `/data/${resource}.json`;
+const url = `/api/lessons/${resource}`;
 
 const { isPending, isError, data, error, isFetched } = useQuery({
   queryKey: [`lesson-${id}`],
