@@ -63,5 +63,5 @@ watch(isPlay, () => {
 </script>
 
 <template>
-  <audio ref="audio" :src="`/audio/${audioSource}`"></audio>
+  <audio ref="audio" :src="`audio/${audioSource}`"></audio>
 </template>
