@@ -22,7 +22,7 @@ const { isFetched: isFetchedTranslations, data: translations } = useQuery({
 
 <template>
   <div>
-    <Audio v-if="isFetched" :audioSource="`../../../data/${data.audio}`" />
+    <Audio v-if="isFetched" :audioSource="`/audio/${data.audio}`" />
     <AdminLessonWithTranslations
       v-if="isFetched && isFetchedTranslations"
       :data
