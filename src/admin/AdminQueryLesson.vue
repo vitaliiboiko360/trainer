@@ -20,9 +20,12 @@ const { isFetched: isFetchedTranslations, data: translations } = useQuery({
 });
 </script>
 
+// TODO: this require investigating how vue-router path treat source paths
+// we need go backwards /admin/edit/audio added normally
+// to get url path relative to the host, not by the route path
 <template>
   <div>
-    <Audio v-if="isFetched" :audioSource="data.audio" />
+    <Audio v-if="isFetched" :audioSource="`../../../audio/${data.audio}`" />
     <AdminLessonWithTranslations
       v-if="isFetched && isFetchedTranslations"
       :data
