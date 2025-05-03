@@ -36,7 +36,7 @@ const createWordElement = (
     arrayOfCharacterSpans.push(characterSpan);
     wordSpan.appendChild(characterSpan);
   }
-  targetToInsertTo.appendChild(wordSpan);
+  targetToInsertTo && targetToInsertTo.appendChild(wordSpan);
   return wordSpan;
 };
 
@@ -49,6 +49,9 @@ watch(textMsgOrder, () => {
   // let unused;
   // unused = instance.vnode.el.parentNode;
 
+  if (!refPText.value) {
+    return;
+  }
   const { text, colorIndices } = textMessages[textMsgOrder.value];
   const words = text.split(' ');
 
