@@ -53,9 +53,9 @@ export function shuffle(array) {
   }
 }
 
-export const SVG_SRC = '/data/listening-head.svg';
-export const SVG_SRC_BARS = '/data/bars_animated.svg';
-export const SVG_RETURN_ADMIN_HOME = '/data/return-admin-home.svg';
+export const SVG_SRC = '/assets/svg/listening-head.svg';
+export const SVG_SRC_BARS = '/assets/svg/bars_animated.svg';
+export const SVG_RETURN_ADMIN_HOME = '/assets/svg/return-admin-home.svg';
 
 export const SVG_DIMS = {
   width: '10rem',
