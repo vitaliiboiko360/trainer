@@ -87,7 +87,7 @@ watch(textMsgOrder, () => {
             } else {
               gsap.to(refPText.value, { opacity: 0, duration: 0.7 });
               setTimeout(() => {
-                while (refPText.value.firstChild) {
+                while (refPText.value && refPText.value.firstChild) {
                   refPText.value.removeChild(refPText.value.lastChild);
                 }
               }, 700);
