@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --mode production; find ./data -type f -name '*.svg' -exec cp {} ./dist/assets/ \\;"
+    "build": "vite build --mode production; mkdir -p ./dist/assets/svg ; find ./data -type f -name '*.svg' -exec cp {} ./dist/assets/svg/ \\;"
   },
   "browser": {
     "fs": false,
