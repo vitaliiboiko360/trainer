@@ -110,7 +110,7 @@
 .topBarButtonBackHome {
   @extend .topBarButtonBase;
   &:before {
-    background-image: url(/data/back-home.svg);
+    background-image: url(svg/back-home.svg);
   }
 }
 
@@ -179,7 +179,7 @@
 .topBarButtonLineOnTheirOwn {
   @extend .topBarButtonBase;
   &:before {
-    background-image: url(/data/list-check.svg);
+    background-image: url(svg/list-check.svg);
     background-size: 85%;
     background-position-x: center;
     background-position-y: center;
@@ -189,42 +189,42 @@
 .topBarButtonMenu {
   @extend .topBarButtonBase;
   &:before {
-    background-image: url(/data/menu-big-mac.svg);
+    background-image: url(svg/menu-big-mac.svg);
   }
 }
 
 .topBarButtonTextBlock {
   @extend .topBarButtonBase;
   &:before {
-    background-image: url(/data/view-list.svg);
+    background-image: url(svg/view-list.svg);
   }
 }
 
 .topBarButtonTextBullet {
   @extend .topBarButtonBase;
   &:before {
-    background-image: url(/data/list_view.svg);
+    background-image: url(svg/list_view.svg);
   }
 }
 
 .topBarButtonTextImmediate {
   @extend .topBarButtonBase;
   &:before {
-    background-image: url(/data/body-text.svg);
+    background-image: url(svg/body-text.svg);
   }
 }
 
 .topBarButton_TextOrdinary {
   @extend .topBarButtonBase;
   &:before {
-    background-image: url(/data/text_ordinary.svg);
+    background-image: url(svg/text_ordinary.svg);
   }
 }
 
 .topBarButtonTranslations {
   @extend .topBarButtonBase;
   &:before {
-    background-image: url(/data/chat-left-quote.svg);
+    background-image: url(svg/chat-left-quote.svg);
     background-position: 0.55rem 0.6rem;
     background-size: 3rem;
   }

@@ -18,14 +18,14 @@
 .buttonPageSliderLeftPrevious {
   @include buttonPageSliderBase;
   &:before {
-    background-image: url(data/chevron-left-feather.svg);
+    background-image: url(svg/chevron-left-feather.svg);
   }
 }
 
 .buttonPageSliderRightNext {
   @include buttonPageSliderBase;
   &:before {
-    background-image: url(data/chevron-right-feather.svg);
+    background-image: url(svg/chevron-right-feather.svg);
   }
 }
 
@@ -55,61 +55,61 @@
 .buttonPageNumber_1 {
   @include buttonPageNumberBase;
   &:before {
-    background-image: url(data/1-circle.svg);
+    background-image: url(svg/1-circle.svg);
   }
 }
 
 .buttonPageNumber_2 {
   @include buttonPageNumberBase;
   &:before {
-    background-image: url(data/2-circle.svg);
+    background-image: url(svg/2-circle.svg);
   }
 }
 
 .buttonPageNumber_3 {
   @include buttonPageNumberBase;
   &:before {
-    background-image: url(data/3-circle.svg);
+    background-image: url(svg/3-circle.svg);
   }
 }
 .buttonPageNumber_4 {
   @include buttonPageNumberBase;
   &:before {
-    background-image: url(data/4-circle.svg);
+    background-image: url(svg/4-circle.svg);
   }
 }
 
 .buttonPageNumber_5 {
   @include buttonPageNumberBase;
   &:before {
-    background-image: url(data/5-circle.svg);
+    background-image: url(svg/5-circle.svg);
   }
 }
 
 .buttonPageNumber_6 {
   @include buttonPageNumberBase;
   &:before {
-    background-image: url(data/6-circle.svg);
+    background-image: url(svg/6-circle.svg);
   }
 }
 .buttonPageNumber_7 {
   @include buttonPageNumberBase;
   &:before {
-    background-image: url(data/7-circle.svg);
+    background-image: url(svg/7-circle.svg);
   }
 }
 
 .buttonPageNumber_8 {
   @include buttonPageNumberBase;
   &:before {
-    background-image: url(data/8-circle.svg);
+    background-image: url(svg/8-circle.svg);
   }
 }
 
 .buttonPageNumber_9 {
   @include buttonPageNumberBase;
   &:before {
-    background-image: url(data/9-circle.svg);
+    background-image: url(svg/9-circle.svg);
   }
 }
 
