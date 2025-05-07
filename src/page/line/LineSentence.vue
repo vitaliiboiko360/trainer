@@ -7,6 +7,8 @@ import {
   detectClickEvent,
 } from '../state/playTime';
 import LineTextWordsArray from './LineTextWordsArray.vue';
+import { useIndicatorIndexStore } from '../../store/indicatorIndex';
+const indicatorIndexStore = useIndicatorIndexStore();
 
 const { textLine: textLineInfo, lineNumber } = defineProps([
   'textLine',
@@ -26,7 +28,7 @@ const refToAnimation = ref();
 const onClick = (event) => {
   playTime.updateTime(startTime, endTime);
   activeAnimationSentenceNumber.value = lineNumber;
-
+  indicatorIndexStore.update(lineNumber);
   detectClickEvent.value = !detectClickEvent.value;
   // let scopedEventTarget = event.currentTarget;
 
