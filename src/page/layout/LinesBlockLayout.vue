@@ -2,11 +2,10 @@
 import LinePlayIndicator from '../line/LinePlayIndicator.vue';
 import LineSentence from '../line/LineSentence.vue';
 import css from '../page.module.scss';
-import { defineProps, onMounted, ref, watch } from 'vue';
+import { defineProps, onMounted, ref, watchEffect } from 'vue';
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
 const indicatorIndexStore = useIndicatorIndexStore();
-const props = defineProps(['displayedLines']);
-const { displayedLines } = props;
+const { displayedLines } = defineProps(['displayedLines']);
 const refDivRoot = ref();
 const maximumHeight = ref(0);
 
@@ -15,9 +14,9 @@ onMounted(() => {
     maximumHeight.value,
     parseInt(refDivRoot.value.getBoundingClientRect().height)
   );
+  refDivRoot.value.style.minHeight = `${maximumHeight.value}px`;
 });
-
-watch(props.displayedLines, () => {
+watchEffect(() => {
   if (maximumHeight.value == 0) return;
   refDivRoot.value.style.minHeight = `${maximumHeight.value}px`;
 });
