@@ -36,6 +36,8 @@ const refToWordSpans = ref([]);
 
 const currentAnimation = ref();
 const currentAnimation2 = ref();
+const currentAnimationProgress = ref();
+const currentAnimationProgress2 = ref();
 
 onMounted(() => {
   refToUnderlineDivs.value.forEach((uDiv) => {
@@ -49,8 +51,14 @@ watch(isPlay, () => {
     currentAnimation.value && currentAnimation.value.play();
     currentAnimation.value && currentAnimation2.value.play();
   } else {
-    currentAnimation.value && currentAnimation.value.pause();
-    currentAnimation.value && currentAnimation2.value.pause();
+    if (currentAnimation.value) {
+      currentAnimation.value.pause();
+      currentAnimationProgress.value = currentAnimation.value.progress();
+    }
+    if (currentAnimation.value) {
+      currentAnimation2.value.pause();
+      currentAnimationProgress2.value = currentAnimation2.value.progress();
+    }
   }
 });
 
