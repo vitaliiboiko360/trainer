@@ -16,6 +16,12 @@ const { audioSource, timeData } = defineProps(['audioSource', 'timeData']);
 const audio = ref();
 const previousOnTimeUpdateHandler = ref();
 
+const adjustPlaybackSpeed = (value) => {
+  if (value == 0.8) return 0.87;
+  if (value == 0.9) return 0.93;
+  return 1;
+};
+
 watch(playTime, () => {
   if (!audio.value) return;
 
@@ -48,7 +54,7 @@ watch(playTime, () => {
 });
 
 watch(playbackSpeed, () => {
-  audio.value.playbackRate = playbackSpeed.value;
+  audio.value.playbackRate = adjustPlaybackSpeed(playbackSpeed.value);
 });
 
 watch([isPlay, isPlayFromPaused], () => {
