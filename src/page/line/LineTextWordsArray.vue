@@ -5,6 +5,7 @@ import {
   activeAnimationSentenceNumber,
   detectClickEvent,
   detectPlayButtonEvent,
+  isPlay,
 } from '../state/playTime';
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
 const indicatorIndexStore = useIndicatorIndexStore();
@@ -41,6 +42,16 @@ onMounted(() => {
     const { width } = uDiv.getBoundingClientRect();
     totalWidth.value = totalWidth.value + width;
   });
+});
+
+watch(isPlay, () => {
+  if (isPlay.value) {
+    currentAnimation.value && currentAnimation.value.play();
+    currentAnimation.value && currentAnimation2.value.play();
+  } else {
+    currentAnimation.value && currentAnimation.value.pause();
+    currentAnimation.value && currentAnimation2.value.pause();
+  }
 });
 
 watch(
