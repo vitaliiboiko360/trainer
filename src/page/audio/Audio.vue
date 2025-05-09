@@ -5,6 +5,7 @@ import {
   playTime,
   isPlay,
   activeAnimationSentenceNumber,
+  playbackSpeed,
 } from '../state/playTime';
 
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
@@ -43,6 +44,10 @@ watch(playTime, () => {
   audio.value!.currentTime = startTime;
   audio.value!.play();
   isPlaying.value = true;
+});
+
+watch(playbackSpeed, () => {
+  audio.value.playbackRate = playbackSpeed.value;
 });
 
 watch(isPlay, () => {
