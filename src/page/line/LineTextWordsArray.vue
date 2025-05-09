@@ -4,7 +4,6 @@ import { gsap } from 'gsap';
 import {
   activeAnimationSentenceNumber,
   detectClickEvent,
-  detectPlayButtonEvent,
   isPlay,
 } from '../state/playTime';
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
@@ -70,7 +69,7 @@ watch(isPlay, () => {
 });
 
 watch(
-  [activeAnimationSentenceNumber, detectClickEvent, detectPlayButtonEvent],
+  [activeAnimationSentenceNumber, detectClickEvent],
   () => {
     const clearAnimation2 = () => {
       refToWordSpans.value.forEach((span) => {
