@@ -47,6 +47,13 @@ onMounted(() => {
 });
 
 watch(isPlay, () => {
+  if (
+    isPlay.value == true &&
+    !currentAnimation.value &&
+    !currentAnimation2.value
+  ) {
+    return;
+  }
   if (isPlay.value) {
     currentAnimation.value && currentAnimation.value.play();
     currentAnimation.value && currentAnimation2.value.play();
