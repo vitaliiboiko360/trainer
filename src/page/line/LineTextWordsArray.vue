@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import {
   activeAnimationSentenceNumber,
   detectClickEvent,
+  detectPlayButtonEvent,
 } from '../state/playTime';
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
 const indicatorIndexStore = useIndicatorIndexStore();
@@ -42,7 +43,7 @@ onMounted(() => {
   });
 });
 
-watch([activeAnimationSentenceNumber, detectClickEvent], () => {
+watch([activeAnimationSentenceNumber, detectClickEvent, detectPlayButtonEvent], () => {
   const clearAnimation2 = () => {
     refToWordSpans.value.forEach((span) => {
       gsap.set(span, { boxShadow: 'unset', background: 'unset' });
