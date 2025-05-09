@@ -2,14 +2,29 @@
 import LinePlayIndicator from '../line/LinePlayIndicator.vue';
 import LineSentence from '../line/LineSentence.vue';
 import css from '../page.module.scss';
-import { defineProps } from 'vue';
+import { defineProps, onMounted, ref, watch } from 'vue';
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
 const indicatorIndexStore = useIndicatorIndexStore();
-const { displayedLines } = defineProps(['displayedLines']);
+const props = defineProps(['displayedLines']);
+const { displayedLines } = props;
+const refDivRoot = ref();
+const maximumHeight = ref(0);
+
+onMounted(() => {
+  maximumHeight.value = Math.max(
+    maximumHeight.value,
+    parseInt(refDivRoot.value.getBoundingClientRect().height)
+  );
+});
+
+watch(props.displayedLines, () => {
+  if (maximumHeight.value == 0) return;
+  refDivRoot.value.style.minHeight = `${maximumHeight.value}px`;
+});
 </script>
 
 <template>
-  <div :class="$style.linesBlock">
+  <div :ref="(el) => (refDivRoot = el)" :class="$style.linesBlock">
     <div :class="$style.linesOuterContainer">
       <div
         v-for="(
