@@ -6,6 +6,7 @@ import {
   isPlay,
   activeAnimationSentenceNumber,
   playbackSpeed,
+  isPlayFromPaused,
 } from '../state/playTime';
 
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
@@ -50,12 +51,12 @@ watch(playbackSpeed, () => {
   audio.value.playbackRate = playbackSpeed.value;
 });
 
-watch(isPlay, () => {
+watch([isPlay, isPlayFromPaused], () => {
   if (isPlay.value == true) {
-    // if (audio.value.currentTime >= playTime.endTime) {
-    //   audio.value.currentTime = playTime.startTime;
-    // }
-    // audio.value.play();
+    if (isPlayFromPaused.value == true) {
+      audio.value.play();
+      return;
+    }
 
     const currentIndex = indicatorIndexStore.indicatorIndex - 1;
     const { start: startTime, end: endTime } = timeData[currentIndex];
