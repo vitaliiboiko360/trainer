@@ -22,4 +22,4 @@ export const isPlay = ref(false);
 
 export const playbackSpeed = ref(1);
 
-export const detectPlayButtonEvent = ref(false);
+export const isPlayFromPaused = ref(false);
