@@ -12,6 +12,12 @@ import {
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
 const indicatorIndexStore = useIndicatorIndexStore();
 
+import { useAudioPlayStore } from '../../store/audioPlay';
+const audioPlayStore = useAudioPlayStore();
+
+import { useAudioTimeStore } from '../../store/playTime';
+const autioTimeStore = useAudioTimeStore();
+
 const { audioSource, timeData } = defineProps(['audioSource', 'timeData']);
 const audio = ref();
 const previousOnTimeUpdateHandler = ref();
@@ -57,19 +63,43 @@ watch(playbackSpeed, () => {
   audio.value.playbackRate = adjustPlaybackSpeed(playbackSpeed.value);
 });
 
-watch([isPlay, isPlayFromPaused], () => {
-  if (isPlay.value == true) {
-    if (isPlayFromPaused.value == true) {
-      audio.value.play();
-      return;
-    }
+watch(autioTimeStore, () => {
+  if (!audio.value) return;
 
-    const currentIndex = indicatorIndexStore.indicatorIndex - 1;
-    const { start: startTime, end: endTime } = timeData[currentIndex];
-    playTime.updateTime(startTime, endTime);
-    activeAnimationSentenceNumber.value = indicatorIndexStore.indicatorIndex;
-  } else if (isPlay.value == false) {
-    audio.value.pause();
+  const { startTime, endTime } = autioTimeStore.playTime;
+
+  if (previousOnTimeUpdateHandler.value) {
+    audio.value!.removeEventListener(
+      'timeupdate',
+      previousOnTimeUpdateHandler.value
+    );
+  }
+  const onTimeUpdate = (event) => {
+    if (audio.value!.currentTime >= endTime) {
+      audio.value!.pause();
+      audioPlayStore.setPause();
+    }
+  };
+
+  previousOnTimeUpdateHandler.value = onTimeUpdate;
+
+  audio.value!.addEventListener('timeupdate', onTimeUpdate);
+  audio.value!.currentTime = startTime;
+});
+
+watch(audioPlayStore, () => {
+  if (audioPlayStore.isPlay == true) {
+    audio.value!.play();
+    // if (isPlayFromPaused.value == true) {
+    //   return;
+    // }
+
+    // const currentIndex = indicatorIndexStore.indicatorIndex - 1;
+    // const { start: startTime, end: endTime } = timeData[currentIndex];
+    // playTime.updateTime(startTime, endTime);
+    // activeAnimationSentenceNumber.value = indicatorIndexStore.indicatorIndex;
+  } else if (audioPlayStore.isPlay == false) {
+    audio.value!.pause();
   }
 });
 </script>
