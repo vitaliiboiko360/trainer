@@ -53,9 +53,9 @@ watch(isPlay, () => {
   // ) {
   //   return;
   // }
-  if (isPlay.value) {
+  if (isPlay.value == true) {
     currentAnimation.value && currentAnimation.value.play();
-    currentAnimation.value && currentAnimation2.value.play();
+    currentAnimation2.value && currentAnimation2.value.play();
   } else {
     if (currentAnimation.value) {
       currentAnimation.value.pause();
