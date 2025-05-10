@@ -1,29 +1,29 @@
-import { mdiFormatTextVariant } from '@mdi/js';
 import { defineStore } from 'pinia';
+
 export const useIndicatorIndexStore = defineStore('indicatorIndex', {
   state: () => ({
-    indicatorIndexState: 1,
+    index: 1,
     maxValue: 0,
   }),
   getters: {
-    indicatorIndex: (state) => state.indicatorIndexState,
+    indicatorIndex: (state) => state.index,
   },
   actions: {
     // since we rely on `this`, we cannot use an arrow function
     update(value) {
-      this.indicatorIndexState = value;
+      this.index = value;
     },
     updateMaxValue(value) {
       this.maxValue = value;
     },
     updateToNext() {
-      if (this.indicatorIndexState < this.maxValue) {
-        this.indicatorIndexState++;
+      if (this.index < this.maxValue) {
+        this.index++;
       }
     },
     updateToPrev() {
-      if (this.indicatorIndexState > 1) {
-        this.indicatorIndexState--;
+      if (this.index > 1) {
+        this.index--;
       }
     },
   },
