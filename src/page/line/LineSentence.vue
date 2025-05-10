@@ -10,6 +10,12 @@ import LineTextWordsArray from './LineTextWordsArray.vue';
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
 const indicatorIndexStore = useIndicatorIndexStore();
 
+import { useAudioTimeStore } from '../../store/playTime';
+const autioTimeStore = useAudioTimeStore();
+
+import { useAudioPlayStore } from '../../store/audioPlay';
+const audioPlayStore = useAudioPlayStore();
+
 const { textLine: textLineInfo, lineNumber } = defineProps([
   'textLine',
   'lineNumber',
@@ -30,6 +36,9 @@ const onClick = (event) => {
   activeAnimationSentenceNumber.value = lineNumber;
   indicatorIndexStore.update(lineNumber);
   detectClickEvent.value = !detectClickEvent.value;
+  autioTimeStore.updatePlayTime(startTime, endTime);
+  audioPlayStore.setPlay();
+
   // let scopedEventTarget = event.currentTarget;
 
   // const onComplete = () => {
