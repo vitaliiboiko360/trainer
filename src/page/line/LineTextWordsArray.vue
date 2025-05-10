@@ -46,13 +46,13 @@ onMounted(() => {
 });
 
 watch(isPlay, () => {
-  if (
-    isPlay.value == true &&
-    !currentAnimation.value &&
-    !currentAnimation2.value
-  ) {
-    return;
-  }
+  // if (
+  //   isPlay.value == true &&
+  //   !currentAnimation.value &&
+  //   !currentAnimation2.value
+  // ) {
+  //   return;
+  // }
   if (isPlay.value) {
     currentAnimation.value && currentAnimation.value.play();
     currentAnimation.value && currentAnimation2.value.play();
@@ -61,7 +61,7 @@ watch(isPlay, () => {
       currentAnimation.value.pause();
       currentAnimationProgress.value = currentAnimation.value.progress();
     }
-    if (currentAnimation.value) {
+    if (currentAnimation2.value) {
       currentAnimation2.value.pause();
       currentAnimationProgress2.value = currentAnimation2.value.progress();
     }
@@ -149,6 +149,7 @@ watch(
         background: randomColor,
       });
       currentAnimation2.value = gsap.to(updatedObject, {
+        paused: index > 0 ? false : true,
         keyframes: {
           key: keyframes,
         },
@@ -170,6 +171,7 @@ watch(
       //
 
       currentAnimation.value = gsap.to(animatedValue, {
+        paused: index > 0 ? false : true,
         w:
           i == refToUnderlineDivs.value.length - 1 || isLastOnLine
             ? width - 10
