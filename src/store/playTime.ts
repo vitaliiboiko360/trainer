@@ -14,7 +14,7 @@ export const useAudioTimeStore = defineStore('playTime', {
     },
   },
   actions: {
-    updatePlayTime(newStartTime, newEndTime) {
+    updatePlayTime(newStartTime: number, newEndTime: number) {
       this.startTime = newStartTime;
       this.endTime = newEndTime;
     },
