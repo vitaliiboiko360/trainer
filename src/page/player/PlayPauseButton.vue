@@ -1,5 +1,11 @@
 <script setup>
-import { isPlayFromPaused } from '../state/playTime';
+import {
+  detectClickEvent,
+  isPlayFromPaused,
+  activeAnimationSentenceNumber,
+} from '../state/playTime';
+import { useAudioPlayStore } from '../../store/audioPlay';
+const audioPlayStore = useAudioPlayStore();
 const iconPlay2 =
   'M19.5712 11.8043 7.1498 4.5984v14.4118zm1.695-1.4896a1.7164 1.7164 90 010 2.9791l-13.6178 7.9015C6.5355 21.8417 5.0096 21.1033 5.0096 19.7058V3.9028c0-1.3975 1.5259-2.1359 2.6388-1.4896z';
 const iconPlay1 =
@@ -16,12 +22,14 @@ const iconPause =
   'M8.75 5.5A1 1 90 019.75 6.5v11a1 1 90 01-2 0v-11a1 1 90 011-1m6.5 0a1 1 90 011 1v11a1 1 90 01-2 0v-11a1 1 90 011-1';
 
 import { isPlay } from '../state/playTime';
+import { useIndicatorIndexStore } from '../../store/indicatorIndex';
+const indicatorIndex = useIndicatorIndexStore();
 const onClick = () => {
-  isPlay.value = !isPlay.value;
-  if (isPlay.value == true && isPlayFromPaused.value == false) {
-    isPlayFromPaused.value = true;
+  if (audioPlayStore.isPlay) {
+    audioPlayStore.setPause();
+    activeAnimationSentenceNumber.value = indicatorIndex.indicatorIndex;
   } else {
-    isPlayFromPaused.value = false;
+    audioPlayStore.setPlay();
   }
 };
 </script>
@@ -29,7 +37,7 @@ const onClick = () => {
 <template>
   <div>
     <v-btn rounded="lg" size="80" @click="onClick"
-      ><v-icon size="70" :icon="isPlay ? iconPause : iconPlay"
+      ><v-icon size="70" :icon="audioPlayStore.isPlay ? iconPause : iconPlay"
     /></v-btn>
   </div>
 </template>
