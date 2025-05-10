@@ -8,6 +8,10 @@ import {
 } from '../state/playTime';
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
 const indicatorIndexStore = useIndicatorIndexStore();
+
+import { useAudioPlayStore } from '../../store/audioPlay';
+const audioPlayStore = useAudioPlayStore();
+
 const { textLine, duration, lineNumber } = defineProps([
   'textLine',
   'duration',
@@ -45,7 +49,7 @@ onMounted(() => {
   });
 });
 
-watch(isPlay, () => {
+watch(audioPlayStore, () => {
   // if (
   //   isPlay.value == true &&
   //   !currentAnimation.value &&
@@ -53,7 +57,7 @@ watch(isPlay, () => {
   // ) {
   //   return;
   // }
-  if (isPlay.value == true) {
+  if (audioPlayStore.isPlay == true) {
     currentAnimation.value && currentAnimation.value.play();
     currentAnimation2.value && currentAnimation2.value.play();
   } else {
@@ -69,7 +73,7 @@ watch(isPlay, () => {
 });
 
 watch(
-  [activeAnimationSentenceNumber, detectClickEvent],
+  [indicatorIndexStore, detectClickEvent],
   () => {
     const clearAnimation2 = () => {
       refToWordSpans.value.forEach((span) => {
@@ -78,8 +82,8 @@ watch(
     };
 
     if (
-      activeAnimationSentenceNumber.value < 0 ||
-      activeAnimationSentenceNumber.value != lineNumber ||
+      indicatorIndexStore.indicatorIndex < 0 ||
+      indicatorIndexStore.indicatorIndex != lineNumber ||
       refToUnderlineDivs.value.length == 0
     ) {
       if (currentAnimation.value) {
