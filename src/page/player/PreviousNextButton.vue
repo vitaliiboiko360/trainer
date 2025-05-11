@@ -10,6 +10,9 @@ const iconBackward =
 
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
 const indicatorIndexStore = useIndicatorIndexStore();
+
+import { useAudioPlayStore } from '../../store/audioPlay';
+const audioPlayStore = useAudioPlayStore();
 </script>
 
 <template>
@@ -20,12 +23,14 @@ const indicatorIndexStore = useIndicatorIndexStore();
         size="60"
         :icon="iconForward"
         @click="() => indicatorIndexStore.updateToNext()"
-      />
-      <v-icon
+        :disabled="audioPlayStore.isPlay"
+        />
+        <v-icon
         v-if="previous"
         size="60"
         :icon="iconBackward"
         @click="() => indicatorIndexStore.updateToPrev()"
+        :disabled="audioPlayStore.isPlay"
       />
     </v-btn>
   </div>
