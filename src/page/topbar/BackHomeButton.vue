@@ -101,6 +101,7 @@ const onClick = () => {
     top: 2px;
     height: 100%;
     filter: blur(0.32rem);
+    border-radius: 16px;
   }
 }
 @keyframes partialFadeIn {
