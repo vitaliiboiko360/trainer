@@ -16,11 +16,26 @@ const onClick = () => {
         ><span :class="$style.spanInner"></span
       ></span>
       <span :class="$style.spanCover"></span>
+      <span :class="$style.icon"></span>
     </button>
   </div>
 </template>
 
 <style module>
+.icon {
+  background-image: url(data/back-home.svg);
+  background-size: contain;
+  background-repeat: space;
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  bottom: -1px;
+  left: -1px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .spanCover {
   position: absolute;
   top: -1px;
@@ -44,7 +59,7 @@ const onClick = () => {
 }
 @keyframes spanInnerAnimation {
   50% {
-    background-position: 140% 50%;
+    background-position: 100% 50%;
     transform: skew(-2deg);
   }
 }
@@ -72,7 +87,7 @@ const onClick = () => {
     right: 0;
     top: 2px;
     height: 100%;
-    filter: blur(0.5rem);
+    filter: blur(0.32rem);
   }
 }
 @keyframes partialFadeIn {
