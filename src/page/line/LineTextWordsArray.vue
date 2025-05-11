@@ -49,7 +49,7 @@ onMounted(() => {
   });
 });
 
-watch(audioPlayStore, () => {
+watch([audioPlayStore, indicatorIndexStore], () => {
   // if (
   //   isPlay.value == true &&
   //   !currentAnimation.value &&
@@ -57,6 +57,14 @@ watch(audioPlayStore, () => {
   // ) {
   //   return;
   // }
+  if (
+    indicatorIndexStore.indicatorIndex < 0 ||
+    indicatorIndexStore.indicatorIndex != lineNumber ||
+    refToUnderlineDivs.value.length == 0
+  ) {
+    // console.log(`we don't play for indicatorIndexStore.indicatorIndex= ${indicatorIndexStore.indicatorIndex} `);
+    return;
+  }
   if (audioPlayStore.isPlay == true) {
     currentAnimation.value && currentAnimation.value.play();
     currentAnimation2.value && currentAnimation2.value.play();
@@ -73,7 +81,7 @@ watch(audioPlayStore, () => {
 });
 
 watch(
-  [indicatorIndexStore, detectClickEvent],
+  [indicatorIndexStore],
   () => {
     const clearAnimation2 = () => {
       refToWordSpans.value.forEach((span) => {
@@ -124,8 +132,6 @@ watch(
 
       const { width, y } = underlineDiv.getBoundingClientRect();
 
-      gsap.set(underlineDiv, { backgroundColor: '#0178d5' });
-
       let isLastOnLine = false;
       if (i + 1 < refToUnderlineDivs.value.length) {
         const { y: nextY } =
@@ -137,10 +143,10 @@ watch(
       }
 
       //
-      if (currentAnimation2.value) {
-        currentAnimation2.value.kill();
-        currentAnimation2.value = undefined;
-      }
+      // if (currentAnimation2.value) {
+      //   currentAnimation2.value.kill();
+      //   currentAnimation2.value = undefined;
+      // }
       const randomColor = `#${
         colorHexes[~~(Math.random() * colorHexes.length)]
       }`;
@@ -149,25 +155,29 @@ watch(
       };
       const keyframes = [1, 3, 5, 2];
       const word = refToWordSpans.value[i];
-      gsap.set(word, {
-        background: randomColor,
-      });
+
       currentAnimation2.value = gsap.to(updatedObject, {
         paused: index > 0 ? false : true,
         keyframes: {
           key: keyframes,
         },
+        ease:'none',
         onUpdate: () => {
+          gsap.set(word, {
+            background: randomColor,
+          });
           gsap.set(word, {
             boxShadow: `0px 0px 0 ${updatedObject.key}px ${randomColor}`, //, 0px 0px 0 ${updatedObject.key + 3}px #c1d5db
           });
         },
         duration: Math.max(0.8, duration * (width / totalWidth.value)),
         onComplete: () => {
-          if (i + 1 == refToWordSpans.value.length) {
+          if (index + 1 >= refToWordSpans.value.length) {
+            // console.log(`onComplete = ${i}`);
             setTimeout(() => {
               clearAnimation2();
-              indicatorIndexStore.update(lineNumber + 1);
+
+              // indicatorIndexStore.update(lineNumber + 1);
             }, 150);
           }
         },
@@ -183,6 +193,7 @@ watch(
         duration: duration * (width / totalWidth.value),
         ease: 'none',
         onUpdate: () => {
+          gsap.set(underlineDiv, { backgroundColor: '#0178d5' });
           gsap.set(underlineDiv, {
             clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${animatedValue.w}a1 1 90 010 3h-${animatedValue.w}A1.5 1.5 90 010 1.5z')`,
           });
