@@ -1,14 +1,8 @@
-<script setup>
-import ButtonWrapSlot from './ButtonWrapSlot.vue';
-</script>
+<script setup></script>
 
 <template>
   <div :class="$style.divOuter">
-    <ButtonWrapSlot>
-      <template v-slot:button>
-        <slot name="button"></slot>
-      </template>
-    </ButtonWrapSlot>
+    <slot name="button"></slot>
   </div>
 </template>
 
