@@ -57,6 +57,12 @@ const onClick = (event) => {
   // });
 };
 
+watch(indicatorIndexStore, () => {
+  if (indicatorIndexStore.indicatorIndex == lineNumber) {
+    audioTimeStore.updatePlayTime(startTime, endTime);
+  }
+});
+
 // watch([activeAnimationSentenceNumber], () => {
 //   if (refToAnimation.value && refToAnimation.value.isActive()) {
 //     refToAnimation.value.kill();
