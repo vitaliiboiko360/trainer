@@ -28,36 +28,36 @@ const adjustPlaybackSpeed = (value) => {
   return 1;
 };
 
-watch(playTime, () => {
-  if (!audio.value) return;
+// watch(playTime, () => {
+//   if (!audio.value) return;
 
-  const { startTime, endTime } = playTime;
+//   const { startTime, endTime } = playTime;
 
-  audio.value!.removeEventListener(
-    'timeupdate',
-    previousOnTimeUpdateHandler.value
-  );
-  let isAlreadyUpdatedIndicator = false;
-  const lineNumber = indicatorIndexStore.indicatorIndex;
-  const onTimeUpdate = (event) => {
-    if (audio.value!.currentTime >= endTime) {
-      audio.value!.pause();
-      isPlaying.value = false;
-      isPlay.value = false;
-      if (isAlreadyUpdatedIndicator == false) {
-        isAlreadyUpdatedIndicator = true;
-        indicatorIndexStore.update(lineNumber + 1);
-      }
-    }
-  };
-  previousOnTimeUpdateHandler.value = onTimeUpdate;
+//   audio.value!.removeEventListener(
+//     'timeupdate',
+//     previousOnTimeUpdateHandler.value
+//   );
+//   let isAlreadyUpdatedIndicator = false;
+//   const lineNumber = indicatorIndexStore.indicatorIndex;
+//   const onTimeUpdate = (event) => {
+//     if (audio.value!.currentTime >= endTime) {
+//       audio.value!.pause();
+//       isPlaying.value = false;
+//       isPlay.value = false;
+//       if (isAlreadyUpdatedIndicator == false) {
+//         isAlreadyUpdatedIndicator = true;
+//         indicatorIndexStore.update(lineNumber + 1);
+//       }
+//     }
+//   };
+//   previousOnTimeUpdateHandler.value = onTimeUpdate;
 
-  audio.value!.addEventListener('timeupdate', onTimeUpdate);
+//   audio.value!.addEventListener('timeupdate', onTimeUpdate);
 
-  audio.value!.currentTime = startTime;
-  audio.value!.play();
-  isPlaying.value = true;
-});
+//   audio.value!.currentTime = startTime;
+//   audio.value!.play();
+//   isPlaying.value = true;
+// });
 
 watch(playbackSpeed, () => {
   audio.value.playbackRate = adjustPlaybackSpeed(playbackSpeed.value);
@@ -78,6 +78,8 @@ watch(autioTimeStore, () => {
     if (audio.value!.currentTime >= endTime) {
       audio.value!.pause();
       audioPlayStore.setPause();
+      audio.value!.currentTime = startTime;
+      indicatorIndexStore.updateToNext();
     }
   };
 
