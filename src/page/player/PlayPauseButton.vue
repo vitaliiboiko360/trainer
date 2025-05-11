@@ -25,11 +25,11 @@ import { isPlay } from '../state/playTime';
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
 const indicatorIndex = useIndicatorIndexStore();
 const onClick = () => {
-  detectClickEvent.value = !detectClickEvent.value;
+  // detectClickEvent.value = !detectClickEvent.value;
   if (audioPlayStore.isPlay) {
     audioPlayStore.setPause();
-    activeAnimationSentenceNumber.value = indicatorIndex.indicatorIndex;
   } else {
+    activeAnimationSentenceNumber.value = indicatorIndex.indicatorIndex;
     audioPlayStore.setPlay();
   }
 };
