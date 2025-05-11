@@ -10,12 +10,82 @@ const onClick = () => {
 </script>
 
 <template>
-  <div>
-    <button :class="[$style.backHome]" @click="onClick"></button>
+  <div :class="$style.divOuter">
+    <button :class="[$style.backHome]" @click="onClick">
+      <span :class="$style.spanOuter"
+        ><span :class="$style.spanInner"></span
+      ></span>
+      <span :class="$style.spanCover"></span>
+    </button>
   </div>
 </template>
 
 <style module>
+.spanCover {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  bottom: -1px;
+  left: -1px;
+  background: #fff;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: blur(1px);
+}
+.spanOuter {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  /* padding: 0 6px; */
+  background-color: #fff;
+}
+@keyframes spanInnerAnimation {
+  50% {
+    background-position: 140% 50%;
+    transform: skew(-2deg);
+  }
+}
+.spanInner {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  background: inherit;
+  border-radius: 16px;
+  background: linear-gradient(-90deg, #007cf0, #00dfd8, #ff0080, #007cf0);
+  background-size: 400% 100%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  animation: spanInnerAnimation 8s ease-in-out infinite;
+  &:after {
+    content: '';
+    position: absolute;
+    background-size: inherit;
+    background-image: inherit;
+    animation: inherit;
+    left: 0;
+    right: 0;
+    top: 2px;
+    height: 100%;
+    filter: blur(0.5rem);
+  }
+}
+@keyframes partialFadeIn {
+  0% {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.divOuter {
+  animation: partialFadeIn 0.3s;
+}
 .backHome {
   background: none;
   border: solid transparent;
