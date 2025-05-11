@@ -24,7 +24,7 @@ const onClick = () => {
 
 <style module>
 .icon {
-  background-image: url(data/back-home.svg);
+  background-image: url(svg/back-home.svg);
   background-size: contain;
   background-repeat: space;
   position: absolute;
@@ -100,7 +100,7 @@ const onClick = () => {
     right: 0;
     top: 2px;
     height: 100%;
-    filter: blur(0.35rem);
+    filter: blur(0.32rem);
   }
 }
 @keyframes partialFadeIn {
