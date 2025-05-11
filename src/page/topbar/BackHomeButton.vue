@@ -16,6 +16,7 @@ const onClick = () => {
         ><span :class="$style.spanInner"></span
       ></span>
       <span :class="$style.spanCover"></span>
+      <span :class="$style.spanCover2"></span>
       <span :class="$style.icon"></span>
     </button>
   </div>
@@ -31,6 +32,18 @@ const onClick = () => {
   right: -1px;
   bottom: -1px;
   left: -1px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.spanCover2 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background: #fff;
   border-radius: 16px;
   display: flex;
   justify-content: center;
@@ -87,7 +100,7 @@ const onClick = () => {
     right: 0;
     top: 2px;
     height: 100%;
-    filter: blur(0.32rem);
+    filter: blur(0.35rem);
   }
 }
 @keyframes partialFadeIn {
