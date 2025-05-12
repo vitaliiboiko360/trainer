@@ -24,7 +24,7 @@ const onClick = () => {
 
 <style module>
 .icon {
-  background-image: url(svg/back-home.svg);
+  background-image: url(data/back-home.svg);
   background-size: contain;
   background-repeat: space;
   position: absolute;
@@ -76,6 +76,9 @@ const onClick = () => {
     transform: skew(-2deg);
   }
 }
+.oldSpanInner {
+  background: linear-gradient(-90deg, #007cf0, #00dfd8, #ff0080, #007cf0);
+}
 .spanInner {
   position: absolute;
   top: 1px;
@@ -84,12 +87,19 @@ const onClick = () => {
   left: 1px;
   background: inherit;
   border-radius: 16px;
-  background: linear-gradient(-90deg, #007cf0, #00dfd8, #ff0080, #007cf0);
+  background: linear-gradient(
+    -90deg,
+    #007cf0,
+    #fcf435,
+    #00df64,
+    #fa2a00,
+    #007cf0
+  );
   background-size: 400% 100%;
   border: none;
   padding: 0;
   margin: 0;
-  animation: spanInnerAnimation 8s ease-in-out infinite;
+  animation: spanInnerAnimation 48s ease-in-out infinite;
   &:after {
     content: '';
     position: absolute;
