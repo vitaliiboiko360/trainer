@@ -27,7 +27,7 @@ const onClick = (value) => {
       @click="() => onClick(buttons.LineMode)"
     >
       <span :class="$style.spanOuter"
-        ><span :class="$style.spanInner"></span
+        ><span :class="[$style.spanInnerLeft]"></span
       ></span>
       <span :class="[$style.borderRadiusLeft, $style.spanCover]"></span>
       <span :class="[$style.borderRadiusLeft, $style.spanCover2]"></span>
@@ -45,7 +45,7 @@ const onClick = (value) => {
       @click="() => onClick(buttons.ParagraphMode)"
     >
       <span :class="$style.spanOuter"
-        ><span :class="$style.spanInner"></span
+        ><span :class="[$style.spanInnerRight]"></span
       ></span>
       <span :class="[$style.borderRadiusRight, $style.spanCover]"></span>
       <span :class="[$style.borderRadiusRight, $style.spanCover2]"></span>
@@ -145,22 +145,44 @@ const onClick = (value) => {
 .oldSpanInner {
   background: linear-gradient(-90deg, #007cf0, #00dfd8, #ff0080, #007cf0);
 }
-.spanInner {
+.spanInnerLeft {
   position: absolute;
   top: 1px;
   right: 1px;
   bottom: 1px;
   left: 1px;
   background: inherit;
+  background: linear-gradient(-90deg, #007cf0, #00dfd8, #ff0080, #007cf0);
   border-radius: 16px;
-  background: linear-gradient(
-    -90deg,
-    #007cf0,
-    #fcf435,
-    #00df64,
-    #fa2a00,
-    #007cf0
-  );
+  background-size: 400% 100%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  animation: spanInnerAnimation 48s ease-in-out infinite;
+  &:after {
+    content: '';
+    position: absolute;
+    background-size: inherit;
+    background-image: inherit;
+    animation: inherit;
+    left: 0;
+    right: 0;
+    top: 2px;
+    height: 100%;
+    filter: blur(0.32rem);
+    border-radius: 16px;
+  }
+}
+
+.spanInnerRight {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  background: inherit;
+  background: linear-gradient(-90deg, #007cf0, #ff0080, #00dfd8, #007cf0);
+  border-radius: 16px;
   background-size: 400% 100%;
   border: none;
   padding: 0;
