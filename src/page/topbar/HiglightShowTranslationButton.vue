@@ -59,7 +59,8 @@
 }
 .icon {
   background-image: url(svg/chat-left-quote.svg);
-  background-size: contain;
+  background-position: 0.55rem 0.6rem;
+  background-size: 3rem;
   background-repeat: space;
   position: absolute;
   top: -1px;
@@ -124,9 +125,9 @@
   background: linear-gradient(
     -90deg,
     #007cf0,
-    #fcf435,
-    #00df64,
-    #fa2a00,
+    #35acfc,
+    #00d0df,
+    #4b00fa,
     #007cf0
   );
   background-size: 400% 100%;
