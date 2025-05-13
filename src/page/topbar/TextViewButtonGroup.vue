@@ -19,7 +19,6 @@ const onClick = (value) => {
   <div :class="$style.divOuter">
     <button
       :class="[
-        { [$style.selectedButton]: textMode == buttons.LineMode },
         $style.topbarButtonBaseLeft,
         css.topBarGroupedButtonLeft,
         css.topBarButtonLineOnTheirOwn,
@@ -30,14 +29,19 @@ const onClick = (value) => {
         ><span :class="[$style.spanInnerLeft]"></span
       ></span>
       <span :class="[$style.borderRadiusLeft, $style.spanCover]"></span>
-      <span :class="[$style.borderRadiusLeft, $style.spanCover2]"></span>
+      <span
+        :class="[
+          { [$style.selectedButton]: textMode == buttons.LineMode },
+          $style.borderRadiusLeft,
+          $style.spanCover2,
+        ]"
+      ></span>
       <span
         :class="[$style.borderRadiusLeft, $style.icon, $style.leftLineMode]"
       ></span>
     </button>
     <button
       :class="[
-        { [$style.selectedButton]: textMode == buttons.ParagraphMode },
         $style.topbarButtonBaseRight,
         css.topBarGroupedButtonRight,
         css.topBarButton_TextOrdinary,
@@ -48,7 +52,13 @@ const onClick = (value) => {
         ><span :class="[$style.spanInnerRight]"></span
       ></span>
       <span :class="[$style.borderRadiusRight, $style.spanCover]"></span>
-      <span :class="[$style.borderRadiusRight, $style.spanCover2]"></span>
+      <span
+        :class="[
+          { [$style.selectedButton]: textMode == buttons.ParagraphMode },
+          $style.borderRadiusRight,
+          $style.spanCover2,
+        ]"
+      ></span>
       <span
         :class="[
           $style.borderRadiusRight,
@@ -62,9 +72,7 @@ const onClick = (value) => {
 
 <style module>
 .selectedButton {
-  &:before {
-    background-color: #eee;
-  }
+  background-color: #eee !important;
 }
 .topbarButtonBaseLeft {
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
