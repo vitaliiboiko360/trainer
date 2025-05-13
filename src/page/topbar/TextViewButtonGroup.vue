@@ -31,7 +31,9 @@ const onClick = (value) => {
       ></span>
       <span :class="[$style.borderRadiusLeft, $style.spanCover]"></span>
       <span :class="[$style.borderRadiusLeft, $style.spanCover2]"></span>
-      <span :class="[$style.borderRadiusLeft, $style.icon]"></span>
+      <span
+        :class="[$style.borderRadiusLeft, $style.icon, $style.leftLineMode]"
+      ></span>
     </button>
     <button
       :class="[
@@ -45,9 +47,15 @@ const onClick = (value) => {
       <span :class="$style.spanOuter"
         ><span :class="$style.spanInner"></span
       ></span>
-      <span :class="[$style.borderRadiusLeft, $style.spanCover]"></span>
-      <span :class="[$style.borderRadiusLeft, $style.spanCover2]"></span>
-      <span :class="[$style.borderRadiusLeft, $style.icon]"></span>
+      <span :class="[$style.borderRadiusRight, $style.spanCover]"></span>
+      <span :class="[$style.borderRadiusRight, $style.spanCover2]"></span>
+      <span
+        :class="[
+          $style.borderRadiusRight,
+          $style.icon,
+          $style.rightParagraphMode,
+        ]"
+      ></span>
     </button>
   </div>
 </template>
@@ -70,21 +78,24 @@ const onClick = (value) => {
 .borderRadiusLeft {
   border-radius: 16px 0 0 16px;
 }
-.borderRadiusRadius {
+.borderRadiusRight {
   border-radius: 0 16px 16px 0;
 }
 
 .leftLineMode {
   background-image: url(svg/list-check.svg);
+  background-size: 85%;
+  background-position-x: center;
+  background-position-y: center;
 }
 
 .rightParagraphMode {
   background-image: url(svg/text_ordinary.svg);
+  background-size: contain;
+  background-repeat: space;
 }
 
 .icon {
-  background-size: contain;
-  background-repeat: space;
   position: absolute;
   top: -1px;
   right: -1px;
