@@ -1,13 +1,11 @@
+import 'vuetify/styles';
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import router from '../src/router/router';
 
-import App from '../src/App.vue';
-
 import { VueQueryPlugin } from '@tanstack/vue-query';
 
 import { aliases, mdi } from 'vuetify/iconsets/mdi-svg';
-import 'vuetify/styles';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 
@@ -34,6 +32,7 @@ const vuetify = createVuetify({
     },
   },
 });
+import App from '../src/App.vue';
 const pinia = createPinia();
 const app = createApp(App);
 app.use(VueQueryPlugin);
