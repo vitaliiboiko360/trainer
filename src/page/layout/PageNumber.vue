@@ -32,7 +32,7 @@ const onClick = (setNewIndex) => {
     :class="$style.buttonPageNumberBase"
     @click="() => onClick(index - 1)"
     rounded
-    elevation="4"
+    elevation="0"
     size="40"
     :variant="isActive ? `tonal` : `plain`"
     color="#4B574A"
@@ -44,7 +44,7 @@ const onClick = (setNewIndex) => {
     :class="$style.buttonPageNumberBase"
     @click="() => onClick(index - 1)"
     rounded
-    elevation="4"
+    elevation="0"
     size="40"
     :variant="isActive ? `tonal` : `plain`"
     color="#4B574A"
@@ -56,7 +56,7 @@ const onClick = (setNewIndex) => {
     :class="$style.buttonPageNumberBase"
     @click="() => onClick(index - 1)"
     rounded
-    elevation="4"
+    elevation="0"
     size="40"
     :variant="isActive ? `tonal` : `plain`"
     color="#4B574A"
@@ -68,7 +68,7 @@ const onClick = (setNewIndex) => {
     :class="$style.buttonPageNumberBase"
     @click="() => onClick(index - 1)"
     rounded
-    elevation="4"
+    elevation="0"
     size="40"
     :variant="isActive ? `tonal` : `plain`"
     color="#4B574A"
@@ -80,7 +80,7 @@ const onClick = (setNewIndex) => {
     :class="$style.buttonPageNumberBase"
     @click="() => onClick(index - 1)"
     rounded
-    elevation="4"
+    elevation="0"
     size="40"
     :variant="isActive ? `tonal` : `plain`"
     color="#4B574A"
@@ -92,7 +92,7 @@ const onClick = (setNewIndex) => {
     :class="$style.buttonPageNumberBase"
     @click="() => onClick(index - 1)"
     rounded
-    elevation="4"
+    elevation="0"
     size="40"
     :variant="isActive ? `tonal` : `plain`"
     color="#4B574A"
@@ -104,7 +104,7 @@ const onClick = (setNewIndex) => {
     :class="$style.buttonPageNumberBase"
     @click="() => onClick(index - 1)"
     rounded
-    elevation="4"
+    elevation="0"
     size="40"
     :variant="isActive ? `tonal` : `plain`"
     color="#4B574A"
@@ -116,7 +116,7 @@ const onClick = (setNewIndex) => {
     :class="$style.buttonPageNumberBase"
     @click="() => onClick(index - 1)"
     rounded
-    elevation="4"
+    elevation="0"
     size="40"
     :variant="isActive ? `tonal` : `plain`"
     color="#4B574A"
@@ -128,7 +128,7 @@ const onClick = (setNewIndex) => {
     :class="$style.buttonPageNumberBase"
     @click="() => onClick(index - 1)"
     rounded
-    elevation="4"
+    elevation="0"
     size="40"
     :variant="isActive ? `tonal` : `plain`"
     color="#4B574A"
@@ -140,6 +140,9 @@ const onClick = (setNewIndex) => {
 <style module>
 .buttonPageNumberBase {
   display: inline;
+  box-shadow: 0px 2px 4px -1px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)),
+    0px 4px 5px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)),
+    0px 1px 10px 0px var(--v-shadow-key-ambient-opacity, rgba(0, 0, 0, 0.12)) !important;
 }
 .unused {
   margin: 0;
