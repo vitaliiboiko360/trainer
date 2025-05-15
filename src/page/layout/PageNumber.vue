@@ -39,7 +39,13 @@ const onClick = (setNewIndex) => {
   >
     <span :class="$style.spanInner"></span>
     <span :class="$style.spanCover"></span>
-    <span :class="$style.spanCover2"></span>
+    <span
+      :class="[
+        { [$style.tonal]: isActive },
+        { [$style.regular]: !isActive },
+        $style.spanCover2,
+      ]"
+    ></span>
     <v-icon :icon="page1"></v-icon>
   </v-btn>
   <v-btn
@@ -154,6 +160,14 @@ const onClick = (setNewIndex) => {
   border: 0;
 }
 
+@layer base {
+  .tonal {
+    background-color: #e9eae9;
+  }
+  .regular {
+    background-color: #fff;
+  }
+}
 @keyframes spanInnerAnimation {
   50% {
     background-position: 100% 50%;
@@ -201,7 +215,7 @@ const onClick = (setNewIndex) => {
   right: 2px;
   bottom: 2px;
   left: 2px;
-  background: #fff;
+  /* background: #fff; */
   border-radius: 20px;
   display: flex;
   justify-content: center;
