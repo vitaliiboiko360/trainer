@@ -7,9 +7,11 @@ const refPageNumbersContainer = ref();
 const { lastIndex } = defineProps(['lastIndex']);
 
 const numberOfColumns = Math.floor(lastIndex / 2);
-const COLORS = ['#f2ecf2', '#f2f2ec', '#ecf2f2', '#ecf2ec', '#eff2ec'];
-function getColor() {
-  return COLORS[~~Math.random(COLORS.length)];
+const COLORS = ['#dcdaea', '#daeadc', '#e8eada', '#ede6f7', '#eff2ec'];
+function getColor(index) {
+  return index == undefined
+    ? COLORS[~~Math.random(COLORS.length)]
+    : COLORS[index % COLORS.length];
 }
 onMounted(() => {});
 </script>
@@ -21,10 +23,10 @@ onMounted(() => {});
   >
     <PageNumber
       v-for="pageNumber in lastIndex + 1"
-      :key="index"
+      :key="pageNumber"
       :index="pageNumber"
       :isActive="currentPageBlock == pageNumber - 1"
-      :color="getColor()"
+      :color="COLORS[pageNumber % COLORS.length]"
     />
   </div>
 </template>
