@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, onMounted, ref } from 'vue';
+import { defineProps, onMounted, ref, computed } from 'vue';
 import cssPage from '../page.module.scss';
 import { currentPageBlock } from '../state/currentPageBlock';
 import PageNumber from './PageNumber.vue';
@@ -7,7 +7,10 @@ const refPageNumbersContainer = ref();
 const { lastIndex } = defineProps(['lastIndex']);
 
 const numberOfColumns = Math.floor(lastIndex / 2);
-
+const COLORS = ['#f2ecf2', '#f2f2ec', '#ecf2f2', '#ecf2ec', '#eff2ec'];
+function getColor() {
+  return COLORS[~~Math.random(COLORS.length)];
+}
 onMounted(() => {});
 </script>
 
@@ -18,8 +21,10 @@ onMounted(() => {});
   >
     <PageNumber
       v-for="pageNumber in lastIndex + 1"
+      :key="index"
       :index="pageNumber"
       :isActive="currentPageBlock == pageNumber - 1"
+      :color="getColor()"
     />
   </div>
 </template>
