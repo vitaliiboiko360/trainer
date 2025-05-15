@@ -1,7 +1,6 @@
 <script setup>
 import css from './layout.module.scss';
-import { defineProps } from 'vue';
-const { index, isActive } = defineProps(['index', 'isActive']);
+const { index, isActive, color } = defineProps(['index', 'isActive', 'color']);
 import { currentPageBlock } from '../state/currentPageBlock';
 const page1 =
   'M1.48 11.84a10.36 10.36 90 1020.72 0A10.36 10.36 90 001.48 11.84m22.2 0A11.84 11.84 90 110 11.84a11.84 11.84 90 0123.68 0M13.7388 5.923V17.76H11.7971V7.9002h-.0962L8.9866 9.8509V7.9698l2.8105-2.0468z';
@@ -140,9 +139,9 @@ const onClick = (setNewIndex) => {
 <style module>
 .buttonPageNumberBase {
   display: inline;
-  box-shadow: 0px 2px 4px -1px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)),
-    0px 4px 5px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)),
-    0px 1px 10px 0px var(--v-shadow-key-ambient-opacity, rgba(0, 0, 0, 0.12)) !important;
+  color: v-bind(color);
+  box-shadow: 0px 2px 4px -1px v-bind(color), 0px 4px 5px 0px v-bind(color),
+    0px 1px 10px 0px v-bind(color) !important;
 }
 .unused {
   margin: 0;
