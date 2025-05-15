@@ -205,7 +205,7 @@ const onClick = (setNewIndex) => {
     right: 0;
     top: 2px;
     height: 100%;
-    filter: blur(0.32rem);
+    filter: blur(5px);
     border-radius: 20px;
   }
 }
