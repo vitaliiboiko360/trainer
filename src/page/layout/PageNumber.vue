@@ -1,6 +1,12 @@
 <script setup>
 import css from './layout.module.scss';
-const { index, isActive, color } = defineProps(['index', 'isActive', 'color']);
+const { index, isActive, color1, color2, color3 } = defineProps([
+  'index',
+  'isActive',
+  'color1',
+  'color2',
+  'color3',
+]);
 import { currentPageBlock } from '../state/currentPageBlock';
 const page1 =
   'M1.48 11.84a10.36 10.36 90 1020.72 0A10.36 10.36 90 001.48 11.84m22.2 0A11.84 11.84 90 110 11.84a11.84 11.84 90 0123.68 0M13.7388 5.923V17.76H11.7971V7.9002h-.0962L8.9866 9.8509V7.9698l2.8105-2.0468z';
@@ -139,9 +145,9 @@ const onClick = (setNewIndex) => {
 <style module>
 .buttonPageNumberBase {
   display: inline;
-  color: v-bind(color);
-  box-shadow: 0px 2px 4px -1px v-bind(color), 0px 4px 5px 0px v-bind(color),
-    0px 1px 10px 0px v-bind(color) !important;
+  color: v-bind(color1);
+  box-shadow: 1px 2px 7px 3px v-bind(color1), 0px 4px 5px 2px v-bind(color2),
+    0px 1px 10px 1px v-bind(color3) !important;
 }
 .unused {
   margin: 0;
