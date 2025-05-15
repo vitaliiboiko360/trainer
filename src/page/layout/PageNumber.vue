@@ -145,7 +145,6 @@ const onClick = (setNewIndex) => {
 <style module>
 .buttonPageNumberBase {
   display: inline;
-  color: v-bind(color1);
   box-shadow: 1px 2px 7px 3px v-bind(color1), 0px 4px 5px 2px v-bind(color2),
     0px 1px 10px 1px v-bind(color3) !important;
 }
