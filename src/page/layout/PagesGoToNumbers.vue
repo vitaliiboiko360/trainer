@@ -7,7 +7,16 @@ const refPageNumbersContainer = ref();
 const { lastIndex } = defineProps(['lastIndex']);
 
 const numberOfColumns = Math.floor(lastIndex / 2);
-const COLORS = ['#dcdaea', '#daeadc', '#e8eada', '#ede6f7', '#eff2ec'];
+const COLORS = [
+  '#dcdaea',
+  '#daeadc',
+  '#e8eada',
+  '#ede6f7',
+  '#d6aef6',
+  '#f6d6ae',
+  '#aef2f6',
+  '#aef6d6',
+];
 function getColor(index) {
   return index == undefined
     ? COLORS[~~Math.random(COLORS.length)]
