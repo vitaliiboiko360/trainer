@@ -26,7 +26,9 @@ onMounted(() => {});
       :key="pageNumber"
       :index="pageNumber"
       :isActive="currentPageBlock == pageNumber - 1"
-      :color="COLORS[pageNumber % COLORS.length]"
+      :color1="COLORS[pageNumber % COLORS.length]"
+      :color2="COLORS[(pageNumber + 1) % COLORS.length]"
+      :color3="COLORS[(pageNumber + 2) % COLORS.length]"
     />
   </div>
 </template>
