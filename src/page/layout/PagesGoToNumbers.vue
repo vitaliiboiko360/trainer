@@ -2,6 +2,7 @@
 import { defineProps, onMounted, ref, computed } from 'vue';
 import { currentPageBlock } from '../state/currentPageBlock';
 import PageNumber from './PageNumber.vue';
+import PageNumberRandomColor from './PageNumberRandomColor.vue';
 const refPageNumbersContainer = ref();
 const { lastIndex } = defineProps(['lastIndex']);
 
@@ -29,14 +30,11 @@ onMounted(() => {});
     :ref="(el) => (refPageNumbersContainer = el)"
     :class="[lastIndex > 5 ? $style.gridTwoLines : $style.flexOneLiner]"
   >
-    <PageNumber
+    <PageNumberRandomColor
       v-for="pageNumber in lastIndex + 1"
       :key="pageNumber"
       :index="pageNumber"
       :isActive="currentPageBlock == pageNumber - 1"
-      :color1="COLORS[pageNumber % COLORS.length]"
-      :color2="COLORS[(pageNumber + 1) % COLORS.length]"
-      :color3="COLORS[(pageNumber + 2) % COLORS.length]"
     />
   </div>
 </template>
