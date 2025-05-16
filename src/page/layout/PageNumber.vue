@@ -19,7 +19,7 @@ import {
   page7,
   page8,
   page9,
-} from './pageNumberPaths.ts';
+} from './pageNumberPaths';
 
 const onClick = (setNewIndex) => {
   currentPageBlock.value = setNewIndex;
