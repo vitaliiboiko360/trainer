@@ -1,10 +1,8 @@
 <script setup>
-const { index, isActive, color1, color2, color3 } = defineProps([
+const { index, isActive, colors } = defineProps([
   'index',
   'isActive',
-  'color1',
-  'color2',
-  'color3',
+  'colors',
 ]);
 import { currentPageBlock } from '../state/currentPageBlock';
 
@@ -183,11 +181,11 @@ const onClick = (setNewIndex) => {
   border-radius: 20px;
   background: linear-gradient(
     -90deg,
-    #f000a0,
-    #35acfc,
-    #00d0df,
-    #4b00fa,
-    #9cf000
+    v-bind(colors[0]),
+    v-bind(colors[1]),
+    v-bind(colors[2]),
+    v-bind(colors[3]),
+    v-bind(colors[4])
   );
   background-size: 400% 100%;
   border: none;
