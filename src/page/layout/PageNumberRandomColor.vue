@@ -9,7 +9,6 @@ const getRandomNumber = (maxValue) => {
   return Math.floor(Math.random() * maxValue);
 };
 function getShufledArray() {
-  console.log('test propsssss');
   const colors = [...COLORS];
   for (let i = colors.length - 1; i >= 0; i--) {
     let index = getRandomNumber(i);
@@ -17,7 +16,6 @@ function getShufledArray() {
     colors[index] = colors[i];
     colors[i] = temp;
   }
-  console.log(colors.join(' '));
   return colors;
 }
 const colors = ref(getShufledArray());
