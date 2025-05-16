@@ -1,6 +1,5 @@
 <script setup>
 import { defineProps, onMounted, ref, computed } from 'vue';
-import cssPage from '../page.module.scss';
 import { currentPageBlock } from '../state/currentPageBlock';
 import PageNumber from './PageNumber.vue';
 const refPageNumbersContainer = ref();

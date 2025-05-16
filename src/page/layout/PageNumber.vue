@@ -1,5 +1,4 @@
 <script setup>
-import css from './layout.module.scss';
 const { index, isActive, color1, color2, color3 } = defineProps([
   'index',
   'isActive',
