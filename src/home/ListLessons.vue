@@ -1,7 +1,7 @@
 <script setup>
 import css from './home.module.scss';
 import { useQuery } from '@tanstack/vue-query';
-
+import { ref } from 'vue';
 import LessonListItem from './LessonListItem.vue';
 import { LIST_TEXT_JSON_KEY, queryListOfTextJson } from '../query/default';
 
@@ -11,6 +11,13 @@ const { isPending, isError, data, error } = useQuery({
   queryKey: [LIST_TEXT_JSON_KEY],
   queryFn: () => queryListOfTextJson(),
 });
+
+const DURATIONS = [7, 9, 11];
+
+const getRandomDuration = () => DURATIONS[~~Math.random() * DURATIONS.length];
+
+const duration1 = ref(getRandomDuration());
+const duration2 = ref(getRandomDuration());
 
 let counter = 0;
 const getKey = () => {
@@ -105,9 +112,11 @@ function getRotateStyle() {
   }
 }
 .listItemRotate {
-  animation: 5s linear 1s infinite alternate rotateItem;
+  animation: calc(v-bind(duration1) * 1s) linear 1s infinite alternate
+    rotateItem;
 }
 .listItemRotateReverse {
-  animation: 5s linear 1s infinite alternate rotateItemReverse;
+  animation: calc(v-bind(duration2) * 1s) linear 1s infinite alternate
+    rotateItemReverse;
 }
 </style>
