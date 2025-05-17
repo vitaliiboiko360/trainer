@@ -12,7 +12,7 @@ const { isPending, isError, data, error } = useQuery({
   queryFn: () => queryListOfTextJson(),
 });
 
-const DURATIONS = [7, 9, 11];
+const DURATIONS = [9, 11, 13];
 
 const getRandomDuration = () => DURATIONS[~~Math.random() * DURATIONS.length];
 
