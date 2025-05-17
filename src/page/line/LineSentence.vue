@@ -29,15 +29,14 @@ const {
 
 const refToSpan = ref();
 
-const onClick = (event) => {
+const onClick = async (event) => {
   indicatorIndexStore.update(lineNumber);
   playTime.updateTime(startTime, endTime);
-  nextTick(() => {
-    activeAnimationSentenceNumber.value = lineNumber;
-    detectClickEvent.value = !detectClickEvent.value;
-    audioTimeStore.updatePlayTime(startTime, endTime);
-    audioPlayStore.setPlay();
-  });
+  await nextTick();
+  activeAnimationSentenceNumber.value = lineNumber;
+  detectClickEvent.value = !detectClickEvent.value;
+  audioTimeStore.updatePlayTime(startTime, endTime);
+  audioPlayStore.setPlay();
 };
 
 watch(indicatorIndexStore, () => {
