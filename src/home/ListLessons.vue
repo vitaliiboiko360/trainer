@@ -17,7 +17,6 @@ let counter = 0;
 const getKey = () => {
   return `lesson-item-key-${counter++}`;
 };
-const cursorAngle = ref();
 let previousAngle = 0;
 function getRotateStyle() {
   let degNumber;
@@ -30,7 +29,6 @@ function getRotateStyle() {
 }
 </script>
 
-<!-- :style="`${getRotateStyle()}`" -->
 <template>
   <span v-if="isPending">Loading...</span>
   <span v-else-if="isError">Error: {{ error.message }}</span>
@@ -40,7 +38,7 @@ function getRotateStyle() {
       <div
         v-for="(item, index) in data.texts"
         :key="getKey"
-        :class="$style.listItemRotate"
+        :class="[$style.listItemRotate]"
       >
         <router-link
           :to="{
@@ -52,6 +50,7 @@ function getRotateStyle() {
             <LessonListItem
               :title="item.title"
               :lessonNumber="toLessonId(index)"
+              :style="`${getRotateStyle()}`"
             />
           </div>
         </router-link>
@@ -92,7 +91,21 @@ function getRotateStyle() {
     transform: rotate(-1deg);
   }
 }
+@keyframes rotateItemReverse {
+  0% {
+    transform: rotate(+1deg);
+  }
+  50% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: rotate(+1deg);
+  }
+}
 .listItemRotate {
   animation: 5s linear 1s infinite alternate rotateItem;
+}
+.listItemRotateReverse {
+  animation: 5s linear 1s infinite alternate rotateItemReverse;
 }
 </style>
