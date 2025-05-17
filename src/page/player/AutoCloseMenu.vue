@@ -16,7 +16,7 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  document.addEventListener('click', onClickCheckIfOutside);
+  document.removeEventListener('click', onClickCheckIfOutside);
 });
 </script>
 
