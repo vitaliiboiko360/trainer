@@ -1,11 +1,6 @@
 <script setup>
 import { watch, ref, onMounted } from 'vue';
 import { gsap } from 'gsap';
-import {
-  activeAnimationSentenceNumber,
-  detectClickEvent,
-  isPlay,
-} from '../state/playTime';
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
 const indicatorIndexStore = useIndicatorIndexStore();
 
