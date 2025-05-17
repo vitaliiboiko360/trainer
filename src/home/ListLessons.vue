@@ -82,7 +82,6 @@ function getRotateStyle() {
   }
 }
 @keyframes rotateItem {
-  --angle-cursor: v-bind(cursorAngle);
   0% {
     transform: rotate(-1deg);
   }
@@ -94,7 +93,6 @@ function getRotateStyle() {
   }
 }
 .listItemRotate {
-  --angle-cursor: v-bind(cursorAngle);
   animation: 5s linear 1s infinite alternate rotateItem;
 }
 </style>
