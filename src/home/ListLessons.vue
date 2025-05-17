@@ -31,7 +31,8 @@ function getRotateStyle() {
       (~~(Math.random() * 2) + 1) * (Math.floor(Math.random() * 2) || -1);
   } while (degNumber == previousAngle);
   previousAngle = degNumber;
-  return `transform: rotate(${degNumber}deg)`;
+  // return `transform: rotate(${degNumber}deg)`;
+  return degNumber;
 }
 </script>
 
@@ -45,8 +46,11 @@ function getRotateStyle() {
         v-for="(item, index) in data.texts"
         :key="getKey"
         :class="[
-          { [$style.listItemRotate]: index % 2 == 0 },
-          { [$style.listItemRotateReverse]: index % 2 != 0 },
+          { [$style.listItemRotate]: (index + duration1 + duration2) % 2 == 0 },
+          {
+            [$style.listItemRotateReverse]:
+              (index + duration1 + duration2) % 2 != 0,
+          },
         ]"
       >
         <router-link
@@ -59,7 +63,6 @@ function getRotateStyle() {
             <LessonListItem
               :title="item.title"
               :lessonNumber="toLessonId(index)"
-              :style="`${getRotateStyle()}`"
             />
           </div>
         </router-link>
@@ -114,9 +117,11 @@ function getRotateStyle() {
 .listItemRotate {
   animation: calc(v-bind(duration1) * 1s) linear 1s infinite alternate
     rotateItem;
+  transform: rotate(-1deg);
 }
 .listItemRotateReverse {
   animation: calc(v-bind(duration2) * 1s) linear 1s infinite alternate
     rotateItemReverse;
+  transform: rotate(1deg);
 }
 </style>
