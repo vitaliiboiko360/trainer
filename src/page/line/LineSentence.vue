@@ -28,7 +28,6 @@ const {
 } = textLineInfo;
 
 const refToSpan = ref();
-const refToAnimation = ref();
 
 const onClick = (event) => {
   indicatorIndexStore.update(lineNumber);
@@ -46,17 +45,6 @@ watch(indicatorIndexStore, () => {
     audioTimeStore.updatePlayTime(startTime, endTime);
   }
 });
-
-// watch([activeAnimationSentenceNumber], () => {
-//   if (refToAnimation.value && refToAnimation.value.isActive()) {
-//     refToAnimation.value.kill();
-//   }
-//   if (refToSpan.value) {
-//     gsap.set(refToSpan.value, {
-//       backgroundSize: '0% 100%',
-//     });
-//   }
-// });
 </script>
 
 <template>
@@ -94,5 +82,3 @@ watch(indicatorIndexStore, () => {
   background-position: 0 100%;
 }
 </style>
-
-// padding: 0 0.5em 0 0.1em;
