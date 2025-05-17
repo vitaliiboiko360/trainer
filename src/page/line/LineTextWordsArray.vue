@@ -59,10 +59,11 @@ watch([audioPlayStore, indicatorIndexStore], () => {
   // }
   if (
     indicatorIndexStore.indicatorIndex < 0 ||
-    indicatorIndexStore.indicatorIndex != lineNumber ||
-    refToUnderlineDivs.value.length == 0
+    indicatorIndexStore.indicatorIndex != lineNumber
   ) {
-    // console.log(`we don't play for indicatorIndexStore.indicatorIndex= ${indicatorIndexStore.indicatorIndex} `);
+    // console.log(
+    //   `we don't play for indicatorIndexStore.indicatorIndex= ${indicatorIndexStore.indicatorIndex} `
+    // );
     return;
   }
   if (audioPlayStore.isPlay == true) {
@@ -80,35 +81,17 @@ watch([audioPlayStore, indicatorIndexStore], () => {
   }
 });
 
-watch(
-  [indicatorIndexStore],
-  () => {
-    const clearAnimation2 = () => {
-      refToWordSpans.value.forEach((span) => {
-        gsap.set(span, { boxShadow: 'unset', background: 'unset' });
-      });
-    };
+watch([indicatorIndexStore], () => {
+  const clearAnimation2 = () => {
+    refToWordSpans.value.forEach((span) => {
+      gsap.set(span, { boxShadow: 'unset', background: 'unset' });
+    });
+  };
 
-    if (
-      indicatorIndexStore.indicatorIndex < 0 ||
-      indicatorIndexStore.indicatorIndex != lineNumber ||
-      refToUnderlineDivs.value.length == 0
-    ) {
-      if (currentAnimation.value) {
-        currentAnimation.value.kill();
-        currentAnimation.value = undefined;
-      }
-      refToUnderlineDivs.value.forEach((div) => {
-        gsap.set(div, { backgroundColor: 'unset' });
-        gsap.set(div, {
-          clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z')`,
-        });
-      });
-
-      clearAnimation2();
-      return;
-    }
-
+  if (
+    indicatorIndexStore.indicatorIndex < 0 ||
+    indicatorIndexStore.indicatorIndex != lineNumber
+  ) {
     if (currentAnimation.value) {
       currentAnimation.value.kill();
       currentAnimation.value = undefined;
@@ -119,106 +102,118 @@ watch(
         clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z')`,
       });
     });
-
+    // console.log(`we returned without animation`);
     clearAnimation2();
-
-    let index = 0;
-    const startAnimateUnderline = (i) => {
-      let animatedValue = { w: 0 };
-
-      if (i > refToUnderlineDivs.value.length - 1) return;
-
-      const underlineDiv = refToUnderlineDivs.value[i];
-
-      const { width, y } = underlineDiv.getBoundingClientRect();
-
-      let isLastOnLine = false;
-      if (i + 1 < refToUnderlineDivs.value.length) {
-        const { y: nextY } =
-          refToUnderlineDivs.value[i + 1].getBoundingClientRect();
-        const round = (v) => Math.round(parseFloat(v));
-        if (round(y) != round(nextY)) {
-          isLastOnLine = true;
-        }
-      }
-
-      //
-      // if (currentAnimation2.value) {
-      //   currentAnimation2.value.kill();
-      //   currentAnimation2.value = undefined;
-      // }
-      const randomColor = `#${
-        colorHexes[~~(Math.random() * colorHexes.length)]
-      }`;
-      const updatedObject = {
-        key: 0,
-      };
-      const keyframes = [1, 3, 5, 2];
-      const word = refToWordSpans.value[i];
-
-      currentAnimation2.value = gsap.to(updatedObject, {
-        paused: index > 0 ? false : true,
-        keyframes: {
-          key: keyframes,
-        },
-        ease:'none',
-        onUpdate: () => {
-          gsap.set(word, {
-            background: randomColor,
-          });
-          gsap.set(word, {
-            boxShadow: `0px 0px 0 ${updatedObject.key}px ${randomColor}`, //, 0px 0px 0 ${updatedObject.key + 3}px #c1d5db
-          });
-        },
-        duration: Math.max(0.8, duration * (width / totalWidth.value)),
-        onComplete: () => {
-          if (index + 1 >= refToWordSpans.value.length) {
-            // console.log(`onComplete = ${i}`);
-            setTimeout(() => {
-              clearAnimation2();
-
-              // indicatorIndexStore.update(lineNumber + 1);
-            }, 150);
-          }
-        },
-      });
-      //
-
-      currentAnimation.value = gsap.to(animatedValue, {
-        paused: index > 0 ? false : true,
-        w:
-          i == refToUnderlineDivs.value.length - 1 || isLastOnLine
-            ? width - 10
-            : width,
-        duration: duration * (width / totalWidth.value),
-        ease: 'none',
-        onUpdate: () => {
-          gsap.set(underlineDiv, { backgroundColor: '#0178d5' });
-          gsap.set(underlineDiv, {
-            clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${animatedValue.w}a1 1 90 010 3h-${animatedValue.w}A1.5 1.5 90 010 1.5z')`,
-          });
-        },
-        onComplete: () => {
-          if (index + 1 >= refToUnderlineDivs.value.length) {
-            setTimeout(() => {
-              currentAnimation.value = undefined;
-              refToUnderlineDivs.value.forEach((div) => {
-                gsap.set(div, { backgroundColor: 'unset' });
-                gsap.set(div, {
-                  clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z')`,
-                });
-              });
-            }, 250);
-          } else {
-            startAnimateUnderline(++index);
-          }
-        },
-      });
-    };
-    indicatorIndexStore.update(lineNumber);
-    startAnimateUnderline(index);
+    return;
   }
-);
+
+  if (currentAnimation.value) {
+    currentAnimation.value.kill();
+    currentAnimation.value = undefined;
+  }
+  refToUnderlineDivs.value.forEach((div) => {
+    gsap.set(div, { backgroundColor: 'unset' });
+    gsap.set(div, {
+      clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z')`,
+    });
+  });
+
+  clearAnimation2();
+
+  let index = 0;
+  const startAnimateUnderline = (i) => {
+    let animatedValue = { w: 0 };
+
+    if (i > refToUnderlineDivs.value.length - 1) return;
+
+    const underlineDiv = refToUnderlineDivs.value[i];
+
+    const { width, y } = underlineDiv.getBoundingClientRect();
+
+    let isLastOnLine = false;
+    if (i + 1 < refToUnderlineDivs.value.length) {
+      const { y: nextY } =
+        refToUnderlineDivs.value[i + 1].getBoundingClientRect();
+      const round = (v) => Math.round(parseFloat(v));
+      if (round(y) != round(nextY)) {
+        isLastOnLine = true;
+      }
+    }
+
+    //
+    // if (currentAnimation2.value) {
+    //   currentAnimation2.value.kill();
+    //   currentAnimation2.value = undefined;
+    // }
+    const randomColor = `#${colorHexes[~~(Math.random() * colorHexes.length)]}`;
+    const updatedObject = {
+      key: 0,
+    };
+    const keyframes = [1, 3, 5, 2];
+    const word = refToWordSpans.value[i];
+
+    currentAnimation2.value = gsap.to(updatedObject, {
+      paused: index > 0 ? false : true,
+      keyframes: {
+        key: keyframes,
+      },
+      ease: 'none',
+      onUpdate: () => {
+        gsap.set(word, {
+          background: randomColor,
+        });
+        gsap.set(word, {
+          boxShadow: `0px 0px 0 ${updatedObject.key}px ${randomColor}`, //, 0px 0px 0 ${updatedObject.key + 3}px #c1d5db
+        });
+      },
+      duration: Math.max(0.8, duration * (width / totalWidth.value)),
+      onComplete: () => {
+        if (index + 1 >= refToWordSpans.value.length) {
+          // console.log(`onComplete = ${i}`);
+          setTimeout(() => {
+            clearAnimation2();
+
+            // indicatorIndexStore.update(lineNumber + 1);
+          }, 150);
+        }
+      },
+    });
+    //
+
+    currentAnimation.value = gsap.to(animatedValue, {
+      paused: index > 0 ? false : true,
+      w:
+        i == refToUnderlineDivs.value.length - 1 || isLastOnLine
+          ? width - 10
+          : width,
+      duration: duration * (width / totalWidth.value),
+      ease: 'none',
+      onUpdate: () => {
+        gsap.set(underlineDiv, { backgroundColor: '#0178d5' });
+        gsap.set(underlineDiv, {
+          clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${animatedValue.w}a1 1 90 010 3h-${animatedValue.w}A1.5 1.5 90 010 1.5z')`,
+        });
+      },
+      onComplete: () => {
+        if (index + 1 >= refToUnderlineDivs.value.length) {
+          setTimeout(() => {
+            currentAnimation.value = undefined;
+            refToUnderlineDivs.value.forEach((div) => {
+              gsap.set(div, { backgroundColor: 'unset' });
+              gsap.set(div, {
+                clipPath: `path('M0 1.5a1.5 1.5 90 011.5-1.5h${0}a1 1 90 010 3h-${0}A1.5 1.5 90 010 1.5z')`,
+              });
+            });
+          }, 250);
+        } else {
+          startAnimateUnderline(++index);
+        }
+      },
+    });
+  };
+  indicatorIndexStore.update(lineNumber);
+  startAnimateUnderline(index);
+});
 </script>
 
 <template>
