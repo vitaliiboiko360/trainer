@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue';
 import css from './home.module.scss';
 import { useQuery } from '@tanstack/vue-query';
 
@@ -16,7 +17,7 @@ let counter = 0;
 const getKey = () => {
   return `lesson-item-key-${counter++}`;
 };
-
+const cursorAngle = ref();
 let previousAngle = 0;
 function getRotateStyle() {
   let degNumber;
@@ -29,6 +30,7 @@ function getRotateStyle() {
 }
 </script>
 
+<!-- :style="`${getRotateStyle()}`" -->
 <template>
   <span v-if="isPending">Loading...</span>
   <span v-else-if="isError">Error: {{ error.message }}</span>
@@ -38,7 +40,7 @@ function getRotateStyle() {
       <div
         v-for="(item, index) in data.texts"
         :key="getKey"
-        :style="`${getRotateStyle()}`"
+        :class="$style.listItemRotate"
       >
         <router-link
           :to="{
@@ -78,5 +80,21 @@ function getRotateStyle() {
   div:nth-child(4n + 2) {
     margin-left: 0;
   }
+}
+@keyframes rotateItem {
+  --angle-cursor: v-bind(cursorAngle);
+  0% {
+    transform: rotate(-1deg);
+  }
+  50% {
+    transform: rotate(+1deg);
+  }
+  100% {
+    transform: rotate(-1deg);
+  }
+}
+.listItemRotate {
+  --angle-cursor: v-bind(cursorAngle);
+  animation: 5s linear 1s infinite alternate rotateItem;
 }
 </style>
