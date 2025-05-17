@@ -38,7 +38,10 @@ function getRotateStyle() {
       <div
         v-for="(item, index) in data.texts"
         :key="getKey"
-        :class="[{ [$style.listItemRotate]: index % 2 == 0 }]"
+        :class="[
+          { [$style.listItemRotate]: index % 2 == 0 },
+          { [$style.listItemRotateReverse]: index % 2 != 0 },
+        ]"
       >
         <router-link
           :to="{
