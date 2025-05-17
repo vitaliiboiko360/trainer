@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import { gsap } from 'gsap';
+import { ref, watch, nextTick } from 'vue';
 import {
   playTime,
   activeAnimationSentenceNumber,
@@ -32,29 +31,14 @@ const refToSpan = ref();
 const refToAnimation = ref();
 
 const onClick = (event) => {
-  playTime.updateTime(startTime, endTime);
-  activeAnimationSentenceNumber.value = lineNumber;
   indicatorIndexStore.update(lineNumber);
-  detectClickEvent.value = !detectClickEvent.value;
-  audioTimeStore.updatePlayTime(startTime, endTime);
-  audioPlayStore.setPlay();
-
-  // let scopedEventTarget = event.currentTarget;
-
-  // const onComplete = () => {
-  //   gsap.set(scopedEventTarget, { backgroundSize: '0 100%' });
-  // };
-
-  // refToAnimation.value?.kill();
-  // gsap.set(event.currentTarget, {
-  //   backgroundSize: '0% 100%',
-  // });
-  // refToAnimation.value = gsap.to(event.currentTarget, {
-  //   duration: endTime - startTime,
-  //   backgroundSize: '100% 100%',
-  //   ease: 'none',
-  //   onComplete: () => setTimeout(onComplete, 150),
-  // });
+  playTime.updateTime(startTime, endTime);
+  nextTick(() => {
+    activeAnimationSentenceNumber.value = lineNumber;
+    detectClickEvent.value = !detectClickEvent.value;
+    audioTimeStore.updatePlayTime(startTime, endTime);
+    audioPlayStore.setPlay();
+  });
 };
 
 watch(indicatorIndexStore, () => {
