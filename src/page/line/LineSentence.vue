@@ -1,10 +1,5 @@
 <script setup lang="ts">
 import { ref, watch, nextTick } from 'vue';
-import {
-  playTime,
-  activeAnimationSentenceNumber,
-  detectClickEvent,
-} from '../state/playTime';
 import LineTextWordsArray from './LineTextWordsArray.vue';
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
 const indicatorIndexStore = useIndicatorIndexStore();
@@ -31,10 +26,7 @@ const refToSpan = ref();
 
 const onClick = async (event) => {
   indicatorIndexStore.update(lineNumber);
-  playTime.updateTime(startTime, endTime);
   await nextTick();
-  activeAnimationSentenceNumber.value = lineNumber;
-  detectClickEvent.value = !detectClickEvent.value;
   audioTimeStore.updatePlayTime(startTime, endTime);
   audioPlayStore.setPlay();
 };
