@@ -24,11 +24,12 @@ const {
 
 const refToSpan = ref();
 
-const onClick = async (event) => {
+const onClick = (event) => {
   indicatorIndexStore.update(lineNumber);
-  await nextTick();
-  audioTimeStore.updatePlayTime(startTime, endTime);
-  audioPlayStore.setPlay();
+  nextTick(() => {
+    audioTimeStore.updatePlayTime(startTime, endTime);
+    audioPlayStore.setPlay();
+  });
 };
 
 watch(indicatorIndexStore, () => {
