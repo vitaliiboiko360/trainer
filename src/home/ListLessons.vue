@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue';
 import css from './home.module.scss';
 import { useQuery } from '@tanstack/vue-query';
 
