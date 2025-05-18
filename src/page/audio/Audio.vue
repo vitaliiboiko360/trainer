@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { onMounted, ref, onBeforeUnmount, watch } from 'vue';
 import {
   isPlaying,
   playTime,
@@ -87,6 +87,15 @@ watch(autioTimeStore, () => {
 
   audio.value!.addEventListener('timeupdate', onTimeUpdate);
   audio.value!.currentTime = startTime;
+});
+
+onBeforeUnmount(() => {
+  if (previousOnTimeUpdateHandler.value) {
+    audio.value!.removeEventListener(
+      'timeupdate',
+      previousOnTimeUpdateHandler.value
+    );
+  }
 });
 
 watch(audioPlayStore, () => {
