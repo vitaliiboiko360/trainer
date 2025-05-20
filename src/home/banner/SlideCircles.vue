@@ -19,6 +19,9 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
   height: fit-content;
   left: 0;
   top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .flexDiv {
   display: flex;
