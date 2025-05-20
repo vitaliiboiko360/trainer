@@ -45,4 +45,9 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
   position: absolute;
   bottom: 0;
 }
+/* 10% = 126deg = 90 + ( 360 * .1 ) */
+.sectorCircle {
+  background-image: linear-gradient(126deg, transparent 50%, white 50%),
+    linear-gradient(90deg, white 50%, transparent 50%);
+}
 </style>
