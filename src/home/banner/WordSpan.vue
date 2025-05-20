@@ -1,9 +1,12 @@
 <script setup>
 import { ref } from 'vue';
 
+const { colorPlace } = defineProps(['colorPlace']);
 const { textToInsert } = defineProps(['textToInsert']);
 const colors = ['#E0F2FD', '#D7F1F1', '#c4c0ff'];
-const choosenColor = ref(colors[~~(Math.random() * colors.length)]);
+const choosenColor = ref(
+  colors[colorPlace ? colorPlace : ~~(Math.random() * colors.length)]
+);
 </script>
 
 <template>
