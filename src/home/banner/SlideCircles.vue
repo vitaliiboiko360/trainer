@@ -6,7 +6,7 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
   <div :class="$style.container">
     <div :class="$style.flexDiv">
       <div v-for="i in numberOfSlides" :class="$style.item" :key="i">
-        <p>.</p>
+        <p :class="$style.pInside">.</p>
       </div>
     </div>
   </div>
@@ -31,5 +31,11 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
   height: 10px;
   width: 10px;
   background-color: #808080c9;
+}
+.pInside {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  bottom: 0;
 }
 </style>
