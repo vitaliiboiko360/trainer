@@ -26,16 +26,20 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
 .flexDiv {
   display: flex;
   position: absolute;
-  bottom: 0;
+  bottom: 8px;
   flex-direction: row;
   align-items: center;
+  gap: 8px;
 }
 .item {
-  height: 10px;
-  width: 10px;
-  background-color: #808080c9;
+  height: 12px;
+  width: 12px;
+  background-color: #d7d9e8;
+  border-radius: 50%;
+  cursor: pointer;
 }
 .pInside {
+  color: #ececec;
   padding: 0;
   margin: 0;
   position: absolute;
