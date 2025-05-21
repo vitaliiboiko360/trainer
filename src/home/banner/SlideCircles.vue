@@ -5,7 +5,11 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
 <template>
   <div :class="$style.container">
     <div :class="$style.flexDiv">
-      <div v-for="i in numberOfSlides" :class="$style.item" :key="i">
+      <div
+        v-for="i in numberOfSlides"
+        :class="[{ [$style.sectorCircle]: i == 0 }, $style.item]"
+        :key="i"
+      >
         <p :class="$style.pInside">.</p>
       </div>
     </div>
