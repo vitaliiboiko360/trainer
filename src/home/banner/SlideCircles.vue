@@ -46,8 +46,24 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
   bottom: 0;
 }
 /* 10% = 126deg = 90 + ( 360 * .1 ) */
+
+@keyframes sectors {
+  0% {
+    background-image: linear-gradient(90deg, transparent 50%, white 50%),
+      linear-gradient(90deg, white 50%, transparent 50%);
+  }
+  50% {
+    background-image: linear-gradient(180deg, transparent 50%, white 50%),
+      linear-gradient(90deg, white 50%, transparent 50%);
+  }
+  100% {
+    background-image: linear-gradient(360deg, transparent 50%, white 50%),
+      linear-gradient(90deg, white 50%, transparent 50%);
+  }
+}
 .sectorCircle {
   background-image: linear-gradient(126deg, transparent 50%, white 50%),
     linear-gradient(90deg, white 50%, transparent 50%);
+  animation: 10s sectors infinite;
 }
 </style>
