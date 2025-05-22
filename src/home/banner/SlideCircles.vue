@@ -53,21 +53,32 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
 
 @keyframes sectors {
   0% {
-    background-image: linear-gradient(90deg, transparent 50%, white 50%),
-      linear-gradient(90deg, white 50%, transparent 50%);
+    background-image: linear-gradient(0deg, transparent 50%, white 50%),
+      linear-gradient(0deg, white 50%, transparent 50%);
   }
   50% {
     background-image: linear-gradient(180deg, transparent 50%, white 50%),
-      linear-gradient(90deg, white 50%, transparent 50%);
+      linear-gradient(0deg, white 50%, transparent 50%);
+  }
+  /* 50% {
+    background-image: linear-gradient(270deg, transparent 50%, white 50%);
+  }
+  75% {
+    background-image: linear-gradient(360deg, transparent 50%, white 50%);
+  } */
+}
+@keyframes semiCircleRotate {
+  0% {
+    transform: rotate(0);
   }
   100% {
-    background-image: linear-gradient(360deg, transparent 50%, white 50%),
-      linear-gradient(90deg, white 50%, transparent 50%);
+    transform: rotate(180);
   }
 }
 .sectorCircle {
-  background-image: linear-gradient(126deg, transparent 50%, white 50%),
-    linear-gradient(90deg, white 50%, transparent 50%);
-  animation: 10s sectors infinite;
+  /* /* background-image: linear-gradient(126deg, transparent 50%, white 50%),
+    linear-gradient(90deg, white 50%, transparent 50%); */
+  background-image: linear-gradient(90deg, tranparent 50%, white 50%);
+  animation: 5s infinite semiCircleRotate;
 }
 </style>
