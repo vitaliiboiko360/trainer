@@ -69,16 +69,16 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
 }
 @keyframes semiCircleRotate {
   0% {
-    transform: rotate(0);
+    transform: rotate(0deg);
   }
   100% {
-    transform: rotate(180);
+    transform: rotate(180deg);
   }
 }
 .sectorCircle {
   /* /* background-image: linear-gradient(126deg, transparent 50%, white 50%),
     linear-gradient(90deg, white 50%, transparent 50%); */
-  background-image: linear-gradient(90deg, tranparent 50%, white 50%);
-  animation: 5s infinite semiCircleRotate;
+  background-image: linear-gradient(90deg, transparent 50%, white 50%);
+  animation: 5s linear infinite semiCircleRotate;
 }
 </style>
