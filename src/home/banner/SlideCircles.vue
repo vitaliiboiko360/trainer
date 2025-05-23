@@ -7,7 +7,11 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
     <div :class="$style.flexDiv">
       <div
         v-for="i in numberOfSlides"
-        :class="[{ [$style.sectorCircle]: i == 1 }, $style.item]"
+        :class="[
+          { [$style.sectorCircle]: i == 1 },
+          { [$style.sectorCircleLeft]: i == 1 },
+          $style.item,
+        ]"
         :key="i"
       >
         <p :class="$style.pInside">.</p>
@@ -78,7 +82,7 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
 .sectorCircle {
   /* /* background-image: linear-gradient(126deg, transparent 50%, white 50%),
     linear-gradient(90deg, white 50%, transparent 50%); */
-  /* display: block; */
+  display: block;
 }
 .sectorCircle::before {
   content: '';
@@ -87,6 +91,7 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
   animation: 5s linear infinite semiCircleRotate;
   width: 100%;
   height: 100%;
+  border-radius: 50%;
 }
 .sectorCircleLeft {
   background-image: linear-gradient(90deg, white 50%, transparent 50%);
