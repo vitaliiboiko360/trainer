@@ -9,7 +9,7 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
         v-for="i in numberOfSlides"
         :class="[
           { [$style.sectorCircle]: i == 1 },
-          { [$style.sectorCircleLeft]: i == 1 },
+          { [$style.sectorCircleStatic]: i == 1 },
           $style.item,
         ]"
         :key="i"
@@ -75,8 +75,20 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
   0% {
     transform: rotate(0deg);
   }
-  100% {
+  50% {
     transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sectorCircleStaticKeyframes {
+  0% {
+    background-image: linear-gradient(90deg, #eee 50%, transparent 50%);
+  }
+  100% {
+    background-image: linear-gradient(270deg, #d7d9e8 50%, transparent 50%);
   }
 }
 .sectorCircle {
@@ -87,13 +99,14 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
 .sectorCircle::before {
   content: '';
   display: block;
-  background-image: linear-gradient(90deg, transparent 50%, white 50%);
+  background-image: linear-gradient(90deg, transparent 50%, #eee 50%);
   animation: 5s linear infinite semiCircleRotate;
   width: 100%;
   height: 100%;
   border-radius: 50%;
 }
-.sectorCircleLeft {
-  background-image: linear-gradient(90deg, white 50%, transparent 50%);
+.sectorCircleStatic {
+  background-image: linear-gradient(90deg, #eee 50%, transparent 50%);
+  animation: 5s linear infinite sectorCircleStaticKeyframes;
 }
 </style>
