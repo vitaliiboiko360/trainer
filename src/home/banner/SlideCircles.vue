@@ -81,4 +81,7 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
   background-image: linear-gradient(90deg, transparent 50%, white 50%);
   animation: 5s linear infinite semiCircleRotate;
 }
+.sectorCircleLeft {
+  background-image: linear-gradient(90deg, white 50%, transparent 50%);
+}
 </style>
