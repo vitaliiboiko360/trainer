@@ -3,7 +3,9 @@ const { title, lessonNumber } = defineProps(['title', 'lessonNumber']);
 </script>
 
 <template>
-  <p :class="$style.numberLine">🔹{{ lessonNumber }}</p>
+  <p :class="$style.numberLine">
+    <span :class="$style.iconRotate">🔹</span>{{ lessonNumber }}
+  </p>
   <p :class="$style.titleLessonLine">{{ title }}</p>
 </template>
 
@@ -16,5 +18,21 @@ const { title, lessonNumber } = defineProps(['title', 'lessonNumber']);
 .titleLessonLine {
   margin-right: 0.5rem;
   margin-left: 0.5rem;
+}
+
+@keyframes rotateKeyframes {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.iconRotate {
+  display: inline-block;
+  animation: 25s linear infinite rotateKeyframes;
 }
 </style>
