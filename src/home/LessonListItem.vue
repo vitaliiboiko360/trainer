@@ -1,5 +1,9 @@
 <script setup>
+import { ref } from 'vue';
 const { title, lessonNumber } = defineProps(['title', 'lessonNumber']);
+
+const angle1 = ref(Math.random() * 360);
+const angle2 = (angle1.value + 180) % 360;
 </script>
 
 <template>
@@ -22,13 +26,13 @@ const { title, lessonNumber } = defineProps(['title', 'lessonNumber']);
 
 @keyframes rotateKeyframes {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(calc(v-bind(angle1) * 1deg));
   }
   50% {
-    transform: rotate(180deg);
+    transform: rotate(calc(v-bind(angle2) * 1deg));
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotate(calc(v-bind(angle1) * 1deg));
   }
 }
 .iconRotate {
