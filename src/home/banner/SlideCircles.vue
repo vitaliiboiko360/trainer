@@ -77,7 +77,6 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
 @keyframes sectorCircleStaticKeyframes {
   0% {
     background-image: linear-gradient(90deg, #d7d9e8 50%, transparent 50%);
-    background-origin: border-box;
   }
   100% {
     background-image: linear-gradient(270deg, #6e75d2 50%, transparent 50%);
@@ -95,7 +94,7 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
   display: block;
   background-image: linear-gradient(90deg, #6e75d2 50%, transparent 50%);
   animation: 5s linear infinite semiCircleRotate;
-  background-size: 99% 99%;
+  background-size: 100% 100%;
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -109,6 +108,7 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
   border-radius: 50%;
   position: absolute;
   background-size: 100% 100%;
+  background-image: linear-gradient(90deg, #d7d9e8 50%, transparent 50%);
   background-origin: border-box;
   animation: 5s linear infinite sectorCircleStaticKeyframes;
 }
