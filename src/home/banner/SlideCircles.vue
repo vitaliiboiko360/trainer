@@ -7,7 +7,11 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
     <div :class="$style.flexDiv">
       <div
         v-for="i in numberOfSlides"
-        :class="[{ [$style.sectorCircle]: i == 1 }, $style.item]"
+        :class="[
+          { [$style.sectorCircle]: i == 1 },
+          { [$style.circleBorder]: i == 1 },
+          $style.item,
+        ]"
         :key="i"
       >
         <p :class="$style.pInside">.</p>
@@ -72,7 +76,8 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
 }
 @keyframes sectorCircleStaticKeyframes {
   0% {
-    background-image: linear-gradient(270deg, transparent 50%, #d7d9e8 50%);
+    background-image: linear-gradient(90deg, #d7d9e8 50%, transparent 50%);
+    background-origin: border-box;
   }
   100% {
     background-image: linear-gradient(270deg, #6e75d2 50%, transparent 50%);
@@ -83,7 +88,7 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
   position: relative;
 }
 .sectorCircle p {
-  z-index: 1;
+  z-index: 2;
 }
 .sectorCircle::before {
   content: '';
@@ -103,7 +108,14 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
   height: 100%;
   border-radius: 50%;
   position: absolute;
-  background-size: 99% 99%;
+  background-size: 100% 100%;
+  background-origin: border-box;
   animation: 5s linear infinite sectorCircleStaticKeyframes;
+}
+.circleBorder {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d7d9e8;
+  border-radius: 50%;
 }
 </style>
