@@ -14,6 +14,8 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
         ]"
         :key="i"
       >
+        <div :class="[{ [$style.sectorCircle_before]: i == 1 }]"></div>
+        <div :class="[{ [$style.sectorCircle_after]: i == 1 }]"></div>
         <p :class="$style.pInside">.</p>
       </div>
     </div>
@@ -89,7 +91,7 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
 .sectorCircle p {
   z-index: 2;
 }
-.sectorCircle::before {
+.sectorCircle_before {
   content: '';
   display: block;
   background-image: linear-gradient(90deg, #6e75d2 50%, transparent 50%);
@@ -99,8 +101,9 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
   height: 100%;
   border-radius: 50%;
   position: absolute;
+  background-origin: border-box;
 }
-.sectorCircle::after {
+.sectorCircle_after {
   content: '';
   display: block;
   width: 100%;
@@ -108,9 +111,8 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
   border-radius: 50%;
   position: absolute;
   background-size: 100% 100%;
-  background-image: linear-gradient(90deg, #d7d9e8 50%, transparent 50%);
-  background-origin: border-box;
   animation: 5s linear infinite sectorCircleStaticKeyframes;
+  background-origin: border-box;
 }
 .circleBorder {
   border-style: solid;
