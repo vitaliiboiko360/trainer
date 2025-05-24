@@ -72,21 +72,25 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
 }
 @keyframes sectorCircleStaticKeyframes {
   0% {
-    background-image: linear-gradient(90deg, #eee 50%, transparent 50%);
+    background-image: linear-gradient(270deg, transparent 50%, #d7d9e8 50%);
   }
   100% {
-    background-image: linear-gradient(270deg, #d7d9e8 50%, transparent 50%);
+    background-image: linear-gradient(270deg, #6e75d2 50%, transparent 50%);
   }
 }
 .sectorCircle {
   display: block;
   position: relative;
 }
+.sectorCircle p {
+  z-index: 1;
+}
 .sectorCircle::before {
   content: '';
   display: block;
-  background-image: linear-gradient(90deg, transparent 50%, #eee 50%);
+  background-image: linear-gradient(90deg, #6e75d2 50%, transparent 50%);
   animation: 5s linear infinite semiCircleRotate;
+  background-size: 99% 99%;
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -99,6 +103,7 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
   height: 100%;
   border-radius: 50%;
   position: absolute;
+  background-size: 99% 99%;
   animation: 5s linear infinite sectorCircleStaticKeyframes;
 }
 </style>
