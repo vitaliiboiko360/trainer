@@ -28,6 +28,9 @@ const adjustPlaybackSpeed = (value) => {
   return 1;
 };
 
+import { useRepeatCountStore } from '../../store/repeatCount';
+const repeatCountStore = useRepeatCountStore();
+
 // watch(playTime, () => {
 //   if (!audio.value) return;
 
@@ -79,7 +82,9 @@ watch(autioTimeStore, () => {
       audio.value!.pause();
       audioPlayStore.setPause();
       audio.value!.currentTime = startTime;
-      indicatorIndexStore.updateToNext();
+      if (repeatCountStore.incrementCountCurrent()) {
+        indicatorIndexStore.updateToNext();
+      }
     }
   };
 
