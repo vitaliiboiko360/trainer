@@ -14,18 +14,6 @@ export const useRepeatCountStore = defineStore('repeatCount', {
     repeatCount: REPEAT_COUNT.ONE,
     repeatCountCurrent: REPEAT_COUNT.INITIAL,
   }),
-  getters: {
-    repeatCount: (state) => {
-      return {
-        repeatCount: state.repeatCount,
-      };
-    },
-    repeatCountCurrent: (state) => {
-      return {
-        repeatCountCurrent: state.repeatCountCurrent,
-      };
-    },
-  },
   actions: {
     setRepeatCount(newRepeatCount: REPEAT_COUNT) {
       this.repeatCount = newRepeatCount;
