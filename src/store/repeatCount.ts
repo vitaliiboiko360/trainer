@@ -5,7 +5,7 @@ const enum REPEAT_COUNT {
   ONE,
   TWO,
   THREE,
-};
+}
 
 export type RC = REPEAT_COUNT;
 
@@ -22,13 +22,16 @@ export const useRepeatCountStore = defineStore('repeatCount', {
     },
     repeatCountCurrent: (state) => {
       return {
-        repeatCountCurrent: state.repeatCountCurrent;
-      }
+        repeatCountCurrent: state.repeatCountCurrent,
+      };
     },
   },
   actions: {
     setRepeatCount(newRepeatCount: REPEAT_COUNT) {
       this.repeatCount = newRepeatCount;
+    },
+    resetCountCurrent() {
+      this.repeatCountCurrent = REPEAT_COUNT.INITIAL;
     },
     incrementCountCurrent(): Boolean {
       if (this.repeatCountCurrent + 1 == this.repeatCount) {
@@ -37,6 +40,6 @@ export const useRepeatCountStore = defineStore('repeatCount', {
       }
       this.repeatCountCurrent = this.repeatCountCurrent + 1;
       return false;
-    }
+    },
   },
 });
