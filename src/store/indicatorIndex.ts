@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia';
 import { useRepeatCountStore } from './repeatCount';
-const repeatCountStore = useRepeatCountStore();
 export const useIndicatorIndexStore = defineStore('indicatorIndex', {
   state: () => ({
     index: 1,
@@ -19,12 +18,14 @@ export const useIndicatorIndexStore = defineStore('indicatorIndex', {
     },
     updateToNext() {
       if (this.index < this.maxValue) {
+        const repeatCountStore = useRepeatCountStore();
         this.index++;
         repeatCountStore.resetCountCurrent();
       }
     },
     updateToPrev() {
       if (this.index > 1) {
+        const repeatCountStore = useRepeatCountStore();
         this.index--;
         repeatCountStore.resetCountCurrent();
       }
