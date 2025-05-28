@@ -47,16 +47,10 @@ onMounted(() => {
 });
 
 watch([audioPlayStore, indicatorIndexStore], () => {
-  // if (
-  //   isPlay.value == true &&
-  //   !currentAnimation.value &&
-  //   !currentAnimation2.value
-  // ) {
-  //   return;
-  // }
   if (
     indicatorIndexStore.indicatorIndex < 0 ||
-    indicatorIndexStore.indicatorIndex != lineNumber
+    indicatorIndexStore.indicatorIndex != lineNumber ||
+    refToUnderlineDivs.value.length == 0
   ) {
     // console.log(
     //   `we don't play for indicatorIndexStore.indicatorIndex= ${indicatorIndexStore.indicatorIndex} `
