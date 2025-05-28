@@ -158,6 +158,7 @@ watch([indicatorIndexStore, repeatAnimation], () => {
       onComplete: () => {
         if (index + 1 >= refToWordSpans.value.length) {
           // console.log(`onComplete = ${i}`);
+          repeatAnimation.value += 1;
           setTimeout(() => {
             clearAnimation2();
             // indicatorIndexStore.update(lineNumber + 1);
