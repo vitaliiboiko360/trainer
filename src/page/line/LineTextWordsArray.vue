@@ -135,11 +135,6 @@ watch([indicatorIndexStore], () => {
       }
     }
 
-    //
-    // if (currentAnimation2.value) {
-    //   currentAnimation2.value.kill();
-    //   currentAnimation2.value = undefined;
-    // }
     const randomColor = `#${colorHexes[~~(Math.random() * colorHexes.length)]}`;
     const updatedObject = {
       key: 0,
@@ -167,13 +162,11 @@ watch([indicatorIndexStore], () => {
           // console.log(`onComplete = ${i}`);
           setTimeout(() => {
             clearAnimation2();
-
             // indicatorIndexStore.update(lineNumber + 1);
           }, 150);
         }
       },
     });
-    //
 
     currentAnimation.value = gsap.to(animatedValue, {
       paused: index > 0 ? false : true,
