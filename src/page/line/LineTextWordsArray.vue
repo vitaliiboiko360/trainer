@@ -37,6 +37,8 @@ const currentAnimation2 = ref();
 const currentAnimationProgress = ref();
 const currentAnimationProgress2 = ref();
 
+const repeatAnimation = ref(0);
+
 onMounted(() => {
   refToUnderlineDivs.value.forEach((uDiv) => {
     const { width } = uDiv.getBoundingClientRect();
@@ -76,7 +78,7 @@ watch([audioPlayStore, indicatorIndexStore], () => {
   }
 });
 
-watch([indicatorIndexStore], () => {
+watch([indicatorIndexStore, repeatAnimation], () => {
   const clearAnimation2 = () => {
     refToWordSpans.value.forEach((span) => {
       gsap.set(span, { boxShadow: 'unset', background: 'unset' });
@@ -85,7 +87,8 @@ watch([indicatorIndexStore], () => {
 
   if (
     indicatorIndexStore.indicatorIndex < 0 ||
-    indicatorIndexStore.indicatorIndex != lineNumber
+    indicatorIndexStore.indicatorIndex != lineNumber ||
+    refToUnderlineDivs.value.length == 0
   ) {
     if (currentAnimation.value) {
       currentAnimation.value.kill();
@@ -106,6 +109,7 @@ watch([indicatorIndexStore], () => {
     currentAnimation.value.kill();
     currentAnimation.value = undefined;
   }
+
   refToUnderlineDivs.value.forEach((div) => {
     gsap.set(div, { backgroundColor: 'unset' });
     gsap.set(div, {
@@ -184,6 +188,7 @@ watch([indicatorIndexStore], () => {
       },
       onComplete: () => {
         if (index + 1 >= refToUnderlineDivs.value.length) {
+          repeatAnimation.value += 1;
           setTimeout(() => {
             currentAnimation.value = undefined;
             refToUnderlineDivs.value.forEach((div) => {
@@ -199,7 +204,7 @@ watch([indicatorIndexStore], () => {
       },
     });
   };
-  indicatorIndexStore.update(lineNumber);
+  // indicatorIndexStore.update(lineNumber);
   startAnimateUnderline(index);
 });
 </script>
