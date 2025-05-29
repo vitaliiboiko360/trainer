@@ -56,8 +56,11 @@
     ></script>
     <script type="text/javascript" src="/script/light.js"></script>
     <style type="text/css">
-      .appOuterDivCanvasClass {
-        position: absolute;
+      .backgroundContainer {
+        position: fixed;
+      }
+      .backgroundCanvasClass {
+        position: fixed;
         left: 0;
         top: 0;
         width: 100%;
@@ -66,16 +69,16 @@
     </style>
   </head>
   <body>
-    <canvas
-      id="appOuterDivCanvas"
-      class="appOuterDivCanvasClass default"
-      width="50"
-      height="50"
-      data-colors="dbddbb,6ba587,d5d88d,88b884"
-    ></canvas>
-    <div id="appOuterDiv">
-      <div id="app"></div>
+    <div class="backgroundContainer">
+      <canvas
+        id="backgroundCanvas"
+        class="backgroundCanvasClass default"
+        width="50"
+        height="50"
+        data-colors="f5fbff,dbf2ff,fff5fb,fff5fb"
+      ></canvas>
     </div>
+    <div id="app"></div>
     <script type="module" src="js/main.ts"></script>
     <script type="text/javascript">
       var protoUrl = '';
@@ -85,7 +88,7 @@
         }, 100);
       }
 
-      var tme_bg = document.getElementById('appOuterDivCanvas');
+      var tme_bg = document.getElementById('backgroundCanvas');
       if (tme_bg) {
         TWallpaper.init(tme_bg);
         TWallpaper.animate(true);
