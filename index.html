@@ -54,9 +54,58 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script type="text/javascript" src="/script/light.js"></script>
+    <style type="text/css">
+      .appOuterDivCanvasClass {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
+    <canvas
+      id="appOuterDivCanvas"
+      class="appOuterDivCanvasClass default"
+      width="50"
+      height="50"
+      data-colors="dbddbb,6ba587,d5d88d,88b884"
+    ></canvas>
+    <div id="appOuterDiv">
+      <div id="app"></div>
+    </div>
     <script type="module" src="js/main.ts"></script>
+    <script type="text/javascript">
+      var protoUrl = '';
+      if (protoUrl) {
+        setTimeout(function () {
+          window.location = protoUrl;
+        }, 100);
+      }
+
+      var tme_bg = document.getElementById('appOuterDivCanvas');
+      if (tme_bg) {
+        TWallpaper.init(tme_bg);
+        TWallpaper.animate(true);
+        window.onfocus = function () {
+          TWallpaper.update();
+        };
+      }
+      document.body.classList.remove('no_transition');
+
+      function toggleTheme(dark) {
+        document.documentElement.classList.toggle('theme_dark', dark);
+        window.Telegram && Telegram.setWidgetOptions({ dark: dark });
+      }
+      if (window.matchMedia) {
+        var darkMedia = window.matchMedia('(prefers-color-scheme: dark)');
+        toggleTheme(darkMedia.matches);
+        darkMedia.addListener(function (e) {
+          toggleTheme(e.matches);
+        });
+      }
+    </script>
   </body>
 </html>
