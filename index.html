@@ -75,7 +75,7 @@
         class="backgroundCanvasClass default"
         width="50"
         height="50"
-        data-colors="f5fbff,dbf2ff,fff5fb,fff5fb"
+        data-colors="f5fbff,f5f6ff,fef6fb,fff5fb"
       ></canvas>
     </div>
     <div id="app"></div>
@@ -88,9 +88,9 @@
         }, 100);
       }
 
-      var tme_bg = document.getElementById('backgroundCanvas');
-      if (tme_bg) {
-        TWallpaper.init(tme_bg);
+      var bgCnvs = document.getElementById('backgroundCanvas');
+      if (bgCnvs) {
+        TWallpaper.init(bgCnvs);
         TWallpaper.animate(true);
         window.onfocus = function () {
           TWallpaper.update();
