@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import { gsap } from 'gsap';
-import {
-  playTime,
-  activeAnimationSentenceNumber,
-  detectClickEvent,
-} from '../state/playTime';
+import { ref, watch, nextTick } from 'vue';
 import LineTextWordsArray from './LineTextWordsArray.vue';
+import { useIndicatorIndexStore } from '../../store/indicatorIndex';
+const indicatorIndexStore = useIndicatorIndexStore();
+
+import { useAudioTimeStore } from '../../store/playTime';
+const audioTimeStore = useAudioTimeStore();
+
+import { useAudioPlayStore } from '../../store/audioPlay';
+const audioPlayStore = useAudioPlayStore();
 
 const { textLine: textLineInfo, lineNumber } = defineProps([
   'textLine',
@@ -21,41 +23,20 @@ const {
 } = textLineInfo;
 
 const refToSpan = ref();
-const refToAnimation = ref();
 
 const onClick = (event) => {
-  playTime.updateTime(startTime, endTime);
-  activeAnimationSentenceNumber.value = lineNumber;
-
-  detectClickEvent.value = !detectClickEvent.value;
-  // let scopedEventTarget = event.currentTarget;
-
-  // const onComplete = () => {
-  //   gsap.set(scopedEventTarget, { backgroundSize: '0 100%' });
-  // };
-
-  // refToAnimation.value?.kill();
-  // gsap.set(event.currentTarget, {
-  //   backgroundSize: '0% 100%',
-  // });
-  // refToAnimation.value = gsap.to(event.currentTarget, {
-  //   duration: endTime - startTime,
-  //   backgroundSize: '100% 100%',
-  //   ease: 'none',
-  //   onComplete: () => setTimeout(onComplete, 150),
-  // });
+  indicatorIndexStore.update(lineNumber);
+  nextTick(() => {
+    audioTimeStore.updatePlayTime(startTime, endTime);
+    audioPlayStore.setPlay();
+  });
 };
 
-// watch([activeAnimationSentenceNumber], () => {
-//   if (refToAnimation.value && refToAnimation.value.isActive()) {
-//     refToAnimation.value.kill();
-//   }
-//   if (refToSpan.value) {
-//     gsap.set(refToSpan.value, {
-//       backgroundSize: '0% 100%',
-//     });
-//   }
-// });
+watch(indicatorIndexStore, () => {
+  if (indicatorIndexStore.indicatorIndex == lineNumber) {
+    audioTimeStore.updatePlayTime(startTime, endTime);
+  }
+});
 </script>
 
 <template>
@@ -93,5 +74,3 @@ const onClick = (event) => {
   background-position: 0 100%;
 }
 </style>
-
-// padding: 0 0.5em 0 0.1em;

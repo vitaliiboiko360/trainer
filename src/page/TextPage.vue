@@ -26,5 +26,6 @@ const lines = inputLines.map((line, index) => {
 <style module>
 .pageMainBlock {
   /* min-width: 709px; */
+  /* background-color: #f0f8ff; */
 }
 </style>

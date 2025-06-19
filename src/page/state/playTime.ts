@@ -19,3 +19,7 @@ export const detectClickEvent = ref(false);
 export const isPlaying = ref(false);
 
 export const isPlay = ref(false);
+
+export const playbackSpeed = ref(1);
+
+export const isPlayFromPaused = ref(false);

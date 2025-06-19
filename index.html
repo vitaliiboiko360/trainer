@@ -25,6 +25,7 @@
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
     />
     <link type="text/css" rel="stylesheet" href="/css/index.css" />
+    <link type="text/css" rel="stylesheet" href="/css/layers.css" />
     <script type="importmap">
       {
         "imports": {
@@ -53,9 +54,62 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script type="text/javascript" src="/script/light.js"></script>
+    <style type="text/css">
+      .backgroundContainer {
+        position: fixed;
+        z-index: -1;
+      }
+      .backgroundCanvasClass {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
   </head>
   <body>
+    <div class="backgroundContainer">
+      <canvas
+        id="backgroundCanvas"
+        class="backgroundCanvasClass default"
+        width="50"
+        height="50"
+        data-colors="f5fbff,f5f6ff,fef6fb,fef6f7"
+      ></canvas>
+    </div>
     <div id="app"></div>
     <script type="module" src="js/main.ts"></script>
+    <script type="text/javascript">
+      var protoUrl = '';
+      if (protoUrl) {
+        setTimeout(function () {
+          window.location = protoUrl;
+        }, 100);
+      }
+
+      var bgCnvs = document.getElementById('backgroundCanvas');
+      if (bgCnvs) {
+        TWallpaper.init(bgCnvs);
+        TWallpaper.animate(true);
+        window.onfocus = function () {
+          TWallpaper.update();
+        };
+      }
+      document.body.classList.remove('no_transition');
+
+      function toggleTheme(dark) {
+        document.documentElement.classList.toggle('theme_dark', dark);
+        window.Telegram && Telegram.setWidgetOptions({ dark: dark });
+      }
+      if (window.matchMedia) {
+        var darkMedia = window.matchMedia('(prefers-color-scheme: dark)');
+        toggleTheme(darkMedia.matches);
+        darkMedia.addListener(function (e) {
+          toggleTheme(e.matches);
+        });
+      }
+    </script>
   </body>
 </html>

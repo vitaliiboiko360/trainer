@@ -1,63 +1,121 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { onMounted, ref, onBeforeUnmount, watch } from 'vue';
 import {
   isPlaying,
   playTime,
   isPlay,
   activeAnimationSentenceNumber,
+  playbackSpeed,
+  isPlayFromPaused,
 } from '../state/playTime';
 
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
 const indicatorIndexStore = useIndicatorIndexStore();
 
+import { useAudioPlayStore } from '../../store/audioPlay';
+const audioPlayStore = useAudioPlayStore();
+
+import { useAudioTimeStore } from '../../store/playTime';
+const autioTimeStore = useAudioTimeStore();
+
 const { audioSource, timeData } = defineProps(['audioSource', 'timeData']);
 const audio = ref();
 const previousOnTimeUpdateHandler = ref();
 
-watch(playTime, () => {
+const adjustPlaybackSpeed = (value) => {
+  if (value == 0.8) return 0.87;
+  if (value == 0.9) return 0.93;
+  return 1;
+};
+
+import { useRepeatCountStore } from '../../store/repeatCount';
+const repeatCountStore = useRepeatCountStore();
+
+// watch(playTime, () => {
+//   if (!audio.value) return;
+
+//   const { startTime, endTime } = playTime;
+
+//   audio.value!.removeEventListener(
+//     'timeupdate',
+//     previousOnTimeUpdateHandler.value
+//   );
+//   let isAlreadyUpdatedIndicator = false;
+//   const lineNumber = indicatorIndexStore.indicatorIndex;
+//   const onTimeUpdate = (event) => {
+//     if (audio.value!.currentTime >= endTime) {
+//       audio.value!.pause();
+//       isPlaying.value = false;
+//       isPlay.value = false;
+//       if (isAlreadyUpdatedIndicator == false) {
+//         isAlreadyUpdatedIndicator = true;
+//         indicatorIndexStore.update(lineNumber + 1);
+//       }
+//     }
+//   };
+//   previousOnTimeUpdateHandler.value = onTimeUpdate;
+
+//   audio.value!.addEventListener('timeupdate', onTimeUpdate);
+
+//   audio.value!.currentTime = startTime;
+//   audio.value!.play();
+//   isPlaying.value = true;
+// });
+
+watch(playbackSpeed, () => {
+  audio.value.playbackRate = adjustPlaybackSpeed(playbackSpeed.value);
+});
+
+watch(autioTimeStore, () => {
   if (!audio.value) return;
 
-  const { startTime, endTime } = playTime;
+  const { startTime, endTime } = autioTimeStore.playTime;
 
-  audio.value!.removeEventListener(
-    'timeupdate',
-    previousOnTimeUpdateHandler.value
-  );
-  let isAlreadyUpdatedIndicator = false;
-  const lineNumber = indicatorIndexStore.indicatorIndex;
+  if (previousOnTimeUpdateHandler.value) {
+    audio.value!.removeEventListener(
+      'timeupdate',
+      previousOnTimeUpdateHandler.value
+    );
+  }
   const onTimeUpdate = (event) => {
     if (audio.value!.currentTime >= endTime) {
       audio.value!.pause();
-      isPlaying.value = false;
-      isPlay.value = false;
-      if (isAlreadyUpdatedIndicator == false) {
-        isAlreadyUpdatedIndicator = true;
-        indicatorIndexStore.update(lineNumber + 1);
+      audioPlayStore.setPause();
+      audio.value!.currentTime = startTime;
+      if (repeatCountStore.incrementCountCurrent()) {
+        indicatorIndexStore.updateToNext();
       }
     }
   };
+
   previousOnTimeUpdateHandler.value = onTimeUpdate;
 
   audio.value!.addEventListener('timeupdate', onTimeUpdate);
-
   audio.value!.currentTime = startTime;
-  audio.value!.play();
-  isPlaying.value = true;
 });
 
-watch(isPlay, () => {
-  if (isPlay.value == true) {
-    // if (audio.value.currentTime >= playTime.endTime) {
-    //   audio.value.currentTime = playTime.startTime;
-    // }
-    // audio.value.play();
+onBeforeUnmount(() => {
+  if (previousOnTimeUpdateHandler.value) {
+    audio.value!.removeEventListener(
+      'timeupdate',
+      previousOnTimeUpdateHandler.value
+    );
+  }
+});
 
-    const currentIndex = indicatorIndexStore.indicatorIndex - 1;
-    const { start: startTime, end: endTime } = timeData[currentIndex];
-    playTime.updateTime(startTime, endTime);
-    activeAnimationSentenceNumber.value = indicatorIndexStore.indicatorIndex;
-  } else if (isPlay.value == false) {
-    audio.value.pause();
+watch(audioPlayStore, () => {
+  if (audioPlayStore.isPlay == true) {
+    audio.value!.play();
+    // if (isPlayFromPaused.value == true) {
+    //   return;
+    // }
+
+    // const currentIndex = indicatorIndexStore.indicatorIndex - 1;
+    // const { start: startTime, end: endTime } = timeData[currentIndex];
+    // playTime.updateTime(startTime, endTime);
+    // activeAnimationSentenceNumber.value = indicatorIndexStore.indicatorIndex;
+  } else if (audioPlayStore.isPlay == false) {
+    audio.value!.pause();
   }
 });
 </script>

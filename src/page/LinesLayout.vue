@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeMount } from 'vue';
+import { onMounted } from 'vue';
 import { textView, TEXTVIEW_BUTTONS } from './state/textView';
 import LinesBlockLayout from './layout/LinesBlockLayout.vue';
 import LinesPageLayout from './layout/LinesPageLayout.vue';
@@ -8,7 +8,7 @@ import { useIndicatorIndexStore } from '../store/indicatorIndex';
 
 const indicatorIndexStore = useIndicatorIndexStore();
 const { lines } = defineProps(['lines']);
-onBeforeMount(() => {
+onMounted(() => {
   indicatorIndexStore.update(1);
 });
 </script>
