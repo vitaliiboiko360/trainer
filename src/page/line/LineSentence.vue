@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, nextTick } from 'vue';
+import { ref, watch, nextTick, onMounted } from 'vue';
 import LineTextWordsArray from './LineTextWordsArray.vue';
 import { useIndicatorIndexStore } from '../../store/indicatorIndex';
 const indicatorIndexStore = useIndicatorIndexStore();
@@ -33,6 +33,11 @@ const onClick = (event) => {
 };
 
 watch(indicatorIndexStore, () => {
+  if (indicatorIndexStore.indicatorIndex == lineNumber) {
+    audioTimeStore.updatePlayTime(startTime, endTime);
+  }
+});
+onMounted(() => {
   if (indicatorIndexStore.indicatorIndex == lineNumber) {
     audioTimeStore.updatePlayTime(startTime, endTime);
   }
