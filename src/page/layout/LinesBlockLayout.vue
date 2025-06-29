@@ -53,9 +53,6 @@ watchEffect(() => {
   padding-bottom: 0.3rem;
   border-bottom: 1px dashed gainsboro;
 }
-/* .lineContainerFlex {
-  display: flex;
-} */
 .spanLineByLine {
   width: fit-content;
   /* display: inline-block; */
