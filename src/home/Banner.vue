@@ -17,7 +17,7 @@ import Slideshow from './banner/Slideshow.vue';
     height: var(--b-height);
     width: var(--b-width);
   }
-  background-color: #e5e5e530;
+  background-color: #fff;
   margin-bottom: 2rem;
   position: relative;
   border-radius: 0.5rem;
