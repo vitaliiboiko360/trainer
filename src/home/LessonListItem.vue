@@ -4,18 +4,26 @@ const { title, lessonNumber } = defineProps(['title', 'lessonNumber']);
 
 const angle1 = ref(Math.random() * 360);
 const angle2 = (angle1.value + 180) % 360;
+const hueRotate = ref(Math.PI * Math.PI * lessonNumber);
 </script>
 
 <template>
   <p :class="$style.numberLine">
     <span :class="$style.iconRotate"
-      ><img height="14" width="14" src="/data/diamond.svg" /></span
+      ><img
+        :class="$style.imageDiamond"
+        height="14"
+        width="14"
+        src="/data/diamond.svg" /></span
     >&nbsp;{{ lessonNumber }}
   </p>
   <p :class="$style.titleLessonLine">{{ title }}</p>
 </template>
 
 <style module>
+.imageDiamond {
+  filter: hue-rotate(calc(v-bind(hueRotate) * 1rad));
+}
 .numberLine {
   text-align: right;
   margin-right: 1.2rem;
