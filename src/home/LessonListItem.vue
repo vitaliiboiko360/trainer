@@ -8,7 +8,9 @@ const angle2 = (angle1.value + 180) % 360;
 
 <template>
   <p :class="$style.numberLine">
-    <span :class="$style.iconRotate">🔹</span>{{ lessonNumber }}
+    <span :class="$style.iconRotate"
+      ><img height="14" width="14" src="/data/diamond.svg" /></span
+    >&nbsp;{{ lessonNumber }}
   </p>
   <p :class="$style.titleLessonLine">{{ title }}</p>
 </template>
