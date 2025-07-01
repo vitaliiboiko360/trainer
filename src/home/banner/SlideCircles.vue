@@ -3,7 +3,7 @@ const {
   numberOfSlides = 5,
   resetSlide,
   setActiveSlide,
-  animationDuration = 5,
+  animationDuration = 20,
   activeAnimation = 1,
 } = defineProps([
   'numberOfSlides',
