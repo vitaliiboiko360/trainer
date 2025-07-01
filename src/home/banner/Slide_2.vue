@@ -1,22 +1,24 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import gsap from 'gsap';
+import { MotionPathPlugin } from 'gsap/all';
+gsap.registerPlugin(MotionPathPlugin);
 
 import TextBubble from './TextBubble.vue';
 
 const words = ['Web App Designed', 'To Practice', 'Listening', 'And Speaking'];
-const shifts = [70, 90, 120, 135];
+const shifts = [70, 90, 100, 90];
 
 const keyfms1 = [
-  `matrix(0,0,0,0,370,80)`,
-  `matrix(0.5,0,0,0.5,370,80)`,
-  `matrix(1,0,0,1,370,80)`,
+  `matrix(-0,0,0,0,320,80)`,
+  `matrix(-0.5,0,0,0.5,320,80)`,
+  `matrix(-1,0,0,1,320,80)`,
 ];
 
 const keyfms2 = [
-  `matrix(-0,0,0,0,380,60)`,
-  `matrix(-0.5,0,0,0.5,380,60)`,
-  `matrix(-1,0,0,1,380,60)`,
+  `matrix(0,0,0,0,320,60)`,
+  `matrix(0.5,0,0,0.5,320,60)`,
+  `matrix(1,0,0,1,320,60)`,
 ];
 
 const refImg = ref();
@@ -50,6 +52,7 @@ let tweens = [];
 const animateText = (target, leftShift) => {
   tweens.push(
     gsap.to(target, {
+      motionPath: 'M217-63C255-51 248-13 266-8',
       opacity: 1,
       duration: 0.7,
       marginLeft: leftShift,
@@ -97,11 +100,11 @@ onMounted(() => {
                 tweens[i].reverse();
               }, i + 1 * 450);
             }
-          }, 2300);
+          }, 3500);
 
           setTimeout(() => {
             starBubbleAnimation();
-          }, 2700);
+          }, 3800);
         }
       });
     },
@@ -168,7 +171,7 @@ onMounted(() => {
 }
 .textBubble {
   position: absolute;
-  left: 144px;
+  left: 334px;
   top: 68px;
   width: 13rem;
   color: #555555;
