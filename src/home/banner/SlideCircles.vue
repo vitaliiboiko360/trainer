@@ -1,5 +1,9 @@
 <script setup>
-const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
+const {
+  numberOfSlides = 5,
+  resetSlide,
+  setActiveSlide,
+} = defineProps(['numberOfSlides', 'resetSlide', 'setActiveSlide']);
 </script>
 
 <template>
@@ -13,6 +17,12 @@ const { numberOfSlides = 5 } = defineProps(['numberOfSlides']);
           $style.item,
         ]"
         :key="i"
+        @click="
+          () => {
+            resetSlide();
+            setActiveSlide(i);
+          }
+        "
       >
         <div :class="[{ [$style.sectorCircle_before]: i == 1 }]"></div>
         <div :class="[{ [$style.sectorCircle_after]: i == 1 }]"></div>
