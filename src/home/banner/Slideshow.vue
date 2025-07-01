@@ -8,7 +8,7 @@ import Slide_3 from './Slide_3.vue';
 const show1 = ref(false);
 const show2 = ref(false);
 const show3 = ref(false);
-const activeSlide = ref(-1);
+const activeSlide = ref(1);
 const isUpdated = ref(false);
 const resetSlide = () => {
   show1.value = false;
@@ -51,5 +51,10 @@ onUpdated(() => {
   <Slide v-if="show1" key="0" />
   <Slide_2 v-if="show2" key="2" />
   <Slide_3 v-if="show3" key="3" />
-  <SlideCircles :numberOfSlides="3" :resetSlide :setActiveSlide />
+  <SlideCircles
+    :numberOfSlides="3"
+    :resetSlide
+    :setActiveSlide
+    :activeAnimation="activeSlide"
+  />
 </template>
