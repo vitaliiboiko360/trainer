@@ -2,6 +2,7 @@
 import { ref, onMounted, watch } from 'vue';
 
 import gsap from 'gsap';
+import { activeSlide, resetSlide, setActiveSlide } from './sliderState';
 
 const refPText = ref();
 
@@ -92,6 +93,13 @@ watch(textMsgOrder, () => {
                 }
               }, 700);
               setTimeout(() => {
+                if (textMsgOrder.value == textMessages.length - 1) {
+                  resetSlide();
+                  const nextSlide = (activeSlide.value += 1) % 4;
+                  setActiveSlide(nextSlide == 0 ? 1 : nextSlide);
+                  return;
+                }
+
                 textMsgOrder.value =
                   (textMsgOrder.value + 1) % textMessages.length;
               }, 800);
