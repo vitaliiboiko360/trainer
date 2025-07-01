@@ -5,20 +5,16 @@ import SlideCircles from './SlideCircles.vue';
 import Slide_2 from './Slide_2.vue';
 import Slide_3 from './Slide_3.vue';
 
-const show1 = ref(false);
-const show2 = ref(false);
-const show3 = ref(false);
-const activeSlide = ref(1);
 const isUpdated = ref(false);
-const resetSlide = () => {
-  show1.value = false;
-  show2.value = false;
-  show3.value = false;
-};
-const setActiveSlide = (index) => {
-  nextTick();
-  activeSlide.value = index;
-};
+
+import {
+  show1,
+  show2,
+  show3,
+  activeSlide,
+  setActiveSlide,
+  resetSlide,
+} from './sliderState';
 
 onMounted(() => {
   setTimeout(() => {
