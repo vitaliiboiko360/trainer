@@ -3,7 +3,15 @@ const {
   numberOfSlides = 5,
   resetSlide,
   setActiveSlide,
-} = defineProps(['numberOfSlides', 'resetSlide', 'setActiveSlide']);
+  animationDuration = 5,
+  activeAnimation = 1,
+} = defineProps([
+  'numberOfSlides',
+  'resetSlide',
+  'setActiveSlide',
+  'animationDuration',
+  'activeAnimation',
+]);
 </script>
 
 <template>
@@ -12,8 +20,8 @@ const {
       <div
         v-for="i in numberOfSlides"
         :class="[
-          { [$style.sectorCircle]: i == 1 },
-          { [$style.circleBorder]: i == 1 },
+          { [$style.sectorCircle]: i == activeAnimation },
+          { [$style.circleBorder]: i == activeAnimation },
           $style.item,
         ]"
         :key="i"
@@ -24,9 +32,13 @@ const {
           }
         "
       >
-        <div :class="[{ [$style.sectorCircle_before]: i == 1 }]"></div>
-        <div :class="[{ [$style.sectorCircle_after]: i == 1 }]"></div>
-        <p :class="$style.pInside">.</p>
+        <div
+          :class="[{ [$style.sectorCircle_before]: i == activeAnimation }]"
+        ></div>
+        <div
+          :class="[{ [$style.sectorCircle_after]: i == activeAnimation }]"
+        ></div>
+        <!-- <p :class="$style.pInside">.</p> -->
       </div>
     </div>
   </div>
@@ -42,6 +54,7 @@ const {
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 10;
 }
 .flexDiv {
   display: flex;
@@ -49,7 +62,7 @@ const {
   bottom: 8px;
   flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: 14px;
 }
 .item {
   height: 12px;
@@ -116,7 +129,8 @@ const {
   content: '';
   display: block;
   background-image: linear-gradient(90deg, #6e75d2 50%, transparent 50%);
-  animation: 5s linear infinite semiCircleRotate;
+  animation: calc(v-bind(animationDuration) * 1s) linear infinite
+    semiCircleRotate;
   background-size: 100% 100%;
   width: 100%;
   height: 100%;
@@ -132,7 +146,8 @@ const {
   border-radius: 50%;
   position: absolute;
   background-size: 100% 100%;
-  animation: 5s linear infinite sectorCircleStaticKeyframes;
+  animation: calc(v-bind(animationDuration) * 1s) linear infinite
+    sectorCircleStaticKeyframes;
   background-origin: border-box;
 }
 .circleBorder {
