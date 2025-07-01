@@ -4,8 +4,8 @@ import gsap from 'gsap';
 
 import TextBubble from './TextBubble.vue';
 
-const words = ['Learn', 'Spanish', 'Online'];
-const shifts = [70, 90, 120];
+const words = ['Web App Designed', 'To Practice', 'Listening', 'And Speaking'];
+const shifts = [70, 90, 120, 135];
 
 const keyfms1 = [
   `matrix(0,0,0,0,370,80)`,
@@ -82,7 +82,7 @@ onMounted(() => {
   gsap.to(refImg.value, {
     opacity: 1,
     duration: 0.8,
-    left: '+=120',
+    left: '-=200',
     onComplete: () => {
       refImg.value.style.opacity = 1;
       refImg.value.style.left = refImg.value.style.left;
@@ -164,7 +164,7 @@ onMounted(() => {
   height: 100%;
   /* width: 100%; */
   object-fit: contain;
-  left: 200px;
+  left: 300px;
 }
 .textBubble {
   position: absolute;
