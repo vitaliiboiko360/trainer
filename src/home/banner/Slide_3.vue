@@ -161,7 +161,7 @@ onMounted(() => {
   top: 53px;
   font-family: 'Nunito';
   /* text-shadow: 2px 2px 2px #c4c0ff; */
-  color: #fff;
+  color: #5e5e5e;
 }
 .image {
   position: absolute;
