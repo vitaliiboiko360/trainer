@@ -59,7 +59,13 @@ function getRotateStyle() {
             query: { resource: item.resource },
           }"
         >
-          <div :class="[css.lessonListItem, css.fredokaFont]">
+          <div
+            :class="[
+              css.lessonListItem,
+              css.fredokaFont,
+              $style.backgroundListItem,
+            ]"
+          >
             <LessonListItem
               :title="item.title"
               :lessonNumber="toLessonId(index)"
@@ -123,5 +129,25 @@ function getRotateStyle() {
   animation: calc(v-bind(duration2) * 1s) linear 1s infinite alternate
     rotateItemReverse;
   transform: rotate(1deg);
+}
+.backgroundListItem {
+  --local-variable: 'value';
+}
+.backgroundListItem2 {
+  &::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: '';
+    background-color: blue;
+    clip-path: shape(
+      from 0% 80%,
+      curve to 50% 70% with 25% 60%,
+      curve to 100% 60% with 75% 50%,
+      close
+    );
+  }
 }
 </style>
