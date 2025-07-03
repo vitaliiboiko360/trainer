@@ -1,0 +1,1 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 224' width='256' height='224'><filter id='blurFilter'><feGaussianBlur in='SourceGraphic' stdDeviation='5' /></filter><path id='clipPath' fill='black' d='M0 230 0 200C45 138 81 180 121 144 180 91 235 104 261 127L267 223 0 230z' filter='url(#blurFilter)' /></svg>
