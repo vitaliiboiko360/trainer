@@ -1,7 +1,7 @@
 <script setup>
 import css from './home.module.scss';
 import { useQuery } from '@tanstack/vue-query';
-import { ref } from 'vue';
+import { watch, ref } from 'vue';
 import LessonListItem from './LessonListItem.vue';
 import { LIST_TEXT_JSON_KEY, queryListOfTextJson } from '../query/default';
 
@@ -39,9 +39,14 @@ function getBackgroundPosition() {
   background-position-y: ${~~(Math.random() * 85)}%`;
 }
 const positions = ref([]);
-for (let i = 0; i < data.value.texts.length; i++) {
-  positions.value.push(getBackgroundPosition());
-}
+
+watch(data, () => {
+  if (data.value) {
+    for (let i = 0; i < data.value.texts.length; i++) {
+      positions.value.push(getBackgroundPosition());
+    }
+  }
+});
 </script>
 
 <template>
