@@ -34,6 +34,14 @@ function getRotateStyle() {
   // return `transform: rotate(${degNumber}deg)`;
   return degNumber;
 }
+function getBackgroundPosition() {
+  return `background-position-x: ${~~(Math.random() * 85)}%;
+  background-position-y: ${~~(Math.random() * 85)}%`;
+}
+const positions = ref([]);
+for (let i = 0; i < data.value.texts.length; i++) {
+  positions.value.push(getBackgroundPosition());
+}
 </script>
 
 <template>
@@ -84,7 +92,7 @@ function getRotateStyle() {
                 />
               </mask>
               <foreignObject width="100%" height="100%" mask="url(#maskPath)">
-                <div :class="$style.bgInSvg"></div>
+                <div :class="$style.bgInSvg" :style="positions[index]"></div>
               </foreignObject>
             </svg>
           </div>
@@ -168,8 +176,6 @@ function getRotateStyle() {
   right: 0;
   content: '';
   z-index: -1;
-  background-position-x: 0%;
-  background-position-y: 0%;
   /* animation: 150s linear infinite alternate moveHorizontaly,
       700s linear infinite alternate moveVerticaly; */
   background-image: url('/data/bg_flat_1.png');
