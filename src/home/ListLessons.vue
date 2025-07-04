@@ -64,6 +64,7 @@ function getRotateStyle() {
               css.lessonListItem,
               css.fredokaFont,
               $style.backgroundListItem,
+              $style.backgroundListItem1,
             ]"
           >
             <LessonListItem
@@ -131,9 +132,6 @@ function getRotateStyle() {
   transform: rotate(1deg);
 }
 .backgroundListItem {
-  --local-variable: 'value';
-}
-.backgroundListItem2 {
   &::after {
     position: absolute;
     top: 0;
@@ -141,12 +139,43 @@ function getRotateStyle() {
     left: 0;
     right: 0;
     content: '';
+    z-index: -1;
+  }
+}
+.backgroundListItem1 {
+  &::after {
+    background-image: url('/data/bg_flat_1.png');
+    background-size: 1000px 1000px;
+    mask-image: url('/data/clipPath.svg');
+    border-radius: 10px;
+  }
+}
+.backgroundListItem1_nope {
+  &::after {
+    mask-clip: view-box;
+    mask-size: 100vmin;
+    mask-position: center;
+    background-color: blue;
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 224' width='256' height='224'><filter id='blurFilter'><feGaussianBlur in='SourceGraphic' stdDeviation='5' /></filter><path id='clipPath' fill='black' d='M0 230 0 200C45 138 81 180 121 144 180 91 235 104 261 127L267 223 0 230z' filter='url(#blurFilter)' /></svg>");
+  }
+}
+.backgroundListItem2 {
+  &::after {
     background-color: blue;
     clip-path: shape(
       from 0% 80%,
       curve to 50% 70% with 25% 60%,
       curve to 100% 60% with 75% 50%,
       close
+    );
+  }
+}
+.backgroundListItem3 {
+  &::after {
+    filter: blur(20px);
+    background-color: blue;
+    clip-path: path(
+      'M0 260L0 200C45 138 81 180 121 144 180 91 235 104 261 127L260 127L260 220'
     );
   }
 }
