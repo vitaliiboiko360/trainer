@@ -35,8 +35,8 @@ function getRotateStyle() {
   return degNumber;
 }
 function getBackgroundPosition() {
-  return `background-position-x: ${~~(Math.random() * 85)}%;
-  background-position-y: ${~~(Math.random() * 85)}%`;
+  return `background-position-x: ${~~(Math.random() * 9) * 10}%;
+  background-position-y: ${~~(Math.random() * 9) * 10}%`;
 }
 const positions = ref([]);
 
