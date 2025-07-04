@@ -59,18 +59,34 @@ function getRotateStyle() {
             query: { resource: item.resource },
           }"
         >
-          <div
-            :class="[
-              css.lessonListItem,
-              css.fredokaFont,
-              $style.backgroundListItem,
-              $style.backgroundListItem1,
-            ]"
-          >
+          <div :class="[css.lessonListItem, css.fredokaFont]">
             <LessonListItem
               :title="item.title"
               :lessonNumber="toLessonId(index)"
             />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 256 224"
+              width="256"
+              height="224"
+              id="clipPath"
+              :class="$style.svgBg"
+            >
+              <filter id="blurFilter" y="-50%" height="250%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
+              </filter>
+              <mask id="maskPath">
+                <path
+                  style="overflow: visible; height: 120%; display: none"
+                  fill="black"
+                  d="M7 220C-3 217-4 207 0 200 45 138 81 180 121 144 180 91 231 106 249 125 274 153 257 204 244 223c-24 32-222 3-249-4"
+                  filter="url(#blurFilter)"
+                />
+              </mask>
+              <foreignObject width="100%" height="100%" mask="url(#maskPath)">
+                <div :class="$style.bgInSvg"></div>
+              </foreignObject>
+            </svg>
           </div>
         </router-link>
       </div>
@@ -131,6 +147,38 @@ function getRotateStyle() {
     rotateItemReverse;
   transform: rotate(1deg);
 }
+
+.svgBg {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  left: -2px;
+  right: -2px;
+  z-index: -1;
+  border: solid transparent;
+  border-width: 2px 2px 4px;
+  border-radius: 12px;
+}
+
+.bgInSvg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: '';
+  z-index: -1;
+  background-position-x: 0%;
+  background-position-y: 0%;
+  /* animation: 150s linear infinite alternate moveHorizontaly,
+      700s linear infinite alternate moveVerticaly; */
+  background-image: url('/data/bg_flat_1.png');
+  background-size: 500px 500px;
+  /* mask-image: url(#clipPath_path); */
+  border-radius: 10px;
+  margin-left: 0px !important;
+}
+
 .backgroundListItem {
   &::after {
     position: absolute;
@@ -142,11 +190,48 @@ function getRotateStyle() {
     z-index: -1;
   }
 }
+@keyframes moveHorizontaly {
+  0% {
+    background-position-x: 0%;
+  }
+  100% {
+    background-position-x: 100%;
+  }
+}
+@keyframes moveVerticaly {
+  0% {
+    background-position-y: 0%;
+  }
+  100% {
+    background-position-y: 100%;
+  }
+}
+@-webkit-keyframes moveHorizontaly {
+  0% {
+    background-position-x: 0%;
+  }
+  100% {
+    background-position-x: 100%;
+  }
+}
+@-webkit-keyframes moveVerticaly {
+  0% {
+    background-position-y: 0%;
+  }
+  100% {
+    background-position-y: 100%;
+  }
+}
 .backgroundListItem1 {
   &::after {
+    will-change: background-position;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    /* animation: 150s linear infinite alternate moveHorizontaly,
+      700s linear infinite alternate moveVerticaly; */
     background-image: url('/data/bg_flat_1.png');
-    background-size: 1000px 1000px;
-    mask-image: url('/data/clipPath.svg');
+    background-size: 500px 500px;
+    mask-image: url(#clipPath_path);
     border-radius: 10px;
   }
 }
