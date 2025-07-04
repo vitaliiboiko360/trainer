@@ -1,2 +1,5 @@
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 224' width='256' height='224'><filter id='blurFilter' y="-50%" height="250%"><feGaussianBlur in='SourceGraphic' stdDeviation='10' /></filter>
-<path style='overflow: visible; height:120%' id='clipPath' fill='black' d='M0 230 0 200C45 138 81 180 121 144 180 91 235 104 261 127L267 223 0 230z' filter='url(#blurFilter)' /></svg>
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 224' width='256' height='224'>
+<filter id='blurFilter' y="-50%" height="250%"><feGaussianBlur in='SourceGraphic' stdDeviation='10' />
+</filter>
+<path style='overflow: visible; height:120%' id='clipPath' fill='black' d='M7 220C-3 217-4 207 0 200 45 138 81 180 121 144 180 91 231 106 249 125 274 153 257 204 244 223c-24 32-222 3-249-4' filter='url(#blurFilter)' />
+</svg>
