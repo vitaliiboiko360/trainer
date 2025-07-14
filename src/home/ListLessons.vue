@@ -90,7 +90,7 @@ watch(data, () => {
               </filter>
               <mask id="maskPath" maskUnits="userSpaceOnUse">
                 <path
-                  class="pathBlured"
+                  :class="$style.pathBlured"
                   style="overflow: visible; height: 120%"
                   fill="white"
                   d="M7 220C-3 217-4 207 0 200 45 138 81 180 121 144 180 91 231 106 249 125 274 153 257 204 244 223c-24 32-222 3-249-4"
