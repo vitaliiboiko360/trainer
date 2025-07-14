@@ -113,7 +113,14 @@ watch(data, () => {
                 />
               </mask>
               <foreignObject width="100%" height="100%" mask="url(#maskPath)">
-                <div :class="$style.bgInSvg" :style="positions[index]"></div>
+                <div
+                  :class="[
+                    $style.bgInSvg,
+                    { [$style.bg1]: index % 2 == 0 },
+                    { [$style.bg2]: index % 2 == 1 },
+                  ]"
+                  :style="positions[index]"
+                ></div>
               </foreignObject>
             </svg>
           </div>
@@ -199,11 +206,18 @@ watch(data, () => {
   z-index: -1;
   /* animation: 150s linear infinite alternate moveHorizontaly,
       700s linear infinite alternate moveVerticaly; */
-  background-image: url('/data/bg_flat_1.png');
   background-size: 500px 500px;
   /* mask-image: url(#clipPath_path); */
   border-radius: 10px;
   margin-left: 0px !important;
+}
+
+.bg1 {
+  background-image: url('/data/bg_flat_1.png');
+}
+
+.bg2 {
+  background-image: url('/data/bg_flat_2.png');
 }
 
 .backgroundListItem {
