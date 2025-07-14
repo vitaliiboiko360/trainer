@@ -24,6 +24,7 @@ function getBackgroundPosition(x, y) {
   background-position-y: ${(y % 10) * 10}%`;
 }
 const positions = ref([]);
+const styles = ref([]);
 
 function shuffleArray(a) {
   for (let i = 0; i < a.length; i++) {
@@ -32,6 +33,15 @@ function shuffleArray(a) {
     a[i] = a[randIndex + i];
     a[randIndex + i] = temp;
   }
+}
+
+const numberOfStyles = 4;
+function getRandom() {
+  let total = 0;
+  for (let i = 0; i < numberOfStyles; i++) {
+    total += ~~(Math.random() * numberOfStyles);
+  }
+  return ~~(total / numberOfStyles);
 }
 
 watch(data, () => {
@@ -43,6 +53,7 @@ watch(data, () => {
     shuffleArray(y);
     for (let i = 0; i < data.value.texts.length; i++) {
       positions.value.push(getBackgroundPosition(x[i], y[i]));
+      styles.value.push(getRandom());
     }
   }
 });
@@ -89,7 +100,12 @@ watch(data, () => {
               </filter>
               <mask id="maskPath" maskUnits="userSpaceOnUse">
                 <path
-                  :class="$style.pathBlured"
+                  :class="[
+                    { [$style.pathBlured]: 0 == styles[index] },
+                    { [$style.pathBlured1]: 1 == styles[index] },
+                    { [$style.pathBlured2]: 2 == styles[index] },
+                    { [$style.pathBlured3]: 3 == styles[index] },
+                  ]"
                   style="overflow: visible; height: 120%"
                   fill="white"
                   d="M7 220C-3 217-4 207 0 200 45 138 81 180 121 144 180 91 231 106 249 125 274 153 257 204 244 223c-24 32-222 3-249-4"
@@ -311,5 +327,14 @@ watch(data, () => {
 }
 .pathBlured {
   animation: 10s linear 0s infinite alternate movingMask;
+}
+.pathBlured1 {
+  animation: 10s linear 1s infinite alternate movingMask;
+}
+.pathBlured2 {
+  animation: 10s linear 2s infinite alternate movingMask;
+}
+.pathBlured3 {
+  animation: 10s linear 3s infinite alternate movingMask;
 }
 </style>
