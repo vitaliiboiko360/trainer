@@ -90,6 +90,7 @@ watch(data, () => {
               </filter>
               <mask id="maskPath" maskUnits="userSpaceOnUse">
                 <path
+                  class="pathBlured"
                   style="overflow: visible; height: 120%"
                   fill="white"
                   d="M7 220C-3 217-4 207 0 200 45 138 81 180 121 144 180 91 231 106 249 125 274 153 257 204 244 223c-24 32-222 3-249-4"
@@ -274,5 +275,24 @@ watch(data, () => {
       'M0 260L0 200C45 138 81 180 121 144 180 91 235 104 261 127L260 127L260 220'
     );
   }
+}
+@keyframes movingMask {
+  0% {
+    background-position-y: 'M7 220C-3 217-4 207 0 200 45 138 81 180 121 144 180 91 231 106 249 125 274 153 257 204 244 223c-24 32-222 3-249-4';
+  }
+  100% {
+    background-position-y: 'M7 220C-3 217-4 207 0 200 45 138 81 180 121 144 180 91 231 106 249 125 274 153 257 204 244 223c-24 32-222 3-249-4';
+  }
+}
+@-webkit-keyframes movingMask {
+  0% {
+    background-position-x: 'M7 220C-3 217-4 207 0 200 45 138 81 180 121 144 180 91 231 106 249 125 274 153 257 204 244 223c-24 32-222 3-249-4';
+  }
+  100% {
+    background-position-x: 'M7 220C-3 217-4 207 0 200 45 138 81 180 121 144 180 91 231 106 249 125 274 153 257 204 244 223c-24 32-222 3-249-4';
+  }
+}
+.pathBlured {
+  animation: 10s linear 0 infinite alternate movingMask;
 }
 </style>
