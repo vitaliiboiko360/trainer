@@ -19,31 +19,30 @@ const getRandomDuration = () => DURATIONS[~~Math.random() * DURATIONS.length];
 const duration1 = ref(getRandomDuration());
 const duration2 = ref(getRandomDuration());
 
-let counter = 0;
-const getKey = () => {
-  return `lesson-item-key-${counter++}`;
-};
-let previousAngle = 0;
-function getRotateStyle() {
-  let degNumber;
-  do {
-    degNumber =
-      (~~(Math.random() * 2) + 1) * (Math.floor(Math.random() * 2) || -1);
-  } while (degNumber == previousAngle);
-  previousAngle = degNumber;
-  // return `transform: rotate(${degNumber}deg)`;
-  return degNumber;
-}
-function getBackgroundPosition() {
-  return `background-position-x: ${~~(Math.random() * 9) * 10}%;
-  background-position-y: ${~~(Math.random() * 9) * 10}%`;
+function getBackgroundPosition(x, y) {
+  return `background-position-x: ${(x % 10) * 10}%;
+  background-position-y: ${(y % 10) * 10}%`;
 }
 const positions = ref([]);
 
+function shuffleArray(a) {
+  for (let i = 0; i < a.length; i++) {
+    let temp = a[i];
+    let randIndex = ~~(Math.random() * (a.length - i));
+    a[i] = a[randIndex + i];
+    a[randIndex + i] = temp;
+  }
+}
+
 watch(data, () => {
   if (data.value) {
+    const listItemLenght = data.value.texts.length;
+    const x = Array.from({ length: listItemLenght }, (e, i) => i);
+    const y = Array.from({ length: listItemLenght }, (e, i) => i);
+    shuffleArray(x);
+    shuffleArray(y);
     for (let i = 0; i < data.value.texts.length; i++) {
-      positions.value.push(getBackgroundPosition());
+      positions.value.push(getBackgroundPosition(x[i], y[i]));
     }
   }
 });
@@ -57,7 +56,7 @@ watch(data, () => {
     <div :class="$style.lessonItemsContainer">
       <div
         v-for="(item, index) in data.texts"
-        :key="getKey"
+        :key="`lesson-item-key-${index}`"
         :class="[
           { [$style.listItemRotate]: (index + duration1 + duration2) % 2 == 0 },
           {
