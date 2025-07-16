@@ -22,12 +22,20 @@ router.replace({ query: null });
 </script>
 
 <template>
-  <Page v-if="resourceFromUrl" :id :resource="resourceFromUrl" />
-  <Page
-    v-else-if="isFetched"
-    :id
-    :resource="data.texts[idToIndex(id)].resource"
-  />
-  <span v-else-if="isPending">Loading PageEntryPoint...</span>
-  <span v-else-if="isError">Error {{ error }}</span>
+  <div :class="$style.divPage">
+    <Page v-if="resourceFromUrl" :id :resource="resourceFromUrl" />
+    <Page
+      v-else-if="isFetched"
+      :id
+      :resource="data.texts[idToIndex(id)].resource"
+    />
+    <span v-else-if="isPending">Loading PageEntryPoint...</span>
+    <span v-else-if="isError">Error {{ error }}</span>
+  </div>
 </template>
+
+<style module>
+.divPage {
+  display: grid;
+}
+</style>
