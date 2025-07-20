@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, onBeforeUnmount } from 'vue';
 import gsap from 'gsap';
 import { MotionPathPlugin } from 'gsap/all';
 gsap.registerPlugin(MotionPathPlugin);
@@ -108,6 +108,10 @@ onMounted(() => {
       });
     },
   });
+});
+
+onBeforeUnmount(() => {
+  gsap.globalTimeline.clear();
 });
 </script>
 

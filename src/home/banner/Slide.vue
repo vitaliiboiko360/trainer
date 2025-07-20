@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, onBeforeUnmount } from 'vue';
 import gsap from 'gsap';
 
 import TextBubble from './TextBubble.vue';
@@ -107,6 +107,10 @@ onMounted(() => {
       });
     },
   });
+});
+
+onBeforeUnmount(() => {
+  gsap.globalTimeline.clear();
 });
 </script>
 

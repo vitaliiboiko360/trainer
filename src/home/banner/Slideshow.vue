@@ -1,5 +1,12 @@
 <script setup>
-import { nextTick, onMounted, onUpdated, ref, watch } from 'vue';
+import {
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  onUpdated,
+  ref,
+  watch,
+} from 'vue';
 import Slide from './Slide.vue';
 import SlideCircles from './SlideCircles.vue';
 import Slide_2 from './Slide_2.vue';
@@ -27,12 +34,18 @@ watch([activeSlide, isUpdated], () => {
 
   if (activeSlide.value == 1) {
     show1.value = true;
+    show2.value = false;
+    show3.value = false;
   }
   if (activeSlide.value == 2) {
     show2.value = true;
+    show1.value = false;
+    show3.value = false;
   }
   if (activeSlide.value == 3) {
     show3.value = true;
+    show1.value = false;
+    show2.value = false;
   }
 });
 
@@ -40,6 +53,12 @@ onUpdated(() => {
   if (show1.value == false) {
     isUpdated.value = !isUpdated.value;
   }
+});
+onBeforeUnmount(() => {
+  activeSlide.value = 1;
+  show1.value = true;
+  show2.value = false;
+  show3.value = false;
 });
 </script>
 
