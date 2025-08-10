@@ -20,8 +20,7 @@ const duration1 = ref(getRandomDuration());
 const duration2 = ref(getRandomDuration());
 
 function getBackgroundPosition(x, y) {
-  return `background-position-x: ${(x % 10) * 10}%;
-  background-position-y: ${(y % 10) * 10}%`;
+  return { x: `-${(x % 10) * 10}%`, y: `-${(y % 10) * 10}%` };
 }
 const positions = ref([]);
 const styles = ref([]);
@@ -57,6 +56,18 @@ watch(data, () => {
     }
   }
 });
+
+if (data.value) {
+  const listItemLenght = data.value.texts.length;
+  const x = Array.from({ length: listItemLenght }, (e, i) => i);
+  const y = Array.from({ length: listItemLenght }, (e, i) => i);
+  shuffleArray(x);
+  shuffleArray(y);
+  for (let i = 0; i < data.value.texts.length; i++) {
+    positions.value.push(getBackgroundPosition(x[i], y[i]));
+    styles.value.push(getRandom());
+  }
+}
 </script>
 
 <template>
@@ -98,30 +109,33 @@ watch(data, () => {
               <filter id="blurFilter" y="-50%" height="250%">
                 <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
               </filter>
-              <mask id="maskPath" maskUnits="userSpaceOnUse">
-                <path
-                  :class="[
-                    { [$style.pathBlured]: 0 == styles[index] },
-                    { [$style.pathBlured1]: 1 == styles[index] },
-                    { [$style.pathBlured2]: 2 == styles[index] },
-                    { [$style.pathBlured3]: 3 == styles[index] },
-                  ]"
-                  style="overflow: visible; height: 120%"
-                  fill="white"
-                  d="M7 220C-3 217-4 207 0 200 45 138 81 180 121 144 180 91 231 106 249 125 274 153 257 204 244 223c-24 32-222 3-249-4"
+              <mask
+                id="maskPath"
+                style="mask-type: alpha"
+                maskUnits="userSpaceOnUse"
+              >
+                <ellipse
                   filter="url(#blurFilter)"
+                  fill="white"
+                  cx="125"
+                  cy="240"
+                  rx="200"
+                  ry="100"
                 />
               </mask>
-              <foreignObject width="100%" height="100%" mask="url(#maskPath)">
-                <div
-                  :class="[
-                    $style.bgInSvg,
-                    { [$style.bg1]: index % 2 == 0 },
-                    { [$style.bg2]: index % 2 == 1 },
-                  ]"
-                  :style="positions[index]"
-                ></div>
-              </foreignObject>
+              <g mask="url(#maskPath)">
+                <image
+                  width="200%"
+                  height="200%"
+                  :x="positions[index].x"
+                  :y="positions[index].y"
+                  :href="
+                    index % 2 == 0
+                      ? '/data/bg_flat_1.png'
+                      : '/data/bg_flat_2.png'
+                  "
+                />
+              </g>
             </svg>
           </div>
         </router-link>
